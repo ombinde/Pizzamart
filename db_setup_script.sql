@@ -37,14 +37,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `mydb`.`orders` (
   `idorder` INT NOT NULL AUTO_INCREMENT ,
   `status` VARCHAR(45) NOT NULL ,
-  `customer_idcustomer` INT NOT NULL ,
-  PRIMARY KEY (`idorder`) ,
-  INDEX `fk_order_customer` (`customer_idcustomer` ASC) ,
-  CONSTRAINT `fk_order_customer`
-    FOREIGN KEY (`customer_idcustomer` )
-    REFERENCES `mydb`.`customer` (`idcustomer` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idorder`) )
 ENGINE = InnoDB;
 
 
@@ -75,6 +68,27 @@ CREATE  TABLE IF NOT EXISTS `mydb`.`product_has_order` (
   CONSTRAINT `fk_vare_has_ordre_ordre1`
     FOREIGN KEY (`orders_idorder` )
     REFERENCES `mydb`.`orders` (`idorder` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`orders_has_customer`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `mydb`.`orders_has_customer` (
+  `orders_idorder` INT NOT NULL ,
+  `customer_idcustomer` INT NOT NULL ,
+  PRIMARY KEY (`orders_idorder`, `customer_idcustomer`) ,
+  INDEX `fk_orders_has_customer_customer1` (`customer_idcustomer` ASC) ,
+  CONSTRAINT `fk_orders_has_customer_orders1`
+    FOREIGN KEY (`orders_idorder` )
+    REFERENCES `mydb`.`orders` (`idorder` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orders_has_customer_customer1`
+    FOREIGN KEY (`customer_idcustomer` )
+    REFERENCES `mydb`.`customer` (`idcustomer` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -23,13 +23,13 @@ INSERT INTO orders (status)
 INSERT INTO orders (status)
 	values ('Levert av bud');
 INSERT INTO orders (status)
-	values ('Hentet av bud (under levering)');
+	values ('Hentet av bud under levering');
 INSERT INTO orders (status)
-	values ('Hentet av bud (under levering)');
+	values ('Hentet av bud under levering');
 INSERT INTO orders (status)
 	values ('hos baker');
 INSERT INTO orders (status)
-	values ('hos baker');¨
+	values ('hos baker');
 INSERT INTO orders (status)
 	values ('avventer ledig baker');
 INSERT INTO orders (status)
@@ -44,23 +44,23 @@ INSERT INTO orders (status)
 	values ('hentet av customer');
 
 
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Bari', '220');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Genoa', '150');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Cuneo', '220');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Palermo', '190');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Naples', '170');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Monza', '170');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Milan', '210');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Messina', '190');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Siena', '190');
-INSERT INTO product (navn, pris)
+INSERT INTO product (name, price)
 	values ('Oristano', '220');
