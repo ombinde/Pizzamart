@@ -1,4 +1,4 @@
-package Database;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -72,6 +72,16 @@ public class Database {
 		PreparedStatement sporring = con.prepareStatement(query);
 		sporring.executeUpdate();
 	}
+	
+	public int insertWithIdReturn(String query) throws SQLException{
+		PreparedStatement q = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+		q.executeUpdate();
+		ResultSet rs = q.getGeneratedKeys();
+		if (rs.next())
+			return rs.getInt(1);
+		return 0;
+	}
+	
 	/**
 	 * Takes in a String that is the query, and return the ResultSet of the query.
 	 * @param query

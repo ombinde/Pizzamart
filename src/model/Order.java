@@ -2,15 +2,13 @@ package model;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 
 public class Order {
 	
 	private Customer customer;
 	private HashMap<Product, Integer> productsInOrder;
 	private String status;
-	private String idorder;
+	private int idorder;
 	
 	public Order(Customer customer, HashMap<Product, Integer> products, String status){
 		this.customer = customer;
@@ -20,6 +18,7 @@ public class Order {
 	
 	public Order(Customer customer){
 		this.customer = customer;
+		this.status = "Under bestilling";
 	}
 	public HashMap<Product, Integer> getProductsFromOrdre(){
 		return this.productsInOrder;
@@ -27,11 +26,11 @@ public class Order {
 	
 	public double getOrderTotalPrice(Order order){
 		double totalprice = 0;
-	    Iterator it = productsInOrder.entrySet().iterator();
-	    while(it.hasNext()){
-	    	Product p = (Product) it.next();
-	    	int quantity = productsInOrder.get(p);	
-	        totalprice += p.getPrice()*quantity;
+	    for (Object p : productsInOrder.keySet()) {
+	    	if (p instanceof Product){
+		    	int quantity = productsInOrder.get(p);	
+		        totalprice += ((Product) p).getPrice()*quantity;
+	    	}
 	    }
 		return totalprice;
 	}
@@ -43,11 +42,21 @@ public class Order {
 	}
 	
 	public void addOrderToDatabase(){
+		Integer quantity = 0;
 		try {
 			Database db = Database.getDatabase();
 			String query = "INSERT INTO orders (status) " +
 			  			   "VALUES ('"+this.status + "')";
-			db.insert(query);
+			idorder = db.insertWithIdReturn(query);
+		    for (Object p : productsInOrder.keySet()) {
+		    	if (p instanceof Product){
+			    	quantity = productsInOrder.get(p);
+			    	int idproduct = ((Product) p).getIdproduct();
+			    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
+			    	"values('" + idproduct + "','" + idorder + "','" + quantity + "')";
+			    	db.insert(query);
+		    	}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,13 +70,11 @@ public class Order {
 		this.status = status;
 		try {
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (status) " +
-			  			   "VALUES ('"+this.status + ")";
+			String query = "UPDATE orders SET status='" + status + "' WHERE idorder=" + idorder;
 			db.insert(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	

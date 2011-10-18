@@ -8,10 +8,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import model.Customer;
-import model.Employee;
+import model.*;
 import controller.ManageEmployee;
 
 public class Test {
@@ -29,7 +29,17 @@ public class Test {
 //		ScriptRunner sr = new ScriptRunner(con, false, true);
 //		sr.runScript(br);
 
+		
+		HashMap<Product, Integer> products = new HashMap<Product, Integer>();
+		products.put(Product.getProduct("Genoa"), 10);
+		products.put(Product.getProduct("Naples"), 5);
 		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956");
+		Order order = new Order(c, products, "Bestilt");
+		order.addOrderToDatabase();
+		order.setStatus("Påbegynt av kokk");
+		System.out.println(order.getOrderTotalPrice(order));
+		
+		
 		
 //		System.out.println(db.getConnection());
 //		System.out.println(db.select("SELECT lastname FROM employee"));
