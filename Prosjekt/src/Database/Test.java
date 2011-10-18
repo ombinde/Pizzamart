@@ -12,7 +12,6 @@ import java.util.List;
 
 import Class.Employee;
 import Class.ManageEmployee;
-import Class.Product;
 
 public class Test {
 
@@ -37,9 +36,8 @@ public class Test {
 		
 		ManageEmployee.addNewEmployee("ombinde", "oivind", "binde");
 
-		String productname = Product.getProductName(1);
-		System.out.println(productname);
-		
+		//String productname = Product.getProductName(1);
+		//System.out.println(productname);
 		
 		
 		Employee emp = new Employee("heiii", "Ola", "Nordmann");

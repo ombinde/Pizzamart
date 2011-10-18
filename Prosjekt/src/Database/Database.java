@@ -14,14 +14,12 @@ public class Database {
 	
 	public static Database ref;
 	private Connection con=null;
-    public static final String HOSTNAME = "localhost";
-    public static final String USERNAME = "root";
-    public static final String DATABASE = "mydb";
-    public static final String PASSWORD = "root";
+  public static final String HOSTNAME = "localhost";
+  public static final String USERNAME = "root";
+  public static final String DATABASE = "mydb";
+  public static final String PASSWORD = "root";
 	public static final String PORT = "3306";
-	
-
-	
+		
 	private Database() throws SQLException{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -92,7 +90,7 @@ public class Database {
 //			enavn = rs.getString(column);
 //			System.out.println(enavn);
 //		}
-		System.out.println(rs);
+//		System.out.println(rs);
 		return rs;
 	}
 }

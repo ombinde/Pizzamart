@@ -63,4 +63,12 @@ INSERT INTO product (name, price)
 INSERT INTO product (name, price)
 	values ('Siena', '190');
 INSERT INTO product (name, price)
+	values ('Rømme', '30');
+INSERT INTO product (name, price)
+	values ('CocaCola', '40');
+INSERT INTO product (name, price)
+	values ('Hvitløk', '40');
+INSERT INTO product (name, price)
+	values ('Vann', '30');
+INSERT INTO product (name, price)
 	values ('Oristano', '220');
