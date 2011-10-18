@@ -10,8 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Customer;
-import model.Employee;
+import model.*;
 import controller.ManageEmployee;
 
 public class Test {
