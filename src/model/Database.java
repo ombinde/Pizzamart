@@ -1,4 +1,4 @@
-package model;
+package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,22 +14,32 @@ public class Database {
 	
 	public static Database ref;
 	private Connection con=null;
-  public static final String HOSTNAME = "localhost";
-  public static final String USERNAME = "root";
-  public static final String DATABASE = "mydb";
-  public static final String PASSWORD = "root";
+	public static final String HOSTNAME = "mysql.stud.ntnu.no";
+	public static final String USERNAME = "sigurlu_it1901";
+	public static final String DATABASE = "sigurlu_pizzamart";
+	public static final String PASSWORD = "pizza";
 	public static final String PORT = "3306";
 		
+//	private Database() throws SQLException{
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//			String url = "jdbc:mysql://localhost/" + DATABASE + "?user="
+//                +  USERNAME
+//                + "&password="
+//                +  PASSWORD;
+//			con = DriverManager.getConnection(url);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 	private Database() throws SQLException{
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/" + DATABASE + "?user="
-                +  USERNAME
-                + "&password="
-                +  PASSWORD;
-			con = DriverManager.getConnection(url);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			String url= "jdbc:mysql://" + HOSTNAME + "/" + DATABASE;
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			con = DriverManager.getConnection(url, USERNAME, PASSWORD);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 	/**
@@ -69,6 +79,7 @@ public class Database {
 	 * @throws SQLException
 	 */
 	public ResultSet select(String query) throws SQLException{
+		String enavn;
 		ResultSet rs = null;
 		PreparedStatement sporring = con.prepareStatement(query);
 		rs = sporring.executeQuery();
