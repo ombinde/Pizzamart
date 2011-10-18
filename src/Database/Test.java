@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Class.Customer;
 import Class.Employee;
 import Class.ManageEmployee;
 
@@ -22,19 +23,20 @@ public class Test {
 		System.out.println("Database kobling er opprettet");
 		Connection con = db.getConnection();
 		
-		
+//		
 //		BufferedReader br = new BufferedReader(new FileReader("./src/Database/dummydata.sql"));
 //		
 //		ScriptRunner sr = new ScriptRunner(con, false, true);
 //		sr.runScript(br);
 
+		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956");
 		
-		System.out.println(db.getConnection());
-		System.out.println(db.select("SELECT lastname FROM employee"));
-		db.insert("INSERT into employee (forename, lastname, username) values('Per', 'Ludviksen', 'per')");
-		System.out.println(db.select("SELECT lastname FROM employee"));
-		
-		ManageEmployee.addNewEmployee("ombinde", "oivind", "binde");
+//		System.out.println(db.getConnection());
+//		System.out.println(db.select("SELECT lastname FROM employee"));
+//		db.insert("INSERT into employee (forename, lastname, username) values('Per', 'Ludviksen', 'per')");
+//		System.out.println(db.select("SELECT lastname FROM employee"));
+//		
+//		ManageEmployee.addNewEmployee("ombinde", "oivind", "binde");
 
 		//String productname = Product.getProductName(1);
 		//System.out.println(productname);

@@ -10,7 +10,7 @@ git branch -r
 #lag en ny branch database som automatisk følger med på sigurds 'database'-branch på sigurds github-repo
 git branch --track database sigurd/database
 #git pull vil fetche og merge i en kommando slik at jeg er oppdatert på sigurds kode
-git pull 
+git pull   
 
 #hvis jeg nå oppretter en ny fil og stager den
 git add nyfil.txt 

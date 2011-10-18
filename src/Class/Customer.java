@@ -26,7 +26,7 @@ public class Customer {
 	private void addToDatabase(){
 		try{
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (forename, lastname, phone, adress, postcode) " +
+			String query = "INSERT INTO customer (forename, lastname, phone, adress, postcode) " +
 			  			   "VALUES ('" + forename + "','" + lastname + "','" + phone + "','"
 			  			   + adress + "','" + postcode +"')";
 			db.insert(query);
