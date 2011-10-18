@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  * Creates a connection with the database with the singleton pattern.
- * @author Sigurd Lund and Ã˜ivind Binde
+ * @author Sigurd Lund and ¯ivind Binde
  *
  */
 public class Database {
