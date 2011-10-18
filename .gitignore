@@ -1,7 +1,7 @@
 bin/*
 .metadata/
-Prosjekt/.classpath
-Prosjekt/.project
-Prosjekt/.settings/
-Prosjekt/bin/
+.classpath
+.project
+.settings/
+bin/
 
