@@ -61,7 +61,7 @@ public class Product {
 		return price;
 	}
 	
-	public static Product getProduct(String name) throws SQLException{
+	public static Product dbGetProduct(String name) throws SQLException{
 		Database db = Database.getDatabase();
 		ResultSet rs = db.select("SELECT * FROM product where name='" + name + "'");
 		if (rs.next()){

@@ -21,7 +21,14 @@ public class ManageOrder {
 	}
 	
 	public static void submitOrderToDatabase(Order order){
-		order.addOrderToDatabase();
+		
+		if(order.addOrderToDatabase()==1){
+			//add jLabel feedback
+			System.out.println("Order was submitted successfully!");
+		}
+		else
+			System.out.println("Order was NOT submitted due to some funky error.");
+		
 	}
 	
 

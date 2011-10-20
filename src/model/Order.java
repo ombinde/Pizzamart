@@ -41,7 +41,7 @@ public class Order {
 	    return 0;
 	}
 	
-	public void addOrderToDatabase(){
+	public int addOrderToDatabase(){
 		Integer quantity = 0;
 		try {
 			Database db = Database.getDatabase();
@@ -57,8 +57,9 @@ public class Order {
 			    	db.insert(query);
 		    	}
 			}
+		    return 1;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			return 0;
 		}
 	}
 	

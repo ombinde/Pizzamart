@@ -13,7 +13,7 @@ public class Customer {
 	
 	
 	public Customer(String forename, String lastname, String phone,
-			String adress, String postcode) {
+		String adress, String postcode) {
 		this.forename = forename;
 		this.lastname = lastname;
 		this.phone = phone;
