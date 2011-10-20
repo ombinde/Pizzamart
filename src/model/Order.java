@@ -20,7 +20,12 @@ public class Order {
 		this.customer = customer;
 		this.status = "Under bestilling";
 	}
-	public HashMap<Product, Integer> getProductsFromOrdre(){
+	public static HashMap<Product, Integer> getProductsFromOrdre(int id){
+		Database db = Database.getDatabase();
+		ResultSet rs = db.select("SELECT * FROM )
+		
+		
+		
 		return this.productsInOrder;
 	}
 	
