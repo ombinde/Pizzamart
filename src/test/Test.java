@@ -30,17 +30,18 @@ public class Test {
 //		sr.runScript(br);
 
 		
+		
+		//ordrelinjen.
 		HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-		products.put(Product.getProduct("Genoa"), 10);
-		products.put(Product.getProduct("Naples"), 5);
+		products.put(Product.dbGetProduct("Genoa"), 10);
+		products.put(Product.dbGetProduct("Naples"), 5);
 		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956");
 		Order order = new Order(c, products, "Bestilt");
 		order.addOrderToDatabase();
-		order.setStatus("PÃ¥begynt av kokk");
+		order.setStatus("PŒbegynt av kokk");
 		System.out.println(order.getOrderTotalPrice(order));
-		
-		
-		
+	
+			
 //		System.out.println(db.getConnection());
 //		System.out.println(db.select("SELECT lastname FROM employee"));
 //		db.insert("INSERT into employee (forename, lastname, username) values('Per', 'Ludviksen', 'per')");
