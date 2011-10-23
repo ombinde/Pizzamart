@@ -1,18 +1,24 @@
-package Class;
+package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Database.Database;
 
 public class Product {
 	
 	private String name;
 	private double price;
+	private int idproduct;
 	
 	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;
+	}
+	
+	public Product (String name, double price, int id){
+		this.name = name;
+		this.price = price;
+		this.idproduct = id;
 	}
 
 	public String getName() {
@@ -29,6 +35,10 @@ public class Product {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public int getIdproduct(){
+		return idproduct;
 	}
 	
 	public static String getProductName(int productID) throws SQLException{
@@ -49,6 +59,17 @@ public class Product {
 			price = rs.getString(1);
 		}
 		return price;
+	}
+	
+	public static Product dbGetProduct(String name) throws SQLException{
+		Database db = Database.getDatabase();
+		ResultSet rs = db.select("SELECT * FROM product where name='" + name + "'");
+		if (rs.next()){
+			int id = rs.getInt("idproduct");
+			double price = rs.getDouble("price");
+			return new Product(name, price, id);
+		}
+		return null;
 	}
 	
 	

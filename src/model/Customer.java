@@ -1,8 +1,7 @@
-package Class;
+package model;
 
 import java.sql.SQLException;
 
-import Database.Database;
 
 public class Customer {
 
@@ -14,7 +13,7 @@ public class Customer {
 	
 	
 	public Customer(String forename, String lastname, String phone,
-			String adress, String postcode) {
+		String adress, String postcode) {
 		this.forename = forename;
 		this.lastname = lastname;
 		this.phone = phone;
@@ -26,7 +25,7 @@ public class Customer {
 	private void addToDatabase(){
 		try{
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (forename, lastname, phone, adress, postcode) " +
+			String query = "INSERT INTO customer (forename, lastname, phone, adress, postcode) " +
 			  			   "VALUES ('" + forename + "','" + lastname + "','" + phone + "','"
 			  			   + adress + "','" + postcode +"')";
 			db.insert(query);

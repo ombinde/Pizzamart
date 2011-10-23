@@ -47,7 +47,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `mydb`.`product` (
   `idproduct` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
-  `price` VARCHAR(45) NOT NULL ,
+  `price` DOUBLE  NOT NULL ,
   PRIMARY KEY (`idproduct`) )
 ENGINE = InnoDB;
 
@@ -58,7 +58,8 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `mydb`.`product_has_order` (
   `product_idproduct` INT NOT NULL ,
   `orders_idorder` INT NOT NULL ,
-  PRIMARY KEY (`product_idproduct`, `orders_idorder`) ,
+  `quantity` INT NOT NULL ,
+  PRIMARY KEY (`product_idproduct`, `orders_idorder`, `quantity`) ,
   INDEX `fk_vare_has_ordre_ordre1` (`orders_idorder` ASC) ,
   CONSTRAINT `fk_vare_has_ordre_vare1`
     FOREIGN KEY (`product_idproduct` )

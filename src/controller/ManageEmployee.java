@@ -1,4 +1,5 @@
-package Class;
+package controller;
+import model.Employee; 
 
 public class ManageEmployee {
 
