@@ -153,8 +153,19 @@ public class Order {
 	}
 	
 	public static HashMap<String, Double> getRelevantProducts(String query){
-		HashMap<String, Integer> products = new HashMap<String, Integer>;
-		
+		HashMap<String, Double> products = new HashMap<String, Double>();
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM product where name like '" + query + "%'");
+			while (rs.next()){
+				products.put(rs.getString("name"), rs.getDouble("price"));
+			}
+			return products;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 		
 		
 		

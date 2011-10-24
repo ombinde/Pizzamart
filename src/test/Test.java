@@ -35,14 +35,11 @@ public class Test {
 		HashMap<Product, Integer> products = new HashMap<Product, Integer>();
 		products.put(Product.dbGetProduct("Genoa"), 10);
 		products.put(Product.dbGetProduct("Naples"), 5);
-<<<<<<< HEAD
-		
-=======
->>>>>>> rapport
+
 		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956");
 		Order order = new Order(c, products, "Bestilt");
 		order.addOrderToDatabase();
-		order.setStatus("PŒbegynt av kokk");
+		order.setStatus("Pï¿½begynt av kokk");
 		System.out.println(order.getOrderTotalPrice(order));
 	
 			

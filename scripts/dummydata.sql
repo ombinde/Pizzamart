@@ -17,33 +17,6 @@ INSERT INTO employee (forename, lastname, username)
 INSERT INTO employee (forename, lastname, username)
 	values ('Morten', 'Noddeland', 'mortnod');
 
-
-INSERT INTO orders (status)
-	values ('Levert av bud');
-INSERT INTO orders (status)
-	values ('Levert av bud');
-INSERT INTO orders (status)
-	values ('Hentet av bud under levering');
-INSERT INTO orders (status)
-	values ('Hentet av bud under levering');
-INSERT INTO orders (status)
-	values ('hos baker');
-INSERT INTO orders (status)
-	values ('hos baker');
-INSERT INTO orders (status)
-	values ('avventer ledig baker');
-INSERT INTO orders (status)
-	values ('avventer ledig baker');
-INSERT INTO orders (status)
-	values ('avventer ledig baker');
-INSERT INTO orders (status)
-	values ('hentet av customer');
-INSERT INTO orders (status)
-	values ('hentet av customer');
-INSERT INTO orders (status)
-	values ('hentet av customer');
-
-
 INSERT INTO product (name, price)
 	values ('Bari', '220');
 INSERT INTO product (name, price)
@@ -63,8 +36,6 @@ INSERT INTO product (name, price)
 INSERT INTO product (name, price)
 	values ('Siena', '190');
 INSERT INTO product (name, price)
-<<<<<<< HEAD
-=======
 	values ('Rømme', '30');
 INSERT INTO product (name, price)
 	values ('CocaCola', '40');
@@ -73,5 +44,60 @@ INSERT INTO product (name, price)
 INSERT INTO product (name, price)
 	values ('Vann', '30');
 INSERT INTO product (name, price)
->>>>>>> database
 	values ('Oristano', '220');
+
+INSERT INTO orders (status, customer_idcustomer)
+	values ('Levert av bud', 1);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('Levert av bud', 2);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('Hentet av bud under levering', 1);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('Hentet av bud under levering', 3);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('hos baker', 4);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('hos baker', 2);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('avventer ledig baker', 1);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('avventer ledig baker', 2);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('avventer ledig baker', 5);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('hentet av customer', 4);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('hentet av customer', 2);
+INSERT INTO orders (status, customer_idcustomer)
+	values ('hentet av customer',5);
+
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(1,1,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(1,2,5);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(2,1,6);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(4,3,2);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(7,4,1);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(5,1,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(2,5,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(10,6,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(9,7,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(12,8,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(1,9,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(1,10,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(1,11,7);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(2,12,3);
+INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
+	values(1,1,3);
