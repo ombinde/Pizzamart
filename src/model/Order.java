@@ -152,6 +152,14 @@ public class Order {
 		return null;
 	}
 	
+	public static HashMap<String, Double> getRelevantProducts(String query){
+		HashMap<String, Integer> products = new HashMap<String, Integer>;
+		
+		
+		
+		
+	}
+	
 	
 
 }
