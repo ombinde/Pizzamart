@@ -100,4 +100,4 @@ INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
 INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
 	values(2,12,3);
 INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,1,3);
+	values(1,12,3);

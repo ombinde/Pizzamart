@@ -22,6 +22,12 @@ public class ManageOrder {
 		addProductToOrder(order, product, 1);
 	}
 	
+	/**
+	 * Searches for products matching the query in the database and return the result as a
+	 * hashmap with name and price of the products
+	 * @param query
+	 * @return
+	 */
 	public static HashMap<String, Double> getRelevantProducts(String query){
 		return Order.getRelevantProducts(query);
 	}
