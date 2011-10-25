@@ -1,4 +1,7 @@
 package view;
+
+import java.util.ArrayList;
+
 //no.ntnu.course
 /*
  * To change this template, choose Tools | Templates
@@ -14,6 +17,7 @@ package view;
  *
  * @author Morten Vaale Noddeland
  */
+@SuppressWarnings("serial")
 public class NewOrder2Form extends javax.swing.JFrame {
 
     /** Creates new form NewOrder2Form */
@@ -34,7 +38,6 @@ public class NewOrder2Form extends javax.swing.JFrame {
         headerLabel = new javax.swing.JLabel();
         leftPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
-        testLabel = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
         priceLabel = new javax.swing.JLabel();
@@ -85,8 +88,6 @@ public class NewOrder2Form extends javax.swing.JFrame {
             }
         });
 
-        testLabel.setText("Test");
-
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
@@ -95,8 +96,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(testLabel)))
+                        .addGap(79, 79, 79)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
@@ -104,7 +104,6 @@ public class NewOrder2Form extends javax.swing.JFrame {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
-                .addComponent(testLabel)
                 .addContainerGap(235, Short.MAX_VALUE))
         );
 
@@ -193,7 +192,67 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
+    public void updateLeftPanel(String[] products) {
+    	ArrayList<javax.swing.JLabel> list = new ArrayList<javax.swing.JLabel>();
+    	for (int i = 0; i < products.length; i++){
+    		javax.swing.JLabel temp = new javax.swing.JLabel();
+            int bg;
+    		if (i % 2 == 0){
+            	bg = 200;
+            }
+            else {
+            	bg = 220;
+            }
+    		temp.setBackground(new java.awt.Color(bg, bg, bg));
+            temp.setText(products[i]);
+            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            temp.setOpaque(true);
+            temp.setPreferredSize(new java.awt.Dimension(140, 20));
+            temp.setSize(new java.awt.Dimension(140, 20));
+            temp.setVisible(true);
+            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    productLabelMouseClicked(evt);
+                }
+            });
+            list.add(temp);
+    	}
+    	
+      javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+      leftPanel.setLayout(leftPanelLayout);
+      
 
+      javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+      tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
+      for(int i = 0; i < list.size(); i++) {
+    	  tempGroup.addComponent(list.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+	  }
+	  tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
+            .addGap(79, 79, 79)
+      );
+      
+	  leftPanelLayout.setHorizontalGroup(
+          leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(leftPanelLayout.createSequentialGroup()
+              .addGroup(tempGroup)
+              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          )
+      );
+
+	  javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
+      verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
+      for(int i = 0; i < list.size(); i++) {
+      verticalTempGroup.addComponent(list.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+      }
+      verticalTempGroup.addGap(86, 86, 86);
+      verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
+      
+    leftPanelLayout.setVerticalGroup(
+    leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    .addGroup(verticalTempGroup)
+);
+      pack();
+    }
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	NewOrderForm form = new NewOrderForm();
         form.setVisible(true);
@@ -207,60 +266,8 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }
 
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
-        //this.testLabel.setText(this.searchField.getText());
-        productLabel = new javax.swing.JLabel();
-        productLabel.setBackground(new java.awt.Color(200, 200, 200));
-        productLabel.setText("   #1: Piker, vin og sang");
-        productLabel.setOpaque(true);
-        productLabel.setPreferredSize(new java.awt.Dimension(140, 20));
-        productLabel.setSize(new java.awt.Dimension(140, 20));
-        productLabel.setVisible(true);
-        productLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                productLabelMouseClicked(evt);
-            }
-        });
-        
-        productLabel2 = new javax.swing.JLabel();
-        productLabel2.setBackground(new java.awt.Color(220, 220, 220));
-        productLabel2.setText("   #1: Piker, vin og sang");
-        productLabel2.setOpaque(true);
-        productLabel2.setPreferredSize(new java.awt.Dimension(140, 20));
-        productLabel2.setSize(new java.awt.Dimension(140, 20));
-        productLabel2.setVisible(true);
-        productLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                productLabelMouseClicked(evt);
-            }
-        });
-        
-        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-        leftPanel.setLayout(leftPanelLayout);
-        leftPanelLayout.setHorizontalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .addComponent(productLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .addGroup(leftPanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(testLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        leftPanelLayout.setVerticalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(productLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addComponent(productLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)            
-                .addGap(86, 86, 86)
-                .addComponent(testLabel)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-
-        pack();
-        
+    	String[] ass= {"#1: Piker, vin og sang", "#2: Horer, fyll og fanteri", "#3: Bestselgern", "#4: Ass balls", "#5: Ubrukelig dag"};
+        this.updateLeftPanel(ass);
     }
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt) {                                          
         productLabel = new javax.swing.JLabel();
@@ -332,9 +339,8 @@ public class NewOrder2Form extends javax.swing.JFrame {
     private javax.swing.JLabel priceLabel;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField searchField;
-    private javax.swing.JLabel testLabel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel productLabel; 
-    private javax.swing.JLabel productLabel2;
+    //private javax.swing.JLabel productLabel2;
     // End of variables declaration
 }
