@@ -10,6 +10,7 @@ public class Customer {
 	private String phone;
 	private String adress;
 	private String postcode;
+	private int idCustomer;
 	
 	
 	public Customer(String forename, String lastname, String phone,
@@ -28,8 +29,8 @@ public class Customer {
 			String query = "INSERT INTO customer (forename, lastname, phone, adress, postcode) " +
 			  			   "VALUES ('" + forename + "','" + lastname + "','" + phone + "','"
 			  			   + adress + "','" + postcode +"')";
-			db.insert(query);
-		} catch (SQLException e) {
+			idCustomer = db.insertWithIdReturn(query);
+		} catch (SQLException e)  {
 			e.printStackTrace();
 		}
 	}
@@ -73,7 +74,9 @@ public class Customer {
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
-	
-	
+
+	public int getIdCustomer(){
+		return this.idCustomer;
+	}
 	
 }

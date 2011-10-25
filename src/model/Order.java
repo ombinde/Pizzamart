@@ -88,8 +88,8 @@ public class Order {
 		Integer quantity = 0;
 		try {
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (status) " +
-			  			   "VALUES ('"+this.status + "')";
+			String query = "INSERT INTO orders (status, customer_idcustomer) " +
+			  			   "VALUES ('"+this.status + "','" + customer.getIdCustomer() + "')";
 			idorder = db.insertWithIdReturn(query);
 		    for (Object p : productsInOrder.keySet()) {
 		    	if (p instanceof Product){
