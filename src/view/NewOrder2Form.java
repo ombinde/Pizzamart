@@ -192,7 +192,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-    public void updateLeftPanel(String[] products) {
+    public void printResultToScreen(String[] products) {
     	ArrayList<javax.swing.JLabel> list = new ArrayList<javax.swing.JLabel>();
     	for (int i = 0; i < products.length; i++){
     		javax.swing.JLabel temp = new javax.swing.JLabel();
@@ -267,7 +267,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
     	String[] ass= {"#1: Piker, vin og sang", "#2: Horer, fyll og fanteri", "#3: Bestselgern", "#4: Ass balls", "#5: Ubrukelig dag"};
-        this.updateLeftPanel(ass);
+        this.printResultToScreen(ass);
     }
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt) {                                          
         productLabel = new javax.swing.JLabel();
