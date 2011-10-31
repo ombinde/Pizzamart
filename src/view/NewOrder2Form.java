@@ -244,6 +244,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.removeAll();
         leftPanel.setLayout(leftPanelLayout);
+        
         javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
         tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
         for(i = 0; i < productList.size(); i++) {
@@ -251,31 +252,31 @@ public class NewOrder2Form extends javax.swing.JFrame {
         }
         tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
             .addGap(79, 79, 79)
-      );
+        );
+        
+        leftPanelLayout.setHorizontalGroup(
+			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			.addGroup(leftPanelLayout.createSequentialGroup()
+				.addGroup(tempGroup)
+			    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			)
+        );
+        
+        javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
+		verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
+		for(i = 0; i < productList.size(); i++) {
+			verticalTempGroup.addComponent(productList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+		}
+		verticalTempGroup.addGap(86, 86, 86);
+		verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
       
-	  leftPanelLayout.setHorizontalGroup(
-          leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(leftPanelLayout.createSequentialGroup()
-              .addGroup(tempGroup)
-              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          )
-      );
-	  
-	  javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
-      verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
-      for(i = 0; i < productList.size(); i++) {
-      verticalTempGroup.addComponent(productList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
-      }
-      verticalTempGroup.addGap(86, 86, 86);
-      verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
-      
-    leftPanelLayout.setVerticalGroup(
-    leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-    .addGroup(verticalTempGroup)
-);
-      pack();
-    searchField.grabFocus();
-    searchField.setText(searchField.getText());
+		leftPanelLayout.setVerticalGroup(
+			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			.addGroup(verticalTempGroup)
+			);
+		pack();
+		searchField.grabFocus();
+		searchField.setText(searchField.getText());
     }
     
     public void updateRightPanel(HashMap<String, Double> products) {
