@@ -15,12 +15,14 @@ public class Order {
 	private Customer customer;
 	private HashMap<Product, Integer> productsInOrder;
 	private String status;
+	private String comment;
 	private int idorder;
 	
-	public Order(Customer customer, HashMap<Product, Integer> products, String status){
+	public Order(Customer customer, HashMap<Product, Integer> products, String status, String comment){
 		this.customer = customer;
 		this.productsInOrder = products;
 		this.status = status;
+		this.comment = comment;
 	}
 	
 	public Order(Customer customer){
@@ -88,8 +90,8 @@ public class Order {
 		Integer quantity = 0;
 		try {
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (status, customer_idcustomer) " +
-			  			   "VALUES ('"+this.status + "','" + customer.getIdCustomer() + "')";
+			String query = "INSERT INTO orders (status, comment, customer_idcustomer) " +
+			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "')";
 			idorder = db.insertWithIdReturn(query);
 		    for (Object p : productsInOrder.keySet()) {
 		    	if (p instanceof Product){
@@ -166,11 +168,14 @@ public class Order {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
-		
 	}
 	
+	public void setComment(String comment){
+		this.comment = comment;
+	}
 	
+	public String getComment(){
+		return this.comment;
+	}
 
 }
