@@ -1,4 +1,6 @@
 package controller;
+import java.util.HashMap;
+
 import model.Customer;
 import model.Order;
 import model.Product;
@@ -18,6 +20,16 @@ public class ManageOrder {
 	}
 	public static void  addOneMoreProductToOrdre(Order order, Product product){
 		addProductToOrder(order, product, 1);
+	}
+	
+	/**
+	 * Searches for products matching the query in the database and return the result as a
+	 * hashmap with name and price of the products
+	 * @param query
+	 * @return
+	 */
+	public static HashMap<String, Double> getRelevantProducts(String query){
+		return Order.getRelevantProducts(query);
 	}
 	
 	public static void submitOrderToDatabase(Order order){
