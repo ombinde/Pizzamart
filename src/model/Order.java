@@ -18,13 +18,23 @@ public class Order {
 	private String comment;
 	private int idorder;
 	
+	/**
+	 * Creates a new order with all the information needed.
+	 * @param customer
+	 * @param products
+	 * @param status
+	 * @param comment
+	 */
 	public Order(Customer customer, HashMap<Product, Integer> products, String status, String comment){
 		this.customer = customer;
 		this.productsInOrder = products;
 		this.status = status;
 		this.comment = comment;
 	}
-	
+	/**
+	 * Creates a new Order with only a customer. More can be added later on.
+	 * @param customer
+	 */
 	public Order(Customer customer){
 		this.customer = customer;
 		this.status = "Under bestilling";
@@ -62,9 +72,9 @@ public class Order {
 	 */
 	public double getOrderTotalPrice(Order order){
 		double totalprice = 0;
-	    for (Object p : productsInOrder.keySet()) {
+	    for (Object p : order.productsInOrder.keySet()) {
 	    	if (p instanceof Product){
-		    	int quantity = productsInOrder.get(p);	
+		    	int quantity = order.productsInOrder.get(p);	
 		        totalprice += ((Product) p).getPrice()*quantity;
 	    	}
 	    }
@@ -72,9 +82,9 @@ public class Order {
 	}
 
 	/**
-	 * 
+	 * Returns the quantity of an product in an order.
 	 * @param product
-	 * @return
+	 * @return quantity as an integer
 	 */
 	public int getProductQuanta(Product product){
 	    if(productsInOrder.containsKey(product))
@@ -83,7 +93,7 @@ public class Order {
 	}
 	
 	/**
-	 * Adds the order to the Database
+	 * Adds the order to the Database.
 	 * @return
 	 */
 	public int addOrderToDatabase(){
@@ -154,6 +164,12 @@ public class Order {
 		return null;
 	}
 	
+	/**
+	 * Returns a HashMap with the relevant products to the query containing the name and the price
+	 * of the products.
+	 * @param query
+	 * @return
+	 */
 	public static HashMap<String, Double> getRelevantProducts(String query){
 		HashMap<String, Double> products = new HashMap<String, Double>();
 		try {
@@ -170,12 +186,24 @@ public class Order {
 		return null;
 	}
 	
+	/**
+	 * Sets a comment in the order.
+	 * @param comment
+	 */
 	public void setComment(String comment){
 		this.comment = comment;
 	}
 	
+	/**
+	 * Returns the comment of an order.
+	 * @return
+	 */
 	public String getComment(){
 		return this.comment;
+	}
+	
+	public HashMap<Product, Integer> getProductsInOrder(){
+		return productsInOrder;
 	}
 
 }
