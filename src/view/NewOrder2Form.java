@@ -27,7 +27,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     /** Creates new form NewOrder2Form */
     public NewOrder2Form() {
         initComponents();
-        
+        ArrayList<String> productsInOrder = new ArrayList<String>();
     }
 
     /** This method is called from within the constructor to
@@ -192,8 +192,8 @@ public class NewOrder2Form extends javax.swing.JFrame {
                     .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                //.addContainerGap())
+        ));
 
         pack();
     }// </editor-fold>
@@ -214,7 +214,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         	// Create a new JLabel
         	javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
-        	String productName = it.next();
+        	final String productName = it.next();
             temp.setText(productName);
             temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             temp.setOpaque(true);
@@ -233,7 +233,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     		// What method to call if the JLabel is clicked
             temp.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    productLabelMouseClicked(evt, "ass");
+                    productLabelMouseClicked(evt, productName);
                 }
             });
             // Add the JLabel to the array of JLabels
@@ -279,14 +279,21 @@ public class NewOrder2Form extends javax.swing.JFrame {
 		searchField.setText(searchField.getText());
     }
     
-    public void updateRightPanel(HashMap<String, Double> products) {
-    	ArrayList<javax.swing.JLabel> list = new ArrayList<javax.swing.JLabel>();
+    public void updateRightPanel() {
+        // Set JLabel dimensions, text, border and so on
+    	ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
         
-        
-        Iterator<String> it = products.keySet().iterator();
-        int i = 0;
-        while(it. hasNext()) {
-    		javax.swing.JLabel temp = new javax.swing.JLabel();
+        // While there are more elements in the hashmap
+        for (int i = 0; i < productsInOrder.size(); i++) {
+        	// Create a new JLabel
+        	javax.swing.JLabel temp = new javax.swing.JLabel();
+        	final String productName = productsInOrder.get(i);
+        	
+        	temp.setText(productName);
+	        temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        temp.setOpaque(true);
+	        temp.setPreferredSize(new java.awt.Dimension(140, 20));
+	        temp.setSize(new java.awt.Dimension(140, 20));
             int bg;
     		if (i % 2 == 0){
             	bg = 200;
@@ -294,57 +301,37 @@ public class NewOrder2Form extends javax.swing.JFrame {
             else {
             	bg = 220;
             }
-    		temp.setBackground(new java.awt.Color(bg, bg, bg));
-            temp.setText(it.next());
-            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            temp.setOpaque(true);
-            temp.setPreferredSize(new java.awt.Dimension(140, 20));
-            temp.setSize(new java.awt.Dimension(140, 20));
-            temp.setVisible(true);
-            temp.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    productLabelMouseClicked(evt, "balls");
-                }
-            });
-            list.add(temp);
-            i++;
-    	}
-    	
-      leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-      leftPanel.removeAll();
-      leftPanel.setLayout(leftPanelLayout);
-      javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
-      tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
-      for(i = 0; i < list.size(); i++) {
-    	  tempGroup.addComponent(list.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
-	  }
-	  tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
-            .addGap(79, 79, 79)
-      );
-      
-	  leftPanelLayout.setHorizontalGroup(
-          leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(leftPanelLayout.createSequentialGroup()
-              .addGroup(tempGroup)
-              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          )
-      );
-	  
-	  javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
-      verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
-      for(i = 0; i < list.size(); i++) {
-      verticalTempGroup.addComponent(list.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
-      }
-      verticalTempGroup.addGap(86, 86, 86);
-      verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
-      
-    leftPanelLayout.setVerticalGroup(
-    leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-    .addGroup(verticalTempGroup)
-);
-      pack();
-    searchField.grabFocus();
-    searchField.setText(searchField.getText());
+	        temp.setBackground(new java.awt.Color(bg, bg, bg));
+	        temp.setVisible(true);
+			
+			// What method to call if the JLabel is clicked
+	        temp.addMouseListener(new java.awt.event.MouseAdapter() {
+	            public void mouseClicked(java.awt.event.MouseEvent evt) {
+	                orderLabelMouseClicked(evt, productName);
+	            }
+	        });
+	        orderList.add(temp);
+        }
+        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
+        rightPanel.removeAll();
+        rightPanel.setLayout(rightPanelLayout);
+        
+        // Creates the Horizontal Parallel Group containing all the JLabels
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+        tempHorizontalGroup.addGap(0, 400, Short.MAX_VALUE);
+        for(int i = 0; i < orderList.size(); i++) {
+        	tempHorizontalGroup.addComponent(orderList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+        }
+        // Creates the Vertical Parallel Group containing all the JLabels
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = rightPanelLayout.createSequentialGroup();
+        //tempVerticalGroup.addGap(0, 387, Short.MAX_VALUE);
+        for(int i = 0; i < orderList.size(); i++) {
+        	tempVerticalGroup.addComponent(orderList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+        }
+        
+        // Puts the groups created earlier into the right place in the rightPanelLayout
+        rightPanelLayout.setHorizontalGroup(tempHorizontalGroup);
+        rightPanelLayout.setVerticalGroup(tempVerticalGroup);
     }
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	NewOrderForm form = new NewOrderForm();
@@ -353,16 +340,23 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }                                        
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    	MainMenuForm form = new MainMenuForm();
-        form.setVisible(true);
-        this.setVisible(false);
+    	System.out.println(productsInOrder);
+    	//MainMenuForm form = new MainMenuForm();
+        //form.setVisible(true);
+        //this.setVisible(false);
     }
 
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
         this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt, String productName) {                                          
-        System.out.println(productName);
+        productsInOrder.add(productName);
+    	this.updateRightPanel();
+    }
+    
+    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, String productName) {                                          
+        productsInOrder.remove(productName);
+    	this.updateRightPanel();
     }
     /**
      * @param args the command line arguments
@@ -410,6 +404,6 @@ public class NewOrder2Form extends javax.swing.JFrame {
     private javax.swing.JPanel rightPanel;
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel productLabel; 
+    ArrayList<String> productsInOrder = new ArrayList<String>();
     // End of variables declaration
 }
