@@ -44,9 +44,9 @@ public class Order {
 	 * A static method that returns all products from a given order 
 	 * as a HashMap with products as key, and quantity as value. 
 	 * @param idorder
-	 * @return HashMap<Product, Integer>
+	 * @return HashMap<Product, Integer> som innholder produkter og anntallet.
 	 */
-	public static HashMap<Product, Integer> getProductsFromOrdre(int id){
+	public static HashMap<Product, Integer> getProductsFromOrder(int id){
 		Database db;
 		try {
 			db = Database.getDatabase();
@@ -54,7 +54,7 @@ public class Order {
 			ResultSet rs = db.select("select name, price, quantity from product_has_order " +
 					"join product on idproduct=product_idproduct where orders_idorder=" + id );
 			while (rs.next()){
-				double price = rs.getInt("price");
+				double price = rs.getDouble("price");
 				String name = rs.getString("name");
 				products.put(new Product(name, price), rs.getInt("quantity"));
 			}
@@ -145,7 +145,7 @@ public class Order {
 	/**
 	 * Returns the id of all orders with a given status
 	 * @param status
-	 * @return
+	 * @return ArrayList with orders
 	 */
 	public static ArrayList<Integer> getOrdersById(String status){
 		ArrayList<Integer> freshOrders = new ArrayList<Integer>();

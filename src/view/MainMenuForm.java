@@ -153,14 +153,16 @@ public class MainMenuForm extends javax.swing.JFrame {
 
     private void newOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
         NewOrderForm form2 = new NewOrderForm();
-        this.setVisible(false);
         form2.setVisible(true);
+        this.setVisible(false);
+        
     }                                              
 
     private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
         EditForm form2 = new EditForm();
-        this.setVisible(false);
         form2.setVisible(true);
+        this.setVisible(false);
+        
     }                                               
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
