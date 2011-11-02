@@ -2,6 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,7 +16,9 @@ public class Product {
 	private String name;
 	private double price;
 	private int idproduct;
+	private String comment;
 	
+
 	/**
 	 * Creates a new Product with a given name and price.
 	 * @param name
@@ -191,6 +194,18 @@ public class Product {
 		return this.name;
 	}
 	
+	public String formatPrice(){
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		return decimalFormat.format(this.price);
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+	
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	
 
 }

@@ -18,12 +18,12 @@ public class ChefController {
 		return freshOrders;
 	}
 	//input: tar et ordre-objekt
-	//setter status pŒ ordre til 
+	//setter status pï¿½ ordre til 
 	public static void setFinishedOrder(Order order){
 		order.setStatus("laget ferdig");
 	}
 	public static void startOrder(Order order){
-		order.setStatus("ordre pŒbegynt");
+		order.setStatus("ordre pï¿½begynt");
 	}
 		
 }

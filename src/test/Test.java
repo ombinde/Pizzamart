@@ -41,7 +41,7 @@ public class Test {
 		Order order = new Order(c, products, "Bestillt", "Uten gluten");
 		order.addOrderToDatabase();
 		order.setStatus("Lages");
-		System.out.println(order.getOrderTotalPrice());
+		System.out.println(ManageOrder.formatPrice(order.getOrderTotalPrice()));
 		
 		
 		//Teste søk
