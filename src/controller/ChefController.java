@@ -11,7 +11,7 @@ public class ChefController {
 	//returnerer all nye ordrer
 	public static ArrayList<HashMap<Product,Integer>> getFreshOrders(){
 		ArrayList<HashMap<Product,Integer>> freshOrders= new ArrayList<HashMap<Product, Integer>>();
-		ArrayList<Integer> idOrders = Order.getOrdersById("avventer ledig baker");
+		ArrayList<Integer> idOrders = Order.getOrdersById("Bestilt");
 		for(int i=0; i<idOrders.size(); i++){
 			freshOrders.add(Order.getProductsFromOrder(idOrders.get(i)));
 		}

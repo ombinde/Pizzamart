@@ -149,37 +149,41 @@ public class KitchenForm1 extends javax.swing.JFrame {
     	
     	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
     	ArrayList<HashMap<Product,Integer>> freshOrders = ChefController.getFreshOrders();
+    	System.out.println(freshOrders.size());
     	for (int i = 0; i < freshOrders.size(); i++) {
+    		String orderText = "";
     		for (Object o : freshOrders.get(i).keySet()) {
+    			
     			if (o instanceof Product){
-    		    	// Create a JLabel and define dimensions and other variables
-    				javax.swing.JLabel temp = new javax.swing.JLabel();
-    		        temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    		        temp.setOpaque(true);
-    		        temp.setPreferredSize(new java.awt.Dimension(140, 20));
-    		        temp.setSize(new java.awt.Dimension(140, 20));
-    		        temp.setVisible(true);
-    		        // Set what should happen when the label is clicked
-    		        temp.addMouseListener(new java.awt.event.MouseAdapter() {
-    		            public void mouseClicked(java.awt.event.MouseEvent evt) {
-    		                orderLabelMouseClicked();
-    		            }
-    		        });
-    		        // Set text for the JLabel
-    				String pname = ((Product) o).getName();
-    				int antall = freshOrders.get(i).get(o);
-    				temp.setText(pname + antall);
-    				
-    				// Set JLabel background color
-    		        int bg;
-    				if (i % 2 == 0) { bg = 200; }
-    		        else 			{ bg = 220; }
-    		        temp.setBackground(new java.awt.Color(bg, bg, bg));
-    		        
-    		        // Add JLabel to the arrayList of orders
-    		        orders.add(temp);
+    		        String productName = ((Product) o).getName();
+    				int quantity = freshOrders.get(i).get(o);
+    				// Set text for the JLabel
+    				orderText += quantity + " stk: ";
+    				orderText += productName + ", ";
     			}
     		}
+    		// Create a JLabel and define dimensions and other variables
+			javax.swing.JLabel temp = new javax.swing.JLabel();
+			temp.setText(orderText.substring(0, orderText.length()-2));
+			temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	        temp.setOpaque(true);
+	        temp.setPreferredSize(new java.awt.Dimension(140, 20));
+	        temp.setSize(new java.awt.Dimension(140, 20));
+	        temp.setVisible(true);
+			// Set JLabel background color
+	        int bg;
+			if (i % 2 == 0) { bg = 200; }
+	        else 			{ bg = 220; }
+	        temp.setBackground(new java.awt.Color(bg, bg, bg));
+	        // Set what should happen when the label is clicked
+	        temp.addMouseListener(new java.awt.event.MouseAdapter() {
+	            public void mouseClicked(java.awt.event.MouseEvent evt) {
+	                orderLabelMouseClicked();
+	            }
+	        });	
+	        
+	        // Add JLabel to the arrayList of orders
+	        orders.add(temp);
 		}
 		return orders;
     }
