@@ -8,11 +8,6 @@ import model.Product;
 import controller.ChefController;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * KitchenForm1.java
  *
  * Created on 26.sep.2011, 10:50:18
@@ -20,6 +15,7 @@ import controller.ChefController;
 /**
  *
  * @author Morten Vaale Noddeland
+ * 
  */
 @SuppressWarnings("serial")
 public class KitchenForm1 extends javax.swing.JFrame {
@@ -50,7 +46,7 @@ public class KitchenForm1 extends javax.swing.JFrame {
 
         headerLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerLabel.setText("Ny ordre");
+        headerLabel.setText("Kj¿kken");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -139,16 +135,23 @@ public class KitchenForm1 extends javax.swing.JFrame {
     }
 
     private void updateMiddlePanel(){
-    	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
+    	ArrayList<javax.swing.JLabel> orders = createOrderLabels();
     	
-    	// "DETTE BURDE EGENTLIG GJ¯RES AV FETCHORDERS"
+        javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
+        middlePanel.removeAll();
+        middlePanel.setLayout(middlePanelLayout);
+        
+        defineMiddlePanelHorizontalLayout(middlePanelLayout, orders);
+        defineMiddlePanelVerticalLayout(middlePanelLayout, orders);
+    }
+    
+    private ArrayList<javax.swing.JLabel> createOrderLabels(){
+    	
+    	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
     	ArrayList<HashMap<Product,Integer>> freshOrders = ChefController.getFreshOrders();
     	for (int i = 0; i < freshOrders.size(); i++) {
-    		//orderButton = new javax.swing.JButton();
     		for (Object o : freshOrders.get(i).keySet()) {
     			if (o instanceof Product){
-    				// Set JLabel text
-    				System.out.println(o);
     		    	// Create a JLabel and define dimensions and other variables
     				javax.swing.JLabel temp = new javax.swing.JLabel();
     		        temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -159,30 +162,30 @@ public class KitchenForm1 extends javax.swing.JFrame {
     		        // Set what should happen when the label is clicked
     		        temp.addMouseListener(new java.awt.event.MouseAdapter() {
     		            public void mouseClicked(java.awt.event.MouseEvent evt) {
-    		                System.out.println("Order clicked");
+    		                orderLabelMouseClicked();
     		            }
     		        });
     		        // Set text for the JLabel
     				String pname = ((Product) o).getName();
     				int antall = freshOrders.get(i).get(o);
     				temp.setText(pname + antall);
+    				
     				// Set JLabel background color
     		        int bg;
     				if (i % 2 == 0) { bg = 200; }
     		        else 			{ bg = 220; }
     		        temp.setBackground(new java.awt.Color(bg, bg, bg));
+    		        
+    		        // Add JLabel to the arrayList of orders
     		        orders.add(temp);
     			}
     		}
 		}
-    	System.out.println(orders.size());
-    	// SLUTT P "DETTE BURDE EGENTLIG GJ¯RES AV FETCHORDERS"
+		return orders;
+    }
+    
+    private void defineMiddlePanelHorizontalLayout(javax.swing.GroupLayout middlePanelLayout, ArrayList<javax.swing.JLabel> orders){
     	
-        javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
-        middlePanel.removeAll();
-        middlePanel.setLayout(middlePanelLayout);
-        
-        // Create the horizontal group
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = middlePanelLayout.createParallelGroup();
         for (int i = 0; i < orders.size(); i++){
         	tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE);
@@ -195,8 +198,9 @@ public class KitchenForm1 extends javax.swing.JFrame {
                     .addGroup(tempHorizontalGroup)
                     .addContainerGap())
         );
-        
-        // Create the vertical group
+    }
+    
+    private void defineMiddlePanelVerticalLayout(javax.swing.GroupLayout middlePanelLayout, ArrayList<javax.swing.JLabel> orders){
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = middlePanelLayout.createSequentialGroup();
         tempVerticalGroup.addContainerGap();
         for (int i = 0; i < orders.size(); i++){
@@ -210,34 +214,20 @@ public class KitchenForm1 extends javax.swing.JFrame {
         );
     }
     
-    public static void fetchOrders(){
-    	//f¿rst henter vi alle nye ordre.
-    	//System.out.println("fetchOrders() got called!");
-    	ArrayList<HashMap<Product,Integer>> freshOrders = ChefController.getFreshOrders();
-    	for (int i = 0; i < freshOrders.size(); i++) {
-    		//orderButton = new javax.swing.JButton();
-    		for (Object o : freshOrders.get(i).keySet()) {
-    			if (o instanceof Product){
-    			
-    				String pname = ((Product) o).getName();
-    				int antall = freshOrders.get(i).get(o);
-    				System.out.println(pname);
-    				System.out.println(antall);
-    	    		//addToMiddlePanel(orderButton.setText(antall + " " + pname));
-    	    		//orderButton.setText(antall + " " + pname);
-    			}
-    		}
-		}
+    private void orderLabelMouseClicked(){
+    	// TODO Add functionality so that a specified order shows up when you press an order label
     }
     
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        MainMenuForm form2 = new MainMenuForm();
+        //TODO Replace with controller that change form when needed
+    	MainMenuForm form = new MainMenuForm();
         this.setVisible(false);
-        form2.setVisible(true);
+        form.setVisible(true);
     }
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        this.updateMiddlePanel();
+        // TODO Replace with controller method?
+    	this.updateMiddlePanel();
     }
     
     /**
