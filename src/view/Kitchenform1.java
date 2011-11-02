@@ -1,239 +1,253 @@
 package view;
-import static javax.swing.GroupLayout.Alignment.BASELINE;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import model.Product;
-import controller.ChefController;
-/**
-* @author David og ¯ivind
-*/
-public class Kitchenform1 extends javax.swing.JFrame {
 
-    /** Creates new form Kitchenform1 */
-    public Kitchenform1() {
+import controller.ChefController;
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/*
+ * KitchenForm1.java
+ *
+ * Created on 26.sep.2011, 10:50:18
+ */
+/**
+ *
+ * @author Morten Vaale Noddeland
+ */
+@SuppressWarnings("serial")
+public class KitchenForm1 extends javax.swing.JFrame {
+
+    /** Creates new form NewOrderForm */
+    public KitchenForm1() {
         initComponents();
     }
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     */
     private void initComponents() {
 
         topPanel = new javax.swing.JPanel();
+        middlePanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
-        
-        tittel = new javax.swing.JLabel();
-        antalletOrdrer = new javax.swing.JLabel();
-        
-        numbOfOrders = new javax.swing.JLabel();
-        delivery1Lable = new javax.swing.JLabel();
-        delivery4Lable = new javax.swing.JLabel();
-        delivery5Lable = new javax.swing.JLabel();
-
+        headerLabel = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
-        refreshButton = new javax.swing.JButton();
-		orderButton = null;
-        
+        updateButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
-        //top panel
-        //pink: 255-20-147
-        topPanel.setBackground(new java.awt.Color(255, 20, 147));
-        
-        tittel.setFont(new java.awt.Font("Tahoma", 0, 36));
-        tittel.setText("Kj¿kken");
-        //Spring Green: 0-255-127
-        tittel.setBackground(new java.awt.Color(0, 255, 127));
-        
-        org.jdesktop.layout.GroupLayout topPanelLayout = new org.jdesktop.layout.GroupLayout(topPanel);
+        setTitle("Kj¿kken");
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        topPanel.setBackground(new java.awt.Color(120, 120, 120));
+        topPanel.setPreferredSize(new java.awt.Dimension(800, 100));
+
+        headerLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerLabel.setText("Ny ordre");
+
+        javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
-            topPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(topPanelLayout.createSequentialGroup()
-                .add(314, 314, 314)
-                .add(tittel)
-                .addContainerGap(343, Short.MAX_VALUE))
+            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addGap(252, 252, 252))
         );
         topPanelLayout.setVerticalGroup(
-            topPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(topPanelLayout.createSequentialGroup()
-                .add(34, 34, 34)
-                .add(tittel)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );//end top panel
-        // bottom panel    	
-        //Dark Violet: 148-0-211
-        bottomPanel.setBackground(new java.awt.Color(148, 0, 211));
+            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        middlePanel.setBackground(new java.awt.Color(238, 238, 238));
+        middlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        
+        // Displays all orders that should
+        updateMiddlePanel();
+
+        bottomPanel.setBackground(new java.awt.Color(120, 120, 120));
+        bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
 
         backButton.setText("Tilbake");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	backButtonActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
-        antalletOrdrer.setFont(new java.awt.Font("Tahoma", 0, 24));
-        antalletOrdrer.setText("Antall ordrer:");
-        refreshButton.setText("Refresh");
-        refreshButton.setFont(new java.awt.Font("Tahoma", 0, 24));
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+        updateButton.setText("Oppdater");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fetchOrders(evt);
+                updateButtonActionPerformed(evt);
             }
         });
 
-//        numbOfOrders.setFont(new java.awt.Font("Tahoma", 0, 24));
-//        numbOfOrders.setText("4");
-  
-        org.jdesktop.layout.GroupLayout bottomPanelLayout = new org.jdesktop.layout.GroupLayout(bottomPanel);
+        javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
-        
         bottomPanelLayout.setHorizontalGroup(
-            bottomPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(bottomPanelLayout.createSequentialGroup()
-                .add(69, 69, 69)
-                .add(backButton)
-                .add(137, 137, 137)
-                .add(refreshButton)
-                //.add(antalletOrdrer)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                //.add(numbOfOrders)
-                .addContainerGap(335, Short.MAX_VALUE))
+            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
+                .addComponent(updateButton)
+                .addContainerGap())
         );
         bottomPanelLayout.setVerticalGroup(
-            bottomPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, bottomPanelLayout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
-                .add(bottomPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(backButton)
-                    .add(refreshButton)
-
-                   // .add(numbOfOrders)
-                   // .add(antalletOrdrer)
-                    )
-                .add(32, 32, 32))
-        );//end bottom panel
-
-        
-        //start middle panel, which is the main panel that both top-panel and bottom panel sits on top of..
-        org.jdesktop.layout.GroupLayout middlePanel = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(middlePanel);
-        middlePanel.setAutocreateGaps(true);
-        middlePanel.setAutocreateContainerGaps(true);
-        addOrdersToPanel();
-
-        
-        middlePanel.setHorizontalGroup(
-            middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(topPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(middlePanel.createSequentialGroup()
-                .add(152, 152, 152)
-                //.add(order1Lable)
-                .add(76, 76, 76)
-                .add(delivery1Lable)
-                .add(135, 135, 135)
-                )
-            
-            .add(bottomPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(middlePanel.createSequentialGroup()
-                .add(152, 152, 152)
-                .add(middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(middlePanel.createSequentialGroup()
-                        //.add(order4Lable)
-                        .add(80, 80, 80)
-                        .add(delivery4Lable))
-                    .add(middlePanel.createSequentialGroup()
-                        //.add(order5Lable)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(delivery5Lable)))
-                .add(135, 135, 135)
-                .add(middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                )
-                .add(189, 189, 189))
+            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backButton)
+                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
-        middlePanel.setVerticalGroup(
-            middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(middlePanel.createSequentialGroup()
-                .add(topPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(72, 72, 72)
-                .add(middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(middlePanel.createSequentialGroup()
-                        .add(5, 5, 5)
-                     )
-                    .add(middlePanel.createSequentialGroup()
-                        .add(5, 5, 5)
-                        .add(delivery1Lable))
-                    )
-                .add(18, 18, 18)
-                
-                .add(18, 18, 18)
-                .add(middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    //.add(order4Lable)
-                    .add(delivery4Lable)
-                    )
-                .add(8, 8, 8)
-                .add(middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(middlePanel.createSequentialGroup()
-                        .add(8, 8, 8)
-                        .add(middlePanel.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                           // .add(order5Lable)
-                            .add(delivery5Lable)))
-                    .add(middlePanel.createSequentialGroup()
-                        .add(10, 10, 10)
-                        ))
-                .add(64, 64, 64)
-                .add(bottomPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bottomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(middlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
-    }// end middle panel           
-
-    public void addOrdersToPanel(JPanel panel){
-    	int antallOrdrer = 3;
-    	for(int i=0; i<= antallOrdrer; i++){
-    		orderButton = new JButton();
-    		orderButton.setText(2 + " " + "Lazio");
-    		panel.setHorizontalGroup(panel.createSequentialGroup()
-    				.addCompnenent(orderButton)
-    		);
-            panel.setVerticalGroup(panel.createSequentialGroup()
-    				.addCompnenent(orderButton)
-
-            );
-    	}
     }
-    public static void fetchOrders(java.awt.event.ActionEvent evt){
-    	//f¿rst henter vi alle nye ordre.
-    	System.out.println("fetchOrders() got called!");
+
+    private void updateMiddlePanel(){
+    	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
+    	
+    	// "DETTE BURDE EGENTLIG GJ¯RES AV FETCHORDERS"
     	ArrayList<HashMap<Product,Integer>> freshOrders = ChefController.getFreshOrders();
     	for (int i = 0; i < freshOrders.size(); i++) {
-    		orderButton = new javax.swing.JButton();
+    		//orderButton = new javax.swing.JButton();
+    		for (Object o : freshOrders.get(i).keySet()) {
+    			if (o instanceof Product){
+    				// Set JLabel text
+    				System.out.println(o);
+    		    	// Create a JLabel and define dimensions and other variables
+    				javax.swing.JLabel temp = new javax.swing.JLabel();
+    		        temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    		        temp.setOpaque(true);
+    		        temp.setPreferredSize(new java.awt.Dimension(140, 20));
+    		        temp.setSize(new java.awt.Dimension(140, 20));
+    		        temp.setVisible(true);
+    		        // Set what should happen when the label is clicked
+    		        temp.addMouseListener(new java.awt.event.MouseAdapter() {
+    		            public void mouseClicked(java.awt.event.MouseEvent evt) {
+    		                System.out.println("Order clicked");
+    		            }
+    		        });
+    		        // Set text for the JLabel
+    				String pname = ((Product) o).getName();
+    				int antall = freshOrders.get(i).get(o);
+    				temp.setText(pname + antall);
+    				// Set JLabel background color
+    		        int bg;
+    				if (i % 2 == 0) { bg = 200; }
+    		        else 			{ bg = 220; }
+    		        temp.setBackground(new java.awt.Color(bg, bg, bg));
+    		        orders.add(temp);
+    			}
+    		}
+		}
+    	System.out.println(orders.size());
+    	// SLUTT P "DETTE BURDE EGENTLIG GJ¯RES AV FETCHORDERS"
+    	
+        javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
+        middlePanel.removeAll();
+        middlePanel.setLayout(middlePanelLayout);
+        
+        // Create the horizontal group
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = middlePanelLayout.createParallelGroup();
+        for (int i = 0; i < orders.size(); i++){
+        	tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE);
+        }
+        
+        middlePanelLayout.setHorizontalGroup(
+            middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(middlePanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(tempHorizontalGroup)
+                    .addContainerGap())
+        );
+        
+        // Create the vertical group
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = middlePanelLayout.createSequentialGroup();
+        tempVerticalGroup.addContainerGap();
+        for (int i = 0; i < orders.size(); i++){
+        	tempVerticalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
+        }
+        tempVerticalGroup.addContainerGap(330, Short.MAX_VALUE);
+        
+        middlePanelLayout.setVerticalGroup(
+            middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempVerticalGroup)
+        );
+    }
+    
+    public static void fetchOrders(){
+    	//f¿rst henter vi alle nye ordre.
+    	//System.out.println("fetchOrders() got called!");
+    	ArrayList<HashMap<Product,Integer>> freshOrders = ChefController.getFreshOrders();
+    	for (int i = 0; i < freshOrders.size(); i++) {
+    		//orderButton = new javax.swing.JButton();
     		for (Object o : freshOrders.get(i).keySet()) {
     			if (o instanceof Product){
     			
     				String pname = ((Product) o).getName();
-    				int antall = freshOrders.get(i).get(o); 
+    				int antall = freshOrders.get(i).get(o);
+    				System.out.println(pname);
+    				System.out.println(antall);
     	    		//addToMiddlePanel(orderButton.setText(antall + " " + pname));
-    	    		orderButton.setText(antall + " " + pname);
-
+    	    		//orderButton.setText(antall + " " + pname);
     			}
     		}
-    		
-			
 		}
     }
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        MainMenuForm form2 = new MainMenuForm();         
-        this.setVisible(false);         
-        form2.setVisible(true); 
+    
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        MainMenuForm form2 = new MainMenuForm();
+        this.setVisible(false);
+        form2.setVisible(true);
     }
-    	
- 
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        this.updateMiddlePanel();
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
-    	
-    	//fetchOrders();
+        /* Set the Nimbus look and feel */
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -242,39 +256,29 @@ public class Kitchenform1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new Kitchenform1().setVisible(true);
+                new KitchenForm1().setVisible(true);
             }
         });
     }
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton backButton;
-    private javax.swing.JButton refreshButton;
-    
-    private javax.swing.JButton orderButton;
-
-    private javax.swing.JLabel delivery1Lable;
-    private javax.swing.JLabel delivery4Lable;
-    private javax.swing.JLabel delivery5Lable;
-    private javax.swing.JLabel tittel;
-    private javax.swing.JLabel antalletOrdrer;
-    private javax.swing.JLabel numbOfOrders;
-   
+    // Variables declaration - do not modify
     private javax.swing.JPanel topPanel;
+    private javax.swing.JPanel middlePanel;
     private javax.swing.JPanel bottomPanel;
-
-    // End of variables declaration                   
+    private javax.swing.JLabel headerLabel;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton updateButton;
+    // End of variables declaration
 }
