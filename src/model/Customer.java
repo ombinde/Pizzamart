@@ -14,8 +14,9 @@ public class Customer {
 	private String forename;
 	private String lastname;
 	private String phone;
-	private String adress;
-	private String postcode;
+	private String address;
+	private String zipCode;
+	private String postalAddress;
 	private int idCustomer;
 	
 	/**
@@ -27,30 +28,33 @@ public class Customer {
 	 * @param postcode
 	 */
 	public Customer(String forename, String lastname, String phone,
-		String adress, String postcode) {
+		String address, String zipCode, String postalAddress) {
 		this.forename = forename;
 		this.lastname = lastname;
 		this.phone = phone;
-		this.adress = adress;
-		this.postcode = postcode;		
+		this.address = address;
+		this.zipCode = zipCode;
+		this.postalAddress = postalAddress;
 	}
 	
 	/**
 	 * Adds the customer to the database.
 	 */
-	public void addToDatabase(){
+	public int addToDatabase(){
 		if (!customerIsUnike(phone)){
 			updateCustomer();
-			return;
+			return 2;
 		}
 		try{
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO customer (forename, lastname, phone, adress, postcode) " +
+			String query = "INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress) " +
 			  			   "VALUES ('" + forename + "','" + lastname + "','" + phone + "','"
-			  			   + adress + "','" + postcode +"')";
+			  			   + address + "','" + zipCode +"','" + postalAddress + "')";
 			idCustomer = db.insertWithIdReturn(query);
+			return 1;
 		} catch (SQLException e)  {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 	
@@ -61,9 +65,14 @@ public class Customer {
 		try{
 			Database db = Database.getDatabase();
 			String query = "UPDATE customer SET forename='" + this.forename + "', lastname='" 
-							+ this.lastname + "', adress='" + this.adress + "', postcode='" 
-							+ this.postcode + "'";
-			idCustomer = db.insertWithIdReturn(query);
+							+ this.lastname + "', address='" + this.address + "', postcode='" 
+							+ this.zipCode + "' WHERE phone='" + this.phone + "'";
+			//idCustomer = db.insertWithIdReturn(query);
+			db.insert(query);
+			ResultSet rs = db.select("SELECT idcustomer from customer WHERE phone = '" + this.phone + "'");
+			if (rs.next()){
+				idCustomer = rs.getInt("idcustomer");
+			}
 		} catch (SQLException e)  {
 			e.printStackTrace();
 		}
@@ -78,7 +87,7 @@ public class Customer {
 	private boolean customerIsUnike(String phone){
 		try {
 			Database db = Database.getDatabase();
-			String query = "SELECT * FROM customers WHERE phone = '" + phone + "'";
+			String query = "SELECT * FROM customer WHERE phone = '" + phone + "'";
 			ResultSet rs = db.select(query);
 			if (!rs.next()){
 				return true;
@@ -99,9 +108,10 @@ public class Customer {
 				String forename = rs.getString("forename");
 				String lastname = rs.getString("lastname");
 				String phone = rs.getString("phone");
-				String adress = rs.getString("adress");
-				String postcode = rs.getString("postcode");
-				Customer c = new Customer(forename, lastname, phone, adress, postcode);
+				String address = rs.getString("adress");
+				String zipCode = rs.getString("postcode");
+				String postalAddress = rs.getString("postaladdress");
+				Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress);
 				customers.add(c);
 			}
 			return customers;
@@ -136,24 +146,28 @@ public class Customer {
 		this.phone = phone;
 	}
 	
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 	
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
-	public String getPostcode() {
-		return postcode;
+	public String getzipCode() {
+		return zipCode;
 	}
 	
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
+	public void setzipCode(String zipCode) {
+		this.zipCode = zipCode;
 	}
 
 	public int getIdCustomer(){
 		return this.idCustomer;
+	}
+	
+	public String getPostalAddress(){
+		return postalAddress;
 	}
 	
 }

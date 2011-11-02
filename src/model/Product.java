@@ -2,6 +2,8 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A class for products.
@@ -22,6 +24,18 @@ public class Product {
 	public Product(String name, double price) {
 		this.name = name;
 		this.price = price;
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT idproduct from product where name='" 
+									+ name + "' and price ='" + price + "'");
+			if (rs.next()){
+				idproduct = rs.getInt("idproduct");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -149,6 +163,32 @@ public class Product {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	/**
+	 * Returns an ArrayList with the relevant products to the query.
+	 * @param query
+	 * @return
+	 */
+	public static ArrayList<Product> getRelevantProducts(String query){
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM product where name like '" + query + "%'");
+			while (rs.next()){
+				
+				products.add(new Product(rs.getString("name"), rs.getDouble("price")));
+			}
+			return products;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String toString(){
+		return this.name;
 	}
 	
 	

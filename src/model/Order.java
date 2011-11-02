@@ -30,6 +30,7 @@ public class Order {
 		this.productsInOrder = products;
 		this.status = status;
 		this.comment = comment;
+		this.productsInOrder = new HashMap<Product, Integer>();
 	}
 	/**
 	 * Creates a new Order with only a customer. More can be added later on.
@@ -38,6 +39,7 @@ public class Order {
 	public Order(Customer customer){
 		this.customer = customer;
 		this.status = "Under bestilling";
+		this.productsInOrder = new HashMap<Product, Integer>();
 	}
 	
 	/**
@@ -70,11 +72,13 @@ public class Order {
 	 * @param order
 	 * @return
 	 */
-	public double getOrderTotalPrice(Order order){
+	public double getOrderTotalPrice(){
 		double totalprice = 0;
-	    for (Object p : order.productsInOrder.keySet()) {
+		if (productsInOrder.size()<1)
+			return 0;
+	    for (Object p : productsInOrder.keySet()) {
 	    	if (p instanceof Product){
-		    	int quantity = order.productsInOrder.get(p);	
+		    	int quantity = productsInOrder.get(p);	
 		        totalprice += ((Product) p).getPrice()*quantity;
 	    	}
 	    }
@@ -124,8 +128,14 @@ public class Order {
 	 * @param quantity
 	 */
 	public void addProductToOrder(Product product, int quantity){
-		productsInOrder.put(product, quantity);
+		int oldQuantity = 0;
+		if (productsInOrder.containsKey(product)){
+			oldQuantity = productsInOrder.get(product);
+			productsInOrder.remove(product);
+		}
+		productsInOrder.put(product, quantity + oldQuantity);
 	}
+	
 	
 	/**
 	 * Takes a new status in and updates the order status in the database
@@ -157,28 +167,6 @@ public class Order {
 				freshOrders.add(rs.getInt("idorder"));
 			}
 			return freshOrders;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	/**
-	 * Returns a HashMap with the relevant products to the query containing the name and the price
-	 * of the products.
-	 * @param query
-	 * @return
-	 */
-	public static HashMap<String, Double> getRelevantProducts(String query){
-		HashMap<String, Double> products = new HashMap<String, Double>();
-		try {
-			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM product where name like '" + query + "%'");
-			while (rs.next()){
-				products.put(rs.getString("name"), rs.getDouble("price"));
-			}
-			return products;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
