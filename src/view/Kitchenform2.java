@@ -38,7 +38,6 @@ public class KitchenForm2 extends javax.swing.JFrame {
         middlePanel = new javax.swing.JPanel();
         quantityPanel = new javax.swing.JPanel();
         quantityHeaderLabel = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         productPanel = new javax.swing.JPanel();
         productHeaderLabel = new javax.swing.JLabel();
         commentPanel = new javax.swing.JPanel();
@@ -80,12 +79,13 @@ public class KitchenForm2 extends javax.swing.JFrame {
         //------------------------------------------------------------
         middlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
         ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
-        HashMap<Product, Integer> products = orders.get(3);
+        //TODO Get the hashmap with data in a different way
+        HashMap<Product, Integer> products = orders.get(0);
         
         //TODO Fix bug that displays the products in random order
         setQuantityPanel(products);
         setProductPanel(products);
-         setCommentPanel();
+        setCommentPanel();
         
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
@@ -292,6 +292,8 @@ public class KitchenForm2 extends javax.swing.JFrame {
     }
 
     private void setCommentPanel() {
+    	
+    	
     	commentPanel.setBackground(new java.awt.Color(200, 200, 200));
 
         commentHeaderLabel.setBackground(new java.awt.Color(150, 150, 150));
@@ -377,7 +379,6 @@ public class KitchenForm2 extends javax.swing.JFrame {
     private javax.swing.JPanel commentPanel;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JButton startFinishButton;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JLabel productHeaderLabel;
     private javax.swing.JPanel productPanel;
