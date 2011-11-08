@@ -1,4 +1,5 @@
 package controller;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Customer;
@@ -7,9 +8,25 @@ import model.Product;
 
 public class ManageOrder {
 	
-	public static Customer addNewCustomer(String forename, String lastname, String adress, String postcode, String phone){
-		return new Customer(forename, lastname, phone, adress, postcode);
+	public static Customer addNewCustomer(String forename, String lastname, String phone,
+			String address, String zipCode, String postalAddress){
+		return new Customer(forename, lastname, phone,
+							address, zipCode, postalAddress);
 	}
+	
+	public static void addCustomerToDatabase(Customer c){
+		int feedback = c.addToDatabase();
+		if (feedback==1){
+			System.out.println("Customer was added");
+		}
+		else if(feedback==2){
+			System.out.println("Customer was just updated since he already exist");
+		}
+		else{
+			System.out.println("Something went wrong");
+		}
+	}
+	
 	
 	public static Order addNewOrder(Customer customer){
 		return new Order(customer);
@@ -18,8 +35,13 @@ public class ManageOrder {
 	public static void addProductToOrder(Order order, Product product, int quantity){
 		order.addProductToOrder(product, quantity);
 	}
+	
 	public static void  addOneMoreProductToOrdre(Order order, Product product){
-		addProductToOrder(order, product, 1);
+		order.addProductToOrder(product, 1);
+	}
+	
+	public static HashMap<Product, Integer> getProductsInOrder(Order order){
+		return order.getProductsInOrder();
 	}
 	
 	/**
@@ -28,8 +50,16 @@ public class ManageOrder {
 	 * @param query
 	 * @return
 	 */
-	public static HashMap<String, Double> getRelevantProducts(String query){
-		return Order.getRelevantProducts(query);
+	public static ArrayList<Product> getRelevantProducts(String query){
+		return Product.getRelevantProducts(query);
+	}
+	
+	public static ArrayList<Customer> getRelevantCustomers(String query){
+		return null;
+	}
+	
+	public static double getTotalPrice(Order order){
+		return order.getOrderTotalPrice();
 	}
 	
 	public static void submitOrderToDatabase(Order order){
