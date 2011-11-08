@@ -18,10 +18,10 @@ import controller.ChefController;
  * 
  */
 @SuppressWarnings("serial")
-public class KitchenForm1 extends javax.swing.JFrame {
+public class Kitchenform1 extends javax.swing.JFrame {
 
     /** Creates new form NewOrderForm */
-    public KitchenForm1() {
+    public Kitchenform1() {
         initComponents();
     }
 
@@ -250,20 +250,20 @@ public class KitchenForm1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KitchenForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Kitchenform1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new KitchenForm1().setVisible(true);
+                new Kitchenform1().setVisible(true);
             }
         });
     }

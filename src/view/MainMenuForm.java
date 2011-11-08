@@ -254,7 +254,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
 
     private void kitchenButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	KitchenForm1 form = new KitchenForm1();         
+    	Kitchenform1 form = new Kitchenform1();         
         form.setVisible(true);
         this.setVisible(false); 
     }
