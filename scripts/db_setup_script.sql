@@ -2,7 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-CREATE SCHEMA IF NOT EXISTS `sigurlu_pizzamart` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
+CREATE SCHEMA IF NOT EXISTS `sigurlu_pizzamart` DEFAULT CHARACTER SET utf8 ;
 USE `sigurlu_pizzamart` ;
 
 -- -----------------------------------------------------
@@ -13,8 +13,9 @@ CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`customer` (
   `forename` VARCHAR(45) NOT NULL ,
   `lastname` VARCHAR(45) NOT NULL ,
   `phone` VARCHAR(45) NOT NULL ,
-  `adress` VARCHAR(45) NOT NULL ,
+  `address` VARCHAR(45) NOT NULL ,
   `postcode` VARCHAR(45) NOT NULL ,
+  `postaladdress` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`idcustomer`) )
 ENGINE = InnoDB;
 
@@ -38,7 +39,7 @@ CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`orders` (
   `idorder` INT NOT NULL AUTO_INCREMENT ,
   `status` VARCHAR(45) NOT NULL ,
   `customer_idcustomer` INT NOT NULL ,
-  `comment` VARCHAR(45) NULL ,
+  `comments` VARCHAR(45) NULL ,
   PRIMARY KEY (`idorder`, `customer_idcustomer`) ,
   INDEX `fk_orders_customer1` (`customer_idcustomer` ASC) ,
   CONSTRAINT `fk_orders_customer1`
@@ -56,6 +57,7 @@ CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`product` (
   `idproduct` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
   `price` DOUBLE  NOT NULL ,
+  `comments` VARCHAR(45) NULL ,
   PRIMARY KEY (`idproduct`) )
 ENGINE = InnoDB;
 
@@ -80,6 +82,14 @@ CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`product_has_order` (
     REFERENCES `sigurlu_pizzamart`.`orders` (`idorder` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sigurlu_pizzamart`.`properties`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`properties` (
+  `limitFreeDelivery` DOUBLE NOT NULL )
 ENGINE = InnoDB;
 
 

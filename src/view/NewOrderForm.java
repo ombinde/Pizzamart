@@ -1,5 +1,12 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import controller.ManageOrder;
+import model.Customer;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -82,7 +89,7 @@ public class NewOrderForm extends javax.swing.JFrame {
         leftPanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        searchField.setText("S¿k");
+        searchField.setText("Sï¿½k");
         searchField.setActionCommand("<Not Set>");
         searchField.setAlignmentX(0.0F);
         searchField.setAlignmentY(0.0F);
@@ -254,15 +261,118 @@ public class NewOrderForm extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
 
-        MainMenuForm form2 = new MainMenuForm();         this.setVisible(false);         form2.setVisible(true);     }                                          
+        MainMenuForm form2 = new MainMenuForm();         
+        this.setVisible(false);         
+        form2.setVisible(true);     
+        }                                          
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
-
-        NewOrder2Form form2 = new NewOrder2Form();         this.setVisible(false);         form2.setVisible(true);     }                                          
+    	String firstName = firstNameField.getText();
+    	String lastName = lastNameField.getText();
+    	String phone = phoneNumberField.getText();
+    	String address = addressField.getText();
+    	String zipCode = zipCodeField.getText();
+    	String postalAddress = postalAddressField.getText();
+        NewOrder2Form form2 = new NewOrder2Form(ManageOrder.addNewCustomer(firstName, 
+        										lastName, phone, address, zipCode, postalAddress));         
+        this.setVisible(false);         
+        form2.setVisible(true);     
+    }                                          
 
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
-        // TODO add your handling code here:}
+    	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }
+    
+    public void updateLeftPanel(ArrayList<Customer> customers) {
+    	// Creates a JLabel array
+    	if(customers.size()<1)
+    		return;
+    	for (int i = 0; i < customers.size(); i++) {
+			System.out.println(customers.get(i).getForename());
+		}
+    	ArrayList<javax.swing.JLabel> customerList = new ArrayList<javax.swing.JLabel>();
+        
+        // While there are more elements in the hashmap
+        for (int i=0; i < customers.size(); i++) {
+        	// Create a new JLabel
+        	javax.swing.JLabel temp = new javax.swing.JLabel();
+            // Set JLabel dimensions, text, border and so on
+        	final Customer customer = customers.get(i);
+            temp.setText(customer.getForename() + " " + customer.getLastname());
+            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            temp.setOpaque(true);
+            temp.setPreferredSize(new java.awt.Dimension(140, 20));
+            temp.setSize(new java.awt.Dimension(140, 20));
+            temp.setVisible(true);
+        	// Make it so that every other JLabel has a different background color than the previous
+            int bg;
+    		if (i % 2 == 0){
+            	bg = 200;
+            }
+            else {
+            	bg = 220;
+            }
+    		temp.setBackground(new java.awt.Color(bg, bg, bg));
+    		// What method to call if the JLabel is clicked
+            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    customerLabelMouseClicked(evt, customer);
+                }
+            });
+            // Add the JLabel to the array of JLabels
+            customerList.add(temp);
+    	}
+        leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.removeAll();
+        leftPanel.setLayout(leftPanelLayout);
+        
+        javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+        tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
+        for(int i = 0; i < customerList.size(); i++) {
+        	tempGroup.addComponent(customerList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+        }
+        tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
+            .addGap(79, 79, 79)
+        );
+        
+        leftPanelLayout.setHorizontalGroup(
+			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			.addGroup(leftPanelLayout.createSequentialGroup()
+				.addGroup(tempGroup)
+			    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			)
+        );
+        
+        javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
+		verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
+		for(int i = 0; i < customerList.size(); i++) {
+			verticalTempGroup.addComponent(customerList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+		}
+		verticalTempGroup.addGap(86, 86, 86);
+		verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
+      
+		leftPanelLayout.setVerticalGroup(
+			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			.addGroup(verticalTempGroup)
+			);
+		pack();
+		searchField.grabFocus();
+		searchField.setText(searchField.getText());
+    }
+    
+    private void customerLabelMouseClicked(java.awt.event.MouseEvent evt, Customer c) {   
+    	this.updateRightPanel(c);
+    }
+    
+    public void updateRightPanel(Customer c) {
+        // Set JLabel dimensions, text, border and so on
+    	firstNameField.setText(c.getForename());
+    	lastNameField.setText(c.getLastname());
+    	phoneNumberField.setText(c.getPhone());
+    	addressField.setText(c.getAddress());
+    	zipCodeField.setText(c.getzipCode());
+    	postalAddressField.setText(c.getPostalAddress());
+        }
     /**
      * @param args the command line arguments
      */
@@ -299,6 +409,7 @@ public class NewOrderForm extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify
+    private javax.swing.GroupLayout leftPanelLayout;
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backButton;

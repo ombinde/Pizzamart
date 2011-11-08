@@ -37,15 +37,15 @@ public class Test {
 		products.put(Product.dbGetProduct("Genoa"), 10);
 		products.put(Product.dbGetProduct("Naples"), 5);
 
-		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956");
-		Order order = new Order(c, products, "Bestilt", "Uten løk");
+		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956", "Oslo");
+		Order order = new Order(c, products, "Bestillt", "Uten gluten");
 		order.addOrderToDatabase();
-		order.setStatus("P�begynt av kokk");
-		System.out.println(order.getOrderTotalPrice(order));
+		order.setStatus("Lages");
+		System.out.println(ManageOrder.formatPrice(order.getOrderTotalPrice()));
 		
 		
 		//Teste søk
-		HashMap<String, Double> relevanteProdukter = new HashMap<String, Double>();
+		ArrayList<Product> relevanteProdukter = new ArrayList<Product>();
 		relevanteProdukter = ManageOrder.getRelevantProducts("m");
 		System.out.println(relevanteProdukter.toString());
 	
