@@ -18,6 +18,8 @@ public class Order {
 	private String status;
 	private String comment;
 	private int idorder;
+	private double deliveryFee;
+	private double limitFreeDelivery;
 	
 	/**
 	 * Creates a new order with all the information needed.
@@ -152,6 +154,27 @@ public class Order {
 			e.printStackTrace();
 		}
 	}
+	private void setLimitFreeDelivery(){
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT limitFreeDelivery FROM properties");
+			if (rs.next())
+				limitFreeDelivery = rs.getInt(0);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void setDeliveryFeeToFree(){
+		
+	}
+	
+	public void addDeliveryFee(){
+		DeliveryFee deliveryFee = DeliveryFee.getDeliveryFee();
+		this.addProductToOrder(deliveryFee, 1);
+	}
+	
 	
 	/**
 	 * Returns the id of all orders with a given status
