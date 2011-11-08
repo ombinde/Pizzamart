@@ -98,7 +98,7 @@ public class Customer {
 		return false;
 	}
 	
-	public ArrayList<Customer> getRelevantCustomers(String query){
+	public static ArrayList<Customer> getRelevantCustomers(String query){
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		try {
 			Database db = Database.getDatabase();
@@ -108,7 +108,7 @@ public class Customer {
 				String forename = rs.getString("forename");
 				String lastname = rs.getString("lastname");
 				String phone = rs.getString("phone");
-				String address = rs.getString("adress");
+				String address = rs.getString("address");
 				String zipCode = rs.getString("postcode");
 				String postalAddress = rs.getString("postaladdress");
 				Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress);

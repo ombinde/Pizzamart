@@ -2,6 +2,7 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 /**
@@ -193,5 +194,7 @@ public class Order {
 	public HashMap<Product, Integer> getProductsInOrder(){
 		return productsInOrder;
 	}
+	
+
 
 }

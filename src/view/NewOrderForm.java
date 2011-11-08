@@ -275,16 +275,20 @@ public class NewOrderForm extends javax.swing.JFrame {
     
     public void updateLeftPanel(ArrayList<Customer> customers) {
     	// Creates a JLabel array
+    	if(customers.size()<1)
+    		return;
+    	for (int i = 0; i < customers.size(); i++) {
+			System.out.println(customers.get(i).getForename());
+		}
     	ArrayList<javax.swing.JLabel> customerList = new ArrayList<javax.swing.JLabel>();
         
         // While there are more elements in the hashmap
         for (int i=0; i < customers.size(); i++) {
-        	final Customer customer = customers.get(i); 
         	// Create a new JLabel
         	javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
-        	final String name = customers.get(i).getForename() + " " + customers.get(i).getLastname();
-            temp.setText(name);
+        	final Customer customer = customers.get(i);
+            temp.setText(customer.getForename() + " " + customer.getLastname());
             temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             temp.setOpaque(true);
             temp.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -307,8 +311,43 @@ public class NewOrderForm extends javax.swing.JFrame {
             });
             // Add the JLabel to the array of JLabels
             customerList.add(temp);
-            i++;
     	}
+        leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.removeAll();
+        leftPanel.setLayout(leftPanelLayout);
+        
+        javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+        tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
+        for(int i = 0; i < customerList.size(); i++) {
+        	tempGroup.addComponent(customerList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+        }
+        tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
+            .addGap(79, 79, 79)
+        );
+        
+        leftPanelLayout.setHorizontalGroup(
+			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			.addGroup(leftPanelLayout.createSequentialGroup()
+				.addGroup(tempGroup)
+			    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			)
+        );
+        
+        javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
+		verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
+		for(int i = 0; i < customerList.size(); i++) {
+			verticalTempGroup.addComponent(customerList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+		}
+		verticalTempGroup.addGap(86, 86, 86);
+		verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
+      
+		leftPanelLayout.setVerticalGroup(
+			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+			.addGroup(verticalTempGroup)
+			);
+		pack();
+		searchField.grabFocus();
+		searchField.setText(searchField.getText());
     }
     
     private void customerLabelMouseClicked(java.awt.event.MouseEvent evt, Customer c) {   
@@ -359,6 +398,7 @@ public class NewOrderForm extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify
+    private javax.swing.GroupLayout leftPanelLayout;
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backButton;

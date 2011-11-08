@@ -89,7 +89,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         leftPanel.setPreferredSize(new java.awt.Dimension(400, 387));
 
         searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        searchField.setText("S�k");
+        searchField.setText("Søk");
         searchField.setActionCommand("<Not Set>");
         searchField.setAlignmentX(0.0F);
         searchField.setAlignmentY(0.0F);
@@ -138,7 +138,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
         priceLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        priceLabel.setText("0,-");
+        priceLabel.setText("0,00,-");
 
         backButton.setText("Tilbake");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
             }
         });
 
-        finishButton.setText("Fullf�r");
+        finishButton.setText("Fullfør");
         finishButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finishButtonActionPerformed(evt);
@@ -218,7 +218,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         	javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
         	final Product product = products.get(i);
-            temp.setText(product.getName() + " " + product.getPrice() + ",-");
+            temp.setText(product.getName() + " " + product.formatPrice() + ",-");
             temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             temp.setOpaque(true);
             temp.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -241,7 +241,6 @@ public class NewOrder2Form extends javax.swing.JFrame {
             });
             // Add the JLabel to the array of JLabels
             productList.add(temp);
-            i++;
     	}
     	
         leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -319,7 +318,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         		counter++;
         	}
         }
-        priceLabel.setText(""+ManageOrder.getTotalPrice(order));
+        priceLabel.setText(""+ManageOrder.formatPrice(ManageOrder.getTotalPrice(order))+",-");
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.removeAll();
         rightPanel.setLayout(rightPanelLayout);
@@ -348,6 +347,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }                                        
 
     private void finishButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	order.setStatus("Bestilt");
     	ManageOrder.submitOrderToDatabase(order);
     	System.out.println(order.getProductsInOrder().toString());
     	MainMenuForm form = new MainMenuForm();

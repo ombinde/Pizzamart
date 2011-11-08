@@ -1,15 +1,15 @@
-INSERT INTO customer (forename, lastname, phone, adress, postcode)
-	values ('Ola', 'Nordmann', '12345678', 'Munkegata 1', '7050');
-INSERT INTO customer (forename, lastname, phone, adress, postcode)
-	values ('Sigurd', 'Lund', '11223344', 'Odd Brochmannsvei 49', '7051');
-INSERT INTO customer (forename, lastname, phone, adress, postcode)
-	values ('Even', 'Lislebø', '92345699', 'Munkegata 5', '7050');
-INSERT INTO customer (forename, lastname, phone, adress, postcode)
-	values ('Øivind', 'Binde', '81345678', 'Klostergata', '7050');
-INSERT INTO customer (forename, lastname, phone, adress, postcode)
-	values ('Petter', 'Northug', '913345678', 'Motbakken 2', '7200');
-INSERT INTO customer (forename, lastname, phone, adress, postcode)
-	values ('Lilly', 'Meister', '9334538', 'Berteveien 4', '7050');
+INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
+	values ('Ola', 'Nordmann', '12345678', 'Munkegata 1', '7050', 'Trondheim');
+INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
+	values ('Sigurd', 'Lund', '11223344', 'Odd Brochmannsvei 49', '7051', 'Trondheim');
+INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
+	values ('Even', 'Lislebø', '92345699', 'Munkegata 5', '7050', 'Trondheim');
+INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
+	values ('Øivind', 'Binde', '81345678', 'Klostergata', '7050', 'Trondheim');
+INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
+	values ('Petter', 'Northug', '913345678', 'Motbakken 2', '7200', 'Trondheim');
+INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
+	values ('Lilly', 'Meister', '9334538', 'Berteveien 4', '7050', 'Trondheim');
 
 
 INSERT INTO employee (forename, lastname, username)
@@ -45,31 +45,33 @@ INSERT INTO product (name, price)
 	values ('Vann', '30');
 INSERT INTO product (name, price)
 	values ('Oristano', '220');
+INSERT INTO product (name, price)
+	values ('Frakt', '50');
 
 INSERT INTO orders (status, customer_idcustomer)
-	values ('Levert av bud', 1);
+	values ('Levert', 1);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('Levert av bud', 2);
+	values ('Levert', 2);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('Hentet av bud under levering', 1);
+	values ('Under levering', 1);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('Hentet av bud under levering', 3);
+	values ('Under levering', 3);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('hos baker', 4);
+	values ('Bestilt', 4);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('hos baker', 2);
+	values ('Bestilt', 2);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('avventer ledig baker', 1);
+	values ('Bestilt', 1);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('avventer ledig baker', 2);
+	values ('Lages', 2);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('avventer ledig baker', 5);
+	values ('Lages', 5);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('hentet av customer', 4);
+	values ('Hentet', 4);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('hentet av customer', 2);
+	values ('Laget ferdig', 2);
 INSERT INTO orders (status, customer_idcustomer)
-	values ('hentet av customer',5);
+	values ('Klar til henting',5);
 
 INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
 	values(1,1,3);
@@ -101,3 +103,6 @@ INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
 	values(2,12,3);
 INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
 	values(1,12,3);
+
+INSERT INTO properties(limitFreeDelivery) 
+	values(50);
