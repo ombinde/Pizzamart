@@ -71,8 +71,25 @@ public class ManageOrder {
 	 * @param order
 	 * @param product
 	 */
-	public static void  addOneMoreProductToOrdre(Order order, Product product){
+	public static void  addOneMoreProductToOrder(Order order, Product product){
 		order.addProductToOrder(product, 1);
+	}
+	
+	/**
+	 * Removes one product from the order.
+	 * @param order
+	 * @param product
+	 */
+	public static void removeOneProductFromOrder(Order order, Product product){
+		order.removeProductFromOrder(product, 1);
+	}
+	
+	/**
+	 * Sets the order to be either delivered or not.
+	 * @param order
+	 */
+	public static void setDelivery(Order order, boolean b){
+		order.setDelivery(b);
 	}
 	
 	/**
@@ -134,8 +151,7 @@ public class ManageOrder {
 	 */
 	public static String formatPrice(double price){
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
-		return decimalFormat.format(price);
-		
+		return decimalFormat.format(price)+",-";
 	}
 
 }

@@ -40,6 +40,7 @@ CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`orders` (
   `status` VARCHAR(45) NOT NULL ,
   `customer_idcustomer` INT NOT NULL ,
   `comments` VARCHAR(45) NULL ,
+  `delivery` TINYINT(1)  NULL ,
   PRIMARY KEY (`idorder`, `customer_idcustomer`) ,
   INDEX `fk_orders_customer1` (`customer_idcustomer` ASC) ,
   CONSTRAINT `fk_orders_customer1`

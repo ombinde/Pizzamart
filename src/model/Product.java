@@ -69,6 +69,10 @@ public class Product {
 		return price;
 	}
 	
+	public void setPrice(double price){
+		this.price = price;
+	}
+	
 	/**
 	 * Returns the productid of a product.
 	 * @return
@@ -196,7 +200,7 @@ public class Product {
 	
 	public String formatPrice(){
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
-		return decimalFormat.format(this.price);
+		return decimalFormat.format(this.price)+",-";
 	}
 	
 	public String getComment() {

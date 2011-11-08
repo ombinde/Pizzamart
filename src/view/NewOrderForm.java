@@ -277,9 +277,6 @@ public class NewOrderForm extends javax.swing.JFrame {
     	// Creates a JLabel array
     	if(customers.size()<1)
     		return;
-    	for (int i = 0; i < customers.size(); i++) {
-			System.out.println(customers.get(i).getForename());
-		}
     	ArrayList<javax.swing.JLabel> customerList = new ArrayList<javax.swing.JLabel>();
         
         // While there are more elements in the hashmap

@@ -285,6 +285,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         // Set JLabel dimensions, text, border and so on
     	ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
         HashMap<Product, Integer> productsInOrder = ManageOrder.getProductsInOrder(order);
+        priceLabel.setText(""+ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
         // While there are more elements in the hashmap
         int counter = 0;
         for (Object o : productsInOrder.keySet()) {
@@ -293,9 +294,8 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
         	if (o instanceof Product){
         		final Product product = (Product) o;
-        		temp.setText(product.getName() + ": " + productsInOrder.get(product));
-        		temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        		temp.setOpaque(true);
+        		temp.setText(productsInOrder.get(product) + " stk " + product.getName() + "    " + 
+        					 product.getPrice()*productsInOrder.get(product));
         		temp.setPreferredSize(new java.awt.Dimension(140, 20));
         		temp.setSize(new java.awt.Dimension(140, 20));
         		int bg;
@@ -318,7 +318,6 @@ public class NewOrder2Form extends javax.swing.JFrame {
         		counter++;
         	}
         }
-        priceLabel.setText(""+ManageOrder.formatPrice(ManageOrder.getTotalPrice(order))+",-");
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.removeAll();
         rightPanel.setLayout(rightPanelLayout);
@@ -359,12 +358,12 @@ public class NewOrder2Form extends javax.swing.JFrame {
         this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {   
-    	ManageOrder.addOneMoreProductToOrdre(order, product);
+    	ManageOrder.addOneMoreProductToOrder(order, product);
     	this.updateRightPanel();
     }
     
     private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {                                          
-//        productsInOrder.remove(productName);
+    	ManageOrder.removeOneProductFromOrder(order, product);
     	this.updateRightPanel();
     }
     /**

@@ -18,8 +18,9 @@ public class Order {
 	private String status;
 	private String comment;
 	private int idorder;
-	private double deliveryFee;
+	private DeliveryFee deliveryFee;
 	private double limitFreeDelivery;
+	private int delivery;
 	
 	/**
 	 * Creates a new order with all the information needed.
@@ -43,6 +44,10 @@ public class Order {
 		this.customer = customer;
 		this.status = "Under bestilling";
 		this.productsInOrder = new HashMap<Product, Integer>();
+		this.comment = "";
+		this.getLimitFreeDelivery();
+		this.deliveryFee = DeliveryFee.getDeliveryFee();
+		this.delivery = 0;
 	}
 	
 	/**
@@ -85,6 +90,11 @@ public class Order {
 		        totalprice += ((Product) p).getPrice()*quantity;
 	    	}
 	    }
+	    if (productsInOrder.containsKey(deliveryFee) && totalprice > limitFreeDelivery){
+	    	double fee = deliveryFee.getPrice();
+	    	deliveryFee.setPrice(0);
+	    	totalprice -= fee;
+	    }
 		return totalprice;
 	}
 
@@ -107,8 +117,8 @@ public class Order {
 		Integer quantity = 0;
 		try {
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (status, comment, customer_idcustomer) " +
-			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "')";
+			String query = "INSERT INTO orders (status, comments, customer_idcustomer, delivery) " +
+			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + delivery +"')";
 			idorder = db.insertWithIdReturn(query);
 		    for (Object p : productsInOrder.keySet()) {
 		    	if (p instanceof Product){
@@ -121,6 +131,7 @@ public class Order {
 			}
 		    return 1;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -137,6 +148,30 @@ public class Order {
 			productsInOrder.remove(product);
 		}
 		productsInOrder.put(product, quantity + oldQuantity);
+		if (!productsInOrder.containsKey(deliveryFee) && delivery==1){
+			productsInOrder.put(deliveryFee, 1);
+		}
+	}
+	
+	/**
+	 * Removes products from the order. If the order has no other products
+	 * than the delivery fee after the removal, the delivery fee is also removed
+	 * @param product
+	 * @param quantity
+	 */
+	public void removeProductFromOrder(Product product, int quantity){
+		if (productsInOrder.containsKey(product)){
+			int oldQuantity = productsInOrder.get(product);
+			if (productsInOrder.get(product) > quantity){
+				productsInOrder.put(product, oldQuantity-quantity);
+			}
+			else{
+				productsInOrder.remove(product);
+			}
+		}
+		if (productsInOrder.size()==1 && productsInOrder.containsKey(deliveryFee)){
+			productsInOrder.remove(deliveryFee);
+		}
 	}
 	
 	
@@ -154,27 +189,37 @@ public class Order {
 			e.printStackTrace();
 		}
 	}
-	private void setLimitFreeDelivery(){
+	
+	/**
+	 * Sets the limit for free delivery. It looks up in the database for the value.
+	 */
+	private void getLimitFreeDelivery(){
 		try {
 			Database db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT limitFreeDelivery FROM properties");
 			if (rs.next())
-				limitFreeDelivery = rs.getInt(0);
+				limitFreeDelivery = rs.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	private void setDeliveryFeeToFree(){
-		
+	/**
+	 * Adds delivery fee for the order.
+	 */
+	private void addDeliveryFee(){
+		if (!productsInOrder.containsKey(deliveryFee))
+			this.addProductToOrder(deliveryFee, 1);
 	}
 	
-	public void addDeliveryFee(){
-		DeliveryFee deliveryFee = DeliveryFee.getDeliveryFee();
-		this.addProductToOrder(deliveryFee, 1);
+	/**
+	 * Removes the delivery fee
+	 */
+	private void removeDeliveryFee(){
+		if (productsInOrder.containsKey(deliveryFee))
+			productsInOrder.remove(deliveryFee);
 	}
-	
 	
 	/**
 	 * Returns the id of all orders with a given status
@@ -214,10 +259,39 @@ public class Order {
 		return this.comment;
 	}
 	
+	/**
+	 * Returns all the products in a HashMap with the product as the key,
+	 * and the quantity of the product as value.
+	 * @return
+	 */
 	public HashMap<Product, Integer> getProductsInOrder(){
 		return productsInOrder;
 	}
 	
+	/**
+	 * Sets the delivery to true or false.
+	 * Adds a delivery fee if it's true.
+	 * @param b
+	 */
+	public void setDelivery(boolean b){
+		if (b){
+			delivery = 1;
+			addDeliveryFee();
+		}
+		else{
+			delivery = 0;
+			removeDeliveryFee();
+		}
+	}
+	
+	/**
+	 * Returns true if the order is going to be delivered
+	 * and false if not.
+	 * @return
+	 */
+	public boolean getDelivery(){
+		return (delivery==1) ? true : false;
+	}
 
 
 }

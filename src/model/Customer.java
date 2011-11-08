@@ -67,7 +67,6 @@ public class Customer {
 			String query = "UPDATE customer SET forename='" + this.forename + "', lastname='" 
 							+ this.lastname + "', address='" + this.address + "', postcode='" 
 							+ this.zipCode + "' WHERE phone='" + this.phone + "'";
-			//idCustomer = db.insertWithIdReturn(query);
 			db.insert(query);
 			ResultSet rs = db.select("SELECT idcustomer from customer WHERE phone = '" + this.phone + "'");
 			if (rs.next()){
