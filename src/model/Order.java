@@ -226,12 +226,12 @@ public class Order {
 	 * @param status
 	 * @return ArrayList with orders
 	 */
-	public static ArrayList<Integer> getOrdersById(String status){
+	public static ArrayList<Integer> getOrdersById(String status1, String status2){
 		ArrayList<Integer> freshOrders = new ArrayList<Integer>();
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status + "'");
+			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' or where status='" + status2 + "'");
 			while(rs.next()){
 				freshOrders.add(rs.getInt("idorder"));
 			}
