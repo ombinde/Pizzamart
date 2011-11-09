@@ -29,10 +29,11 @@ public class Product {
 		this.price = price;
 		try {
 			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT idproduct from product where name='" 
+			ResultSet rs = db.select("SELECT idproduct, comments FROM product WHERE name='" 
 									+ name + "' and price ='" + price + "'");
 			if (rs.next()){
-				idproduct = rs.getInt("idproduct");
+				this.idproduct = rs.getInt("idproduct");
+				this.comment = rs.getString("comments");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -42,15 +43,16 @@ public class Product {
 	}
 	
 	/**
-	 * Creates a new Product with a given name, price and id.
+	 * Creates a new Product with a given name, price, comment and id.
 	 * @param name
 	 * @param price
 	 * @param id
 	 */
-	public Product (String name, double price, int id){
+	public Product (String name, double price, int id, String comment){
 		this.name = name;
 		this.price = price;
 		this.idproduct = id;
+		this.comment = comment;
 	}
 
 	/**
@@ -90,7 +92,7 @@ public class Product {
 	public static String getProductName(int productID) throws SQLException{
 		String name = null;
 		Database db = Database.getDatabase();
-		ResultSet rs = db.select("SELECT name FROM product where idproduct = " + productID);
+		ResultSet rs = db.select("SELECT name FROM product WHERE idproduct = " + productID);
 		while (rs.next()){
 			name = rs.getString(1);
 		}
@@ -106,7 +108,7 @@ public class Product {
 	public static String getProductPrice(int productID) throws SQLException{
 		String price = null;
 		Database db = Database.getDatabase();
-		ResultSet rs = db.select("SELECT price FROM product where idproduct = " + productID);
+		ResultSet rs = db.select("SELECT price FROM product WHERE idproduct = " + productID);
 		while (rs.next()){
 			price = rs.getString(1);
 		}
@@ -122,11 +124,12 @@ public class Product {
 	 */
 	public static Product dbGetProduct(String name) throws SQLException{
 		Database db = Database.getDatabase();
-		ResultSet rs = db.select("SELECT * FROM product where name='" + name + "'");
+		ResultSet rs = db.select("SELECT * FROM product WHERE name='" + name + "'");
 		if (rs.next()){
 			int id = rs.getInt("idproduct");
 			double price = rs.getDouble("price");
-			return new Product(name, price, id);
+			String comment = rs.getString("comments");
+			return new Product(name, price, id, comment);
 		}
 		return null;
 	}
@@ -136,21 +139,64 @@ public class Product {
 	 * if the product does not already exist.
 	 * @param name
 	 * @param price
-	 * @return 1 if the product was sucsessfully added, and 0 if the product already exists.
+	 * @return true if the product was sucsessfully added, and false if the product already exists.
 	 */
-	public static int addProductToDatabase(String name, double price){
+	public static boolean addProductToDatabase(String name, double price, String comment){
 		if (prodictIsUnike(name)){
 			try {
 				Database db = Database.getDatabase();
-				String query = "INSERT INTO product (name, price) " +
-				  			   "VALUES ('"+ name + "', '" + price + "')";
+				String query = "INSERT INTO product (name, price, comments) " +
+				  			   "VALUES ('"+ name + "', '" + price + "','" + comment + "')";
 				db.insert(query);
-				return 1;
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return false;
+	}
+	
+	/**
+	 * Deletes a product from the database.
+	 * Returns true if the product was deleted, else it's false.
+	 * @param p
+	 * @return
+	 */
+	public static boolean removeProductFromDatabase(Product p){
+		try {
+			Database db = Database.getDatabase();
+			String query = "DELETE FROM product where name='" + p.name + "')";
+			db.insert(query);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * Updates a product p in the database with the given parameters.
+	 * Returns true if the product was updated successfully. If false something wrong happend, 
+	 * and it wasn't updated.
+	 * @param p
+	 * @param name
+	 * @param price
+	 * @param comment
+	 * @return
+	 */
+	public static boolean updateProduct(Product p, String name, double price, String comment){
+		if (!prodictIsUnike(name))
+			return false;
+		try {
+			Database db = Database.getDatabase();
+			String query = "UPDATE product SET name='" + name + "', price='" + price + 
+							"', comment='" + comment +"' WHERE name='" + p.name + "')";
+			db.insert(query);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	return false;		
 	}
 	
 	/**
@@ -181,9 +227,24 @@ public class Product {
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
 			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM product where name like '" + query + "%'");
+			ResultSet rs = db.select("SELECT * FROM product where name LIKE '" + query + "%'");
 			while (rs.next()){
-				
+				products.add(new Product(rs.getString("name"), rs.getDouble("price")));
+			}
+			return products;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static ArrayList<Product> getAllProducts(){
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM product ORDER BY name ASC");
+			while (rs.next()){
 				products.add(new Product(rs.getString("name"), rs.getDouble("price")));
 			}
 			return products;

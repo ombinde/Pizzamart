@@ -61,7 +61,7 @@ public class Order {
 		try {
 			db = Database.getDatabase();
 			HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-			ResultSet rs = db.select("select name, price, quantity from product_has_order " +
+			ResultSet rs = db.select("select name, price, comments, quantity from product_has_order " +
 					"join product on idproduct=product_idproduct where orders_idorder=" + id );
 			while (rs.next()){
 				double price = rs.getDouble("price");
