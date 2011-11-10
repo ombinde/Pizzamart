@@ -231,7 +231,7 @@ public class Order {
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' or where status='" + status2 + "'");
+			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' or status='" + status2 + "'");
 			while(rs.next()){
 				freshOrders.add(rs.getInt("idorder"));
 			}
