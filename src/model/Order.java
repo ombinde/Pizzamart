@@ -20,6 +20,7 @@ public class Order {
 	private int idorder;
 	private DeliveryFee deliveryFee;
 	private double limitFreeDelivery;
+	private int allergy;
 	private int delivery;
 	
 	/**
@@ -47,7 +48,8 @@ public class Order {
 		this.comment = "";
 		this.getLimitFreeDelivery();
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
-		this.delivery = 0;
+		this.setDelivery(true);
+		this.setAllergy(false);
 	}
 	
 	/**
@@ -66,7 +68,10 @@ public class Order {
 			while (rs.next()){
 				double price = rs.getDouble("price");
 				String name = rs.getString("name");
-				products.put(new Product(name, price), rs.getInt("quantity"));
+				if(name.equals("Frakt"))
+					products.put(DeliveryFee.getDeliveryFee(), 1);
+				else
+					products.put(new Product(name, price), rs.getInt("quantity"));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -94,6 +99,9 @@ public class Order {
 	    	double fee = deliveryFee.getPrice();
 	    	deliveryFee.setPrice(0);
 	    	totalprice -= fee;
+	    }
+	    else if (productsInOrder.containsKey(deliveryFee)){
+	    	deliveryFee.setPriceToOriginal();
 	    }
 		return totalprice;
 	}
@@ -143,12 +151,12 @@ public class Order {
 	 */
 	public void addProductToOrder(Product product, int quantity){
 		int oldQuantity = 0;
-		if (productsInOrder.containsKey(product)){
+		if (productsInOrder.containsKey(product) && !(product instanceof DeliveryFee)){
 			oldQuantity = productsInOrder.get(product);
 			productsInOrder.remove(product);
 		}
 		productsInOrder.put(product, quantity + oldQuantity);
-		if (!productsInOrder.containsKey(deliveryFee) && delivery==1){
+		if (!productsInOrder.containsKey(deliveryFee) && delivery==1 && !(product instanceof DeliveryFee)){
 			productsInOrder.put(deliveryFee, 1);
 		}
 	}
@@ -168,9 +176,6 @@ public class Order {
 			else{
 				productsInOrder.remove(product);
 			}
-		}
-		if (productsInOrder.size()==1 && productsInOrder.containsKey(deliveryFee)){
-			productsInOrder.remove(deliveryFee);
 		}
 	}
 	
@@ -231,7 +236,7 @@ public class Order {
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' or status='" + status2 + "'");
+			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 + "'");
 			while(rs.next()){
 				freshOrders.add(rs.getInt("idorder"));
 			}
@@ -291,6 +296,28 @@ public class Order {
 	 */
 	public boolean getDelivery(){
 		return (delivery==1) ? true : false;
+	}
+	
+	/**
+	 * Sets the allergy status to true or false.
+	 * @param b
+	 */
+	public void setAllergy(boolean b){
+		if (b){
+			allergy = 1;
+			addDeliveryFee();
+		}
+		else{
+			allergy = 0;
+		}
+	}
+	
+	/**
+	 * Returns true if the customer is allergic
+	 * @return
+	 */
+	public boolean getAllergy(){
+		return (allergy==1) ? true : false;
 	}
 
 

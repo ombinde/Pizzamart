@@ -93,6 +93,14 @@ public class ManageOrder {
 	}
 	
 	/**
+	 * Sets the order to have an allergic customer or not
+	 * @param order
+	 */
+	public static void setAllergy(Order order, boolean b){
+		order.setAllergy(b);
+	}
+	
+	/**
 	 * Returns all the products in the order.
 	 * It's a HashMap where product is the key, and quantity is the value.
 	 * @param order
@@ -153,5 +161,7 @@ public class ManageOrder {
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
 		return decimalFormat.format(price)+",-";
 	}
+	
+	
 
 }
