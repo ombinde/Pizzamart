@@ -374,6 +374,8 @@ public class NewOrder2Form extends javax.swing.JFrame {
         		final Product product = (Product) o;
         		temp.setText(productsInOrder.get(product) + " stk " + product.getName() + "    " + 
         					 product.getPrice()*productsInOrder.get(product));
+        		temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        		temp.setOpaque(true);
         		temp.setPreferredSize(new java.awt.Dimension(140, 20));
         		temp.setSize(new java.awt.Dimension(140, 20));
         		int bg;
@@ -443,19 +445,16 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }
     
     private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {                                          
-<<<<<<< HEAD
     	ManageOrder.removeOneProductFromOrder(order, product);
     	this.updateRightPanel();
-=======
 //      productsInOrder.remove(productName);
-  	this.updateRightPanel();
+  	//this.updateRightPanel();
     }
     
     private void takeawayButtonMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO Husk å skifte fra delete til tick og motsatt
     		// takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
     	// TODO add your handling code here:
->>>>>>> morten/newOrder
     }
 
     private void allergyButtonMouseClicked(java.awt.event.MouseEvent evt) {
