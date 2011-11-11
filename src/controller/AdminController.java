@@ -31,8 +31,8 @@ public class AdminController {
 	 * @param p
 	 * @return
 	 */
-	public static boolean removeProduct(Product p){
-		return Product.removeProductFromDatabase(p);
+	public static boolean deleteProduct(Product p){
+		return Product.deleteProductFromDatabase(p);
 	}
 	
 	/**

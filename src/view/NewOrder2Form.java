@@ -32,7 +32,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         initComponents();
         ManageOrder.addCustomerToDatabase(c);
         this.order = new Order(c);
-        //ArrayList<String> productsInOrder = new ArrayList<String>();
+        this.updateRightPanel();
     }
     
     
@@ -447,20 +447,31 @@ public class NewOrder2Form extends javax.swing.JFrame {
     private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {                                          
     	ManageOrder.removeOneProductFromOrder(order, product);
     	this.updateRightPanel();
-//      productsInOrder.remove(productName);
-  	//this.updateRightPanel();
+  	this.updateRightPanel();
     }
     
     private void takeawayButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO Husk å skifte fra delete til tick og motsatt
-    		// takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-    	// TODO add your handling code here:
+    	if (order.getDelivery()){
+    		takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
+    		ManageOrder.setDelivery(order, false);
+    		this.updateRightPanel();
+    	}
+    	else{
+    		takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
+    		ManageOrder.setDelivery(order, true);
+    		this.updateRightPanel();
+    	}
     }
 
     private void allergyButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO Husk å skifte ikonet fra delete til tick
-    		// allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
-    	// TODO add your handling code here:
+    	if (!order.getAllergy()){
+    		allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
+    		ManageOrder.setAllergy(order, true);
+    	}
+    	else{
+    		allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
+    		ManageOrder.setAllergy(order, false);
+    	}
     }
 
     /**
