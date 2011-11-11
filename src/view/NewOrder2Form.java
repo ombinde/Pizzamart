@@ -11,6 +11,7 @@ import model.Order;
 import model.Product;
 
 import controller.ManageOrder;
+import controller.Validate;
 
 //no.ntnu.course
 
@@ -33,6 +34,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         ManageOrder.addCustomerToDatabase(c);
         this.order = new Order(c);
         this.updateRightPanel();
+        this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
     }
     
     
@@ -100,6 +102,11 @@ public class NewOrder2Form extends javax.swing.JFrame {
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 searchFieldKeyTyped(evt);
+            }
+        });
+        searchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchFieldMouseClicked(evt);
             }
         });
 
@@ -297,7 +304,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         	javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
         	final Product product = products.get(i);
-            temp.setText(product.getName() + " " + product.formatPrice() + ",-");
+            temp.setText(product.getName() + " " + product.formatPrice());
             temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             temp.setOpaque(true);
             temp.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -361,6 +368,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     
     public void updateRightPanel() {
         // Set JLabel dimensions, text, border and so on
+    	this.rightPanel.setBackground(Color.WHITE);
     	ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
         HashMap<Product, Integer> productsInOrder = ManageOrder.getProductsInOrder(order);
         priceLabel.setText(""+ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
@@ -421,8 +429,13 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }
     
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {                                     
-        this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
-    }                                    
+        this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()+evt.getKeyChar()));
+    }
+    
+    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt){
+    	this.searchField.setText("");
+    	this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
+    }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
     	NewOrderForm form = new NewOrderForm();
@@ -431,12 +444,27 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }
 
     private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {
+    	Color color = new Color(200, 30, 30);
     	order.setStatus("Bestilt");
-    	ManageOrder.submitOrderToDatabase(order);
-    	System.out.println(order.getProductsInOrder().toString());
-    	MainMenuForm form = new MainMenuForm();
-    	form.setVisible(true);
-        this.setVisible(false);
+    	boolean legalOrder = true;
+    	
+    	if (!Validate.stringLegal(this.commentArea.getText())){
+    		this.commentArea.setBackground(color);
+    		legalOrder = false;
+    	}
+    	if ((ManageOrder.getProductsInOrder(order).size()<2 && order.getDelivery()) || ManageOrder.getProductsInOrder(order).size()<1){
+    		this.rightPanel.setBackground(color);
+    		legalOrder = false;
+    	}
+    	
+    	if (legalOrder){
+	    	order.setComment(this.commentArea.getText());
+	    	ManageOrder.submitOrderToDatabase(order);
+	    	System.out.println(order.getProductsInOrder().toString());
+	    	MainMenuForm form = new MainMenuForm();
+	    	form.setVisible(true);
+	        this.setVisible(false);
+    	}
     }
 
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {   

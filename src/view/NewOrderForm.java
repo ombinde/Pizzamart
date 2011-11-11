@@ -9,6 +9,7 @@ import javax.swing.GroupLayout;
 import model.Customer;
 
 import controller.ManageOrder;
+import controller.Validate;
 
 /*
  * To change this template, choose Tools | Templates
@@ -34,6 +35,7 @@ public class NewOrderForm extends javax.swing.JFrame {
     /** Creates new form NewOrderForm */
     public NewOrderForm() {
         initComponents();
+        this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
     }
 
     /** This method is called from within the constructor to
@@ -105,6 +107,11 @@ public class NewOrderForm extends javax.swing.JFrame {
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 searchFieldKeyTyped(evt);
+            }
+        });
+       searchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchFieldMouseClicked(evt);
             }
         });
 
@@ -297,8 +304,13 @@ public class NewOrderForm extends javax.swing.JFrame {
 
         pack();
     }
+    
+    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt){
+    	this.searchField.setText("");
+    	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
+    }
 
-    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {                                     
+    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) { 
     	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }                                    
 
@@ -315,16 +327,43 @@ public class NewOrderForm extends javax.swing.JFrame {
     	String address = addressField.getText();
     	String zipCode = zipCodeField.getText();
     	String postalAddress = postalAddressField.getText();
-        NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName, 
-        										lastName, phone, address, zipCode, postalAddress));         
-        form.setVisible(true);
-        this.setVisible(false);         
+    	boolean legalCustomer = true;
+    	Color color = new Color(200, 30, 30);
+    	if (!Validate.stringNonEmpty(firstName) || !Validate.stringLegal(firstName)){
+    		this.firstNameField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.stringNonEmpty(lastName) || !Validate.stringLegal(lastName)){
+    		this.lastNameField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.stringNonEmpty(phone) || !Validate.stringOnlyNumb(phone)){
+    		this.phoneNumberField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.stringOnlyNumb(zipCode)){
+    		this.zipCodeField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.stringLegal(address)){
+    		this.addressField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.stringLegal(postalAddress)){
+    		this.postalAddressField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	
+    	if (legalCustomer){
+	        NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName, 
+	        										lastName, phone, address, zipCode, postalAddress));         
+	        form.setVisible(true);
+	        this.setVisible(false);    
+    	}
     }
     
     public void updateLeftPanel(ArrayList<Customer> customers) {
     	// Creates a JLabel array
-    	if(customers.size()<1)
-    		return;
     	ArrayList<javax.swing.JLabel> customerList = new ArrayList<javax.swing.JLabel>();
         
         // While there are more elements in the hashmap
