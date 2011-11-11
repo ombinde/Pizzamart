@@ -13,6 +13,7 @@ import model.Product;
 public class DeliveryFee extends Product {
 	
 	private static DeliveryFee deliveryFee;
+	private static double originalFee;
 	/**
 	 * Constructor that creates a product with the given name, price and comment.
 	 * @param name
@@ -20,6 +21,7 @@ public class DeliveryFee extends Product {
 	 */
 	private DeliveryFee(String name, double price, String comment) {
 		super(name, price);
+		this.originalFee = price;
 	}
 	
 	/**
@@ -69,6 +71,11 @@ public class DeliveryFee extends Product {
 			return false;
 		}
 	}
+	
+	public void setPriceToOriginal(){
+		this.setPrice(originalFee);
+	}
+
 
 	
 }

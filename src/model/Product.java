@@ -162,7 +162,9 @@ public class Product {
 	 * @param p
 	 * @return
 	 */
-	public static boolean removeProductFromDatabase(Product p){
+	public static boolean deleteProductFromDatabase(Product p){
+		if(p instanceof DeliveryFee)
+			return false;
 		try {
 			Database db = Database.getDatabase();
 			String query = "DELETE FROM product where name='" + p.name + "')";
@@ -229,7 +231,12 @@ public class Product {
 			Database db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM product where name LIKE '" + query + "%'");
 			while (rs.next()){
-				products.add(new Product(rs.getString("name"), rs.getDouble("price")));
+				double price = rs.getDouble("price");
+				String name = rs.getString("name");
+				if(name.equals("Frakt"))
+					products.add(DeliveryFee.getDeliveryFee());
+				else
+					products.add(new Product(name, price));
 			}
 			return products;
 		} catch (SQLException e) {
