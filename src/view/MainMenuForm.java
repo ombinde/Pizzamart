@@ -272,7 +272,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
 
     private void quitButtonMouseClicked(java.awt.event.MouseEvent evt) {
-         //System.out.println(this.productLabel.getText());         this.productLabel.setText("   Hei p� deg!");     
+    	System.exit(0);
     }
 
     /**

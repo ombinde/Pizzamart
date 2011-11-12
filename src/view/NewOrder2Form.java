@@ -54,7 +54,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         finishButton = new javax.swing.JLabel();
         takeawayButton = new javax.swing.JLabel();
         allergyButton = new javax.swing.JLabel();
-        commentPanel = new javax.swing.JPanel();
+        commentPane = new javax.swing.JPanel();
         commentScrollPane = new javax.swing.JScrollPane();
         commentArea = new javax.swing.JTextArea();
 
@@ -235,11 +235,12 @@ public class NewOrder2Form extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        commentPanel.setBackground(new java.awt.Color(253, 253, 253));
-        commentPanel.setPreferredSize(new java.awt.Dimension(800, 80));
-        commentPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
+        commentPane.setBackground(new java.awt.Color(253, 253, 253));
+        commentPane.setPreferredSize(new java.awt.Dimension(800, 80));
+        commentPane.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
+        commentScrollPane.setBorder(null);
+        
         commentArea.setColumns(20);
         commentArea.setLineWrap(true);
         commentArea.setRows(3);
@@ -247,14 +248,14 @@ public class NewOrder2Form extends javax.swing.JFrame {
         commentArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         commentScrollPane.setViewportView(commentArea);
 
-        javax.swing.GroupLayout commentPanelLayout = new javax.swing.GroupLayout(commentPanel);
-        commentPanel.setLayout(commentPanelLayout);
-        commentPanelLayout.setHorizontalGroup(
-            commentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout commentPaneLayout = new javax.swing.GroupLayout(commentPane);
+        commentPane.setLayout(commentPaneLayout);
+        commentPaneLayout.setHorizontalGroup(
+            commentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(commentScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        commentPanelLayout.setVerticalGroup(
-            commentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        commentPaneLayout.setVerticalGroup(
+            commentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(commentScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -264,7 +265,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(commentPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(commentPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bottomPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(topPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
@@ -283,7 +284,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
                 		.addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(commentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(commentPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -541,7 +542,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JTextArea commentArea;
-    private javax.swing.JPanel commentPanel;
+    private javax.swing.JPanel commentPane;
     private javax.swing.JScrollPane commentScrollPane;
     private javax.swing.JLabel finishButton;
     private javax.swing.JLabel headerLabel;
