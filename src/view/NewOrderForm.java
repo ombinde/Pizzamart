@@ -328,7 +328,7 @@ public class NewOrderForm extends javax.swing.JFrame {
     	String zipCode = zipCodeField.getText();
     	String postalAddress = postalAddressField.getText();
     	boolean legalCustomer = true;
-    	Color color = new Color(200, 30, 30);
+    	Color color = new Color(235, 210, 210);
     	if (!Validate.stringNonEmpty(firstName) || !Validate.stringLegal(firstName)){
     		this.firstNameField.setBackground(color);
     		legalCustomer = false;

@@ -327,7 +327,9 @@ public class Kitchenform1 extends javax.swing.JFrame {
     }
     
     private void orderLabelMouseClicked(){
-    	// TODO Add functionality so that a specified order shows up when you press an order label
+    	Kitchenform2 form = new Kitchenform2();
+    	form.setVisible(true);
+    	this.setVisible(false);
     }
     
     
