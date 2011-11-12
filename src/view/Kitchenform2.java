@@ -1,13 +1,22 @@
 package view;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 //no.ntnu.course
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+import model.Product;
+import controller.ChefController;
 
 /*
  * KitchenForm2.java
@@ -43,11 +52,8 @@ public class Kitchenform2 extends javax.swing.JFrame {
         ProductsScrollPane = new javax.swing.JScrollPane();
         productsPanel = new javax.swing.JPanel();
         quantityPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         productPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         descriptionPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         commentPanel = new javax.swing.JPanel();
         commentHeaderLabel = new javax.swing.JLabel();
         commentScrollPane = new javax.swing.JScrollPane();
@@ -59,7 +65,10 @@ public class Kitchenform2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kjøkken - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame"); // NOI18N
+        setName("kitchen2Frame");
+        // TODO Get the form to use the right dimensions
+        //setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
@@ -140,60 +149,17 @@ public class Kitchenform2 extends javax.swing.JFrame {
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
         productsPanel.setPreferredSize(new java.awt.Dimension(795, 300));
 
-        quantityPanel.setBackground(new java.awt.Color(23, 238, 238));
+        quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
-
-        jLabel1.setText("jLabel1");
-
-        javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
-        quantityPanel.setLayout(quantityPanelLayout);
-        quantityPanelLayout.setHorizontalGroup(
-            quantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-        );
-        quantityPanelLayout.setVerticalGroup(
-            quantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(quantityPanelLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addContainerGap(286, Short.MAX_VALUE))
-        );
-
-        productPanel.setBackground(new java.awt.Color(23, 238, 238));
+        
+        productPanel.setBackground(new java.awt.Color(253, 253, 253));
         productPanel.setPreferredSize(new java.awt.Dimension(300, 302));
-
-        jLabel2.setText("jLabel1");
-
-        javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
-        productPanel.setLayout(productPanelLayout);
-        productPanelLayout.setHorizontalGroup(
-            productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-        );
-        productPanelLayout.setVerticalGroup(
-            productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productPanelLayout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addContainerGap(286, Short.MAX_VALUE))
-        );
-
-        descriptionPanel.setBackground(new java.awt.Color(23, 238, 238));
-
-        jLabel3.setText("jLabel1");
-
-        javax.swing.GroupLayout descriptionPanelLayout = new javax.swing.GroupLayout(descriptionPanel);
-        descriptionPanel.setLayout(descriptionPanelLayout);
-        descriptionPanelLayout.setHorizontalGroup(
-            descriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
-        );
-        descriptionPanelLayout.setVerticalGroup(
-            descriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 302, Short.MAX_VALUE)
-            .addGroup(descriptionPanelLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addContainerGap(286, Short.MAX_VALUE))
-        );
+        
+        descriptionPanel.setBackground(new java.awt.Color(253, 253, 253));
+        
+        // Fetch all products
+        displayProducts();
+        
 
         javax.swing.GroupLayout productsPanelLayout = new javax.swing.GroupLayout(productsPanel);
         productsPanel.setLayout(productsPanelLayout);
@@ -201,11 +167,8 @@ public class Kitchenform2 extends javax.swing.JFrame {
             productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(productsPanelLayout.createSequentialGroup()
                 .addComponent(quantityPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addGap(10, 10, 10)
                 .addComponent(productPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addGap(14, 14, 14)
                 .addComponent(descriptionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                //.addContainerGap())
         ));
         productsPanelLayout.setVerticalGroup(
             productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +192,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
 
         commentTextPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         commentTextPane.setEditable(false);
-        commentTextPane.setText("Lorem ipsum dolizzle owned sizzle, consectetuer adipiscing fizzle. Nullam things velizzle, hizzle volutpizzle, suscipizzle brizzle, gravida vizzle, pimpin'. Bow wow wow eget tortizzle. Sizzle its fo rizzle. Ma nizzle shiznit shiznit dapibizzle turpizzle tempizzle fizzle. Mauris pellentesque nibh et fo shizzle my nizzle. Check out this izzle tellivizzle. We gonna chung get down get down rhoncizzle dope. In fo shizzle my nizzle dawg crackalackin dictumst. Black yo mamma. Shizzlin dizzle tellus crackalackin, pretizzle break yo neck, yall, things ac, eleifend dope, nunc. Izzle ma nizzle. Integer semper velizzle yo mofo.");
         commentScrollPane.setViewportView(commentTextPane);
 
         javax.swing.GroupLayout commentPanelLayout = new javax.swing.GroupLayout(commentPanel);
@@ -243,7 +205,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
             commentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(commentPanelLayout.createSequentialGroup()
                 .addComponent(commentHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(commentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
         );
 
@@ -259,9 +220,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
             middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(middlePanelLayout.createSequentialGroup()
                 .addComponent(productsHeadersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProductsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(commentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -329,28 +288,167 @@ public class Kitchenform2 extends javax.swing.JFrame {
                         .addComponent(middlePanel, javax.swing.GroupLayout.Alignment.LEADING, 0, 840, Short.MAX_VALUE)
                         .addComponent(topPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE))
                     .addComponent(bottomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE))
-                //.addContainerGap())
         ));
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         ));
 
         pack();
     }
 
+    private void displayProducts() {
+    	// Create labels for all products
+    	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
+    	
+    	defineQuantityPanel(labels.get(0));
+    	defineProductPanel(labels.get(1));
+    	defineDescriptionPanel(labels.get(2));
+    	
+    	//TODO Set comment
+    	commentTextPane.setText("Husk å hente inn kommentaren dynamisk");
+    	
+    }
+    
+    private ArrayList<ArrayList<JLabel>> createProductLabels(){
+    	//TODO Get the hashmap with data in a different way
+    	ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+        HashMap<Product, Integer> products = orders.get(0);
+		Set set = products.entrySet();
+        Iterator it = set.iterator();
+
+        
+        ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
+        ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
+        ArrayList <javax.swing.JLabel> descriptionLabels = new ArrayList <javax.swing.JLabel>();
+
+        int i = 0;
+        while (it.hasNext()){
+        	Map.Entry me = (Map.Entry)it.next();
+        	// Create quantityLabels
+        	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
+        	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        	quantityLabel.setOpaque(true);
+        	quantityLabel.setVisible(true);
+        	int bg;
+			if (i % 2 == 0) { bg = 200; }
+	        else 			{ bg = 220; }
+			i++;
+			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
+			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+	        quantityLabel.setText("" + me.getValue());
+	        quantityLabels.add(quantityLabel);
+	        
+	        // Create productLabels
+        	javax.swing.JLabel productLabel = new javax.swing.JLabel();
+        	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        	productLabel.setOpaque(true);
+        	productLabel.setVisible(true);
+			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
+			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+			productLabel.setText("" + me.getKey());
+	        productLabels.add(productLabel);
+
+	        // Create descriptionLabels
+        	javax.swing.JLabel descriptionLabel = new javax.swing.JLabel();
+        	descriptionLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        	descriptionLabel.setOpaque(true);
+        	descriptionLabel.setVisible(true);
+			descriptionLabel.setBackground(new java.awt.Color(bg, bg, bg));
+			//descriptionLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+			descriptionLabel.setText("" + me.getKey());
+			descriptionLabels.add(descriptionLabel);
+			
+        }
+        ArrayList<ArrayList <javax.swing.JLabel>> labels= new ArrayList<ArrayList <javax.swing.JLabel>>();
+        labels.add(quantityLabels);
+        labels.add(productLabels);
+        labels.add(descriptionLabels);
+        return labels;
+        
+    }
+    
+    private void defineQuantityPanel(ArrayList<JLabel> quantityLabels){
+    	javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
+        quantityPanel.setLayout(quantityPanelLayout);
+        
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = quantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
+        for (int i = 0; i < quantityLabels.size(); i++){
+        	tempHorizontalGroup.addComponent(quantityLabels.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE);
+        }
+        
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = quantityPanelLayout.createSequentialGroup();
+        for (int i = 0; i < quantityLabels.size(); i++){
+        	tempVerticalGroup.addComponent(quantityLabels.get(i));
+        	//tempVerticalGroup.addContainerGap(286, Short.MAX_VALUE);
+        }
+        
+        quantityPanelLayout.setHorizontalGroup(tempHorizontalGroup);
+        quantityPanelLayout.setVerticalGroup(
+            quantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempVerticalGroup)
+        );
+    }
+    
+    private void defineProductPanel(ArrayList<JLabel> productLabels){
+    	javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
+        productPanel.setLayout(productPanelLayout);
+        
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
+        for (int i = 0; i < productLabels.size(); i++){
+        	tempHorizontalGroup.addComponent(productLabels.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE);
+        }
+        
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = productPanelLayout.createSequentialGroup();
+        for (int i = 0; i < productLabels.size(); i++){
+        	tempVerticalGroup.addComponent(productLabels.get(i));
+        	//tempVerticalGroup.addContainerGap(286, Short.MAX_VALUE);
+        }
+        
+        productPanelLayout.setHorizontalGroup(tempHorizontalGroup);
+        productPanelLayout.setVerticalGroup(
+            productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempVerticalGroup)
+        );
+    }
+    
+    private void defineDescriptionPanel(ArrayList<JLabel> productLabels){
+    	javax.swing.GroupLayout descriptionPanelLayout = new javax.swing.GroupLayout(descriptionPanel);
+    	descriptionPanel.setLayout(descriptionPanelLayout);
+        
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = descriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
+        for (int i = 0; i < productLabels.size(); i++){
+        	tempHorizontalGroup.addComponent(productLabels.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE);
+        }
+        
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = descriptionPanelLayout.createSequentialGroup();
+        for (int i = 0; i < productLabels.size(); i++){
+        	tempVerticalGroup.addComponent(productLabels.get(i));
+        }
+        
+        descriptionPanelLayout.setHorizontalGroup(tempHorizontalGroup);
+        descriptionPanelLayout.setVerticalGroup(
+        		descriptionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempVerticalGroup)
+        );
+        
+    }
+    
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
-    	// TODO add your handling code here:
+    	//TODO Let the controller handle this?
+    	Kitchenform1 form = new Kitchenform1();
+    	form.setVisible(true);
+        this.setVisible(false);
     }                                       
 
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
-    	// TODO add your handling code here:
+    	//TODO Let the controller handle this?
+    	MainMenuForm form = new MainMenuForm();
+    	form.setVisible(true);
+        this.setVisible(false);
     }
                                                  
 
@@ -399,9 +497,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
     private javax.swing.JLabel descriptionHeaderLabel;
     private javax.swing.JPanel descriptionPanel;
     private javax.swing.JLabel headerLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JLabel productHeaderLabel;
     private javax.swing.JPanel productPanel;
