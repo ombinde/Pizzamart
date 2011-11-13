@@ -164,15 +164,14 @@ public class Order {
 	 */
 	public int addOrderToDatabase(){
 		Integer quantity = 0;
-		this.dateAdded = calendar.getTime();
 		try {
 			Database db = Database.getDatabase();
 			String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
-			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + dateAdded + "')";
+			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
 			idOrder = db.insertWithIdReturn(query);
 		    for (Product p : products) {
 		    	quantity = p.getQuantity();
-		    	int idproduct = ((Product) p).getIdproduct();
+		    	int idproduct = p.getIdproduct();
 		    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
 		    	"values('" + idproduct + "','" + idOrder + "','" + quantity + "')";
 		    	db.insert(query);
@@ -280,16 +279,24 @@ public class Order {
 	 * @param status
 	 * @return ArrayList with orders
 	 */
-	public static ArrayList<Integer> getOrdersById(String status1, String status2){
-		ArrayList<Integer> freshOrders = new ArrayList<Integer>();
+	public static ArrayList<Order> getRelevantOrders(String status1, String status2){
+		ArrayList<Order> relevantOrders = new ArrayList<Order>();
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 + "'");
+			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 + "' ORDER BY time ASC");
 			while(rs.next()){
-				freshOrders.add(rs.getInt("idorder"));
+				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
+				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
+				int idOrder = rs.getInt("idorder");
+				String status = rs.getString("status");
+				String comment = rs.getString("comments");
+				int allergy = rs.getInt("allergy");
+				int delivery = rs.getInt("delivery");
+				long date = rs.getLong("time");
+				relevantOrders.add(new Order(idOrder, customer, products, status, comment, allergy, delivery, date));
 			}
-			return freshOrders;
+			return relevantOrders;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -337,6 +344,14 @@ public class Order {
 	 */
 	public String getComment(){
 		return this.comment;
+	}
+	
+	public String getStatus(){
+		return this.status;
+	}
+	
+	public int getIdOrder(){
+		return idOrder;
 	}
 	
 	/**

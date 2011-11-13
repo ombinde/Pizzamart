@@ -112,10 +112,11 @@ public class Product {
 				double price = rs.getDouble("price");
 				String name = rs.getString("name");
 				String comment = rs.getString("comments");
+				int q = rs.getInt("quantity");
 				if(name.equals("Frakt"))
 					products.add(DeliveryFee.getDeliveryFee());
 				else
-					products.add(new Product(name, price, idProduct, comment));
+					products.add(new Product(name, price, q, comment));
 			}
 			return products;
 		} catch (SQLException e) {

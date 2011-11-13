@@ -245,9 +245,14 @@ public class NewOrder2Form extends javax.swing.JFrame {
         commentArea.setColumns(20);
         commentArea.setLineWrap(true);
         commentArea.setRows(3);
-        commentArea.setText("Skriv inn en kommentar her...");
+        commentArea.setText("Skriv en kommentar her..");
         commentArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         commentScrollPane.setViewportView(commentArea);
+        commentArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                commentFieldMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout commentPaneLayout = new javax.swing.GroupLayout(commentPane);
         commentPane.setLayout(commentPaneLayout);
@@ -436,6 +441,10 @@ public class NewOrder2Form extends javax.swing.JFrame {
     	this.searchField.setText("");
     	this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
+    
+    private void commentFieldMouseClicked(java.awt.event.MouseEvent evt){
+    	this.commentArea.setText("");
+    }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
     	NewOrderForm form = new NewOrderForm();
@@ -458,9 +467,9 @@ public class NewOrder2Form extends javax.swing.JFrame {
     	}
     	
     	if (legalOrder){
-	    	order.setComment(this.commentArea.getText());
+    		if(!this.commentArea.getText().equals("Skriv en kommentar her.."))
+    			order.setComment(this.commentArea.getText());
 	    	ManageOrder.submitOrderToDatabase(order);
-	    	System.out.println(order.getProductsInOrder().toString());
 	    	MainMenuForm form = new MainMenuForm();
 	    	form.setVisible(true);
 	        this.setVisible(false);

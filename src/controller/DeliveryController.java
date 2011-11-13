@@ -12,12 +12,8 @@ public class DeliveryController {
 	 * Returns all the orders that is either ready for delivery or that delivery is going on.
 	 * @return
 	 */
-	public static ArrayList<HashMap<Product,Integer>> getFreshOrders(){
-		ArrayList<HashMap<Product,Integer>> freshOrders= new ArrayList<HashMap<Product, Integer>>();
-		ArrayList<Integer> idOrders = Order.getOrdersById("Klar til levering", "Leveres");
-		for(int i=0; i<idOrders.size(); i++){
-			freshOrders.add(Order.getProductsFromOrder(idOrders.get(i)));
-		}
+	public static ArrayList<Order> getFreshOrders(){
+		ArrayList<Order> freshOrders= Order.getRelevantOrders("Klar til levering", "Under levering");
 		return freshOrders;
 	}
 	
