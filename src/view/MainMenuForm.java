@@ -39,7 +39,7 @@ public class MainMenuForm extends javax.swing.JFrame {
         historyButton = new javax.swing.JLabel();
         editButton = new javax.swing.JLabel();
         newOrderButton = new javax.swing.JLabel();
-        driverButton = new javax.swing.JLabel();
+        deliveryButton = new javax.swing.JLabel();
         kitchenButton = new javax.swing.JLabel();
         quitButton = new javax.swing.JLabel();
 
@@ -132,17 +132,17 @@ public class MainMenuForm extends javax.swing.JFrame {
             }
         });
 
-        driverButton.setBackground(new java.awt.Color(229, 226, 235));
-        driverButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        driverButton.setForeground(new java.awt.Color(45, 65, 105));
-        driverButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home_32.png"))); // NOI18N
-        driverButton.setText("  Utkjøring");
-        driverButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        driverButton.setOpaque(true);
-        driverButton.setPreferredSize(new java.awt.Dimension(150, 20));
-        driverButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        deliveryButton.setBackground(new java.awt.Color(229, 226, 235));
+        deliveryButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        deliveryButton.setForeground(new java.awt.Color(45, 65, 105));
+        deliveryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home_32.png"))); // NOI18N
+        deliveryButton.setText("  Utkjøring");
+        deliveryButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        deliveryButton.setOpaque(true);
+        deliveryButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        deliveryButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                driverButtonMouseClicked(evt);
+                deliveryButtonMouseClicked(evt);
             }
         });
 
@@ -163,7 +163,7 @@ public class MainMenuForm extends javax.swing.JFrame {
         quitButton.setBackground(new java.awt.Color(235, 207, 207));
         quitButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         quitButton.setForeground(new java.awt.Color(113, 36, 36));
-        quitButton.setIcon(new javax.swing.ImageIcon("/Users/morten/Downloads/Icon Packs/Basic_set_Png/block_32.png")); // NOI18N
+        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/block_32.png")));
         quitButton.setText("  Avslutt");
         quitButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         quitButton.setOpaque(true);
@@ -186,7 +186,7 @@ public class MainMenuForm extends javax.swing.JFrame {
                     .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(driverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(215, 215, 215))
@@ -203,7 +203,7 @@ public class MainMenuForm extends javax.swing.JFrame {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(driverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
@@ -257,8 +257,10 @@ public class MainMenuForm extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
-    private void driverButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	// TODO
+    private void deliveryButtonMouseClicked(java.awt.event.MouseEvent evt) {
+    	DeliveryForm1 form = new DeliveryForm1();         
+        form.setVisible(true);
+        this.setVisible(false);
     }
 
     private void historyButtonMouseClicked(java.awt.event.MouseEvent evt) {
@@ -312,7 +314,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify
     private javax.swing.JLabel adminButton;
-    private javax.swing.JLabel driverButton;
+    private javax.swing.JLabel deliveryButton;
     private javax.swing.JLabel editButton;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JLabel historyButton;
