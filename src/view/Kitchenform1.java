@@ -11,6 +11,8 @@ import javax.swing.BorderFactory;
  * and open the template in the editor.
  */
 
+import model.DeliveryFee;
+import model.Order;
 import model.Product;
 import controller.ChefController;
 
@@ -245,34 +247,38 @@ public class Kitchenform1 extends javax.swing.JFrame {
     private ArrayList<javax.swing.JLabel> createOrderLabels(){
     	
     	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
-    	ArrayList<HashMap<Product,Integer>> freshOrders = ChefController.getFreshOrders();
+    	ArrayList<Order> freshOrders = ChefController.getFreshOrders();
     	System.out.println(freshOrders.size());
     	for (int i = 0; i < freshOrders.size(); i++) {
     		String orderText = "";
-    		for (Object o : freshOrders.get(i).keySet()) {
-    			
-    			if (o instanceof Product){
-    		        String productName = ((Product) o).getName();
-    				int quantity = freshOrders.get(i).get(o);
-    				// Set text for the JLabel
-    				orderText += quantity + " stk: ";
-    				orderText += productName + ", ";
+    		final Order order = freshOrders.get(i);
+    		for (Product product : freshOrders.get(i).getProductsInOrder()) {
+    			if (product instanceof DeliveryFee){
+    				continue;
     			}
+			String productName = ((Product) product).getName();
+			int quantity = product.getQuantity();
+			// Set text for the JLabel
+			orderText += quantity + " stk: ";
+			orderText += productName + ", ";
     		}
     		// Create a JLabel and define dimensions and other variables
 			javax.swing.JLabel temp = new javax.swing.JLabel();
 			//TODO Insert parameter to choose color of order
-			if (false) {
+			if (order.getStatus().equals("Lages")) {
+				System.out.println("kommentar");
 				temp.setBackground(new java.awt.Color(245, 245, 215));
 		        temp.setForeground(new java.awt.Color(100, 70, 20));
 		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 			}
-			else if (false) {
+			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
+				System.out.println("lages");
 					temp.setBackground(new java.awt.Color(235, 210, 210));
 			        temp.setForeground(new java.awt.Color(115, 35, 35));
 			        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 			}
 			else {
+				System.out.println("ikke påbegynt");
 				temp.setBackground(new java.awt.Color(225, 230, 235));
 		        temp.setForeground(new java.awt.Color(45, 65, 105));
 		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -284,7 +290,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
 	        temp.setPreferredSize(new java.awt.Dimension(140, 20));
 	        temp.addMouseListener(new java.awt.event.MouseAdapter() {
 	            public void mouseClicked(java.awt.event.MouseEvent evt) {
-	                orderLabelMouseClicked();
+	                orderLabelMouseClicked(order);
 	            }
 	        });
 	        
@@ -326,8 +332,8 @@ public class Kitchenform1 extends javax.swing.JFrame {
             );
     }
     
-    private void orderLabelMouseClicked(){
-    	Kitchenform2 form = new Kitchenform2();
+    private void orderLabelMouseClicked(Order order){
+    	Kitchenform2 form = new Kitchenform2(order);
     	form.setVisible(true);
     	this.setVisible(false);
     }

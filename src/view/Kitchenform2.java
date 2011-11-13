@@ -15,8 +15,10 @@ import javax.swing.JLabel;
  * and open the template in the editor.
  */
 
+import model.Order;
 import model.Product;
 import controller.ChefController;
+import controller.ManageOrder;
 
 /*
  * KitchenForm2.java
@@ -30,8 +32,10 @@ import controller.ChefController;
 @SuppressWarnings("serial")
 public class Kitchenform2 extends javax.swing.JFrame {
 
+	private Order order;
     /** Creates new form KitchenForm2 */
-    public Kitchenform2() {
+    public Kitchenform2(Order order) {
+    	this.order = order;
         initComponents();
     }
 
@@ -246,14 +250,20 @@ public class Kitchenform2 extends javax.swing.JFrame {
         startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
         startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
         startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
-        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
-        startFinishButton.setText(" Start");
+        if (order.getStatus().equals("Bestilt")){
+	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
+	        startFinishButton.setText(" Start");
+        }
+        else{
+        	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
+	        startFinishButton.setText(" Finish");
+        }
         startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         startFinishButton.setOpaque(true);
         startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
         startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UpdateButtonMouseClicked(evt);
+                startFinishButtonMouseClicked(evt);
             }
         });
 
@@ -309,25 +319,29 @@ public class Kitchenform2 extends javax.swing.JFrame {
     	defineDescriptionPanel(labels.get(2));
     	
     	//TODO Set comment
-    	commentTextPane.setText("Husk å hente inn kommentaren dynamisk");
+    	if (order.getComment()!=null && !order.getComment().equals(""))
+    		commentTextPane.setText(order.getComment());
     	
     }
     
     private ArrayList<ArrayList<JLabel>> createProductLabels(){
     	//TODO Get the hashmap with data in a different way
-    	ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
-        HashMap<Product, Integer> products = orders.get(0);
-		Set set = products.entrySet();
-        Iterator it = set.iterator();
-
+    	//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+        //HashMap<Product, Integer> products = orders.get(0);
+    	
+		//Set set = products.entrySet();
+//        Iterator it = set.iterator();
+    	ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
         
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> descriptionLabels = new ArrayList <javax.swing.JLabel>();
 
         int i = 0;
-        while (it.hasNext()){
-        	Map.Entry me = (Map.Entry)it.next();
+        for (Product product : productsInOrder) {
+			
+		
+        	//Map.Entry me = (Map.Entry)it.next();
         	// Create quantityLabels
         	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
         	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -339,7 +353,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
 			i++;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("" + me.getValue());
+	        quantityLabel.setText("" + product.getQuantity());
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
@@ -349,7 +363,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("" + me.getKey());
+			productLabel.setText("" + product.getName());
 	        productLabels.add(productLabel);
 
 	        // Create descriptionLabels
@@ -359,7 +373,10 @@ public class Kitchenform2 extends javax.swing.JFrame {
         	descriptionLabel.setVisible(true);
 			descriptionLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//descriptionLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			descriptionLabel.setText("" + me.getKey());
+			if (product.getComment()!=null && !product.getComment().equals(""))
+				descriptionLabel.setText("" + product.getComment());
+			else
+				descriptionLabel.setText(" ");
 			descriptionLabels.add(descriptionLabel);
 			
         }
@@ -438,17 +455,23 @@ public class Kitchenform2 extends javax.swing.JFrame {
     }
     
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
-    	//TODO Let the controller handle this?
     	Kitchenform1 form = new Kitchenform1();
     	form.setVisible(true);
         this.setVisible(false);
     }                                       
 
-    private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
-    	//TODO Let the controller handle this?
-    	MainMenuForm form = new MainMenuForm();
-    	form.setVisible(true);
-        this.setVisible(false);
+    private void startFinishButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    	if(order.getStatus().equals("Bestilt")){
+    		ChefController.startOrder(order);
+    		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
+    		startFinishButton.setText(" Finish");
+    	}
+    	else{
+    		ChefController.setFinishedOrder(order);
+    		Kitchenform1 form = new Kitchenform1();
+    		form.setVisible(true);
+    		this.setVisible(false);
+    	}
     }
                                                  
 
@@ -482,7 +505,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Kitchenform2().setVisible(true);  
+                //new Kitchenform2()).setVisible(true);  
             }
         });
     }

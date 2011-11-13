@@ -20,8 +20,8 @@ public class DeliveryFee extends Product {
 	 * @param price
 	 */
 	private DeliveryFee(String name, double price, String comment) {
-		super(name, price);
-		this.originalFee = price;
+		super(name, price, 1, comment);
+		originalFee = price;
 	}
 	
 	/**
