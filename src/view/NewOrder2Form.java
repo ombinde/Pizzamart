@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import model.Customer;
 import model.Order;
 import model.Product;
+import model.Product;
 
 import controller.ManageOrder;
 import controller.Validate;
@@ -371,41 +372,39 @@ public class NewOrder2Form extends javax.swing.JFrame {
         // Set JLabel dimensions, text, border and so on
     	this.rightPanel.setBackground(Color.WHITE);
     	ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
-        HashMap<Product, Integer> productsInOrder = ManageOrder.getProductsInOrder(order);
+        ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
         priceLabel.setText(""+ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
         // While there are more elements in the hashmap
         int counter = 0;
-        for (Object o : productsInOrder.keySet()) {
+        for (Product p : productsInOrder) {
         	// Create a new JLabel
         	javax.swing.JLabel temp = new javax.swing.JLabel();
 
-        	if (o instanceof Product){
-        		final Product product = (Product) o;
-        		temp.setText(productsInOrder.get(product) + " stk " + product.getName() + "    " + 
-        					 product.getPrice()*productsInOrder.get(product));
-        		temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        		temp.setOpaque(true);
-        		temp.setPreferredSize(new java.awt.Dimension(140, 20));
-        		temp.setSize(new java.awt.Dimension(140, 20));
-        		int bg;
-        		if (counter % 2 == 0){
-        			bg = 220;
-        		}
-        		else {
-        			bg = 240;
-        		}
-        		temp.setBackground(new java.awt.Color(bg, bg, bg));
-        		temp.setVisible(true);
-        		
-        		// What method to call if the JLabel is clicked
-        		temp.addMouseListener(new java.awt.event.MouseAdapter() {
-        			public void mouseClicked(java.awt.event.MouseEvent evt) {
-        				orderLabelMouseClicked(evt, product);
-        			}
-        		});
-        		orderList.add(temp);
-        		counter++;
-        	}
+    		final Product product = p;
+    		temp.setText(product.getQuantity() + " stk " + product.getName() + "    " + 
+    					 product.getPrice()*product.getQuantity());
+    		temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    		temp.setOpaque(true);
+    		temp.setPreferredSize(new java.awt.Dimension(140, 20));
+    		temp.setSize(new java.awt.Dimension(140, 20));
+    		int bg;
+    		if (counter % 2 == 0){
+    			bg = 220;
+    		}
+    		else {
+    			bg = 240;
+    		}
+    		temp.setBackground(new java.awt.Color(bg, bg, bg));
+    		temp.setVisible(true);
+    		
+    		// What method to call if the JLabel is clicked
+    		temp.addMouseListener(new java.awt.event.MouseAdapter() {
+    			public void mouseClicked(java.awt.event.MouseEvent evt) {
+    				orderLabelMouseClicked(evt, product);
+    			}
+    		});
+    		orderList.add(temp);
+    		counter++;
         }
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.removeAll();

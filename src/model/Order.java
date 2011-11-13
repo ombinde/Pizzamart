@@ -1,10 +1,16 @@
 package model;
 
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.TimeZone;
 /**
  * A class for orders
  * 
@@ -14,14 +20,19 @@ import java.util.HashMap;
 public class Order {
 	
 	private Customer customer;
-	private HashMap<Product, Integer> productsInOrder;
+	private ArrayList<Product> products;
 	private String status;
 	private String comment;
-	private int idorder;
+	private int idOrder;
 	private DeliveryFee deliveryFee;
 	private double limitFreeDelivery;
 	private int allergy;
 	private int delivery;
+	private Date dateAdded;
+	
+	private final static Locale locale = new Locale("no");
+	private final static TimeZone timeZone = TimeZone.getTimeZone("Europe/Oslo");
+	private static Calendar calendar = Calendar.getInstance(timeZone, locale);
 	
 	/**
 	 * Creates a new order with all the information needed.
@@ -30,12 +41,17 @@ public class Order {
 	 * @param status
 	 * @param comment
 	 */
-	public Order(Customer customer, HashMap<Product, Integer> products, String status, String comment){
+	private Order(int idOrder, Customer customer, ArrayList<Product> products, String status, String comment, int allergy, int delivery, long date){
+		this.idOrder = idOrder;
 		this.customer = customer;
-		this.productsInOrder = products;
+		this.products = products;
 		this.status = status;
 		this.comment = comment;
-		this.productsInOrder = new HashMap<Product, Integer>();
+		this.allergy = allergy;
+		this.delivery = delivery;
+		this.dateAdded = new Date(date);
+		this.getLimitFreeDelivery();
+		this.deliveryFee = DeliveryFee.getDeliveryFee();
 	}
 	/**
 	 * Creates a new Order with only a customer. More can be added later on.
@@ -44,7 +60,7 @@ public class Order {
 	public Order(Customer customer){
 		this.customer = customer;
 		this.status = "Under bestilling";
-		this.productsInOrder = new HashMap<Product, Integer>();
+		this.products = new ArrayList<Product>();
 		this.comment = "";
 		this.getLimitFreeDelivery();
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
@@ -55,10 +71,10 @@ public class Order {
 	/**
 	 * A static method that returns all products from a given order 
 	 * as a HashMap with products as key, and quantity as value. 
-	 * @param idorder
+	 * @param idOrder
 	 * @return HashMap<Product, Integer> som innholder produkter og anntallet.
 	 */
-	public static HashMap<Product, Integer> getProductsFromOrder(int id){
+/*	public static HashMap<Product, Integer> getProductsFromOrder(int id){
 		Database db;
 		try {
 			db = Database.getDatabase();
@@ -79,13 +95,16 @@ public class Order {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
+	
+
+	
 	/**
 	 * Returns the totalprice of an given Order.
 	 * @param order
 	 * @return
 	 */
-	public double getOrderTotalPrice(){
+	/*public double getOrderTotalPrice(){
 		double totalprice = 0;
 		if (productsInOrder.size()<1)
 			return 0;
@@ -104,6 +123,25 @@ public class Order {
 	    	deliveryFee.setPriceToOriginal();
 	    }
 		return totalprice;
+	}*/
+	
+	public double getOrderTotalPrice(){
+		double totalprice = 0;
+		if (products.size()<1)
+			return 0;
+	    for (Product p : products) {
+	    	int quantity = p.getQuantity();	
+	        totalprice += ((Product) p).getPrice()*quantity;
+	    }
+	    if (products.contains(deliveryFee) && totalprice > limitFreeDelivery){
+	    	double fee = deliveryFee.getPrice();
+	    	deliveryFee.setPrice(0);
+	    	totalprice -= fee;
+	    }
+	    else if (products.contains(deliveryFee)){
+	    	deliveryFee.setPriceToOriginal();
+	    }
+		return totalprice;
 	}
 
 	/**
@@ -111,11 +149,14 @@ public class Order {
 	 * @param product
 	 * @return quantity as an integer
 	 */
-	public int getProductQuanta(Product product){
-	    if(productsInOrder.containsKey(product))
-	    	return productsInOrder.get(product);
-	    return 0;
-	}
+//	public int getProductQuanta(ProductInOrder product){
+//	    for (ProductInOrder p : products) {
+//			if (p.equals(product)){
+//				return p.getQuantity();
+//			}
+//		}
+//	    return 0;
+//	}
 	
 	/**
 	 * Adds the order to the Database.
@@ -123,19 +164,19 @@ public class Order {
 	 */
 	public int addOrderToDatabase(){
 		Integer quantity = 0;
+		this.dateAdded = calendar.getTime();
 		try {
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO orders (status, comments, customer_idcustomer, delivery) " +
-			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + delivery +"')";
-			idorder = db.insertWithIdReturn(query);
-		    for (Object p : productsInOrder.keySet()) {
-		    	if (p instanceof Product){
-			    	quantity = productsInOrder.get(p);
-			    	int idproduct = ((Product) p).getIdproduct();
-			    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
-			    	"values('" + idproduct + "','" + idorder + "','" + quantity + "')";
-			    	db.insert(query);
-		    	}
+			String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
+			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + dateAdded + "')";
+			idOrder = db.insertWithIdReturn(query);
+		    for (Product p : products) {
+		    	quantity = p.getQuantity();
+		    	int idproduct = ((Product) p).getIdproduct();
+		    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
+		    	"values('" + idproduct + "','" + idOrder + "','" + quantity + "')";
+		    	db.insert(query);
+		    	
 			}
 		    return 1;
 		} catch (SQLException e) {
@@ -150,14 +191,17 @@ public class Order {
 	 * @param quantity
 	 */
 	public void addProductToOrder(Product product, int quantity){
-		int oldQuantity = 0;
-		if (productsInOrder.containsKey(product) && !(product instanceof DeliveryFee)){
-			oldQuantity = productsInOrder.get(product);
-			productsInOrder.remove(product);
+		if (!(product instanceof DeliveryFee) && products.contains(product)){
+			for (Product p : products) {
+				if (p.equals(product)){
+					p.addQuantity(quantity);
+				}
+			}
 		}
-		productsInOrder.put(product, quantity + oldQuantity);
-		if (!productsInOrder.containsKey(deliveryFee) && delivery==1 && !(product instanceof DeliveryFee)){
-			productsInOrder.put(deliveryFee, 1);
+		else
+			products.add(product);
+		if (delivery==1 && !(product instanceof DeliveryFee) && !products.contains(deliveryFee)){
+			products.add(deliveryFee);
 		}
 	}
 	
@@ -168,13 +212,18 @@ public class Order {
 	 * @param quantity
 	 */
 	public void removeProductFromOrder(Product product, int quantity){
-		if (productsInOrder.containsKey(product)){
-			int oldQuantity = productsInOrder.get(product);
-			if (productsInOrder.get(product) > quantity){
-				productsInOrder.put(product, oldQuantity-quantity);
-			}
-			else{
-				productsInOrder.remove(product);
+		if (products.contains(product)){
+			for (Product p : products){
+				if (p.equals(product)){
+					if (p.getQuantity() > quantity){
+						p.removeQuantity(quantity);
+						break;
+					}
+					else{
+						products.remove(p);
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -188,7 +237,7 @@ public class Order {
 		this.status = status;
 		try {
 			Database db = Database.getDatabase();
-			String query = "UPDATE orders SET status='" + status + "' WHERE idorder=" + idorder;
+			String query = "UPDATE orders SET status='" + status + "' WHERE idorder=" + idOrder;
 			db.insert(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -214,7 +263,7 @@ public class Order {
 	 * Adds delivery fee for the order.
 	 */
 	private void addDeliveryFee(){
-		if (!productsInOrder.containsKey(deliveryFee))
+		if (!products.contains(deliveryFee))
 			this.addProductToOrder(deliveryFee, 1);
 	}
 	
@@ -222,8 +271,8 @@ public class Order {
 	 * Removes the delivery fee
 	 */
 	private void removeDeliveryFee(){
-		if (productsInOrder.containsKey(deliveryFee))
-			productsInOrder.remove(deliveryFee);
+		if (products.contains(deliveryFee))
+			products.remove(deliveryFee);
 	}
 	
 	/**
@@ -248,6 +297,32 @@ public class Order {
 		return null;
 	}
 	
+	public static ArrayList<Order> getAllOrders(){
+		ArrayList<Order> allOrders = new ArrayList<Order>();
+		try {
+			Database db;
+			db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM orders");
+			while(rs.next()){
+				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
+				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
+				int idOrder = rs.getInt("idorder");
+				String status = rs.getString("status");
+				String comment = rs.getString("comments");
+				int allergy = rs.getInt("allergy");
+				int delivery = rs.getInt("delivery");
+				long date = rs.getLong("time");
+				allOrders.add(new Order(idOrder, customer, products, status, comment, allergy, delivery, date));
+			}
+			return allOrders;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	/**
 	 * Sets a comment in the order.
 	 * @param comment
@@ -269,8 +344,8 @@ public class Order {
 	 * and the quantity of the product as value.
 	 * @return
 	 */
-	public HashMap<Product, Integer> getProductsInOrder(){
-		return productsInOrder;
+	public ArrayList<Product> getProductsInOrder(){
+		return products;
 	}
 	
 	/**
@@ -305,7 +380,6 @@ public class Order {
 	public void setAllergy(boolean b){
 		if (b){
 			allergy = 1;
-			addDeliveryFee();
 		}
 		else{
 			allergy = 0;
@@ -318,6 +392,17 @@ public class Order {
 	 */
 	public boolean getAllergy(){
 		return (allergy==1) ? true : false;
+	}
+	
+	public String getDateAndTime(){
+		DateFormat df = DateFormat.getDateInstance(1);
+		return df.format(dateAdded);
+	}
+	
+	public String getDate(){
+		dateAdded = calendar.getTime();
+		DateFormat df = DateFormat.getDateInstance(3);
+		return df.format(dateAdded);
 	}
 
 

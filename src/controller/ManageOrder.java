@@ -6,6 +6,7 @@ import java.util.HashMap;
 import model.Customer;
 import model.Order;
 import model.Product;
+import model.Product;
 
 /**
  * A controller for orders.
@@ -106,7 +107,7 @@ public class ManageOrder {
 	 * @param order
 	 * @return productsInOrder
 	 */
-	public static HashMap<Product, Integer> getProductsInOrder(Order order){
+	public static ArrayList<Product> getProductsInOrder(Order order){
 		return order.getProductsInOrder();
 	}
 	

@@ -4,15 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-/**
- * A class for products.
- * @author sigurd
- *
- */
 public class Product {
-	
+
+	private int quantity;
 	private String name;
 	private double price;
 	private int idproduct;
@@ -42,17 +37,40 @@ public class Product {
 		
 	}
 	
-	/**
-	 * Creates a new Product with a given name, price, comment and id.
-	 * @param name
-	 * @param price
-	 * @param id
-	 */
-	public Product (String name, double price, int id, String comment){
+	public Product(String name, double price, int quantity, String comment) {
 		this.name = name;
 		this.price = price;
-		this.idproduct = id;
+		this.quantity = quantity;
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT idproduct FROM product WHERE name='" 
+									+ name + "' and price ='" + price + "'");
+			if (rs.next()){
+				this.idproduct = rs.getInt("idproduct");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Product(String name, double price, String comment) {
+		this.name = name;
+		this.price = price;
 		this.comment = comment;
+		this.quantity = 1;
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT idproduct FROM product WHERE name='" 
+									+ name + "' and price ='" + price + "'");
+			if (rs.next()){
+				this.idproduct = rs.getInt("idproduct");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
@@ -83,53 +101,69 @@ public class Product {
 		return idproduct;
 	}
 	
-	/**
-	 * Returns the product name from the database with the given id.
-	 * @param productID
-	 * @return
-	 * @throws SQLException
-	 */
-	public static String getProductName(int productID) throws SQLException{
-		String name = null;
-		Database db = Database.getDatabase();
-		ResultSet rs = db.select("SELECT name FROM product WHERE idproduct = " + productID);
-		while (rs.next()){
-			name = rs.getString(1);
+	public static ArrayList<Product> getProductsFromOrder(int idOrder){
+		try {
+			Database db = Database.getDatabase();
+			ArrayList<Product> products = new ArrayList<Product>();
+			ResultSet rs = db.select("SELECT idproduct, name, price, comments, quantity FROM product_has_order " +
+					"JOIN product ON idproduct=product_idproduct WHERE orders_idorder=" + idOrder );
+			while (rs.next()){
+				int idProduct = rs.getInt("idproduct");
+				double price = rs.getDouble("price");
+				String name = rs.getString("name");
+				String comment = rs.getString("comments");
+				if(name.equals("Frakt"))
+					products.add(DeliveryFee.getDeliveryFee());
+				else
+					products.add(new Product(name, price, idProduct, comment));
+			}
+			return products;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return name;
+		return null;
 	}
 	
 	/**
-	 * Returns the product price from the database with the given id.
-	 * @param productID
+	 * Returns an ArrayList with the relevant products to the query.
+	 * @param query
 	 * @return
-	 * @throws SQLException
 	 */
-	public static String getProductPrice(int productID) throws SQLException{
-		String price = null;
-		Database db = Database.getDatabase();
-		ResultSet rs = db.select("SELECT price FROM product WHERE idproduct = " + productID);
-		while (rs.next()){
-			price = rs.getString(1);
+	public static ArrayList<Product> getRelevantProducts(String query){
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM product where name LIKE '" + query + "%'");
+			while (rs.next()){
+				double price = rs.getDouble("price");
+				String name = rs.getString("name");
+				String comment = rs.getString("comments");
+				if(name.equals("Frakt"))
+					products.add(DeliveryFee.getDeliveryFee());
+				else
+					products.add(new Product(name, price, 1, comment));
+			}
+			return products;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return price;
+		return null;
 	}
 	
-	/**
-	 * Takes a product name in and returns a product with the values from the database.
-	 * Returns null if no products exists in the database with that name.
-	 * @param name
-	 * @return
-	 * @throws SQLException
-	 */
-	public static Product dbGetProduct(String name) throws SQLException{
-		Database db = Database.getDatabase();
-		ResultSet rs = db.select("SELECT * FROM product WHERE name='" + name + "'");
-		if (rs.next()){
-			int id = rs.getInt("idproduct");
-			double price = rs.getDouble("price");
-			String comment = rs.getString("comments");
-			return new Product(name, price, id, comment);
+	public static ArrayList<Product> getAllProducts(){
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM product ORDER BY name ASC");
+			while (rs.next()){
+				products.add(new Product(rs.getString("name"), rs.getDouble("price"), 1, rs.getString("comment")));
+			}
+			return products;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -220,46 +254,20 @@ public class Product {
 		return false;
 	}
 	
-	/**
-	 * Returns an ArrayList with the relevant products to the query.
-	 * @param query
-	 * @return
-	 */
-	public static ArrayList<Product> getRelevantProducts(String query){
-		ArrayList<Product> products = new ArrayList<Product>();
-		try {
-			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM product where name LIKE '" + query + "%'");
-			while (rs.next()){
-				double price = rs.getDouble("price");
-				String name = rs.getString("name");
-				if(name.equals("Frakt"))
-					products.add(DeliveryFee.getDeliveryFee());
-				else
-					products.add(new Product(name, price));
-			}
-			return products;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public void setQuantity(int quantity){
+		this.quantity = quantity;
 	}
 	
-	public static ArrayList<Product> getAllProducts(){
-		ArrayList<Product> products = new ArrayList<Product>();
-		try {
-			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM product ORDER BY name ASC");
-			while (rs.next()){
-				products.add(new Product(rs.getString("name"), rs.getDouble("price")));
-			}
-			return products;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public int getQuantity(){
+		return this.quantity;
+	}
+
+	public void addQuantity(int quantity){
+		this.quantity += quantity;
+	}
+	
+	public void removeQuantity(int quantity){
+		this.quantity -= quantity;
 	}
 	
 	public String toString(){
@@ -278,6 +286,4 @@ public class Product {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	
-
 }

@@ -37,6 +37,17 @@ public class Customer {
 		this.postalAddress = postalAddress;
 	}
 	
+	public Customer(String forename, String lastname, String phone,
+			String address, String zipCode, String postalAddress, int idCustomer) {
+			this.forename = forename;
+			this.lastname = lastname;
+			this.phone = phone;
+			this.address = address;
+			this.zipCode = zipCode;
+			this.postalAddress = postalAddress;
+			this.idCustomer = idCustomer;
+		}
+	
 	/**
 	 * Adds the customer to the database.
 	 */
@@ -114,6 +125,27 @@ public class Customer {
 				customers.add(c);
 			}
 			return customers;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static Customer getCustomerFromOrder(int idCustomer){
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM customer WHERE idcustomer=" + idCustomer);
+			if (rs.next()){
+				String forename = rs.getString("forename");
+				String lastname = rs.getString("lastname");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String zipCode = rs.getString("postcode");
+				String postalAddress = rs.getString("postaladdress");
+				Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress, idCustomer);
+				return c;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
