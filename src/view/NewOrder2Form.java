@@ -444,7 +444,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }
 
     private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	Color color = new Color(200, 30, 30);
+    	Color color = new Color(235, 210, 210);
     	order.setStatus("Bestilt");
     	boolean legalOrder = true;
     	
