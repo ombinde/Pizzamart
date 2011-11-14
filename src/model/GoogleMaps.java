@@ -31,7 +31,7 @@ public class GoogleMaps extends JFrame {
 		String address = 
 				"http://maps.googleapis.com/maps/api/staticmap?markers=size:mid%7Ccolor:red%7C|"
 				+ validateAddress(input)
-				+ "&zoom=14&size=380x455&maptype=roadmap&&sensor=false";
+				+ "&zoom=14&size=350x350&maptype=roadmap&&sensor=false";
 		
 		Image image = ImageIO.read(new URL(address));
 		JLabel label = new JLabel(new ImageIcon(image));
@@ -83,21 +83,22 @@ public class GoogleMaps extends JFrame {
 		ArrayList<String> addressList = DeliveryController.getAddressForMap();
 		
 		
-		/*
-		 *  TODO In case there's no orders to show, the map will probably show a bit too much water.
-		 *  Might wanna do a check to make sure there's land in sight.
-		 */
+		if (addressList.size() == 0) {
+			address = "http://maps.googleapis.com/maps/api/staticmap?center=Trondheim&zoom=14&size=380x455&sensor=false";
+		}
 		
-		address = 
-				"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=380x455&maptype=roadmap&markers=color:red%7C"
-				+ validateAddress(addressList.get(0));
+		else
 		
-			for (int i = 1; i < addressList.size(); i++) {
-				address += marker;
-				address += validateAddress(addressList.get(i));
-			}
-				
-			address += "&sensor=false";
+			address = 
+					"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=380x455&maptype=roadmap&markers=color:red%7C"
+					+ validateAddress(addressList.get(0));
+			
+				for (int i = 1; i < addressList.size(); i++) {
+					address += marker;
+					address += validateAddress(addressList.get(i));
+				}
+					
+				address += "&sensor=false";
 				
 			Image image = ImageIO.read(new URL(address));
 			JLabel label = new JLabel(new ImageIcon(image));
