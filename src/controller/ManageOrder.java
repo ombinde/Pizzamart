@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Customer;
+import model.DeliveryFee;
 import model.Order;
 import model.Product;
 import model.Product;
@@ -161,6 +162,22 @@ public class ManageOrder {
 	public static String formatPrice(double price){
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
 		return decimalFormat.format(price)+",-";
+	}
+	
+	/**
+	 * Returns the limit for when delivery fee is free.
+	 * @return
+	 */
+	public static double getLimitFreeDelivery(){
+		return DeliveryFee.getLimitFreeDelivery();
+	}
+	
+	/**
+	 * Returns the fee for delivery.
+	 * @return
+	 */
+	public static double getDeliveryFee(){
+		return DeliveryFee.getOriginalFee();
 	}
 	
 	
