@@ -109,6 +109,6 @@ public class GoogleMaps extends JFrame {
 			Image image = ImageIO.read(new URL(address));
 			JLabel label = new JLabel(new ImageIcon(image));
 
-		return label;
+			return label;
 	}
 }
