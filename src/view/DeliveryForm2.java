@@ -18,8 +18,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 import model.GoogleMaps;
+import model.Order;
 import model.Product;
 import controller.ChefController;
+import controller.DeliveryController;
 
 /*
  * DeliveryForm2.java
@@ -33,9 +35,11 @@ import controller.ChefController;
 @SuppressWarnings("serial")
 public class DeliveryForm2 extends javax.swing.JFrame {
 
+	private Order order;
     /** Creates new form DeliveryForm2 */
-    public DeliveryForm2() {
-        initComponents();
+    public DeliveryForm2(Order order) {
+        this.order = order;
+    	initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -433,7 +437,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
     	//TODO Get the hashmap with data in a different way
-    	ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+    	ArrayList<Product> productsInOrder = order.getProductsInOrder();
         HashMap<Product, Integer> products = orders.get(0);
 		Set set = products.entrySet();
         Iterator it = set.iterator();

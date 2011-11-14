@@ -4,10 +4,6 @@ import java.awt.Color;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -18,6 +14,7 @@ import model.GoogleMaps;
 import model.Order;
 import model.Product;
 import controller.ChefController;
+import controller.DeliveryController;
 import controller.ManageOrder;
 
 /*
@@ -260,7 +257,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         
     	JLabel map;
 		try {
-			map = GoogleMaps.map("Trondheim");
+			map = GoogleMaps.mainMap();
 	    	
 			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
 	        mapPanel.removeAll();
@@ -294,7 +291,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
-		ArrayList<Order> orders = ChefController.getFreshOrders();
+		ArrayList<Order> orders = DeliveryController.getFreshOrders();
         ArrayList<Product> productsInOrder;
         
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
@@ -323,7 +320,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
             //upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    orderLabelMouseClicked(evt);
+                    orderLabelMouseClicked(evt, order);
                 }
             });
         	
@@ -339,7 +336,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
             //lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                	orderLabelMouseClicked(evt);
+                	orderLabelMouseClicked(evt, order);
                 }
             });
 
@@ -397,8 +394,8 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                         
 
-    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt) {                                                     
-    	DeliveryForm2 form = new DeliveryForm2();         
+    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Order order) {                                                     
+    	DeliveryForm2 form = new DeliveryForm2(order);         
         form.setVisible(true);
         this.setVisible(false);
     }                                                    

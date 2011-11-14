@@ -89,7 +89,7 @@ public class GoogleMaps extends JFrame {
 		 */
 		
 		address = 
-				"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=250x250&maptype=roadmap&markers=color:red%7C"
+				"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=380x455&maptype=roadmap&markers=color:red%7C"
 				+ validateAddress(addressList.get(0));
 		
 			for (int i = 1; i < addressList.size(); i++) {
