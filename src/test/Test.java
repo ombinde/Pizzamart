@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import model.*;
+import controller.DeliveryController;
 import controller.ManageEmployee;
 import controller.ManageOrder;
 
@@ -40,6 +41,14 @@ public class Test {
 		for (int i = 0; i < orders.size(); i++) {
 			System.out.println(orders.get(i).getDate());
 		}
+		
+		ArrayList<String> addresser = DeliveryController.getAddressForMap();
+		for (String string : addresser) {
+			System.out.println(string);
+		}
+		
+		System.out.println(ManageOrder.getLimitFreeDelivery());
+		System.out.println(ManageOrder.getDeliveryFee());
 
 	}
 	

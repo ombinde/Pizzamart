@@ -25,7 +25,7 @@ public class Order {
 	private String comment;
 	private int idOrder;
 	private DeliveryFee deliveryFee;
-	private double limitFreeDelivery;
+	private static double limitFreeDelivery;
 	private int allergy;
 	private int delivery;
 	private Date dateAdded;
@@ -50,7 +50,7 @@ public class Order {
 		this.allergy = allergy;
 		this.delivery = delivery;
 		this.dateAdded = new Date(date);
-		this.getLimitFreeDelivery();
+		limitFreeDelivery = DeliveryFee.getLimitFreeDelivery();
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
 	}
 	/**
@@ -62,7 +62,7 @@ public class Order {
 		this.status = "Under bestilling";
 		this.products = new ArrayList<Product>();
 		this.comment = "";
-		this.getLimitFreeDelivery();
+		limitFreeDelivery = DeliveryFee.getLimitFreeDelivery();
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
 		this.setDelivery(true);
 		this.setAllergy(false);
@@ -244,21 +244,6 @@ public class Order {
 	}
 	
 	/**
-	 * Sets the limit for free delivery. It looks up in the database for the value.
-	 */
-	private void getLimitFreeDelivery(){
-		try {
-			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT limitFreeDelivery FROM properties");
-			if (rs.next())
-				limitFreeDelivery = rs.getInt(1);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	/**
 	 * Adds delivery fee for the order.
 	 */
 	private void addDeliveryFee(){
@@ -352,6 +337,10 @@ public class Order {
 	
 	public int getIdOrder(){
 		return idOrder;
+	}
+	
+	public Customer getCustomer(){
+		return this.customer;
 	}
 	
 	/**

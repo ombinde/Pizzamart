@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import model.Customer;
 import model.Order;
 import model.Product;
 
@@ -32,6 +33,16 @@ public class DeliveryController {
 	 */
 	public static void startOrder(Order order){
 		order.setStatus("Under levering");
+	}
+	
+	public static ArrayList<String> getAddressForMap(){
+		ArrayList<Order> freshOrders = getFreshOrders();
+		ArrayList<String> addresses = new ArrayList<String>();
+		for (int i = 0; i < freshOrders.size(); i++) {
+			Customer temp = freshOrders.get(i).getCustomer();
+			addresses.add(temp.getAddress() + " " + temp.getzipCode());
+		}
+		return addresses;
 	}
 
 }
