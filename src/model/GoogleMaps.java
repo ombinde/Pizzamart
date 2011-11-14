@@ -1,13 +1,9 @@
 package model;
-<<<<<<< HEAD
 
-=======
->>>>>>> morten/gui
 import java.awt.Image;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-<<<<<<< HEAD
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
@@ -15,7 +11,6 @@ import javax.swing.*;
 
 
 /**
- * A class for the Google Maps API
  * 
  * @author Ole J. Pettersen
  *
@@ -34,17 +29,7 @@ public class GoogleMaps extends JFrame {
 		String address = 
 				"http://maps.googleapis.com/maps/api/staticmap?markers=size:mid%7Ccolor:red%7C|"
 				+ validateAddress(input)
-				+ "&zoom=14&size=250x250&maptype=roadmap&&sensor=false";
-=======
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-@SuppressWarnings("serial")
-public class GoogleMaps extends JFrame {
-	
-	public static JLabel map(String input) throws MalformedURLException, IOException {
-		String address = "http://maps.googleapis.com/maps/api/staticmap?markers=size:mid%7Ccolor:red%7C" + validateAddress(input) + "&zoom=14&size=380x455&maptype=roadmap&&sensor=false";
->>>>>>> morten/gui
+				+ "&zoom=14&size=380x455&maptype=roadmap&&sensor=false";
 		
 		Image image = ImageIO.read(new URL(address));
 		JLabel label = new JLabel(new ImageIcon(image));
@@ -53,15 +38,12 @@ public class GoogleMaps extends JFrame {
 	}
 	
 	
-<<<<<<< HEAD
 	/**
 	 * Runs a few tests and stuff to format the String after the Google Maps API's liking. 
 	 * Otherwise it gets sad :(
 	 * 
 	 * @param input
 	 */
-=======
->>>>>>> morten/gui
 	public static String validateAddress(String input) {
 		String output = "";
 		
@@ -85,7 +67,6 @@ public class GoogleMaps extends JFrame {
 		return output;
 		
 	}
-<<<<<<< HEAD
 	
 	
 	/**
@@ -117,7 +98,7 @@ public class GoogleMaps extends JFrame {
 				"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=250x250&maptype=roadmap&markers=color:red%7C"
 				+ addressList.get(0);
 		
-			for (int i = 0; i < addressList.size(); i++) {
+			for (int i = 1; i < addressList.size(); i++) {
 				address += marker;
 				address += addressList.get(i);
 			}
@@ -129,6 +110,4 @@ public class GoogleMaps extends JFrame {
 
 			return label;
 	}
-=======
->>>>>>> morten/gui
 }
