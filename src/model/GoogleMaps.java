@@ -13,6 +13,7 @@ import controller.DeliveryController;
 
 
 /**
+ * A class for the Google Maps API
  * 
  * @author Ole J. Pettersen
  *
@@ -87,7 +88,7 @@ public class GoogleMaps extends JFrame {
 			address = "http://maps.googleapis.com/maps/api/staticmap?center=Trondheim&zoom=14&size=380x455&sensor=false";
 		}
 		
-		else
+		else {
 		
 			address = 
 					"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=380x455&maptype=roadmap&markers=color:red%7C"
@@ -99,10 +100,11 @@ public class GoogleMaps extends JFrame {
 				}
 					
 				address += "&sensor=false";
+		}
 				
-			Image image = ImageIO.read(new URL(address));
-			JLabel label = new JLabel(new ImageIcon(image));
+		Image image = ImageIO.read(new URL(address));
+		JLabel label = new JLabel(new ImageIcon(image));
 
-			return label;
+		return label;
 	}
 }
