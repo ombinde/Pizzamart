@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  * Creates a connection with the database with the singleton pattern.
- * @author Sigurd Lund and ¯ivind Binde
+ * @author Sigurd Lund and ï¿½ivind Binde
  *
  */
 public class Database {
@@ -16,7 +16,7 @@ public class Database {
 	private Connection con=null;
 	public static final String HOSTNAME = "mysql.stud.ntnu.no";
 	public static final String USERNAME = "sigurlu_it1901";
-	public static final String DATABASE = "sigurlu_pizzamart";
+	public static final String DATABASE = "sigurlu_pizzamart2";
 	public static final String PASSWORD = "pizza";
 	public static final String PORT = "3306";
 		

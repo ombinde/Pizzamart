@@ -20,8 +20,8 @@ public class DeliveryFee extends Product {
 	 * @param price
 	 */
 	private DeliveryFee(String name, double price, String comment) {
-		super(name, price);
-		this.originalFee = price;
+		super(name, price, 1, comment);
+		originalFee = price;
 	}
 	
 	/**
@@ -74,6 +74,30 @@ public class DeliveryFee extends Product {
 	
 	public void setPriceToOriginal(){
 		this.setPrice(originalFee);
+	}
+	
+	public static double getOriginalFee(){
+		if (deliveryFee==null){
+			DeliveryFee df = DeliveryFee.getDeliveryFee();
+		}
+		return originalFee;
+	}
+	
+	/**
+	 * Sets the limit for free delivery. It looks up in the database for the value.
+	 */
+	public static double getLimitFreeDelivery(){
+		double limitFreeDelivery = -1;
+		try {
+			Database db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT limitFreeDelivery FROM properties");
+			if (rs.next())
+				limitFreeDelivery = rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return limitFreeDelivery;
 	}
 
 

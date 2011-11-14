@@ -7,11 +7,18 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import model.*;
+import controller.DeliveryController;
 import controller.ManageEmployee;
 import controller.ManageOrder;
 
@@ -23,51 +30,26 @@ public class Test {
 		Database db = Database.getDatabase();
 		System.out.println("Database kobling er opprettet");
 		Connection con = db.getConnection();
-		
-//		
-//		BufferedReader br = new BufferedReader(new FileReader("./src/Database/dummydata.sql"));
-//		
-//		ScriptRunner sr = new ScriptRunner(con, false, true);
-//		sr.runScript(br);
+		Locale locale = new Locale("no");
+		TimeZone timeZone = TimeZone.getTimeZone("Europe/Oslo");
+		Calendar calendar = GregorianCalendar.getInstance();
+		calendar.setTimeZone(timeZone);
+		Date dateAdded = calendar.getTime();
+		DateFormat df = DateFormat.getTimeInstance(3, locale);
 
+		ArrayList<Order> orders = Order.getAllOrders();
+		for (int i = 0; i < orders.size(); i++) {
+			System.out.println(orders.get(i).getDate());
+		}
 		
+		ArrayList<String> addresser = DeliveryController.getAddressForMap();
+		for (String string : addresser) {
+			System.out.println(string);
+		}
 		
-		//ordrelinjen.
-		HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-		products.put(Product.dbGetProduct("Genoa"), 10);
-		products.put(Product.dbGetProduct("Naples"), 5);
+		System.out.println(ManageOrder.getLimitFreeDelivery());
+		System.out.println(ManageOrder.getDeliveryFee());
 
-		Customer c = new Customer("sigurd", "lund", "9292929", "asdfg", "8956", "Oslo");
-		Order order = new Order(c, products, "Bestillt", "Uten gluten");
-		order.addOrderToDatabase();
-		order.setStatus("Lages");
-		System.out.println(ManageOrder.formatPrice(order.getOrderTotalPrice()));
-		
-		
-		//Teste søk
-		ArrayList<Product> relevanteProdukter = new ArrayList<Product>();
-		relevanteProdukter = ManageOrder.getRelevantProducts("m");
-		System.out.println(relevanteProdukter.toString());
-	
-			
-//		System.out.println(db.getConnection());
-//		System.out.println(db.select("SELECT lastname FROM employee"));
-//		db.insert("INSERT into employee (forename, lastname, username) values('Per', 'Ludviksen', 'per')");
-//		System.out.println(db.select("SELECT lastname FROM employee"));
-//		
-//		ManageEmployee.addNewEmployee("ombinde", "oivind", "binde");
-
-		//String productname = Product.getProductName(1);
-		//System.out.println(productname);
-		
-		
-		Employee emp = new Employee("heiii", "Ola", "Nordmann");
-		ArrayList<String> list = new ArrayList<String>();
-		ResultSet rs = db.select("SELECT * FROM employee");
-		
-		while (rs.next())
-			System.out.println(rs.getString(2));
-		con.close();
 	}
 	
 	

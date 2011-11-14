@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import model.Customer;
 import model.Order;
 import model.Product;
 
@@ -12,12 +13,8 @@ public class DeliveryController {
 	 * Returns all the orders that is either ready for delivery or that delivery is going on.
 	 * @return
 	 */
-	public static ArrayList<HashMap<Product,Integer>> getFreshOrders(){
-		ArrayList<HashMap<Product,Integer>> freshOrders= new ArrayList<HashMap<Product, Integer>>();
-		ArrayList<Integer> idOrders = Order.getOrdersById("Klar til levering", "Leveres");
-		for(int i=0; i<idOrders.size(); i++){
-			freshOrders.add(Order.getProductsFromOrder(idOrders.get(i)));
-		}
+	public static ArrayList<Order> getFreshOrders(){
+		ArrayList<Order> freshOrders= Order.getRelevantOrders("Klar til levering", "Under levering");
 		return freshOrders;
 	}
 	
@@ -36,6 +33,16 @@ public class DeliveryController {
 	 */
 	public static void startOrder(Order order){
 		order.setStatus("Under levering");
+	}
+	
+	public static ArrayList<String> getAddressForMap(){
+		ArrayList<Order> freshOrders = getFreshOrders();
+		ArrayList<String> addresses = new ArrayList<String>();
+		for (int i = 0; i < freshOrders.size(); i++) {
+			Customer temp = freshOrders.get(i).getCustomer();
+			addresses.add(temp.getAddress() + " " + temp.getzipCode());
+		}
+		return addresses;
 	}
 
 }
