@@ -21,26 +21,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sigurlu_pizzamart`.`employee`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`employee` (
-  `idemployee` INT NOT NULL AUTO_INCREMENT ,
-  `lastname` VARCHAR(45) NOT NULL ,
-  `forename` VARCHAR(45) NOT NULL ,
-  `username` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`idemployee`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `sigurlu_pizzamart`.`orders`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`orders` (
   `idorder` INT NOT NULL AUTO_INCREMENT ,
   `status` VARCHAR(45) NOT NULL ,
   `customer_idcustomer` INT NOT NULL ,
-  `comments` VARCHAR(45) NULL ,
-  `delivery` TINYINT(1)  NULL ,
+  `comments` MEDIUMTEXT  NULL ,
+  `allergy` TINYINT(1)  NOT NULL ,
+  `delivery` TINYINT(1)  NOT NULL ,
+  `time` MEDIUMTEXT  NOT NULL ,
   PRIMARY KEY (`idorder`, `customer_idcustomer`) ,
   INDEX `fk_orders_customer1` (`customer_idcustomer` ASC) ,
   CONSTRAINT `fk_orders_customer1`
@@ -90,7 +80,12 @@ ENGINE = InnoDB;
 -- Table `sigurlu_pizzamart`.`properties`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `sigurlu_pizzamart`.`properties` (
-  `limitFreeDelivery` DOUBLE NOT NULL )
+  `limitFreeDelivery` DOUBLE NOT NULL ,
+  `name` VARCHAR(45) NOT NULL ,
+  `address` VARCHAR(45) NOT NULL ,
+  `postcode` VARCHAR(45) NOT NULL ,
+  `postaladdress` VARCHAR(45) NOT NULL ,
+  `phone` VARCHAR(45) NOT NULL )
 ENGINE = InnoDB;
 
 
