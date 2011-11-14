@@ -2,15 +2,10 @@ package view;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.swing.BorderFactory;
-
 import model.Customer;
 import model.Order;
 import model.Product;
-import model.Product;
-
 import controller.ManageOrder;
 import controller.Validate;
 
@@ -378,8 +373,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     	this.rightPanel.setBackground(Color.WHITE);
     	ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
         ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
-        priceLabel.setText(""+ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
-        // While there are more elements in the hashmap
+        priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
         int counter = 0;
         for (Product p : productsInOrder) {
         	// Create a new JLabel

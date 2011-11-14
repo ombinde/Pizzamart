@@ -4,11 +4,6 @@ import java.awt.Color;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import javax.swing.BorderFactory;
 //no.ntnu.course
 /*
@@ -17,11 +12,12 @@ import javax.swing.BorderFactory;
  */
 import javax.swing.JLabel;
 
+import model.DeliveryFee;
 import model.GoogleMaps;
 import model.Order;
 import model.Product;
-import controller.ChefController;
 import controller.DeliveryController;
+import controller.ManageOrder;
 
 /*
  * DeliveryForm2.java
@@ -254,6 +250,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
         // Fetch all information that's relevant and display it
         displayOrder();
+        displayMap();
 
 
         javax.swing.GroupLayout productsPanelLayout = new javax.swing.GroupLayout(productsPanel);
@@ -356,12 +353,20 @@ public class DeliveryForm2 extends javax.swing.JFrame {
             }
         });
 
-        startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
         startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
         startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
-        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
-        startFinishButton.setText(" Start");
-        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        if (order.getStatus().equals("Klar til levering")){
+        	startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
+	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
+	        startFinishButton.setText(" Start");
+	        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        }
+        else{
+        	startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
+        	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
+            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+	        startFinishButton.setText(" Ferdig");
+        }
         startFinishButton.setOpaque(true);
         startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
         startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -424,21 +429,19 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     	defineQuantityPanel(labels.get(0));
     	defineProductPanel(labels.get(1));
     	
-    	commentTextPane.setText("Jeg kan endres dynamisk i displayOrder-metoden");
-    	nameContentLabel.setText("Morten Vaale Noddeland");
-        addressContentLabel.setText("Arne Bergsgårdsvei 5-11");
-        zipCodeContentLabel.setText("7033 TRONDHEIM");
-        telephoneContentLabel.setText("91833835");
-        priceLabel.setText("399.00,-");
-        
-        //displayMap("Arne Bergsgårdsvei 5-11");
-    	
+    	commentTextPane.setText(order.getComment());
+    	nameContentLabel.setText(order.getCustomer().getName());
+        addressContentLabel.setText(order.getCustomer().getAddress());
+        zipCodeContentLabel.setText(order.getCustomer().getzipCode() + " " + order.getCustomer().getPostalAddress());
+        telephoneContentLabel.setText(order.getCustomer().getPhone());
+        priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
     }
 
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
     	//TODO Get the hashmap with data in a different way
 <<<<<<< HEAD
     	ArrayList<Product> productsInOrder = order.getProductsInOrder();
+<<<<<<< HEAD
         HashMap<Product, Integer> products = orders.get(0);
 		Set set = products.entrySet();
         Iterator it = set.iterator();
@@ -449,13 +452,23 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         //Iterator it = set.iterator();
 >>>>>>> morten/gui
 
+=======
+>>>>>>> sigurd/database
         
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
 
+<<<<<<< HEAD
         //int i = 0;
         for (int i = 0; i < 3; i++){
         	//Map.Entry me = (Map.Entry)it.next();
+=======
+        int i = 0;
+        for (Product product : productsInOrder) {
+			if (product instanceof DeliveryFee){
+				continue;
+			}
+>>>>>>> sigurd/database
         	// Create quantityLabels
         	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
         	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -467,7 +480,11 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 			i++;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+<<<<<<< HEAD
 	        quantityLabel.setText("asdasdasd");
+=======
+	        quantityLabel.setText("" + product.getQuantity());
+>>>>>>> sigurd/database
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
@@ -477,7 +494,11 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+<<<<<<< HEAD
 			productLabel.setText("asdasdas");
+=======
+			productLabel.setText("" + product.getName());
+>>>>>>> sigurd/database
 	        productLabels.add(productLabel);
 			
         }
@@ -529,10 +550,10 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         );
 	}
 
-	private void displayMap(String address){
+	private void displayMap(){
     	JLabel map;
 		try {
-			map = GoogleMaps.map(address);
+			map = GoogleMaps.map(order.getCustomer().getAddress() + " " + order.getCustomer().getzipCode());
 	    	
 			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
 	        mapPanel.removeAll();
@@ -560,7 +581,22 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     	this.setVisible(false);
     }                                       
 
-    private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {     
+    	if(order.getStatus().equals("Klar til levering")){
+    		DeliveryController.startOrder(order);
+    		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
+    		startFinishButton.setText(" Ferdig");
+            startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
+            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+
+
+    	}
+    	else{
+    		DeliveryController.setFinishedOrder(order);
+    		DeliveryForm1 form = new DeliveryForm1();
+    		form.setVisible(true);
+    		this.setVisible(false);
+    	}
     }
 
     /**
@@ -594,7 +630,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new DeliveryForm2().setVisible(true);  
+                //new DeliveryForm2().setVisible(true);  
             }
         });
     }
