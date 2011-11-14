@@ -2,11 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 //no.ntnu.course

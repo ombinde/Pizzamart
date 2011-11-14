@@ -201,4 +201,8 @@ public class Customer {
 		return postalAddress;
 	}
 	
+	public String getName(){
+		return forename + " " + lastname;
+	}
+	
 }
