@@ -404,8 +404,12 @@ public class Order {
 	}
 	
 	public String getDate(){
-		dateAdded = calendar.getTime();
 		DateFormat df = DateFormat.getDateInstance(3);
+		return df.format(dateAdded);
+	}
+	
+	public String getTime(){
+		DateFormat df = DateFormat.getTimeInstance(3, locale);
 		return df.format(dateAdded);
 	}
 

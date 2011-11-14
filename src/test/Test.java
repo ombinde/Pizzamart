@@ -37,6 +37,8 @@ public class Test {
 		Date dateAdded = calendar.getTime();
 		DateFormat df = DateFormat.getTimeInstance(3, locale);
 
+		System.out.println(df.format(dateAdded));
+		
 		ArrayList<Order> orders = Order.getAllOrders();
 		for (int i = 0; i < orders.size(); i++) {
 			System.out.println(orders.get(i).getDate());

@@ -13,9 +13,12 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 
+import model.DeliveryFee;
 import model.GoogleMaps;
+import model.Order;
 import model.Product;
 import controller.ChefController;
+import controller.ManageOrder;
 
 /*
  * DeliveryForm1.java
@@ -291,21 +294,30 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
-		ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
-        HashMap<Product, Integer> products = orders.get(0);
-		Set set = products.entrySet();
-        Iterator it = set.iterator();
+		ArrayList<Order> orders = ChefController.getFreshOrders();
+        ArrayList<Product> productsInOrder;
         
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
 
-        while (it.hasNext()){	
-        	Map.Entry me = (Map.Entry)it.next();
+        for (int i=0; i<orders.size(); i++){	
+        	String orderText = "";
+    		final Order order = orders.get(i);
+        	for (Product product : orders.get(i).getProductsInOrder()) {
+    			if (product instanceof DeliveryFee){
+    				continue;
+    			}
+			String productName = ((Product) product).getName();
+			int quantity = product.getQuantity();
+			// Set text for the JLabel
+			orderText += quantity + " stk: ";
+			orderText += productName + ", ";
+    		}
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	upperHalf.setBackground(new java.awt.Color(225, 230, 235));
         	upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
         	upperHalf.setForeground(new java.awt.Color(45, 65, 105));
-        	upperHalf.setText("18.00:    Arne Bergsgårdsvei 5-11");
+        	upperHalf.setText(order.getTime() + ":    " + order.getCustomer().getAddress());
         	upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(7, 10, 0, 10)));
         	upperHalf.setOpaque(true);
             //upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -321,7 +333,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         	lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
         	lowerHalf.setFont(new java.awt.Font("Georgia", 0, 14));
         	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
-        	lowerHalf.setText("3 stk: Genoa, 6 stk: Naples, 1 stk: Coca-cola");
+        	lowerHalf.setText(orderText);
         	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
         	lowerHalf.setOpaque(true);
             //lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));

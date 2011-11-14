@@ -3,12 +3,7 @@ public class Validate {
 
 
 	public static boolean stringNonEmpty(String text){
-<<<<<<< HEAD
-		if(text.equals(""))
-=======
-		
 		if(text.equals("") || text == null)
->>>>>>> david/receipt
 			return false;
 		return true;
 	}
@@ -31,15 +26,10 @@ public class Validate {
 		}
 		return true;
 	}
-<<<<<<< HEAD
 
-	public static boolean stringOnlyCharacters(String text){
-=======
+	//public static boolean stringOnlyCharacters(String text){
 	
 	public static boolean stringNotLeagal(String text){
-		
-		
->>>>>>> david/receipt
 		for(int i = 0; i < text.length(); i++){
 			char cha = text.charAt(i);
 			if(!((cha >= 'A' && cha <= 'Z') || (cha >= 'a' && cha <= 'z')) )
@@ -48,7 +38,6 @@ public class Validate {
 		}
 		return true;
 	}
-<<<<<<< HEAD
 	
 	public static boolean stringLegal(String text){
 		for (int i = 0; i < text.length(); i++) {
@@ -60,7 +49,4 @@ public class Validate {
 		return true;
 	}
 
-
-=======
->>>>>>> david/receipt
 }
