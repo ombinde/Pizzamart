@@ -79,7 +79,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         priceLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kjøkken - oversikt");
+        setTitle("Utkjøring - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("newOrderFrame");
         //setPreferredSize(new java.awt.Dimension(800, 620));
@@ -437,30 +437,37 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
     	//TODO Get the hashmap with data in a different way
+<<<<<<< HEAD
     	ArrayList<Product> productsInOrder = order.getProductsInOrder();
         HashMap<Product, Integer> products = orders.get(0);
 		Set set = products.entrySet();
         Iterator it = set.iterator();
+=======
+    	//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+        //HashMap<Product, Integer> products = orders.get(0);
+		//Set set = products.entrySet();
+        //Iterator it = set.iterator();
+>>>>>>> morten/gui
 
         
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
 
-        int i = 0;
-        while (it.hasNext()){
-        	Map.Entry me = (Map.Entry)it.next();
+        //int i = 0;
+        for (int i = 0; i < 3; i++){
+        	//Map.Entry me = (Map.Entry)it.next();
         	// Create quantityLabels
         	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
         	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         	quantityLabel.setOpaque(true);
         	quantityLabel.setVisible(true);
         	int bg;
-			if (i % 2 == 0) { bg = 200; }
-	        else 			{ bg = 220; }
+			if (i % 2 == 0) { bg = 220; }
+	        else 			{ bg = 240; }
 			i++;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("" + me.getValue());
+	        quantityLabel.setText("asdasdasd");
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
@@ -470,7 +477,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("" + me.getKey());
+			productLabel.setText("asdasdas");
 	        productLabels.add(productLabel);
 			
         }

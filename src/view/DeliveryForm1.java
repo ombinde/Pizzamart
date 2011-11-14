@@ -44,9 +44,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         leftScrollPane = new javax.swing.JScrollPane();
         orderPanel = new javax.swing.JPanel();
-        orderLabel1 = new javax.swing.JLabel();
-        orderLabel2 = new javax.swing.JLabel();
-        orderLabel3 = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         mapPanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
@@ -58,7 +55,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         redColorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kjøkken - oversikt");
+        setTitle("Utkjøring - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("newOrderFrame"); // NOI18N
         setResizable(false);
@@ -291,6 +288,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
+<<<<<<< HEAD
 		ArrayList<Order> orders = DeliveryController.getFreshOrders();
         ArrayList<Product> productsInOrder;
         
@@ -309,6 +307,17 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			orderText += quantity + " stk: ";
 			orderText += productName + ", ";
     		}
+=======
+		//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+        //HashMap<Product, Integer> products = orders.get(0);
+		//Set set = products.entrySet();
+        //Iterator it = set.iterator();
+        
+        ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
+
+        for (int i = 0; i < 3; i++){	
+        	//Map.Entry me = (Map.Entry)it.next();
+>>>>>>> morten/gui
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	upperHalf.setBackground(new java.awt.Color(225, 230, 235));
@@ -442,9 +451,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     private javax.swing.JPanel leftPanel;
     private javax.swing.JScrollPane leftScrollPane;
     private javax.swing.JPanel mapPanel;
-    private javax.swing.JLabel orderLabel1;
-    private javax.swing.JLabel orderLabel2;
-    private javax.swing.JLabel orderLabel3;
     private javax.swing.JPanel orderPanel;
     private javax.swing.JLabel redColorLabel;
     private javax.swing.JPanel rightPanel;
