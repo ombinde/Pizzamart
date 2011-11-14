@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import controller.DeliveryController;
+
 
 /**
  * 
@@ -78,16 +80,8 @@ public class GoogleMaps extends JFrame {
 	public static JLabel mainMap() throws MalformedURLException, IOException {
 		String marker = "&markers=color:red%7C";
 		String address = "";
-		//Sample ArrayList. Remove it later.
-		ArrayList<String> addressList = new ArrayList<String>();
+		ArrayList<String> addressList = DeliveryController.getAddressForMap();
 		
-		// TODO Implement ArrayList with orders
-		
-		
-		// Just some sample data. Remove it later.
-		addressList.add("hogskoleringen1%20trondheim");
-		addressList.add("munkegata12%20trondheim");
-		addressList.add("dronningensgate9%20trondheim");
 		
 		/*
 		 *  TODO In case there's no orders to show, the map will probably show a bit too much water.
@@ -96,11 +90,11 @@ public class GoogleMaps extends JFrame {
 		
 		address = 
 				"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=250x250&maptype=roadmap&markers=color:red%7C"
-				+ addressList.get(0);
+				+ validateAddress(addressList.get(0));
 		
 			for (int i = 1; i < addressList.size(); i++) {
 				address += marker;
-				address += addressList.get(i);
+				address += validateAddress(addressList.get(i));
 			}
 				
 			address += "&sensor=false";
