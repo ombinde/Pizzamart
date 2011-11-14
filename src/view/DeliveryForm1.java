@@ -13,9 +13,7 @@ import model.DeliveryFee;
 import model.GoogleMaps;
 import model.Order;
 import model.Product;
-import controller.ChefController;
 import controller.DeliveryController;
-import controller.ManageOrder;
 
 /*
  * DeliveryForm1.java
@@ -44,9 +42,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         leftScrollPane = new javax.swing.JScrollPane();
         orderPanel = new javax.swing.JPanel();
-        orderLabel1 = new javax.swing.JLabel();
-        orderLabel2 = new javax.swing.JLabel();
-        orderLabel3 = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         mapPanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
@@ -58,7 +53,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         redColorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kjøkken - oversikt");
+        setTitle("Utkjøring - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("newOrderFrame"); // NOI18N
         setResizable(false);
@@ -291,9 +286,8 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
+<<<<<<< HEAD
 		ArrayList<Order> orders = DeliveryController.getFreshOrders();
-        ArrayList<Product> productsInOrder;
-        
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
 
         for (int i=0; i<orders.size(); i++){	
@@ -309,31 +303,59 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			orderText += quantity + " stk: ";
 			orderText += productName + ", ";
     		}
+=======
+		//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+        //HashMap<Product, Integer> products = orders.get(0);
+		//Set set = products.entrySet();
+        //Iterator it = set.iterator();
+        
+        ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
+
+        for (int i = 0; i < 3; i++){	
+        	//Map.Entry me = (Map.Entry)it.next();
+>>>>>>> morten/gui
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
-        	upperHalf.setBackground(new java.awt.Color(225, 230, 235));
+        	// Create the lower half of the order Label
+        	javax.swing.JLabel lowerHalf = new javax.swing.JLabel();
+			if (order.getStatus().equals("Under levering")) {
+				upperHalf.setBackground(new java.awt.Color(245, 245, 215));
+		        upperHalf.setForeground(new java.awt.Color(100, 70, 20));
+		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		        lowerHalf.setBackground(new java.awt.Color(245, 245, 215));
+	        	lowerHalf.setForeground(new java.awt.Color(100, 70, 20));
+	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
+			}
+			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
+					upperHalf.setBackground(new java.awt.Color(235, 210, 210));
+			        upperHalf.setForeground(new java.awt.Color(115, 35, 35));
+			        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+			        lowerHalf.setBackground(new java.awt.Color(235, 210, 210));
+		        	lowerHalf.setForeground(new java.awt.Color(115, 35, 35));
+		        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
+
+			}
+			else {
+				upperHalf.setBackground(new java.awt.Color(225, 230, 235));
+		        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
+		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		        lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
+	        	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
+	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
+
+			}
         	upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setForeground(new java.awt.Color(45, 65, 105));
         	upperHalf.setText(order.getTime() + ":    " + order.getCustomer().getAddress());
-        	upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(7, 10, 0, 10)));
         	upperHalf.setOpaque(true);
-            //upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
+            upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     orderLabelMouseClicked(evt, order);
                 }
             });
-        	
-        	// Create the lower half of the order Label
-        	javax.swing.JLabel lowerHalf = new javax.swing.JLabel();
-
-        	lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
-        	lowerHalf.setFont(new java.awt.Font("Georgia", 0, 14));
-        	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
         	lowerHalf.setText(orderText);
-        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
         	lowerHalf.setOpaque(true);
-            //lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
+            lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                 	orderLabelMouseClicked(evt, order);
@@ -442,9 +464,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     private javax.swing.JPanel leftPanel;
     private javax.swing.JScrollPane leftScrollPane;
     private javax.swing.JPanel mapPanel;
-    private javax.swing.JLabel orderLabel1;
-    private javax.swing.JLabel orderLabel2;
-    private javax.swing.JLabel orderLabel3;
     private javax.swing.JPanel orderPanel;
     private javax.swing.JLabel redColorLabel;
     private javax.swing.JPanel rightPanel;

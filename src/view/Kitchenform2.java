@@ -2,11 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 //no.ntnu.course
@@ -247,18 +242,22 @@ public class Kitchenform2 extends javax.swing.JFrame {
             }
         });
 
-        startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
+        
         startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
         if (order.getStatus().equals("Bestilt")){
 	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
 	        startFinishButton.setText(" Start");
+	        startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
+	        startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
+	        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         }
         else{
         	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
 	        startFinishButton.setText(" Finish");
+	        startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
+    		startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
+    		startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         }
-        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         startFinishButton.setOpaque(true);
         startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
         startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -348,8 +347,8 @@ public class Kitchenform2 extends javax.swing.JFrame {
         	quantityLabel.setOpaque(true);
         	quantityLabel.setVisible(true);
         	int bg;
-			if (i % 2 == 0) { bg = 200; }
-	        else 			{ bg = 220; }
+			if (i % 2 == 0) { bg = 220; }
+	        else 			{ bg = 240; }
 			i++;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
@@ -400,7 +399,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = quantityPanelLayout.createSequentialGroup();
         for (int i = 0; i < quantityLabels.size(); i++){
         	tempVerticalGroup.addComponent(quantityLabels.get(i));
-        	//tempVerticalGroup.addContainerGap(286, Short.MAX_VALUE);
         }
         
         quantityPanelLayout.setHorizontalGroup(tempHorizontalGroup);
@@ -422,7 +420,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = productPanelLayout.createSequentialGroup();
         for (int i = 0; i < productLabels.size(); i++){
         	tempVerticalGroup.addComponent(productLabels.get(i));
-        	//tempVerticalGroup.addContainerGap(286, Short.MAX_VALUE);
         }
         
         productPanelLayout.setHorizontalGroup(tempHorizontalGroup);
@@ -465,6 +462,9 @@ public class Kitchenform2 extends javax.swing.JFrame {
     		ChefController.startOrder(order);
     		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
     		startFinishButton.setText(" Finish");
+    		startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
+    		startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
+    		startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
     	}
     	else{
     		ChefController.setFinishedOrder(order);

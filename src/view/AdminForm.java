@@ -1,12 +1,15 @@
 package view;
 
+import java.awt.Color;
+import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 
 /*
- * AdminForm.java
+ * adminForm.java
  *
- * Created on Oct 16, 2011, 3:58:52 PM
+ * Created on 26.sep.2011, 10:50:18
  */
 /**
  *
@@ -15,7 +18,7 @@ import javax.swing.JOptionPane;
 @SuppressWarnings("serial")
 public class AdminForm extends javax.swing.JFrame {
 
-    /** Creates new form AdminForm */
+    /** Creates new form adminForm */
     public AdminForm() {
         initComponents();
     }
@@ -25,271 +28,543 @@ public class AdminForm extends javax.swing.JFrame {
      */
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        backButton = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        adminLabel = new javax.swing.JLabel();
-        employeeTab = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        addEmployeeButton = new javax.swing.JButton();
-        firstNameField = new javax.swing.JTextField();
-        firstNameLabel = new javax.swing.JLabel();
-        usernameField = new javax.swing.JTextField();
-        usernameLabel = new javax.swing.JLabel();
-        lastNameField = new javax.swing.JTextField();
-        lastNameLabel = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        existingEmployeeLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        existingEmployeeArea = new javax.swing.JTextArea();
-        jPanel6 = new javax.swing.JPanel();
+        topPanel = new javax.swing.JPanel();
+        newOrderLabel = new javax.swing.JLabel();
+        middlePanel = new javax.swing.JPanel();
+        tabPane = new javax.swing.JTabbedPane();
+        productPanel = new javax.swing.JPanel();
+        rightProductPanel = new javax.swing.JPanel();
+        addEditButton = new javax.swing.JLabel();
+        deleteButton = new javax.swing.JLabel();
+        productNameLabel = new javax.swing.JLabel();
+        productNameField = new javax.swing.JTextField();
+        priceLabel = new javax.swing.JLabel();
+        priceField = new javax.swing.JTextField();
+        commentLabel = new javax.swing.JLabel();
+        commentField = new javax.swing.JTextField();
+        leftProductPanel = new javax.swing.JPanel();
+        restaurantPanel = new javax.swing.JPanel();
+        leftRestaurantPanel = new javax.swing.JPanel();
+        restaurantNameLabel = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
+        zipCodeLabel = new javax.swing.JLabel();
+        postalAddressLabel = new javax.swing.JLabel();
+        telephoneLabel = new javax.swing.JLabel();
+        zipCodeField = new javax.swing.JTextField();
+        telephoneField = new javax.swing.JTextField();
+        postalAddressField = new javax.swing.JTextField();
+        addressField = new javax.swing.JTextField();
+        restaurantNameField = new javax.swing.JTextField();
+        nameAddressHeaderLabel = new javax.swing.JLabel();
+        rightRestaurantPanel = new javax.swing.JPanel();
+        editButton = new javax.swing.JLabel();
+        freeDeliveryLimitLabel = new javax.swing.JLabel();
+        freeDeliveryLimitField = new javax.swing.JTextField();
+        otherInfoHeaderLabel = new javax.swing.JLabel();
+        bottomPanel = new javax.swing.JPanel();
+        backButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrer");
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jPanel2.setBackground(new java.awt.Color(120, 120, 120));
+        topPanel.setBackground(new java.awt.Color(220, 220, 220));
+        topPanel.setPreferredSize(new java.awt.Dimension(800, 100));
+        topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
-        backButton.setText("Tilbake");
-        backButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt);
+        newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        newOrderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newOrderLabel.setText("Administrer");
+
+        javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
+        topPanel.setLayout(topPanelLayout);
+        topPanelLayout.setHorizontalGroup(
+            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newOrderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        topPanelLayout.setVerticalGroup(
+            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topPanelLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(newOrderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        middlePanel.setBackground(new java.awt.Color(253, 253, 253));
+        middlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        rightProductPanel.setBackground(new java.awt.Color(253, 253, 253));
+
+        addEditButton.setBackground(new java.awt.Color(230, 240, 200));
+        addEditButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        addEditButton.setForeground(new java.awt.Color(64, 80, 25));
+        addEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png"))); // NOI18N
+        addEditButton.setText("Legg til");
+        addEditButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        addEditButton.setIconTextGap(10);
+        addEditButton.setOpaque(true);
+        addEditButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        addEditButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addEditButtonMouseClicked(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(87, 87, 87)
-                .add(backButton)
-                .addContainerGap(623, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(backButton)
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(120, 120, 120));
-        jPanel3.setPreferredSize(new java.awt.Dimension(506, 100));
-
-        adminLabel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        adminLabel.setText("Administrer");
-
-        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(311, Short.MAX_VALUE)
-                .add(adminLabel)
-                .add(308, 308, 308))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(adminLabel)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        addEmployeeButton.setText("Legg til");
-        addEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addEmployeeButtonActionPerformed(evt);
+        deleteButton.setBackground(new java.awt.Color(235, 207, 207));
+        deleteButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(113, 36, 36));
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png"))); // NOI18N
+        deleteButton.setText("Slett");
+        deleteButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        deleteButton.setIconTextGap(10);
+        deleteButton.setOpaque(true);
+        deleteButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteButtonMouseClicked(evt);
             }
         });
 
-        firstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameFieldActionPerformed(evt);
-            }
-        });
+        productNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        productNameLabel.setText("Produktnavn");
 
-        firstNameLabel.setText("Fornavn");
+        productNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
+        priceLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        priceLabel.setText("Pris");
 
-        usernameLabel.setText("Brukernavn");
+        priceField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        lastNameLabel.setText("Etternavn");
+        commentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        commentLabel.setText("Kommentar");
 
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
-                .add(57, 57, 57)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, firstNameField)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, usernameField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, usernameLabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, firstNameLabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, lastNameLabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, addEmployeeButton)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, lastNameField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
+        commentField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        javax.swing.GroupLayout rightProductPanelLayout = new javax.swing.GroupLayout(rightProductPanel);
+        rightProductPanel.setLayout(rightProductPanelLayout);
+        rightProductPanelLayout.setHorizontalGroup(
+            rightProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightProductPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(usernameLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(usernameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(firstNameLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(firstNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(lastNameLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(lastNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(7, 7, 7)
-                .add(addEmployeeButton)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGroup(rightProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(productNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightProductPanelLayout.createSequentialGroup()
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addComponent(addEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(productNameLabel)
+                    .addComponent(priceLabel)
+                    .addComponent(priceField, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                    .addComponent(commentLabel)
+                    .addComponent(commentField, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        existingEmployeeLabel.setText("Ansatte som er lagt inn i systemet");
-
-        existingEmployeeArea.setColumns(20);
-        existingEmployeeArea.setRows(5);
-        jScrollPane1.setViewportView(existingEmployeeArea);
-
-        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
+        rightProductPanelLayout.setVerticalGroup(
+            rightProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightProductPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(existingEmployeeLabel))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(existingEmployeeLabel)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 182, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(productNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(priceLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(commentLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(commentField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGroup(rightProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        employeeTab.addTab("Ansatt", jPanel1);
+        leftProductPanel.setBackground(new java.awt.Color(253, 253, 253));
+        leftProductPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
 
-        org.jdesktop.layout.GroupLayout jPanel6Layout = new org.jdesktop.layout.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 753, Short.MAX_VALUE)
+        displayAdminPanel();
+
+        javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
+        productPanel.setLayout(productPanelLayout);
+        productPanelLayout.setHorizontalGroup(
+            productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productPanelLayout.createSequentialGroup()
+                .addComponent(leftProductPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rightProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 318, Short.MAX_VALUE)
+        productPanelLayout.setVerticalGroup(
+            productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(leftProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rightProductPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        employeeTab.addTab("Varer", jPanel6);
+        tabPane.addTab("Produkter", productPanel);
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+        restaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
+
+        leftRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
+        leftRestaurantPanel.setPreferredSize(new java.awt.Dimension(375, 354));
+
+        restaurantNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        restaurantNameLabel.setText("Navn");
+
+        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressLabel.setText("Adresse");
+
+        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeLabel.setText("Postnummer");
+
+        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        postalAddressLabel.setText("Poststed");
+
+        telephoneLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneLabel.setText("Telefonnummer");
+
+        zipCodeField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        telephoneField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        postalAddressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        addressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        restaurantNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        nameAddressHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
+        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameAddressHeaderLabel.setText("Restaurantopplysninger");
+        nameAddressHeaderLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5));
+        nameAddressHeaderLabel.setOpaque(true);
+        nameAddressHeaderLabel.setPreferredSize(new java.awt.Dimension(375, 40));
+
+        javax.swing.GroupLayout leftRestaurantPanelLayout = new javax.swing.GroupLayout(leftRestaurantPanel);
+        leftRestaurantPanel.setLayout(leftRestaurantPanelLayout);
+        leftRestaurantPanelLayout.setHorizontalGroup(
+            leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                        .addComponent(telephoneField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                        .addComponent(telephoneLabel)
+                        .addContainerGap(254, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftRestaurantPanelLayout.createSequentialGroup()
+                        .addGroup(leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(zipCodeField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .addComponent(zipCodeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                                .addComponent(postalAddressLabel)
+                                .addGap(210, 210, 210))
+                            .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                                .addComponent(postalAddressField, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                                .addContainerGap())))
+                    .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                        .addComponent(addressLabel)
+                        .addContainerGap(306, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftRestaurantPanelLayout.createSequentialGroup()
+                        .addComponent(restaurantNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addComponent(nameAddressHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+            .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(restaurantNameLabel)
+                .addContainerGap(322, Short.MAX_VALUE))
+        );
+        leftRestaurantPanelLayout.setVerticalGroup(
+            leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftRestaurantPanelLayout.createSequentialGroup()
+                .addComponent(nameAddressHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(restaurantNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(restaurantNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addressLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(zipCodeLabel)
+                    .addComponent(postalAddressLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(leftRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(zipCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(postalAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(telephoneLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(telephoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        rightRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
+
+        editButton.setBackground(new java.awt.Color(230, 240, 200));
+        editButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        editButton.setForeground(new java.awt.Color(64, 80, 25));
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png"))); // NOI18N
+        editButton.setText("Endre");
+        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        editButton.setIconTextGap(10);
+        editButton.setOpaque(true);
+        editButton.setPreferredSize(new java.awt.Dimension(130, 50));
+        editButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editButtonMouseClicked(evt);
+            }
+        });
+
+        freeDeliveryLimitLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        freeDeliveryLimitLabel.setText("Grense for gratis levering");
+
+        freeDeliveryLimitField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+
+        otherInfoHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
+        otherInfoHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        otherInfoHeaderLabel.setText("Andre innstillinger");
+        otherInfoHeaderLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5));
+        otherInfoHeaderLabel.setOpaque(true);
+        otherInfoHeaderLabel.setPreferredSize(new java.awt.Dimension(378, 40));
+
+        javax.swing.GroupLayout rightRestaurantPanelLayout = new javax.swing.GroupLayout(rightRestaurantPanel);
+        rightRestaurantPanel.setLayout(rightRestaurantPanelLayout);
+        rightRestaurantPanelLayout.setHorizontalGroup(
+            rightRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(otherInfoHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+            .addGroup(rightRestaurantPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(freeDeliveryLimitLabel)
+                .addContainerGap(201, Short.MAX_VALUE))
+            .addGroup(rightRestaurantPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(freeDeliveryLimitField, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(rightRestaurantPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(228, Short.MAX_VALUE))
+        );
+        rightRestaurantPanelLayout.setVerticalGroup(
+            rightRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightRestaurantPanelLayout.createSequentialGroup()
+                .addComponent(otherInfoHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(freeDeliveryLimitLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(freeDeliveryLimitField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout restaurantPanelLayout = new javax.swing.GroupLayout(restaurantPanel);
+        restaurantPanel.setLayout(restaurantPanelLayout);
+        restaurantPanelLayout.setHorizontalGroup(
+            restaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(restaurantPanelLayout.createSequentialGroup()
+                .addComponent(leftRestaurantPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rightRestaurantPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        restaurantPanelLayout.setVerticalGroup(
+            restaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(leftRestaurantPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addComponent(rightRestaurantPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        tabPane.addTab("Restaurant", restaurantPanel);
+
+        javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
+        middlePanel.setLayout(middlePanelLayout);
+        middlePanelLayout.setHorizontalGroup(
+            middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(middlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        middlePanelLayout.setVerticalGroup(
+            middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(middlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        bottomPanel.setBackground(new java.awt.Color(220, 220, 220));
+        bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
+        bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
+
+
+        backButton.setBackground(new java.awt.Color(235, 207, 207));
+        backButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        backButton.setForeground(new java.awt.Color(113, 36, 36));
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
+        backButton.setText("Tilbake");
+        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        backButton.setIconTextGap(10);
+        backButton.setOpaque(true);
+        backButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
+        bottomPanel.setLayout(bottomPanelLayout);
+        bottomPanelLayout.setHorizontalGroup(
+            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(650, Short.MAX_VALUE))
+        );
+        bottomPanelLayout.setVerticalGroup(
+            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bottomPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .add(employeeTab, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
-                .addContainerGap())
-            .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(middlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(employeeTab, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 364, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        employeeTab.getAccessibleContext().setAccessibleName("employee");
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+        ));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
+    /**
+     * Fills in the dynamic parts of the admin Panel
+     */
+    private void displayAdminPanel() {
+    	
+    	ArrayList<javax.swing.JLabel> products = createProductLabels();
+    	setLeftProductPanelLayout(products);
+    	
+    	
+    }
 
-    private void firstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameFieldActionPerformed
+	private ArrayList<JLabel> createProductLabels() {
+    	ArrayList<javax.swing.JLabel> products = new ArrayList<javax.swing.JLabel>();
+    	
+    	
+    	for (int i=0; i < 3; i++) {
+        	// Create a new JLabel
+        	javax.swing.JLabel temp = new javax.swing.JLabel();
+            // Set JLabel dimensions, text, border and so on
+            temp.setText("Palermo");
+            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            temp.setOpaque(true);
+            temp.setPreferredSize(new java.awt.Dimension(140, 20));
+            temp.setSize(new java.awt.Dimension(140, 20));
+            temp.setVisible(true);
+        	// Make it so that every other JLabel has a different background color than the previous
+            int bg;
+    		if (i % 2 == 0){
+            	bg = 220;
+            }
+            else {
+            	bg = 240;
+            }
+    		temp.setBackground(new java.awt.Color(bg, bg, bg));
+    		// What method to call if the JLabel is clicked
+            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    productLabelMouseClicked();
+                }
 
-    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        MainMenuForm form = new MainMenuForm();
-        this.setVisible(false);
-        form.setVisible(true);
-    }//GEN-LAST:event_backButtonActionPerformed
+            });
+            // Add the JLabel to the array of JLabels
+            products.add(temp);
+    	}
+    	return products;
+	}
 
-    private void addEmployeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeButtonActionPerformed
-        String username, firstname, lastname;
-
-        try {
-            username = this.usernameField.getText();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Bad text", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            firstname = this.firstNameField.getText();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Bad text", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            lastname = this.lastNameField.getText();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Bad text", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+    private void setLeftProductPanelLayout(ArrayList<JLabel> products) {
+    	javax.swing.GroupLayout leftProductPanelLayout = new javax.swing.GroupLayout(leftProductPanel);
+        leftProductPanel.setLayout(leftProductPanelLayout);
+        
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
+        for (int i = 0; i < products.size(); i++){
+        	tempHorizontalGroup.addComponent(products.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE);
         }
         
-        controller.ManageEmployee.addNewEmployee(username, firstname, lastname);
-    }//GEN-LAST:event_addEmployeeButtonActionPerformed
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = leftProductPanelLayout.createSequentialGroup();
+        for (int i = 0; i < products.size(); i++){
+        	tempVerticalGroup.addComponent(products.get(i));
+        }
+        
+        leftProductPanelLayout.setHorizontalGroup(tempHorizontalGroup);
+        leftProductPanelLayout.setVerticalGroup(
+            leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tempVerticalGroup)
+        );
+    
+    }
+	
+	private void productLabelMouseClicked() {
+		productNameField.setText("Palermo");
+		priceField.setText("199.00");
+		commentField.setText("Dette er en ganske kjedelig kommentar");
+		
+		// Make the submit button yellow and change the text
+		addEditButton.setText("Endre");
+		addEditButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		addEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png")));
+		addEditButton.setForeground(new java.awt.Color(100, 70, 20));
+		addEditButton.setBackground(new java.awt.Color(245, 245, 215));
+	}
+    	
+	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
+    	MainMenuForm form = new MainMenuForm();
+    	form.setVisible(true);
+    	this.setVisible(false);
+    }
+    private void addEditButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        // TODO add your handling code here:
+    }                                       
+
+    private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -309,7 +584,6 @@ public class AdminForm extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -319,25 +593,41 @@ public class AdminForm extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addEmployeeButton;
-    private javax.swing.JLabel adminLabel;
-    private javax.swing.JButton backButton;
-    private javax.swing.JTabbedPane employeeTab;
-    private javax.swing.JTextArea existingEmployeeArea;
-    private javax.swing.JLabel existingEmployeeLabel;
-    private javax.swing.JTextField firstNameField;
-    private javax.swing.JLabel firstNameLabel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField lastNameField;
-    private javax.swing.JLabel lastNameLabel;
-    private javax.swing.JTextField usernameField;
-    private javax.swing.JLabel usernameLabel;
-    // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify
+    private javax.swing.JLabel addEditButton;
+    private javax.swing.JTextField addressField;
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JLabel backButton;
+    private javax.swing.JPanel bottomPanel;
+    private javax.swing.JTextField commentField;
+    private javax.swing.JLabel commentLabel;
+    private javax.swing.JLabel deleteButton;
+    private javax.swing.JTextField freeDeliveryLimitField;
+    private javax.swing.JLabel freeDeliveryLimitLabel;
+    private javax.swing.JPanel leftProductPanel;
+    private javax.swing.JPanel leftRestaurantPanel;
+    private javax.swing.JTextField productNameField;
+    private javax.swing.JPanel middlePanel;
+    private javax.swing.JLabel nameAddressHeaderLabel;
+    private javax.swing.JLabel newOrderLabel;
+    private javax.swing.JLabel otherInfoHeaderLabel;
+    private javax.swing.JTextField postalAddressField;
+    private javax.swing.JLabel postalAddressLabel;
+    private javax.swing.JTextField priceField;
+    private javax.swing.JLabel priceLabel;
+    private javax.swing.JLabel productNameLabel;
+    private javax.swing.JPanel productPanel;
+    private javax.swing.JTextField restaurantNameField;
+    private javax.swing.JLabel restaurantNameLabel;
+    private javax.swing.JPanel restaurantPanel;
+    private javax.swing.JPanel rightProductPanel;
+    private javax.swing.JPanel rightRestaurantPanel;
+    private javax.swing.JTabbedPane tabPane;
+    private javax.swing.JTextField telephoneField;
+    private javax.swing.JLabel telephoneLabel;
+    private javax.swing.JPanel topPanel;
+    private javax.swing.JLabel editButton;
+    private javax.swing.JTextField zipCodeField;
+    private javax.swing.JLabel zipCodeLabel;
+    // End of variables declaration
 }
