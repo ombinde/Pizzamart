@@ -42,9 +42,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         leftPanel = new javax.swing.JPanel();
         leftScrollPane = new javax.swing.JScrollPane();
         orderPanel = new javax.swing.JPanel();
-        orderLabel1 = new javax.swing.JLabel();
-        orderLabel2 = new javax.swing.JLabel();
-        orderLabel3 = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         mapPanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
@@ -289,6 +286,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
+<<<<<<< HEAD
 		ArrayList<Order> orders = DeliveryController.getFreshOrders();
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
 
@@ -305,6 +303,17 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			orderText += quantity + " stk: ";
 			orderText += productName + ", ";
     		}
+=======
+		//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
+        //HashMap<Product, Integer> products = orders.get(0);
+		//Set set = products.entrySet();
+        //Iterator it = set.iterator();
+        
+        ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
+
+        for (int i = 0; i < 3; i++){	
+        	//Map.Entry me = (Map.Entry)it.next();
+>>>>>>> morten/gui
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	// Create the lower half of the order Label
@@ -455,9 +464,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     private javax.swing.JPanel leftPanel;
     private javax.swing.JScrollPane leftScrollPane;
     private javax.swing.JPanel mapPanel;
-    private javax.swing.JLabel orderLabel1;
-    private javax.swing.JLabel orderLabel2;
-    private javax.swing.JLabel orderLabel3;
     private javax.swing.JPanel orderPanel;
     private javax.swing.JLabel redColorLabel;
     private javax.swing.JPanel rightPanel;
