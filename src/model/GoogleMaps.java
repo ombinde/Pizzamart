@@ -85,7 +85,7 @@ public class GoogleMaps extends JFrame {
 		
 		
 		if (addressList.size() == 0) {
-			address = "http://maps.googleapis.com/maps/api/staticmap?center=Trondheim&zoom=14&size=380x455&sensor=false";
+			address = "http://maps.googleapis.com/maps/api/staticmap?center=Trondheim&zoom=12&size=380x455&sensor=false";
 		}
 		
 		else {
