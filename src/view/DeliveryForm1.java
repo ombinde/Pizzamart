@@ -286,7 +286,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
-<<<<<<< HEAD
 		ArrayList<Order> orders = DeliveryController.getFreshOrders();
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
 
@@ -303,17 +302,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			orderText += quantity + " stk: ";
 			orderText += productName + ", ";
     		}
-=======
-		//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
-        //HashMap<Product, Integer> products = orders.get(0);
-		//Set set = products.entrySet();
-        //Iterator it = set.iterator();
-        
-        ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
-
-        for (int i = 0; i < 3; i++){	
-        	//Map.Entry me = (Map.Entry)it.next();
->>>>>>> morten/gui
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	// Create the lower half of the order Label
@@ -321,7 +309,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			if (order.getStatus().equals("Under levering")) {
 				upperHalf.setBackground(new java.awt.Color(245, 245, 215));
 		        upperHalf.setForeground(new java.awt.Color(100, 70, 20));
-		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		        lowerHalf.setBackground(new java.awt.Color(245, 245, 215));
 	        	lowerHalf.setForeground(new java.awt.Color(100, 70, 20));
 	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
@@ -329,7 +317,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
 					upperHalf.setBackground(new java.awt.Color(235, 210, 210));
 			        upperHalf.setForeground(new java.awt.Color(115, 35, 35));
-			        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+			        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 			        lowerHalf.setBackground(new java.awt.Color(235, 210, 210));
 		        	lowerHalf.setForeground(new java.awt.Color(115, 35, 35));
 		        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
@@ -338,7 +326,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			else {
 				upperHalf.setBackground(new java.awt.Color(225, 230, 235));
 		        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
-		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		        lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
 	        	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
 	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
