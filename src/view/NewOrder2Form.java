@@ -24,11 +24,22 @@ import controller.Validate;
 public class NewOrder2Form extends javax.swing.JFrame {
 
 	private Order order;
+	private Customer customer;
     /** Creates new form NewOrder2Form */
     public NewOrder2Form(Customer c) {
         initComponents();
         ManageOrder.addCustomerToDatabase(c);
+        this.customer = c;
         this.order = new Order(c);
+        this.updateRightPanel();
+        this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
+    }
+    
+    public NewOrder2Form(Customer c, Order o) {
+        initComponents();
+        ManageOrder.addCustomerToDatabase(c);
+        this.customer = c;
+        this.order = o;
         this.updateRightPanel();
         this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
     }
@@ -240,7 +251,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         commentArea.setColumns(20);
         commentArea.setLineWrap(true);
         commentArea.setRows(3);
-        commentArea.setText("Skriv en kommentar her..");
+        commentArea.setText("");
         commentArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         commentScrollPane.setViewportView(commentArea);
         commentArea.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -381,7 +392,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
     		final Product product = p;
     		temp.setText(product.getQuantity() + " stk " + product.getName() + "    " + 
-    					 product.getPrice()*product.getQuantity());
+    					 ManageOrder.formatPrice(product.getPrice()*product.getQuantity()));
     		temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
     		temp.setOpaque(true);
     		temp.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -441,7 +452,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
     }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	NewOrderForm form = new NewOrderForm();
+    	NewOrderForm form = new NewOrderForm(customer, order);
         form.setVisible(true);
         this.setVisible(false);
     }
@@ -455,14 +466,20 @@ public class NewOrder2Form extends javax.swing.JFrame {
     		this.commentArea.setBackground(color);
     		legalOrder = false;
     	}
+    	else if (order.getAllergy() && this.commentArea.getText().equals("")){
+    		this.commentArea.setBackground(color);
+    		legalOrder = false;
+    	}
+    	else{
+    		this.commentArea.setBackground(Color.WHITE);
+    	}
     	if ((ManageOrder.getProductsInOrder(order).size()<2 && order.getDelivery()) || ManageOrder.getProductsInOrder(order).size()<1){
     		this.rightPanel.setBackground(color);
     		legalOrder = false;
     	}
     	
     	if (legalOrder){
-    		if(!this.commentArea.getText().equals("Skriv en kommentar her.."))
-    			order.setComment(this.commentArea.getText());
+    		order.setComment(this.commentArea.getText());
 	    	ManageOrder.submitOrderToDatabase(order);
 	    	MainMenuForm form = new MainMenuForm();
 	    	form.setVisible(true);
