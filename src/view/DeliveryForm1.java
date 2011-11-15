@@ -302,6 +302,8 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 			orderText += quantity + " stk: ";
 			orderText += productName + ", ";
     		}
+        	//Remove the last two characters from orderText
+        	orderText = orderText.substring(0, (orderText.length() - 2));
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	// Create the lower half of the order Label

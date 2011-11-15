@@ -285,7 +285,9 @@ public class MainMenuForm extends javax.swing.JFrame {
 	}
     
     private void historyButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    	HistoryForm1 form = new HistoryForm1();
+    	form.setVisible(true);
+    	this.setVisible(false);
     }
 
     private void adminButtonMouseClicked(java.awt.event.MouseEvent evt) {
