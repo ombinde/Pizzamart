@@ -11,12 +11,6 @@ INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdres
 INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress)
 	values ('Lilly', 'Meister', '9334538', 'Berteveien 4', '7050', 'Trondheim');
 
-
-INSERT INTO employee (forename, lastname, username)
-	values ('David', 'Storjord', 'david');
-INSERT INTO employee (forename, lastname, username)
-	values ('Morten', 'Noddeland', 'mortnod');
-
 INSERT INTO product (name, price)
 	values ('Bari', '220');
 INSERT INTO product (name, price)
@@ -48,61 +42,5 @@ INSERT INTO product (name, price)
 INSERT INTO product (name, price)
 	values ('Frakt', '50');
 
-INSERT INTO orders (status, customer_idcustomer, comments, delivery)
-	values ('Bestilt', 1, 'Uten tomater', 'false');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Levert', 2, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Under levering', 1, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Under levering', 3, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Bestilt', 4, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Bestilt', 2, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Bestilt', 1, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Lages', 2, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Lages', 5, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Hentet', 4, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Laget ferdig', 2, '1');
-INSERT INTO orders (status, customer_idcustomer, delivery)
-	values ('Klar til henting',5, '0');
-
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,1,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,2,5);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(2,1,6);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(4,3,2);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(7,4,1);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(5,1,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(2,5,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(2,6,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(9,7,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(4,8,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,9,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,10,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,11,7);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(2,12,3);
-INSERT INTO product_has_order(product_idproduct, orders_idorder, quantity)
-	values(1,12,3);
-
-INSERT INTO properties(limitFreeDelivery) 
-	values(50);
+INSERT INTO properties(limitFreeDelivery, name, address, postcode, postaladdress, phone) 
+	values(500, 'Pizzamart', 'Munkegata 1', '7050', 'Trondheim', '22408070');

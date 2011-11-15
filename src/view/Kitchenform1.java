@@ -248,11 +248,10 @@ public class Kitchenform1 extends javax.swing.JFrame {
     	
     	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
     	ArrayList<Order> freshOrders = ChefController.getFreshOrders();
-    	System.out.println(freshOrders.size());
     	for (int i = 0; i < freshOrders.size(); i++) {
-    		String orderText = "";
     		final Order order = freshOrders.get(i);
-    		for (Product product : freshOrders.get(i).getProductsInOrder()) {
+    		String orderText = order.getTime() + ": ";
+    		for (Product product : order.getProductsInOrder()) {
     			if (product instanceof DeliveryFee){
     				continue;
     			}
@@ -262,9 +261,9 @@ public class Kitchenform1 extends javax.swing.JFrame {
 			orderText += quantity + " stk: ";
 			orderText += productName + ", ";
     		}
+    		orderText = orderText.substring(0, orderText.length()-2);
     		// Create a JLabel and define dimensions and other variables
 			javax.swing.JLabel temp = new javax.swing.JLabel();
-			//TODO Insert parameter to choose color of order
 			if (order.getStatus().equals("Lages")) {
 				temp.setBackground(new java.awt.Color(245, 245, 215));
 		        temp.setForeground(new java.awt.Color(100, 70, 20));
