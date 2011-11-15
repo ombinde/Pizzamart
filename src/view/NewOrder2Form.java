@@ -12,19 +12,19 @@ import controller.Validate;
 //no.ntnu.course
 
 /*
- * NewOrder2Form.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
+* NewOrder2Form.java
+*
+* Created on 29.sep.2011, 12:24:07
+*/
 /**
- *
- * @author Morten Vaale Noddeland
- */
+*
+* @author Morten Vaale Noddeland
+*/
 @SuppressWarnings("serial")
 public class NewOrder2Form extends javax.swing.JFrame {
 
-	private Order order;
-	private Customer customer;
+private Order order;
+private Customer customer;
     /** Creates new form NewOrder2Form */
     public NewOrder2Form(Customer c) {
         initComponents();
@@ -46,8 +46,8 @@ public class NewOrder2Form extends javax.swing.JFrame {
     
     
     /** This method is called from within the constructor to
-     * initialize the form.
-     */
+* initialize the form.
+*/
     private void initComponents() {
 
         topPanel = new javax.swing.JPanel();
@@ -107,7 +107,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
         searchField.setAlignmentY(0.0F);
         searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10,10,10,10)));
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchFieldKeyTyped(evt);
             }
         });
@@ -293,7 +293,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                		.addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                 .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(commentPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,35 +304,35 @@ public class NewOrder2Form extends javax.swing.JFrame {
 
         pack();
     }
-	/**
-	 * Takes in a hashmap with product names and prices, packs them in
-	 * a clickable JLabel, and shows them on screen
-	 * @param products
-	 */
+/**
+* Takes in a hashmap with product names and prices, packs them in
+* a clickable JLabel, and shows them on screen
+* @param products
+*/
     public void updateLeftPanel(ArrayList<Product> products) {
-    	// Creates a JLabel array
-    	ArrayList<javax.swing.JLabel> productList = new ArrayList<javax.swing.JLabel>();
-    	for (int i=0; i<products.size(); i++){
-        	// Create a new JLabel
-        	javax.swing.JLabel temp = new javax.swing.JLabel();
+     // Creates a JLabel array
+     ArrayList<javax.swing.JLabel> productList = new ArrayList<javax.swing.JLabel>();
+     for (int i=0; i<products.size(); i++){
+         // Create a new JLabel
+         javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
-        	final Product product = products.get(i);
+         final Product product = products.get(i);
             temp.setText(product.getName() + " " + product.formatPrice());
             temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             temp.setOpaque(true);
             temp.setPreferredSize(new java.awt.Dimension(140, 20));
             temp.setSize(new java.awt.Dimension(140, 20));
             temp.setVisible(true);
-        	// Make it so that every other JLabel has a different background color than the previous
+         // Make it so that every other JLabel has a different background color than the previous
             int bg;
-    		if (i % 2 == 0){
-            	bg = 220;
+     if (i % 2 == 0){
+             bg = 220;
             }
             else {
-            	bg = 240;
+             bg = 240;
             }
-    		temp.setBackground(new java.awt.Color(bg, bg, bg));
-    		// What method to call if the JLabel is clicked
+     temp.setBackground(new java.awt.Color(bg, bg, bg));
+     // What method to call if the JLabel is clicked
             temp.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     productLabelMouseClicked(evt, product);
@@ -340,7 +340,7 @@ public class NewOrder2Form extends javax.swing.JFrame {
             });
             // Add the JLabel to the array of JLabels
             productList.add(temp);
-    	}
+     }
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.removeAll();
         leftPanel.setLayout(leftPanelLayout);
@@ -348,73 +348,73 @@ public class NewOrder2Form extends javax.swing.JFrame {
         javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
         tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
         for(int i = 0; i < productList.size(); i++) {
-        	tempGroup.addComponent(productList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+         tempGroup.addComponent(productList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
         }
         tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
             .addGap(79, 79, 79)
         );
         
         leftPanelLayout.setHorizontalGroup(
-			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-			.addGroup(leftPanelLayout.createSequentialGroup()
-				.addGroup(tempGroup)
-			    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-			)
+leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+.addGroup(leftPanelLayout.createSequentialGroup()
+.addGroup(tempGroup)
+.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+)
         );
         
         javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
-		verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
-		for(int i = 0; i < productList.size(); i++) {
-			verticalTempGroup.addComponent(productList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
-		}
-		verticalTempGroup.addGap(86, 86, 86);
-		verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
+verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
+for(int i = 0; i < productList.size(); i++) {
+verticalTempGroup.addComponent(productList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+}
+verticalTempGroup.addGap(86, 86, 86);
+verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
       
-		leftPanelLayout.setVerticalGroup(
-			leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-			.addGroup(verticalTempGroup)
-			);
-		pack();
-		searchField.grabFocus();
-		searchField.setText(searchField.getText());
+leftPanelLayout.setVerticalGroup(
+leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+.addGroup(verticalTempGroup)
+);
+pack();
+searchField.grabFocus();
+searchField.setText(searchField.getText());
     }
     
     public void updateRightPanel() {
         // Set JLabel dimensions, text, border and so on
-    	this.rightPanel.setBackground(Color.WHITE);
-    	ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
+     this.rightPanel.setBackground(Color.WHITE);
+     ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
         ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
         priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
         int counter = 0;
         for (Product p : productsInOrder) {
-        	// Create a new JLabel
-        	javax.swing.JLabel temp = new javax.swing.JLabel();
+         // Create a new JLabel
+         javax.swing.JLabel temp = new javax.swing.JLabel();
 
-    		final Product product = p;
-    		temp.setText(product.getQuantity() + " stk " + product.getName() + "    " + 
-    					 ManageOrder.formatPrice(product.getPrice()*product.getQuantity()));
-    		temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    		temp.setOpaque(true);
-    		temp.setPreferredSize(new java.awt.Dimension(140, 20));
-    		temp.setSize(new java.awt.Dimension(140, 20));
-    		int bg;
-    		if (counter % 2 == 0){
-    			bg = 220;
-    		}
-    		else {
-    			bg = 240;
-    		}
-    		temp.setBackground(new java.awt.Color(bg, bg, bg));
-    		temp.setVisible(true);
-    		
-    		// What method to call if the JLabel is clicked
-    		temp.addMouseListener(new java.awt.event.MouseAdapter() {
-    			public void mouseClicked(java.awt.event.MouseEvent evt) {
-    				orderLabelMouseClicked(evt, product);
-    			}
-    		});
-    		orderList.add(temp);
-    		counter++;
+     final Product product = p;
+     temp.setText(product.getQuantity() + " stk " + product.getName() + " " +
+     ManageOrder.formatPrice(product.getPrice()*product.getQuantity()));
+     temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+     temp.setOpaque(true);
+     temp.setPreferredSize(new java.awt.Dimension(140, 20));
+     temp.setSize(new java.awt.Dimension(140, 20));
+     int bg;
+     if (counter % 2 == 0){
+     bg = 220;
+     }
+     else {
+     bg = 240;
+     }
+     temp.setBackground(new java.awt.Color(bg, bg, bg));
+     temp.setVisible(true);
+    
+     // What method to call if the JLabel is clicked
+     temp.addMouseListener(new java.awt.event.MouseAdapter() {
+     public void mouseClicked(java.awt.event.MouseEvent evt) {
+     orderLabelMouseClicked(evt, product);
+     }
+     });
+     orderList.add(temp);
+     counter++;
         }
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.removeAll();
@@ -424,13 +424,13 @@ public class NewOrder2Form extends javax.swing.JFrame {
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
         tempHorizontalGroup.addGap(0, 400, Short.MAX_VALUE);
         for(int i = 0; i < orderList.size(); i++) {
-        	tempHorizontalGroup.addComponent(orderList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+         tempHorizontalGroup.addComponent(orderList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
         }
         // Creates the Vertical Parallel Group containing all the JLabels
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = rightPanelLayout.createSequentialGroup();
         //tempVerticalGroup.addGap(0, 387, Short.MAX_VALUE);
         for(int i = 0; i < orderList.size(); i++) {
-        	tempVerticalGroup.addComponent(orderList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+         tempVerticalGroup.addComponent(orderList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
         }
         
         // Puts the groups created earlier into the right place in the rightPanelLayout
@@ -438,99 +438,104 @@ public class NewOrder2Form extends javax.swing.JFrame {
         rightPanelLayout.setVerticalGroup(tempVerticalGroup);
     }
     
-    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {                                     
-        this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()+evt.getKeyChar()));
+    boolean searchFieldChanged;
+    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
+     if (!this.searchFieldChanged) {
+    	 this.searchField.setText("" + (this.searchField.getText()).charAt(3));
+    	 this.searchFieldChanged = true;
+     }
+        this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
     
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt){
-    	this.searchField.setText("");
-    	this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
+     this.searchField.setText("");
+     this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
     
     private void commentFieldMouseClicked(java.awt.event.MouseEvent evt){
-    	this.commentArea.setText("");
+     this.commentArea.setText("");
     }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	NewOrderForm form = new NewOrderForm(customer, order);
+     NewOrderForm form = new NewOrderForm(customer, order);
         form.setVisible(true);
         this.setVisible(false);
     }
 
     private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	Color color = new Color(235, 210, 210);
-    	order.setStatus("Bestilt");
-    	boolean legalOrder = true;
-    	
-    	if (!Validate.stringLegal(this.commentArea.getText())){
-    		this.commentArea.setBackground(color);
-    		legalOrder = false;
-    	}
-    	else if (order.getAllergy() && this.commentArea.getText().equals("")){
-    		this.commentArea.setBackground(color);
-    		legalOrder = false;
-    	}
-    	else{
-    		this.commentArea.setBackground(Color.WHITE);
-    	}
-    	if ((ManageOrder.getProductsInOrder(order).size()<2 && order.getDelivery()) || ManageOrder.getProductsInOrder(order).size()<1){
-    		this.rightPanel.setBackground(color);
-    		legalOrder = false;
-    	}
-    	
-    	if (legalOrder){
-    		order.setComment(this.commentArea.getText());
-	    	ManageOrder.submitOrderToDatabase(order);
-	    	MainMenuForm form = new MainMenuForm();
-	    	form.setVisible(true);
-	        this.setVisible(false);
-    	}
+     Color color = new Color(235, 210, 210);
+     order.setStatus("Bestilt");
+     boolean legalOrder = true;
+    
+     if (!Validate.stringLegal(this.commentArea.getText())){
+     this.commentArea.setBackground(color);
+     legalOrder = false;
+     }
+     else if (order.getAllergy() && this.commentArea.getText().equals("")){
+     this.commentArea.setBackground(color);
+     legalOrder = false;
+     }
+     else{
+     this.commentArea.setBackground(Color.WHITE);
+     }
+     if ((ManageOrder.getProductsInOrder(order).size()<2 && order.getDelivery()) || ManageOrder.getProductsInOrder(order).size()<1){
+     this.rightPanel.setBackground(color);
+     legalOrder = false;
+     }
+    
+     if (legalOrder){
+     order.setComment(this.commentArea.getText());
+ManageOrder.submitOrderToDatabase(order);
+MainMenuForm form = new MainMenuForm();
+form.setVisible(true);
+this.setVisible(false);
+     }
     }
 
-    private void productLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {   
-    	ManageOrder.addOneMoreProductToOrder(order, product);
-    	this.updateRightPanel();
+    private void productLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {
+     ManageOrder.addOneMoreProductToOrder(order, product);
+     this.updateRightPanel();
     }
     
-    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {                                          
-    	ManageOrder.removeOneProductFromOrder(order, product);
-    	this.updateRightPanel();
-  	this.updateRightPanel();
+    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {
+     ManageOrder.removeOneProductFromOrder(order, product);
+     this.updateRightPanel();
+   this.updateRightPanel();
     }
     
     private void takeawayButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	if (order.getDelivery()){
-    		takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-    		ManageOrder.setDelivery(order, false);
-    		this.updateRightPanel();
-    	}
-    	else{
-    		takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
-    		ManageOrder.setDelivery(order, true);
-    		this.updateRightPanel();
-    	}
+     if (order.getDelivery()){
+     takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
+     ManageOrder.setDelivery(order, false);
+     this.updateRightPanel();
+     }
+     else{
+     takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
+     ManageOrder.setDelivery(order, true);
+     this.updateRightPanel();
+     }
     }
 
     private void allergyButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	if (!order.getAllergy()){
-    		allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
-    		ManageOrder.setAllergy(order, true);
-    	}
-    	else{
-    		allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-    		ManageOrder.setAllergy(order, false);
-    	}
+     if (!order.getAllergy()){
+     allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
+     ManageOrder.setAllergy(order, true);
+     }
+     else{
+     allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
+     ManageOrder.setAllergy(order, false);
+     }
     }
 
     /**
-     * @param args the command line arguments
-     */
+* @param args the command line arguments
+*/
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+*/
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
