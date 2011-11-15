@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -43,6 +45,9 @@ public class AdminForm extends javax.swing.JFrame {
         commentLabel = new javax.swing.JLabel();
         commentField = new javax.swing.JTextField();
         leftProductPanel = new javax.swing.JPanel();
+        productScrollPane = new javax.swing.JScrollPane();
+        innerLeftProductPanel = new javax.swing.JPanel();
+        searchField = new javax.swing.JTextField();
         restaurantPanel = new javax.swing.JPanel();
         leftRestaurantPanel = new javax.swing.JPanel();
         restaurantNameLabel = new javax.swing.JLabel();
@@ -187,6 +192,43 @@ public class AdminForm extends javax.swing.JFrame {
         leftProductPanel.setBackground(new java.awt.Color(253, 253, 253));
         leftProductPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
 
+        innerLeftProductPanel.setBackground(new java.awt.Color(253, 253, 253));
+
+        productScrollPane.setBorder(null);
+        productScrollPane.setViewportView(innerLeftProductPanel);
+        
+        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        searchField.setText("Søk");
+        searchField.setActionCommand("<Not Set>");
+        searchField.setAlignmentX(0.0F);
+        searchField.setAlignmentY(0.0F);
+        searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10,10,10,10)));
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchFieldKeyTyped(evt);
+            }
+        });
+       searchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchFieldMouseClicked(evt);
+            }
+        });
+       javax.swing.GroupLayout leftProductPanelLayout = new javax.swing.GroupLayout(leftProductPanel);
+       leftProductPanel.setLayout(leftProductPanelLayout);
+       leftProductPanelLayout.setHorizontalGroup(
+           leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftProductPanelLayout.createSequentialGroup()
+               .addGroup(leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                   .addComponent(productScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                   .addComponent(searchField, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
+       ));
+       leftProductPanelLayout.setVerticalGroup(
+           leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addGroup(leftProductPanelLayout.createSequentialGroup()
+               .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(productScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+       );
+        
         displayAdminPanel();
 
         javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
@@ -352,9 +394,9 @@ public class AdminForm extends javax.swing.JFrame {
                 .addComponent(freeDeliveryLimitField, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(rightRestaurantPanelLayout.createSequentialGroup()
-                .addContainerGap()
+            	.addContainerGap(228, Short.MAX_VALUE)
                 .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap())
         );
         rightRestaurantPanelLayout.setVerticalGroup(
             rightRestaurantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,6 +511,8 @@ public class AdminForm extends javax.swing.JFrame {
     	ArrayList<javax.swing.JLabel> products = createProductLabels();
     	setLeftProductPanelLayout(products);
     	
+    	searchField.grabFocus();
+		searchField.setText(searchField.getText());
     	
     }
 
@@ -476,7 +520,7 @@ public class AdminForm extends javax.swing.JFrame {
     	ArrayList<javax.swing.JLabel> products = new ArrayList<javax.swing.JLabel>();
     	
     	
-    	for (int i=0; i < 3; i++) {
+    	for (int i=0; i < 12; i++) {
         	// Create a new JLabel
         	javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
@@ -509,27 +553,37 @@ public class AdminForm extends javax.swing.JFrame {
 	}
 
     private void setLeftProductPanelLayout(ArrayList<JLabel> products) {
-    	javax.swing.GroupLayout leftProductPanelLayout = new javax.swing.GroupLayout(leftProductPanel);
-        leftProductPanel.setLayout(leftProductPanelLayout);
+    	javax.swing.GroupLayout innerLeftProductPanelLayout = new javax.swing.GroupLayout(innerLeftProductPanel);
+        innerLeftProductPanel.removeAll();
+    	innerLeftProductPanel.setLayout(innerLeftProductPanelLayout);
         
-        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
+        
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innerLeftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
         for (int i = 0; i < products.size(); i++){
-        	tempHorizontalGroup.addComponent(products.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE);
+        	tempHorizontalGroup.addComponent(products.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE);
         }
         
-        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = leftProductPanelLayout.createSequentialGroup();
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerLeftProductPanelLayout.createSequentialGroup();
         for (int i = 0; i < products.size(); i++){
         	tempVerticalGroup.addComponent(products.get(i));
         }
         
-        leftProductPanelLayout.setHorizontalGroup(tempHorizontalGroup);
-        leftProductPanelLayout.setVerticalGroup(
-            leftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        innerLeftProductPanelLayout.setHorizontalGroup(tempHorizontalGroup);
+        innerLeftProductPanelLayout.setVerticalGroup(
+            innerLeftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tempVerticalGroup)
         );
-    
     }
-	
+    
+    private void searchFieldKeyTyped(KeyEvent evt) {
+		// TODO Auto-generated method stub
+	}
+
+	private void searchFieldMouseClicked(MouseEvent evt) {
+		// TODO Auto-generated method stub
+	}
+    
+    
 	private void productLabelMouseClicked() {
 		productNameField.setText("Palermo");
 		priceField.setText("199.00");
@@ -605,6 +659,9 @@ public class AdminForm extends javax.swing.JFrame {
     private javax.swing.JTextField freeDeliveryLimitField;
     private javax.swing.JLabel freeDeliveryLimitLabel;
     private javax.swing.JPanel leftProductPanel;
+    private javax.swing.JScrollPane productScrollPane;
+    private javax.swing.JPanel innerLeftProductPanel;
+    private javax.swing.JTextField searchField;
     private javax.swing.JPanel leftRestaurantPanel;
     private javax.swing.JTextField productNameField;
     private javax.swing.JPanel middlePanel;
