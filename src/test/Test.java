@@ -35,7 +35,7 @@ public class Test {
 		Calendar calendar = GregorianCalendar.getInstance();
 		calendar.setTimeZone(timeZone);
 		Date dateAdded = calendar.getTime();
-		DateFormat df = DateFormat.getTimeInstance(3, locale);
+		DateFormat df = DateFormat.getDateInstance(2, locale);
 
 		System.out.println(df.format(dateAdded));
 		

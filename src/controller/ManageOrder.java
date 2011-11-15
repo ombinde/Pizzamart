@@ -1,12 +1,9 @@
 package controller;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import model.Customer;
 import model.DeliveryFee;
 import model.Order;
-import model.Product;
 import model.Product;
 
 /**
@@ -180,6 +177,13 @@ public class ManageOrder {
 		return DeliveryFee.getOriginalFee();
 	}
 	
+	public static ArrayList<Order> getOrdersReadyForPickup(){
+		return Order.getRelevantOrders("Klar til henting", "--");
+	}
+	
+	public static void setStatusToPickedUp(Order order){
+		order.setStatus("Utlevert");
+	}
 	
 
 }

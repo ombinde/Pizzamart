@@ -7,6 +7,11 @@ import javax.swing.BorderFactory;
 //no.ntnu.course
 import javax.swing.JLabel;
 
+import controller.ManageOrder;
+
+import model.Order;
+import model.Product;
+
 /*
  * PickupForm2.java
  *
@@ -19,9 +24,11 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class PickupForm2 extends javax.swing.JFrame {
 
+	private Order order;
     /** Creates new form PickupForm2 */
-    public PickupForm2() {
-        initComponents();
+    public PickupForm2(Order order) {
+        this.order = order;
+    	initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -101,13 +108,11 @@ public class PickupForm2 extends javax.swing.JFrame {
         nameHeaderLabel.setText("Navn:");
 
         nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        nameContentLabel.setText("Morten Vaale Noddeland");
 
         telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         telephoneHeaderLabel.setText("Telefon:");
 
         telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        telephoneContentLabel.setText("91833835");
 
         commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
         commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
@@ -120,7 +125,6 @@ public class PickupForm2 extends javax.swing.JFrame {
 
         commentTextPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         commentTextPane.setEditable(false);
-        commentTextPane.setText("Uten tomat");
         commentScrollPane.setViewportView(commentTextPane);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
@@ -291,7 +295,6 @@ public class PickupForm2 extends javax.swing.JFrame {
 
         priceLabel.setFont(new java.awt.Font("Georgia", 0, 30)); // NOI18N
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        priceLabel.setText("429 kr");
 
         receiptButton.setBackground(new java.awt.Color(225, 230, 235));
         receiptButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
@@ -364,17 +367,19 @@ public class PickupForm2 extends javax.swing.JFrame {
     	defineQuantityPanel(labels.get(0));
     	defineProductPanel(labels.get(1));
     	
-    	commentTextPane.setText("Blubb blubb. Jeg er en fisk");
-    	nameContentLabel.setText("Hans Jørgen Assface");
-        telephoneContentLabel.setText("12345678");
-    	priceLabel.setText("123.00,-");
-
+    	commentTextPane.setText(order.getComment());
+    	nameContentLabel.setText(order.getCustomer().getName());
+        telephoneContentLabel.setText(order.getCustomer().getPhone());
+    	priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
     }
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
+        
+        ArrayList<Product> productsInOrder = order.getProductsInOrder();
 
-        for (int i = 0; i < 3; i++) {// Create quantityLabels
+        for (int i = 0; i < productsInOrder.size(); i++) {
+        	// Create quantityLabels
 	    	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
 	    	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	    	quantityLabel.setOpaque(true);
@@ -384,7 +389,7 @@ public class PickupForm2 extends javax.swing.JFrame {
 	        else 			{ bg = 240; }
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("2");
+	        quantityLabel.setText(""+productsInOrder.get(i).getQuantity());
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
@@ -394,7 +399,7 @@ public class PickupForm2 extends javax.swing.JFrame {
 	    	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("Fanta");
+			productLabel.setText(productsInOrder.get(i).getName());
 	        productLabels.add(productLabel);
 	    }
 	    ArrayList<ArrayList <javax.swing.JLabel>> labels = new ArrayList<ArrayList <javax.swing.JLabel>>();
@@ -451,8 +456,11 @@ public class PickupForm2 extends javax.swing.JFrame {
         this.setVisible(false);
     }                                       
 
-    private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
-    	// TODO
+    private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {  
+    	ManageOrder.setStatusToPickedUp(order);
+    	PickupForm1 form = new PickupForm1();         
+        form.setVisible(true);
+        this.setVisible(false);
     }
 
     private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
@@ -490,7 +498,7 @@ public class PickupForm2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new PickupForm2().setVisible(true);  
+                //new PickupForm2().setVisible(true);  
             }
         });
     }

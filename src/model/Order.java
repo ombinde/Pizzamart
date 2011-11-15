@@ -399,12 +399,11 @@ public class Order {
 	}
 	
 	public String getDateAndTime(){
-		DateFormat df = DateFormat.getDateInstance(1);
-		return df.format(dateAdded);
+		return getTime() + ", " + getDate();
 	}
 	
 	public String getDate(){
-		DateFormat df = DateFormat.getDateInstance(3);
+		DateFormat df = DateFormat.getDateInstance(1);
 		return df.format(dateAdded);
 	}
 	

@@ -7,6 +7,11 @@ import javax.swing.BorderFactory;
 //no.ntnu.course
 import javax.swing.JLabel;
 
+import model.Order;
+import model.Product;
+
+import controller.ManageOrder;
+
 /*
  * PickupForm1.java
  *
@@ -184,34 +189,41 @@ public class PickupForm1 extends javax.swing.JFrame {
     
     private ArrayList<JLabel> createOrderLabels(){
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
+        ArrayList<Order> allOrders = ManageOrder.getOrdersReadyForPickup();
 
-        for (int i = 0; i < 3; i++){	
+        for (int i = 0; i < allOrders.size(); i++){
+        	final Order order = allOrders.get(i);
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	upperHalf.setBackground(new java.awt.Color(225, 230, 235));
 	        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
 	        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 	        upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setText("Morten Vaale Noddeland");
+        	upperHalf.setText(order.getDateAndTime() + ": " + order.getCustomer().getName());
         	upperHalf.setOpaque(true);
             upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    orderLabelMouseClicked();
+                    orderLabelMouseClicked(order);
                 }
             });
+        	String productText = "";
+        	for (Product product : order.getProductsInOrder()) {
+				productText += product.getQuantity() + " stk: " + product.getName() + ", ";
+			}
+        	productText = productText.substring(0, productText.length()-2);
         	
         	// Create the lower half of the order Label
         	javax.swing.JLabel lowerHalf = new javax.swing.JLabel();
 			lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
         	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
         	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-        	lowerHalf.setText("3 stk: Cueno, 1 stk: Assballs");
+        	lowerHalf.setText(productText);
         	lowerHalf.setOpaque(true);
             lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                	orderLabelMouseClicked();
+                	orderLabelMouseClicked(order);
                 }
             });
 
@@ -262,11 +274,11 @@ public class PickupForm1 extends javax.swing.JFrame {
     }                                       
 
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
-    	// TODO
+    	updateMiddlePanel();
     }
 
-    private void orderLabelMouseClicked() {                                                     
-        PickupForm2 form = new PickupForm2();
+    private void orderLabelMouseClicked(Order order) {                                                     
+        PickupForm2 form = new PickupForm2(order);
         form.setVisible(true);
         this.setVisible(false);
     }                                                    
