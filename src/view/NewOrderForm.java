@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 
 import model.Customer;
+import model.Order;
 
 import controller.ManageOrder;
 import controller.Validate;
@@ -29,10 +30,24 @@ import controller.Validate;
 @SuppressWarnings("serial")
 public class NewOrderForm extends javax.swing.JFrame {
 
+	private Order order;
     /** Creates new form NewOrderForm */
     public NewOrderForm() {
         initComponents();
         this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
+    }
+    
+    /** Creates new form NewOrderForm */
+    public NewOrderForm(Customer customer, Order order) {
+        initComponents();
+        this.order = order;
+        this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
+        this.firstNameField.setText(customer.getForename());
+        this.lastNameField.setText(customer.getLastname());
+        this.addressField.setText(customer.getAddress());
+        this.zipCodeField.setText(customer.getzipCode());
+        this.postalAddressField.setText(customer.getPostalAddress());
+        this.phoneNumberField.setText(customer.getPhone());
     }
 
     /** This method is called from within the constructor to
@@ -327,13 +342,22 @@ public class NewOrderForm extends javax.swing.JFrame {
     		this.firstNameField.setBackground(color);
     		legalCustomer = false;
     	}
+    	else {
+    		this.firstNameField.setBackground(Color.WHITE);
+    	}
     	if (!Validate.stringNonEmpty(lastName) || !Validate.stringLegal(lastName)){
     		this.lastNameField.setBackground(color);
     		legalCustomer = false;
     	}
+    	else {
+    		this.lastNameField.setBackground(Color.WHITE);
+    	}
     	if (!Validate.stringNonEmpty(phone) || !Validate.stringOnlyNumb(phone)){
     		this.phoneNumberField.setBackground(color);
     		legalCustomer = false;
+    	}
+    	else {
+    		this.phoneNumberField.setBackground(Color.WHITE);
     	}
     	if (!Validate.stringOnlyNumb(zipCode)){
     		this.zipCodeField.setBackground(color);
@@ -348,7 +372,13 @@ public class NewOrderForm extends javax.swing.JFrame {
     		legalCustomer = false;
     	}
     	
-    	if (legalCustomer){
+    	if (legalCustomer && this.order!=null){
+    		NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName, 
+													lastName, phone, address, zipCode, postalAddress), order);         
+    		form.setVisible(true);
+    		this.setVisible(false); 
+    	}
+    	else if (legalCustomer){
 	        NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName, 
 	        										lastName, phone, address, zipCode, postalAddress));         
 	        form.setVisible(true);
