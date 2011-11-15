@@ -266,7 +266,9 @@ public class PickupForm1 extends javax.swing.JFrame {
     }
 
     private void orderLabelMouseClicked() {                                                     
-        // TODO add your handling code here:
+        PickupForm2 form = new PickupForm2();
+        form.setVisible(true);
+        this.setVisible(false);
     }                                                    
 
     /**

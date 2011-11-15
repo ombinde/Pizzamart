@@ -48,30 +48,6 @@ public class DeliveryFee extends Product {
 		return null;
 	}
 	
-	/**
-	 * Set's the limit for when delivery is free.
-	 * @param price
-	 * @return
-	 */
-	public static boolean setLimitDeliveryFeeInDB(double price){
-		try {
-			Database db = Database.getDatabase();
-			String query = "UPDATE properties SET limitFreeDelivery='" + price + "')";
-			db.insert(query);
-			ResultSet rs = db.select("SELECT * FROM product WHERE name='Frakt'");
-			if (rs.next()){
-				double p = rs.getDouble("price");
-				String name = rs.getString("name");
-				String comment = rs.getString("comments");
-				deliveryFee = new DeliveryFee(name, p, comment);
-				return true;
-			}
-			return true;
-		} catch (SQLException e) {
-			return false;
-		}
-	}
-	
 	public void setPriceToOriginal(){
 		this.setPrice(originalFee);
 	}

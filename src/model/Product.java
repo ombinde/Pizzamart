@@ -159,7 +159,7 @@ public class Product {
 			Database db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM product ORDER BY name ASC");
 			while (rs.next()){
-				products.add(new Product(rs.getString("name"), rs.getDouble("price"), 1, rs.getString("comment")));
+				products.add(new Product(rs.getString("name"), rs.getDouble("price"), 1, rs.getString("comments")));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -202,10 +202,11 @@ public class Product {
 			return false;
 		try {
 			Database db = Database.getDatabase();
-			String query = "DELETE FROM product where name='" + p.name + "')";
+			String query = "DELETE FROM product where name='" + p.name + "'";
 			db.insert(query);
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -226,7 +227,7 @@ public class Product {
 		try {
 			Database db = Database.getDatabase();
 			String query = "UPDATE product SET name='" + name + "', price='" + price + 
-							"', comment='" + comment +"' WHERE name='" + p.name + "')";
+							"', comments='" + comment +"' WHERE name='" + p.name + "'";
 			db.insert(query);
 			return true;
 		} catch (SQLException e) {
