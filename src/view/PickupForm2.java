@@ -1,41 +1,27 @@
 package view;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 //no.ntnu.course
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import javax.swing.JLabel;
 
-import model.DeliveryFee;
-import model.GoogleMaps;
-import model.Order;
-import model.Product;
-import controller.DeliveryController;
-import controller.ManageOrder;
-
 /*
- * DeliveryForm2.java
+ * PickupForm2.java
  *
  * Created on 29.sep.2011, 12:24:07
  */
-    /**
+/**
  *
  * @author Morten Vaale Noddeland
  */
 @SuppressWarnings("serial")
-public class DeliveryForm2 extends javax.swing.JFrame {
+public class PickupForm2 extends javax.swing.JFrame {
 
-	private Order order;
-    /** Creates new form DeliveryForm2 */
-    public DeliveryForm2(Order order) {
-        this.order = order;
-    	initComponents();
+    /** Creates new form PickupForm2 */
+    public PickupForm2() {
+        initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -47,16 +33,14 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         headerLabel = new javax.swing.JLabel();
         middlePanel = new javax.swing.JPanel();
         rightPanel = new javax.swing.JPanel();
-        nameAddressHeaderLabel = new javax.swing.JLabel();
+        nameTelephoneHeaderLabel = new javax.swing.JLabel();
         nameHeaderLabel = new javax.swing.JLabel();
         nameContentLabel = new javax.swing.JLabel();
-        addressHeaderLabel = new javax.swing.JLabel();
-        addressContentLabel = new javax.swing.JLabel();
-        zipCodeContentLabel = new javax.swing.JLabel();
         telephoneHeaderLabel = new javax.swing.JLabel();
         telephoneContentLabel = new javax.swing.JLabel();
-        mapHeaderLabel = new javax.swing.JLabel();
-        mapPanel = new javax.swing.JPanel();
+        commentHeaderLabel = new javax.swing.JLabel();
+        commentScrollPane = new javax.swing.JScrollPane();
+        commentTextPane = new javax.swing.JTextPane();
         leftPanel = new javax.swing.JPanel();
         productsHeadersPanel = new javax.swing.JPanel();
         quantityHeaderLabel = new javax.swing.JLabel();
@@ -65,29 +49,24 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         productsPanel = new javax.swing.JPanel();
         quantityPanel = new javax.swing.JPanel();
         productPanel = new javax.swing.JPanel();
-        commentPanel = new javax.swing.JPanel();
-        commentHeaderLabel = new javax.swing.JLabel();
-        commentScrollPane = new javax.swing.JScrollPane();
-        commentTextPane = new javax.swing.JTextPane();
         bottomPanel = new javax.swing.JPanel();
         backButton = new javax.swing.JLabel();
-        startFinishButton = new javax.swing.JLabel();
+        finishButton = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+        receiptButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Utkjøring - detaljer");
+        setTitle("Hent - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("newOrderFrame");
-        //setPreferredSize(new java.awt.Dimension(800, 620));
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
-
         headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerLabel.setText("Utkjøring - detaljer");
+        headerLabel.setText("Hent - detaljer");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -111,97 +90,75 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
 
-        nameAddressHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        nameAddressHeaderLabel.setText("Navn og adresse");
-        nameAddressHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
-        nameAddressHeaderLabel.setOpaque(true);
-        nameAddressHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
+        nameTelephoneHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
+        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameTelephoneHeaderLabel.setText("Navn og telefon");
+        nameTelephoneHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        nameTelephoneHeaderLabel.setOpaque(true);
+        nameTelephoneHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
         nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         nameHeaderLabel.setText("Navn:");
 
-        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        addressHeaderLabel.setText("Adresse:");
-        
+        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nameContentLabel.setText("Morten Vaale Noddeland");
+
         telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         telephoneHeaderLabel.setText("Telefon:");
-        
-        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+
         telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneContentLabel.setText("91833835");
 
-        mapHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        mapHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        mapHeaderLabel.setText("Kart");
-        mapHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
-        mapHeaderLabel.setOpaque(true);
-        mapHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
+        commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
+        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        commentHeaderLabel.setText("Kommentar");
+        commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        commentHeaderLabel.setOpaque(true);
+        commentHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        mapPanel.setBackground(new java.awt.Color(240, 240, 240));
-        mapPanel.setPreferredSize(new java.awt.Dimension(329, 329));
+        commentScrollPane.setBorder(null);
 
-        javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
-        mapPanel.setLayout(mapPanelLayout);
-        mapPanelLayout.setHorizontalGroup(
-            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
-        );
-        mapPanelLayout.setVerticalGroup(
-            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 244, Short.MAX_VALUE)
-        );
+        commentTextPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        commentTextPane.setEditable(false);
+        commentTextPane.setText("Uten tomat");
+        commentScrollPane.setViewportView(commentTextPane);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nameAddressHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+            .addComponent(nameTelephoneHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameHeaderLabel)
-                    .addComponent(addressHeaderLabel)
                     .addComponent(telephoneHeaderLabel))
-                .addGap(23, 23, 23)
+                .addGap(24, 24, 24)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(telephoneContentLabel)
-                    .addComponent(zipCodeContentLabel)
-                    .addComponent(addressContentLabel)
                     .addComponent(nameContentLabel))
                 .addContainerGap(108, Short.MAX_VALUE))
-            .addComponent(mapHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-            .addGroup(rightPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(commentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+            .addComponent(commentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addComponent(nameAddressHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameTelephoneHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameContentLabel)
                     .addComponent(nameHeaderLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addressContentLabel)
-                    .addComponent(addressHeaderLabel))
+                    .addComponent(telephoneHeaderLabel)
+                    .addComponent(telephoneContentLabel))
+                .addGap(18, 18, 18)
+                .addComponent(commentHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(zipCodeContentLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telephoneContentLabel)
-                    .addComponent(telephoneHeaderLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mapHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(commentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
         );
-        
+
         quantityHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
         quantityHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         quantityHeaderLabel.setText("Antall");
@@ -210,7 +167,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         quantityHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
         productHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        productHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        productHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         productHeaderLabel.setText("Produkt");
         productHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         productHeaderLabel.setOpaque(true);
@@ -237,22 +194,18 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         ProductsScrollPane.setPreferredSize(new java.awt.Dimension(800, 240));
         ProductsScrollPane.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
 
-
+        
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 250));
+        productsPanel.setPreferredSize(new java.awt.Dimension(795, 200));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
 
-        
         productPanel.setBackground(new java.awt.Color(253, 253, 253));
         productPanel.setPreferredSize(new java.awt.Dimension(300, 302));
 
-        // Fetch all information that's relevant and display it
         displayOrder();
-        displayMap();
-
-
+        
         javax.swing.GroupLayout productsPanelLayout = new javax.swing.GroupLayout(productsPanel);
         productsPanel.setLayout(productsPanelLayout);
         productsPanelLayout.setHorizontalGroup(
@@ -260,49 +213,18 @@ public class DeliveryForm2 extends javax.swing.JFrame {
             .addGroup(productsPanelLayout.createSequentialGroup()
                 .addComponent(quantityPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(productPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                )
+                .addContainerGap(385, Short.MAX_VALUE))
         );
         productsPanelLayout.setVerticalGroup(
             productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productsPanelLayout.createSequentialGroup()
-                .addGroup(productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(quantityPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                    .addComponent(productPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productsPanelLayout.createSequentialGroup()
+                .addGroup(productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(quantityPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                    .addComponent(productPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         ProductsScrollPane.setViewportView(productsPanel);
-
-        commentPanel.setBackground(new java.awt.Color(253, 253, 253));
-        commentPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.darkGray));
-
-
-        commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        commentHeaderLabel.setText("Kommentar");
-        commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
-        commentHeaderLabel.setOpaque(true);
-        commentHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
-
-        commentScrollPane.setBorder(null);
-
-        commentTextPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        commentTextPane.setEditable(false);
-        commentScrollPane.setViewportView(commentTextPane);
-
-        javax.swing.GroupLayout commentPanelLayout = new javax.swing.GroupLayout(commentPanel);
-        commentPanel.setLayout(commentPanelLayout);
-        commentPanelLayout.setHorizontalGroup(
-            commentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(commentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-            .addComponent(commentHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-        );
-        commentPanelLayout.setVerticalGroup(
-            commentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(commentPanelLayout.createSequentialGroup()
-                .addComponent(commentHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(commentScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -310,14 +232,12 @@ public class DeliveryForm2 extends javax.swing.JFrame {
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(productsHeadersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ProductsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-            .addComponent(commentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addComponent(productsHeadersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(ProductsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                .addComponent(commentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ProductsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
@@ -340,11 +260,12 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
 
         backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
+        backButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         backButton.setForeground(new java.awt.Color(115, 35, 35));
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText(" Tilbake");
+        backButton.setText("Tilbake");
         backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        backButton.setIconTextGap(10);
         backButton.setOpaque(true);
         backButton.setPreferredSize(new java.awt.Dimension(140, 50));
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -353,31 +274,39 @@ public class DeliveryForm2 extends javax.swing.JFrame {
             }
         });
 
-        startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        if (order.getStatus().equals("Klar til levering")){
-        	startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
-        	startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
-	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
-	        startFinishButton.setText(" Start");
-	        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        }
-        else{
-        	startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
-        	startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-        	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
-            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-	        startFinishButton.setText(" Ferdig");
-        }
-        startFinishButton.setOpaque(true);
-        startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
-        startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        finishButton.setBackground(new java.awt.Color(230, 240, 200));
+        finishButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        finishButton.setForeground(new java.awt.Color(64, 80, 25));
+        finishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
+        finishButton.setText("Fullfør");
+        finishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        finishButton.setIconTextGap(10);
+        finishButton.setOpaque(true);
+        finishButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        finishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                UpdateButtonMouseClicked(evt);
+                finishButtonMouseClicked(evt);
             }
         });
 
         priceLabel.setFont(new java.awt.Font("Georgia", 0, 30)); // NOI18N
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        priceLabel.setText("429 kr");
+
+        receiptButton.setBackground(new java.awt.Color(225, 230, 235));
+        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        receiptButton.setForeground(new java.awt.Color(45, 65, 105));
+        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
+        receiptButton.setText("Kvittering");
+        receiptButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        receiptButton.setIconTextGap(10);
+        receiptButton.setOpaque(true);
+        receiptButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        receiptButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                receiptButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
@@ -386,10 +315,12 @@ public class DeliveryForm2 extends javax.swing.JFrame {
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(startFinishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(finishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bottomPanelLayout.setVerticalGroup(
@@ -398,8 +329,9 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startFinishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceLabel))
+                    .addComponent(finishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(priceLabel)
+                    .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -419,70 +351,60 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-        ));
+            )
+        );
 
         pack();
     }
 
+    
     private void displayOrder() {
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
-    	
+
     	defineQuantityPanel(labels.get(0));
     	defineProductPanel(labels.get(1));
     	
-    	commentTextPane.setText(order.getComment());
-    	nameContentLabel.setText(order.getCustomer().getName());
-        addressContentLabel.setText(order.getCustomer().getAddress());
-        zipCodeContentLabel.setText(order.getCustomer().getzipCode() + " " + order.getCustomer().getPostalAddress());
-        telephoneContentLabel.setText(order.getCustomer().getPhone());
-        priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
+    	commentTextPane.setText("Blubb blubb. Jeg er en fisk");
+    	nameContentLabel.setText("Hans Jørgen Assface");
+        telephoneContentLabel.setText("12345678");
+    	priceLabel.setText("123.00,-");
+
     }
-
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
-    	ArrayList<Product> productsInOrder = order.getProductsInOrder();
-
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
 
-
-        int i = 0;
-        for (Product product : productsInOrder) {
-			if (product instanceof DeliveryFee){
-				continue;
-			}
-        	// Create quantityLabels
-        	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-        	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	quantityLabel.setOpaque(true);
-        	quantityLabel.setVisible(true);
-        	int bg;
+        for (int i = 0; i < 3; i++) {// Create quantityLabels
+	    	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
+	    	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	    	quantityLabel.setOpaque(true);
+	    	quantityLabel.setVisible(true);
+	    	int bg;
 			if (i % 2 == 0) { bg = 220; }
 	        else 			{ bg = 240; }
-			i++;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("" + product.getQuantity());
+	        quantityLabel.setText("2");
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-        	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-        	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	productLabel.setOpaque(true);
-        	productLabel.setVisible(true);
+	    	javax.swing.JLabel productLabel = new javax.swing.JLabel();
+	    	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	    	productLabel.setOpaque(true);
+	    	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("" + product.getName());
+			productLabel.setText("Fanta");
 	        productLabels.add(productLabel);
-			
-        }
-        ArrayList<ArrayList <javax.swing.JLabel>> labels = new ArrayList<ArrayList <javax.swing.JLabel>>();
-        labels.add(quantityLabels);
-        labels.add(productLabels);
-        return labels;
+	    }
+	    ArrayList<ArrayList <javax.swing.JLabel>> labels = new ArrayList<ArrayList <javax.swing.JLabel>>();
+	    labels.add(quantityLabels);
+	    labels.add(productLabels);
+	    return labels;
 	}
-
+    
 	private void defineQuantityPanel(ArrayList<JLabel> quantityLabels) {
-		javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
+        javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = quantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
@@ -499,16 +421,16 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         quantityPanelLayout.setVerticalGroup(
             quantityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tempVerticalGroup)
-        );
+        );		
 	}
-    
+	
     private void defineProductPanel(ArrayList<JLabel> productLabels) {
     	javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
-        productPanel.setLayout(productPanelLayout);
-        
+    	productPanel.setLayout(productPanelLayout);
+    	
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
         for (int i = 0; i < productLabels.size(); i++){
-        	tempHorizontalGroup.addComponent(productLabels.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE);
+        	tempHorizontalGroup.addComponent(productLabels.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE);
         }
         
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = productPanelLayout.createSequentialGroup();
@@ -520,56 +442,21 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         productPanelLayout.setVerticalGroup(
             productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tempVerticalGroup)
-        );
+        );		
 	}
 
-	private void displayMap(){
-    	JLabel map;
-		try {
-			map = GoogleMaps.map(order.getCustomer().getAddress() + " " + order.getCustomer().getzipCode());
-	    	
-			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
-	        mapPanel.removeAll();
-	        mapPanel.setLayout(mapPanelLayout);
-	        mapPanelLayout.setHorizontalGroup(
-	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-	        );
-	        mapPanelLayout.setVerticalGroup(
-	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-	        );
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
-    	DeliveryForm1 form = new DeliveryForm1();
-    	form.setVisible(true);
-    	this.setVisible(false);
+		PickupForm1 form = new PickupForm1();         
+        form.setVisible(true);
+        this.setVisible(false);
     }                                       
 
-    private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {     
-    	if(order.getStatus().equals("Klar til levering")){
-    		DeliveryController.startOrder(order);
-    		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-    		startFinishButton.setText(" Ferdig");
-            startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+    private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    	// TODO
+    }
 
-
-    	}
-    	else{
-    		DeliveryController.setFinishedOrder(order);
-    		DeliveryForm1 form = new DeliveryForm1();
-    		form.setVisible(true);
-    		this.setVisible(false);
-    	}
+    private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
     }
 
     /**
@@ -589,13 +476,13 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -603,28 +490,24 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                //new DeliveryForm2().setVisible(true);  
+                new PickupForm2().setVisible(true);  
             }
         });
     }
     // Variables declaration - do not modify
     private javax.swing.JScrollPane ProductsScrollPane;
-    private javax.swing.JLabel addressContentLabel;
-    private javax.swing.JLabel addressHeaderLabel;
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JLabel commentHeaderLabel;
-    private javax.swing.JPanel commentPanel;
     private javax.swing.JScrollPane commentScrollPane;
     private javax.swing.JTextPane commentTextPane;
+    private javax.swing.JLabel finishButton;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel leftPanel;
-    private javax.swing.JLabel mapHeaderLabel;
-    private javax.swing.JPanel mapPanel;
     private javax.swing.JPanel middlePanel;
-    private javax.swing.JLabel nameAddressHeaderLabel;
     private javax.swing.JLabel nameContentLabel;
     private javax.swing.JLabel nameHeaderLabel;
+    private javax.swing.JLabel nameTelephoneHeaderLabel;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel productHeaderLabel;
     private javax.swing.JPanel productPanel;
@@ -632,11 +515,10 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     private javax.swing.JPanel productsPanel;
     private javax.swing.JLabel quantityHeaderLabel;
     private javax.swing.JPanel quantityPanel;
+    private javax.swing.JLabel receiptButton;
     private javax.swing.JPanel rightPanel;
-    private javax.swing.JLabel startFinishButton;
     private javax.swing.JLabel telephoneContentLabel;
     private javax.swing.JLabel telephoneHeaderLabel;
     private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel zipCodeContentLabel;
     // End of variables declaration
 }

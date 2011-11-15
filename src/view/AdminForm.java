@@ -557,7 +557,6 @@ public class AdminForm extends javax.swing.JFrame {
         innerLeftProductPanel.removeAll();
     	innerLeftProductPanel.setLayout(innerLeftProductPanelLayout);
         
-        
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innerLeftProductPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
         for (int i = 0; i < products.size(); i++){
         	tempHorizontalGroup.addComponent(products.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE);
