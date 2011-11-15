@@ -279,9 +279,9 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
 
     private void pickupButtonButtonMouseClicked(MouseEvent evt) {
-    	//PickupForm form = new PickupForm();         
-        //form.setVisible(true);
-        //this.setVisible(false);
+    	PickupForm1 form = new PickupForm1();         
+        form.setVisible(true);
+        this.setVisible(false);
 	}
     
     private void historyButtonMouseClicked(java.awt.event.MouseEvent evt) {
