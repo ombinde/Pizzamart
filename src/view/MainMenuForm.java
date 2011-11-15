@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 
@@ -13,11 +14,6 @@ import javax.swing.BorderFactory;
  *
  * @author Morten Vaale Noddeland
  */
-
-// TODO Replace "direct links" with controller
-// TODO Connect the rest of the pages
-// TODO Fix exit button
-// TODO Make it so that MainMenuForm preferably the Main class request internet access, so that the prompt doesn't show up
 
 @SuppressWarnings("serial")
 public class MainMenuForm extends javax.swing.JFrame {
@@ -41,6 +37,7 @@ public class MainMenuForm extends javax.swing.JFrame {
         newOrderButton = new javax.swing.JLabel();
         deliveryButton = new javax.swing.JLabel();
         kitchenButton = new javax.swing.JLabel();
+        pickupButton = new javax.swing.JLabel();
         quitButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,6 +157,21 @@ public class MainMenuForm extends javax.swing.JFrame {
             }
         });
 
+        
+        pickupButton.setBackground(new java.awt.Color(229, 226, 235));
+        pickupButton.setFont(new java.awt.Font("Georgia", 0, 18));
+        pickupButton.setForeground(new java.awt.Color(45, 65, 105));
+        pickupButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bag_32.png")));
+        pickupButton.setText("  Hent");
+        pickupButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        pickupButton.setOpaque(true);
+        pickupButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        pickupButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	pickupButtonButtonMouseClicked(evt);
+            }
+        });
+        
         quitButton.setBackground(new java.awt.Color(235, 207, 207));
         quitButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         quitButton.setForeground(new java.awt.Color(113, 36, 36));
@@ -183,16 +195,18 @@ public class MainMenuForm extends javax.swing.JFrame {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kitchenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(215, 215, 215))
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(312, 312, 312)
-                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(313, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
@@ -205,14 +219,16 @@ public class MainMenuForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deliveryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(newOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(kitchenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                        .addComponent(pickupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
                 .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(215, Short.MAX_VALUE))
         );
@@ -231,7 +247,6 @@ public class MainMenuForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -239,7 +254,7 @@ public class MainMenuForm extends javax.swing.JFrame {
         pack();
     }
 
-    private void newOrderButtonMouseClicked(java.awt.event.MouseEvent evt) {
+	private void newOrderButtonMouseClicked(java.awt.event.MouseEvent evt) {
         NewOrderForm form = new NewOrderForm();         
         form.setVisible(true);
         this.setVisible(false);         
@@ -263,6 +278,12 @@ public class MainMenuForm extends javax.swing.JFrame {
         this.setVisible(false);
     }
 
+    private void pickupButtonButtonMouseClicked(MouseEvent evt) {
+    	//PickupForm form = new PickupForm();         
+        //form.setVisible(true);
+        //this.setVisible(false);
+	}
+    
     private void historyButtonMouseClicked(java.awt.event.MouseEvent evt) {
         // TODO add your handling code here:
     }
@@ -321,6 +342,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     private javax.swing.JLabel kitchenButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel newOrderButton;
+    private javax.swing.JLabel pickupButton;
     private javax.swing.JLabel quitButton;
     private javax.swing.JPanel topPanel;
     // End of variables declaration
