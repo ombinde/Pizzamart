@@ -438,7 +438,12 @@ public class NewOrder2Form extends javax.swing.JFrame {
         rightPanelLayout.setVerticalGroup(tempVerticalGroup);
     }
     
-    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {                                     
+    boolean searchFieldChanged;
+    private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
+    	if (!this.searchFieldChanged) {
+    		this.searchField.setText("");
+    		this.searchFieldChanged = true;
+    	}
         this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()+evt.getKeyChar()));
     }
     

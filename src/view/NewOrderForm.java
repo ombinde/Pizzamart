@@ -318,8 +318,12 @@ public class NewOrderForm extends javax.swing.JFrame {
     	this.searchField.setText("");
     	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }
-
+    boolean searchFieldChanged;
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) { 
+    	if (!this.searchFieldChanged) {
+    		this.searchField.setText("");
+    		this.searchFieldChanged = true;
+    	}
     	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }                                    
 
