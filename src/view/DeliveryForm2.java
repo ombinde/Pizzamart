@@ -438,37 +438,17 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     }
 
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
-    	//TODO Get the hashmap with data in a different way
-<<<<<<< HEAD
     	ArrayList<Product> productsInOrder = order.getProductsInOrder();
-<<<<<<< HEAD
-        HashMap<Product, Integer> products = orders.get(0);
-		Set set = products.entrySet();
-        Iterator it = set.iterator();
-=======
-    	//ArrayList<HashMap<Product, Integer>> orders = ChefController.getFreshOrders();
-        //HashMap<Product, Integer> products = orders.get(0);
-		//Set set = products.entrySet();
-        //Iterator it = set.iterator();
->>>>>>> morten/gui
 
-=======
->>>>>>> sigurd/database
-        
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
 
-<<<<<<< HEAD
-        //int i = 0;
-        for (int i = 0; i < 3; i++){
-        	//Map.Entry me = (Map.Entry)it.next();
-=======
+
         int i = 0;
         for (Product product : productsInOrder) {
 			if (product instanceof DeliveryFee){
 				continue;
 			}
->>>>>>> sigurd/database
         	// Create quantityLabels
         	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
         	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -480,11 +460,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 			i++;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-<<<<<<< HEAD
-	        quantityLabel.setText("asdasdasd");
-=======
 	        quantityLabel.setText("" + product.getQuantity());
->>>>>>> sigurd/database
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
@@ -494,11 +470,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-<<<<<<< HEAD
-			productLabel.setText("asdasdas");
-=======
 			productLabel.setText("" + product.getName());
->>>>>>> sigurd/database
 	        productLabels.add(productLabel);
 			
         }
