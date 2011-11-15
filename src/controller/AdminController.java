@@ -1,9 +1,13 @@
 package controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.Database;
 import model.DeliveryFee;
 import model.Product;
+import model.Properties;
 
 /**
  * Controller for the admin pages.
@@ -39,8 +43,8 @@ public class AdminController {
 	 * Returns all the products from the database.
 	 * @return
 	 */
-	public static ArrayList<Product> getAllProducts(){
-		return Product.getAllProducts();
+	public static ArrayList<Product> getRelevantProducts(String query){
+		return Product.getRelevantProducts(query);
 	}
 	
 	/**
@@ -63,8 +67,23 @@ public class AdminController {
 	 * @param price
 	 * @return
 	 */
-	public static boolean setLimitFreeDelivery(double price){
-		return DeliveryFee.setLimitDeliveryFeeInDB(price);
+	public static boolean setRestaurantProperties(String name, String address, String zipCode, 
+												  	String postalAddress, String phone, double limitFreeDelivery){
+		try {
+			Database db = Database.getDatabase();
+			String query = "UPDATE properties SET limitFreeDelivery='" + limitFreeDelivery + "', name='" + name + "', " +
+						"address='" + address + "', postcode='" + zipCode + "', postaladdress='" + postalAddress + "', phone='" + phone + "'";
+			db.insert(query);
+			System.out.println("Oppdatert");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static Properties getProperties(){
+		return Properties.getProperties();
 	}
 
 }

@@ -8,6 +8,13 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
+import controller.AdminController;
+import controller.ManageOrder;
+import controller.Validate;
+
+import model.Product;
+import model.Properties;
+
 /*
  * adminForm.java
  *
@@ -20,8 +27,12 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class AdminForm extends javax.swing.JFrame {
 
+	private Properties properties;
+	private Product currentProduct;
+	
     /** Creates new form adminForm */
     public AdminForm() {
+    	properties = Properties.getProperties();
         initComponents();
     }
 
@@ -104,11 +115,11 @@ public class AdminForm extends javax.swing.JFrame {
         rightProductPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         addEditButton.setBackground(new java.awt.Color(230, 240, 200));
-        addEditButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         addEditButton.setForeground(new java.awt.Color(64, 80, 25));
         addEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png"))); // NOI18N
-        addEditButton.setText("Legg til");
         addEditButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        addEditButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        addEditButton.setText("Legg til");
         addEditButton.setIconTextGap(10);
         addEditButton.setOpaque(true);
         addEditButton.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -229,7 +240,7 @@ public class AdminForm extends javax.swing.JFrame {
                .addComponent(productScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
        );
         
-        displayAdminPanel();
+        displayAdminPanel("");
 
         javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
         productPanel.setLayout(productPanelLayout);
@@ -254,18 +265,28 @@ public class AdminForm extends javax.swing.JFrame {
 
         restaurantNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         restaurantNameLabel.setText("Navn");
+        
+        restaurantNameField.setText(properties.getName());
 
         addressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         addressLabel.setText("Adresse");
 
+        addressField.setText(properties.getAddress());
+        
         zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         zipCodeLabel.setText("Postnummer");
+        
+        zipCodeField.setText(properties.getZipCode());
 
         postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         postalAddressLabel.setText("Poststed");
+        
+        postalAddressField.setText(properties.getPostalAddress());
 
         telephoneLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         telephoneLabel.setText("Telefonnummer");
+        
+        telephoneField.setText(properties.getPhone());
 
         zipCodeField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
@@ -353,12 +374,12 @@ public class AdminForm extends javax.swing.JFrame {
 
         rightRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
 
-        editButton.setBackground(new java.awt.Color(230, 240, 200));
         editButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        editButton.setForeground(new java.awt.Color(64, 80, 25));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png"))); // NOI18N
+        editButton.setBackground(new java.awt.Color(245, 245, 215));
+        editButton.setForeground(new java.awt.Color(100, 70, 20));
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png"))); // NOI18N
         editButton.setText("Endre");
-        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         editButton.setIconTextGap(10);
         editButton.setOpaque(true);
         editButton.setPreferredSize(new java.awt.Dimension(130, 50));
@@ -371,6 +392,7 @@ public class AdminForm extends javax.swing.JFrame {
         freeDeliveryLimitLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         freeDeliveryLimitLabel.setText("Grense for gratis levering");
 
+        freeDeliveryLimitField.setText(""+properties.getLimitFreeDelivery());
         freeDeliveryLimitField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         otherInfoHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
@@ -506,9 +528,9 @@ public class AdminForm extends javax.swing.JFrame {
     /**
      * Fills in the dynamic parts of the admin Panel
      */
-    private void displayAdminPanel() {
+    private void displayAdminPanel(String query) {
     	
-    	ArrayList<javax.swing.JLabel> products = createProductLabels();
+    	ArrayList<javax.swing.JLabel> products = createProductLabels(query);
     	setLeftProductPanelLayout(products);
     	
     	searchField.grabFocus();
@@ -516,15 +538,16 @@ public class AdminForm extends javax.swing.JFrame {
     	
     }
 
-	private ArrayList<JLabel> createProductLabels() {
-    	ArrayList<javax.swing.JLabel> products = new ArrayList<javax.swing.JLabel>();
+	private ArrayList<JLabel> createProductLabels(String query) {
+    	ArrayList<javax.swing.JLabel> productLabels = new ArrayList<javax.swing.JLabel>();
+    	ArrayList<Product> products = AdminController.getRelevantProducts(query);
     	
-    	
-    	for (int i=0; i < 12; i++) {
+    	for (int i=0; i < products.size(); i++) {
+    		final Product product = products.get(i);
         	// Create a new JLabel
         	javax.swing.JLabel temp = new javax.swing.JLabel();
             // Set JLabel dimensions, text, border and so on
-            temp.setText("Palermo");
+            temp.setText(product.getName());
             temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
             temp.setOpaque(true);
             temp.setPreferredSize(new java.awt.Dimension(140, 20));
@@ -542,14 +565,15 @@ public class AdminForm extends javax.swing.JFrame {
     		// What method to call if the JLabel is clicked
             temp.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    productLabelMouseClicked();
+                    productLabelMouseClicked(product);
                 }
 
             });
             // Add the JLabel to the array of JLabels
-            products.add(temp);
+            productLabels.add(temp);
     	}
-    	return products;
+    	
+    	return productLabels;
 	}
 
     private void setLeftProductPanelLayout(ArrayList<JLabel> products) {
@@ -575,18 +599,20 @@ public class AdminForm extends javax.swing.JFrame {
     }
     
     private void searchFieldKeyTyped(KeyEvent evt) {
-		// TODO Auto-generated method stub
+		displayAdminPanel(searchField.getText());
 	}
 
 	private void searchFieldMouseClicked(MouseEvent evt) {
-		// TODO Auto-generated method stub
+		searchField.setText("");
+		displayAdminPanel("");
 	}
     
     
-	private void productLabelMouseClicked() {
-		productNameField.setText("Palermo");
-		priceField.setText("199.00");
-		commentField.setText("Dette er en ganske kjedelig kommentar");
+	private void productLabelMouseClicked(Product product) {
+		currentProduct = product;
+		productNameField.setText(product.getName());
+		priceField.setText(""+product.getPrice());
+		commentField.setText(product.getComment());
 		
 		// Make the submit button yellow and change the text
 		addEditButton.setText("Endre");
@@ -601,17 +627,137 @@ public class AdminForm extends javax.swing.JFrame {
     	form.setVisible(true);
     	this.setVisible(false);
     }
-    private void addEditButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
-        // TODO add your handling code here:
+    private void addEditButtonMouseClicked(java.awt.event.MouseEvent evt) {   
+    	boolean legalValues = true;
+    	String name = this.productNameField.getText();
+    	String comment = this.commentField.getText();
+    	Color color = new Color(235, 210, 210);
+    	double price = -1;
+    	try {
+    		price = Double.parseDouble(this.priceField.getText());
+		} catch (Exception e) {
+			legalValues = false;
+			this.priceField.setBackground(color);
+			
+		}
+    	if (!Validate.stringNonEmpty(name) || !Validate.stringLegal(name)){
+    		this.productNameField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.productNameField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringLegal(comment)){
+    		this.telephoneField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.telephoneField.setBackground(Color.WHITE);
+    	}
+    	
+    	if (legalValues && currentProduct==null && price>=0){
+    		if (AdminController.addProduct(name, price, comment)){
+    			setButtonToGreen(this.addEditButton);
+    			this.addEditButton.setText("Lagt til");
+    			this.priceField.setText("");
+    			this.productNameField.setText("");
+    			this.commentField.setText("");
+    			currentProduct=null;
+    			displayAdminPanel("");
+    		}
+    	}
+    	else if (legalValues && price >= 0){
+    		if (AdminController.updateProduct(currentProduct, name, price, comment)){
+    			setButtonToGreen(this.addEditButton);
+    			this.addEditButton.setText("Endret");
+    			this.priceField.setText("");
+    			this.productNameField.setText("");
+    			this.commentField.setText("");
+    			currentProduct=null;
+    			displayAdminPanel("");
+    		}
+    	}
+    	
+    	
     }                                       
 
     private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    	if (currentProduct != null && AdminController.deleteProduct(currentProduct)){
+    		AdminController.deleteProduct(currentProduct);
+    		displayAdminPanel("");
+    		setButtonToGreen(this.deleteButton);
+    		this.deleteButton.setText("Slettet");
+    		this.addEditButton.setText("Endret");
+			this.priceField.setText("");
+			this.productNameField.setText("");
+			this.commentField.setText("");
+    	}
     }
 
     private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    	String name = restaurantNameField.getText();
+    	String phone = telephoneField.getText();
+    	String address = addressField.getText();
+    	String zipCode = zipCodeField.getText();
+    	String postalAddress = postalAddressField.getText();
+    	double limitFreeDelivery = Double.parseDouble(freeDeliveryLimitField.getText());
+    	boolean legalValues = true;
+    	Color color = new Color(235, 210, 210);
+    	if (!Validate.stringNonEmpty(name) || !Validate.stringLegal(name)){
+    		this.productNameField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.productNameField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringNonEmpty(phone) || !Validate.stringLegal(phone)){
+    		this.telephoneField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.telephoneField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringNonEmpty(address) || !Validate.stringLegal(address)){
+    		this.addressField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.addressField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringOnlyNumb(zipCode) || !Validate.stringLegal(zipCode)){
+    		this.zipCodeField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.zipCodeField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringNonEmpty(postalAddress) || !Validate.stringLegal(postalAddress)){
+    		this.postalAddressField.setBackground(color);
+    		legalValues = false;
+    	}
+    	else {
+    		this.postalAddressField.setBackground(Color.WHITE);
+    	}
+    	
+    	if (legalValues){
+    		if (AdminController.setRestaurantProperties(name, address, zipCode, postalAddress, phone, limitFreeDelivery)){
+    			this.editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
+    			this.editButton.setText("Endret");
+    			this.editButton.setBackground(new java.awt.Color(230, 240, 200));
+    	        this.editButton.setForeground(new java.awt.Color(64, 80, 25));
+    		}
+    		
+    	}
     }
+    
+    public void setButtonToGreen(JLabel button){
+    	 addEditButton.setBackground(new java.awt.Color(230, 240, 200));
+         addEditButton.setForeground(new java.awt.Color(64, 80, 25));
+         addEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png"))); // NOI18N
+         addEditButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+    }
+    
+    
 
     /**
      * @param args the command line arguments
