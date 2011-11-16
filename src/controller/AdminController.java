@@ -67,19 +67,9 @@ public class AdminController {
 	 * @param price
 	 * @return
 	 */
-	public static boolean setRestaurantProperties(String name, String address, String zipCode, 
+	public static void setRestaurantProperties(String name, String address, String zipCode, 
 												  	String postalAddress, String phone, double limitFreeDelivery){
-		try {
-			Database db = Database.getDatabase();
-			String query = "UPDATE properties SET limitFreeDelivery='" + limitFreeDelivery + "', name='" + name + "', " +
-						"address='" + address + "', postcode='" + zipCode + "', postaladdress='" + postalAddress + "', phone='" + phone + "'";
-			db.insert(query);
-			System.out.println("Oppdatert");
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		Properties.setProperties(name, address, zipCode, postalAddress, phone, limitFreeDelivery);
 	}
 	
 	public static Properties getProperties(){

@@ -1,8 +1,13 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+
 import model.Customer;
 import model.Order;
 import model.Product;
@@ -27,19 +32,19 @@ private Order order;
 private Customer customer;
     /** Creates new form NewOrder2Form */
     public NewOrder2Form(Customer c) {
-        initComponents();
         ManageOrder.addCustomerToDatabase(c);
         this.customer = c;
         this.order = new Order(c);
+        initComponents();
         this.updateRightPanel();
         this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
     }
     
     public NewOrder2Form(Customer c, Order o) {
-        initComponents();
         ManageOrder.addCustomerToDatabase(c);
         this.customer = c;
         this.order = o;
+        initComponents();
         this.updateRightPanel();
         this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
     }
@@ -183,10 +188,15 @@ private Customer customer;
             }
         });
 
+        if (order.getDelivery()){
+        	takeawayButton.setIcon(new ImageIcon("src/icons/tick_32.png"));
+        }
+        else {
+        	takeawayButton.setIcon(new ImageIcon("src/icons/delete_32.png"));
+        }
         takeawayButton.setBackground(new java.awt.Color(225, 230, 235));
         takeawayButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         takeawayButton.setForeground(new java.awt.Color(44, 65, 105));
-        takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png"))); // NOI18N
         takeawayButton.setText(" Kjøres");
         takeawayButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         takeawayButton.setOpaque(true);
@@ -197,15 +207,20 @@ private Customer customer;
             }
         });
 
+        if (order.getAllergy()){
+        	allergyButton.setIcon(new ImageIcon("src/icons/tick_32.png"));
+        }
+        else {
+        	allergyButton.setIcon(new ImageIcon("src/icons/delete_32.png"));
+        }
         allergyButton.setBackground(new java.awt.Color(225, 230, 235));
-        allergyButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         allergyButton.setForeground(new java.awt.Color(44, 65, 105));
-        allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png"))); // NOI18N
         allergyButton.setText(" Allergi");
-        allergyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        allergyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(170, 180, 200), 2), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        allergyButton.setFont(new Font("Georgia", 0, 18));
         allergyButton.setOpaque(true);
-        allergyButton.setPreferredSize(new java.awt.Dimension(140, 20));
-        allergyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        allergyButton.setPreferredSize(new Dimension(140, 20));
+        allergyButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 allergyButtonMouseClicked(evt);
             }

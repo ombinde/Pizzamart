@@ -5,22 +5,22 @@ import java.sql.SQLException;
 
 public class Properties {
 	
-	private String name;
-	private String address;
-	private String zipCode;
-	private String postalAddress;
-	private String phone;
-	private double limitFreeDelivery;
+	private static String name;
+	private static String address;
+	private static String zipCode;
+	private static String postalAddress;
+	private static String phone;
+	private static double limitFreeDelivery;
 	private static Properties properties;
 	
 	private Properties(String name, String address, String zipCode,
-			String postalAddress, String phone, double limitFreeDelivery) {
-		this.name = name;
-		this.address = address;
-		this.zipCode = zipCode;
-		this.postalAddress = postalAddress;
-		this.phone = phone;
-		this.limitFreeDelivery = limitFreeDelivery;
+						String postalAddress, String phone, double limitFreeDelivery) {
+		Properties.name = name;
+		Properties.address = address;
+		Properties.zipCode = zipCode;
+		Properties.postalAddress = postalAddress;
+		Properties.phone = phone;
+		Properties.limitFreeDelivery = limitFreeDelivery;
 	}
 	
 	public static Properties getProperties(){
@@ -44,30 +44,53 @@ public class Properties {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
 			}
-			return null;
 		}
 	}
 	
+	public static void setProperties(String name, String address, String zipCode, 
+		  				String postalAddress, String phone, double limitFreeDelivery){
+		try {
+			Database db = Database.getDatabase();
+			String query = "UPDATE properties SET limitFreeDelivery='" + limitFreeDelivery + "', name='" + name + "', " +
+						"address='" + address + "', postcode='" + zipCode + "', postaladdress='" + postalAddress + "', phone='" 
+						+ phone + "'";
+			db.insert(query);
+			properties = new Properties(name, address, zipCode, postalAddress, phone, limitFreeDelivery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
-	public String getName() {
+	public static String getName() {
+		if (properties==null)
+			getProperties();
 		return name;
 	}
-	public String getAddress() {
+	public static String getAddress() {
+		if (properties==null)
+			getProperties();
 		return address;
 	}
-	public String getZipCode() {
+	public static String getZipCode() {
+		if (properties==null)
+			getProperties();
 		return zipCode;
 	}
-	public String getPostalAddress() {
+	public static String getPostalAddress() {
+		if (properties==null)
+			getProperties();
 		return postalAddress;
 	}
-	public String getPhone() {
+	public static String getPhone() {
+		if (properties==null)
+			getProperties();
 		return phone;
 	}
-	public double getLimitFreeDelivery() {
+	public static double getLimitFreeDelivery() {
+		if (limitFreeDelivery==0)
+			getProperties();
 		return limitFreeDelivery;
 	}
-
 }
