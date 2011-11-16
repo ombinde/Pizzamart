@@ -483,7 +483,7 @@ searchField.setText(searchField.getText());
      order.setStatus("Bestilt");
      boolean legalOrder = true;
     
-     if (!Validate.stringLegal(this.commentArea.getText())){
+     if (!Validate.isStringLegal(this.commentArea.getText())){
      this.commentArea.setBackground(color);
      legalOrder = false;
      }
