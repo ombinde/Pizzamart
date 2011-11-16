@@ -261,7 +261,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
 
     private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {
-    	EditForm form = new EditForm();         
+    	EditForm1 form = new EditForm1();         
         form.setVisible(true);
         this.setVisible(false); 
     }
