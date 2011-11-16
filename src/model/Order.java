@@ -4,13 +4,11 @@ import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
+
 /**
  * A class for orders
  * 
@@ -36,6 +34,7 @@ public class Order {
 	
 	/**
 	 * Creates a new order with all the information needed.
+	 * This is used if you want to edit an existing order, and the order object is not initialized.
 	 * @param customer
 	 * @param products
 	 * @param status
@@ -50,11 +49,13 @@ public class Order {
 		this.allergy = allergy;
 		this.delivery = delivery;
 		this.dateAdded = new Date(date);
-		limitFreeDelivery = DeliveryFee.getLimitFreeDelivery();
+		limitFreeDelivery = Properties.getLimitFreeDelivery();
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
 	}
+	
 	/**
 	 * Creates a new Order with only a customer. More can be added later on.
+	 * Use this to create a new order.
 	 * @param customer
 	 */
 	public Order(Customer customer){
@@ -68,63 +69,12 @@ public class Order {
 		this.setAllergy(false);
 	}
 	
-	/**
-	 * A static method that returns all products from a given order 
-	 * as a HashMap with products as key, and quantity as value. 
-	 * @param idOrder
-	 * @return HashMap<Product, Integer> som innholder produkter og anntallet.
-	 */
-/*	public static HashMap<Product, Integer> getProductsFromOrder(int id){
-		Database db;
-		try {
-			db = Database.getDatabase();
-			HashMap<Product, Integer> products = new HashMap<Product, Integer>();
-			ResultSet rs = db.select("select name, price, comments, quantity from product_has_order " +
-					"join product on idproduct=product_idproduct where orders_idorder=" + id );
-			while (rs.next()){
-				double price = rs.getDouble("price");
-				String name = rs.getString("name");
-				if(name.equals("Frakt"))
-					products.put(DeliveryFee.getDeliveryFee(), 1);
-				else
-					products.put(new Product(name, price), rs.getInt("quantity"));
-			}
-			return products;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}*/
-	
-
 	
 	/**
 	 * Returns the totalprice of an given Order.
 	 * @param order
-	 * @return
+	 * @return totalprice
 	 */
-	/*public double getOrderTotalPrice(){
-		double totalprice = 0;
-		if (productsInOrder.size()<1)
-			return 0;
-	    for (Object p : productsInOrder.keySet()) {
-	    	if (p instanceof Product){
-		    	int quantity = productsInOrder.get(p);	
-		        totalprice += ((Product) p).getPrice()*quantity;
-	    	}
-	    }
-	    if (productsInOrder.containsKey(deliveryFee) && totalprice > limitFreeDelivery){
-	    	double fee = deliveryFee.getPrice();
-	    	deliveryFee.setPrice(0);
-	    	totalprice -= fee;
-	    }
-	    else if (productsInOrder.containsKey(deliveryFee)){
-	    	deliveryFee.setPriceToOriginal();
-	    }
-		return totalprice;
-	}*/
-	
 	public double getOrderTotalPrice(){
 		double totalprice = 0;
 		if (products.size()<1)
@@ -143,32 +93,20 @@ public class Order {
 	    }
 		return totalprice;
 	}
-
-	/**
-	 * Returns the quantity of an product in an order.
-	 * @param product
-	 * @return quantity as an integer
-	 */
-//	public int getProductQuanta(ProductInOrder product){
-//	    for (ProductInOrder p : products) {
-//			if (p.equals(product)){
-//				return p.getQuantity();
-//			}
-//		}
-//	    return 0;
-//	}
 	
 	/**
 	 * Adds the order to the Database.
-	 * @return
+	 * @return 1 if the order was added, and 0 else.
 	 */
 	public int addOrderToDatabase(){
 		Integer quantity = 0;
 		try {
 			Database db = Database.getDatabase();
+			//Adds the order
 			String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
 			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
 			idOrder = db.insertWithIdReturn(query);
+			//Adds the relation with the products in the order
 		    for (Product p : products) {
 		    	quantity = p.getQuantity();
 		    	int idproduct = p.getIdproduct();
@@ -190,6 +128,7 @@ public class Order {
 	 * @param quantity
 	 */
 	public void addProductToOrder(Product product, int quantity){
+		//Adds the quantity if the product exist in the order
 		if (!(product instanceof DeliveryFee) && products.contains(product)){
 			for (Product p : products) {
 				if (p.equals(product)){
@@ -197,8 +136,11 @@ public class Order {
 				}
 			}
 		}
-		else
+		//Adds the product
+		else {
 			products.add(product);
+		}
+		//Adds delivery fee if needed
 		if (delivery==1 && !(product instanceof DeliveryFee) && !products.contains(deliveryFee)){
 			products.add(deliveryFee);
 		}
@@ -218,7 +160,7 @@ public class Order {
 						p.removeQuantity(quantity);
 						break;
 					}
-					else{
+					else {
 						products.remove(p);
 						break;
 					}
@@ -252,7 +194,7 @@ public class Order {
 	}
 	
 	/**
-	 * Removes the delivery fee
+	 * Removes the delivery fee.
 	 */
 	private void removeDeliveryFee(){
 		if (products.contains(deliveryFee))
@@ -260,8 +202,9 @@ public class Order {
 	}
 	
 	/**
-	 * Returns the id of all orders with a given status
-	 * @param status
+	 * Gets all the orders with two given statuses and order it by ascending from the database.
+	 * @param status1
+	 * @param status2
 	 * @return ArrayList with orders
 	 */
 	public static ArrayList<Order> getRelevantOrders(String status1, String status2){
@@ -269,7 +212,8 @@ public class Order {
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 + "' ORDER BY time ASC");
+			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 
+									+ "' ORDER BY time ASC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
@@ -289,6 +233,10 @@ public class Order {
 		return null;
 	}
 	
+	/**
+	 * Gets all the orders and order it by ascending from the database.
+	 * @return all orders
+	 */
 	public static ArrayList<Order> getAllOrders(){
 		ArrayList<Order> allOrders = new ArrayList<Order>();
 		try {
@@ -314,6 +262,10 @@ public class Order {
 		return null;
 	}
 	
+	/**
+	 * Gets all the orders that are finished and sorts it by ascending from the database.
+	 * @return finished orders
+	 */
 	public static ArrayList<Order> getFinishedOrders(){
 		ArrayList<Order> allOrders = new ArrayList<Order>();
 		try {
@@ -350,28 +302,39 @@ public class Order {
 	
 	/**
 	 * Returns the comment of an order.
-	 * @return
+	 * @return comment
 	 */
 	public String getComment(){
 		return this.comment;
 	}
 	
+	/**
+	 * Returns the status of an order.
+	 * @return status
+	 */
 	public String getStatus(){
 		return this.status;
 	}
 	
+	/**
+	 * Returns the id of an order
+	 * @return idorder
+	 */
 	public int getIdOrder(){
 		return idOrder;
 	}
 	
+	/**
+	 * Returns the customer of an order.
+	 * @return customer
+	 */
 	public Customer getCustomer(){
 		return this.customer;
 	}
 	
 	/**
-	 * Returns all the products in a HashMap with the product as the key,
-	 * and the quantity of the product as value.
-	 * @return
+	 * Returns all the products in the order.
+	 * @return products
 	 */
 	public ArrayList<Product> getProductsInOrder(){
 		return products;
@@ -380,7 +343,7 @@ public class Order {
 	/**
 	 * Sets the delivery to true or false.
 	 * Adds a delivery fee if it's true.
-	 * @param b
+	 * @param boolean
 	 */
 	public void setDelivery(boolean b){
 		if (b){
@@ -396,7 +359,7 @@ public class Order {
 	/**
 	 * Returns true if the order is going to be delivered
 	 * and false if not.
-	 * @return
+	 * @return 
 	 */
 	public boolean getDelivery(){
 		return (delivery==1) ? true : false;
@@ -404,7 +367,7 @@ public class Order {
 	
 	/**
 	 * Sets the allergy status to true or false.
-	 * @param b
+	 * @param boolean
 	 */
 	public void setAllergy(boolean b){
 		if (b){
