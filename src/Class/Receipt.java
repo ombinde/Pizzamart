@@ -12,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.io.*;
-//import java.awt.*;
-import java.io.*;
 import java.util.zip.*;
 
 import javax.print.Doc;
@@ -70,7 +68,7 @@ public class Receipt {
 	
 	
 	/**
-	 *Œpner Receipe.doc filen. 
+	 *ï¿½pner Receipe.doc filen. 
 	 */
 	public void openReceipt(){
 		Desktop desktop = null;
@@ -102,7 +100,7 @@ public class Receipt {
         String text = "";
         DecimalFormat toDesimaler = new DecimalFormat("0.00");
 		double totalSum = 0;
-		double utkj¿ring = 0;
+		double utkjï¿½ring = 0;
 		Set set = productsInOrder.entrySet();
 		Iterator i = set.iterator();
         Document document = new Document(PageSize.A4, 36, 72, 108, 180);
@@ -146,14 +144,14 @@ public class Receipt {
 		}
 		
 		if(totalSum < 700)
-			utkj¿ring = 70;
+			utkjï¿½ring = 70;
 		
-		totalSum += utkj¿ring;
+		totalSum += utkjï¿½ring;
 		
-		table.addCell("Utkj¿ring");
+		table.addCell("Utkjï¿½ring");
 		table.addCell("");
 		table.addCell("");
-		table.addCell(Double.toString(utkj¿ring));
+		table.addCell(Double.toString(utkjï¿½ring));
 		
 		table.addCell("TotalSum");
 		table.addCell("");
