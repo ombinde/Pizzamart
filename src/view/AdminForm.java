@@ -606,14 +606,14 @@ public class AdminForm extends JFrame {
 			this.priceField.setBackground(color);
 			
 		}
-    	if (!Validate.stringNonEmpty(name) || !Validate.stringLegal(name)){
+    	if (!Validate.stringNonEmpty(name) || !Validate.isStringLegal(name)){
     		this.productNameField.setBackground(color);
     		legalValues = false;
     	}
     	else {
     		this.productNameField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.stringLegal(comment)){
+    	if (!Validate.isStringLegal(comment)){
     		this.telephoneField.setBackground(color);
     		legalValues = false;
     	}
@@ -666,35 +666,35 @@ public class AdminForm extends JFrame {
     	double limitFreeDelivery = Double.parseDouble(freeDeliveryLimitField.getText());
     	boolean legalValues = true;
     	Color color = new Color(235, 210, 210);
-    	if (!Validate.stringNonEmpty(name) || !Validate.stringLegal(name)){
+    	if (!Validate.stringNonEmpty(name) || !Validate.isStringLegal(name)){
     		this.productNameField.setBackground(color);
     		legalValues = false;
     	}
     	else {
     		this.productNameField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.stringNonEmpty(phone) || !Validate.stringLegal(phone)){
+    	if (!Validate.stringNonEmpty(phone) || !Validate.isStringLegal(phone)){
     		this.telephoneField.setBackground(color);
     		legalValues = false;
     	}
     	else {
     		this.telephoneField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.stringNonEmpty(address) || !Validate.stringLegal(address)){
+    	if (!Validate.stringNonEmpty(address) || !Validate.isStringLegal(address)){
     		this.addressField.setBackground(color);
     		legalValues = false;
     	}
     	else {
     		this.addressField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.stringOnlyNumb(zipCode) || !Validate.stringLegal(zipCode)){
+    	if (!Validate.isStringOnlyNumbers(zipCode) || !Validate.isStringLegal(zipCode)){
     		this.zipCodeField.setBackground(color);
     		legalValues = false;
     	}
     	else {
     		this.zipCodeField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.stringNonEmpty(postalAddress) || !Validate.stringLegal(postalAddress)){
+    	if (!Validate.stringNonEmpty(postalAddress) || !Validate.isStringLegal(postalAddress)){
     		this.postalAddressField.setBackground(color);
     		legalValues = false;
     	}

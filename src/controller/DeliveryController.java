@@ -1,11 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import model.Customer;
 import model.Order;
-import model.Product;
 
 public class DeliveryController {
 	
