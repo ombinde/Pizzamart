@@ -187,20 +187,22 @@ public class EditForm1 extends javax.swing.JFrame {
     
     private ArrayList<JLabel> createOrderLabels(){
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
+        ArrayList<Order> finishedOrders = ManageOrder.getFinishedOrders();
 
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < finishedOrders.size(); i++){
+        	final Order order = finishedOrders.get(i);
         	// Create the upper half of the order Label
         	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
         	upperHalf.setBackground(new java.awt.Color(225, 230, 235));
 	        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
 	        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(7, 10, 0, 10)));
 	        upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setText("18.00, 16, nov: Morten Vaale Noddeland");
+        	upperHalf.setText(order.getDateAndTime() + " " + order.getCustomer().getName());
         	upperHalf.setOpaque(true);
             upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    orderLabelMouseClicked();
+                    orderLabelMouseClicked(order);
                 }
             });
         	// Create the lower half of the order Label
@@ -208,12 +210,12 @@ public class EditForm1 extends javax.swing.JFrame {
 			lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
         	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
         	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-        	lowerHalf.setText("Status: Påbegynt av kjøkken");
+        	lowerHalf.setText("Status: " + order.getStatus());
         	lowerHalf.setOpaque(true);
             lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                	orderLabelMouseClicked();
+                	orderLabelMouseClicked(order);
                 }
             });
 
@@ -267,7 +269,7 @@ public class EditForm1 extends javax.swing.JFrame {
     	updateMiddlePanel();
     }
 
-    private void orderLabelMouseClicked() {                                                     
+    private void orderLabelMouseClicked(Order order) {                                                     
         //EditForm2 form = new EditForm2(order);
         //form.setVisible(true);
         //this.setVisible(false);

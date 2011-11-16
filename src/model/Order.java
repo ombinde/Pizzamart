@@ -294,7 +294,32 @@ public class Order {
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders");
+			ResultSet rs = db.select("SELECT * FROM orders ORDER BY time ASC");
+			while(rs.next()){
+				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
+				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
+				int idOrder = rs.getInt("idorder");
+				String status = rs.getString("status");
+				String comment = rs.getString("comments");
+				int allergy = rs.getInt("allergy");
+				int delivery = rs.getInt("delivery");
+				long date = rs.getLong("time");
+				allOrders.add(new Order(idOrder, customer, products, status, comment, allergy, delivery, date));
+			}
+			return allOrders;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static ArrayList<Order> getFinishedOrders(){
+		ArrayList<Order> allOrders = new ArrayList<Order>();
+		try {
+			Database db;
+			db = Database.getDatabase();
+			ResultSet rs = db.select("SELECT * FROM orders where status!='Utlevert' and status!='Levert' ORDER BY time ASC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
