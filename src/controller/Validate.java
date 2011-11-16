@@ -3,7 +3,7 @@ public class Validate {
 
 	/**
 	 * Checks whether string is empty or not
-	 * @param text string to be checked
+	 * @param text is the string to be checked
 	 * @return true if there is a string and false if there is none.
 	 */
 	public static boolean stringNonEmpty(String text){
@@ -11,11 +11,10 @@ public class Validate {
 			return false;
 		return true;
 	}
-	
 	/**
 	 * Checks whether string contains a number
-	 * @param text string to be checked
-	 * @return true if there is a string and false if there is none.
+	 * @param text is the string to be checked
+	 * @return true if string contains numbers and false if it contains no numbers.
 	 */
 	public static boolean stringContainsNumb(String text){
 		for(int i = 0; i < text.length(); i++){
@@ -28,11 +27,11 @@ public class Validate {
 	}
 
 	/**
-	 * 
-	 * @param text
-	 * @return
+	 * Checks whether string only constitutes of integers. 
+	 * @param text is the string to be checked
+	 * @return true if string contains only numbers, and false otherwise
 	 */
-	public static boolean stringOnlyNumb(String text){
+	public static boolean isStringOnlyNumbers(String text){
 		for(int i = 0; i < text.length(); i++){
 			int cha = (int)text.charAt(i);
 			if(!(cha >= 48 && cha <= 57))
@@ -41,27 +40,13 @@ public class Validate {
 		return true;
 	}
 
-	//public static boolean stringOnlyCharacters(String text){
+
 	/**
-	 * 
-	 * @param text
-	 * @return
+	 * Checks whether string contains any illegal characters
+	 * @param text is the string to be checked
+	 * @return true if there is a string and false if there is none.
 	 */
-	public static boolean stringNotLeagal(String text){
-		for(int i = 0; i < text.length(); i++){
-			char cha = text.charAt(i);
-			if(!((cha >= 'A' && cha <= 'Z') || (cha >= 'a' && cha <= 'z')) )
-				return false;
-			
-		}
-		return true;
-	}
-	/**
-	 * 
-	 * @param text
-	 * @return
-	 */
-	public static boolean stringLegal(String text){
+	public static boolean isStringLegal(String text){
 		for (int i = 0; i < text.length(); i++) {
 			int cha = (int)text.charAt(i);
 			if(cha<32 || cha > 255){
