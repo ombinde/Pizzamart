@@ -7,6 +7,13 @@ import javax.swing.BorderFactory;
 //no.ntnu.course
 import javax.swing.JLabel;
 
+import controller.AdminController;
+import controller.ManageOrder;
+
+import model.Customer;
+import model.Order;
+import model.Product;
+
 /*
  * EditForm2.java
  *
@@ -19,8 +26,10 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class EditForm2 extends javax.swing.JFrame {
 
+	private Order order;
     /** Creates new form EditForm2 */
-    public EditForm2() {
+    public EditForm2(Order order) {
+    	this.order = order;
         initComponents();
     }
 
@@ -431,19 +440,19 @@ public class EditForm2 extends javax.swing.JFrame {
     
     private void displayOrder(){
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
-    	
+    	Customer customer = order.getCustomer();
     	defineQuantityPanel(labels.get(0));
     	defineProductPanel(labels.get(1));
     	
-    	nameContentLabel.setText("Stein Harry");
-        addressContentLabel.setText("Bergåsen 1");
-        zipCodeContentLabel.setText("OVER 9000");
-        telephoneContentLabel.setText("87654321");
-        statusContentLabel.setText("Under levering");
-        deliveryContentLabel.setText("Ja");
-        allergyContentLabel.setText("Nei");
-        commentTextPane.setText("Blubb, blubb. Jeg er en fisk");
-        priceLabel.setText("429.00,-");
+    	nameContentLabel.setText(customer.getName());
+        addressContentLabel.setText(customer.getAddress());
+        zipCodeContentLabel.setText(customer.getzipCode() + " " + customer.getPostalAddress());
+        telephoneContentLabel.setText(customer.getPhone());
+        statusContentLabel.setText(order.getStatus());
+        deliveryContentLabel.setText(order.getDelivery() ? "Ja" : "Nei");
+        allergyContentLabel.setText(order.getAllergy() ? "Ja" : "Nei");
+        commentTextPane.setText(order.getComment());
+        priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
     }
    
     
@@ -451,19 +460,22 @@ public class EditForm2 extends javax.swing.JFrame {
     private ArrayList<ArrayList<JLabel>> createProductLabels() {
     	ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
+        ArrayList<Product> productsInOrder = order.getProductsInOrder();
         
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < productsInOrder.size(); i++) {
         	// Create quantityLabels
         	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
         	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         	quantityLabel.setOpaque(true);
         	quantityLabel.setVisible(true);
         	int bg;
-			if (i % 2 == 0) { bg = 220; }
-	        else 			{ bg = 240; }
+			if (i % 2 == 0) 
+				bg = 220; 
+	        else
+	        	bg = 240;
 			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("2");
+	        quantityLabel.setText(""+productsInOrder.get(i).getQuantity());
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
@@ -473,7 +485,7 @@ public class EditForm2 extends javax.swing.JFrame {
         	productLabel.setVisible(true);
 			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
 			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("Genoa");
+			productLabel.setText(productsInOrder.get(i).getName());
 	        productLabels.add(productLabel);
 			
         }
@@ -526,15 +538,22 @@ public class EditForm2 extends javax.swing.JFrame {
 	}
 
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
-
+		EditForm1 form = new EditForm1();
+    	form.setVisible(true);
+    	this.setVisible(false);
     }                                       
 
-    private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    private void editButtonMouseClicked(java.awt.event.MouseEvent evt) { 
+    	NewOrderForm form = new NewOrderForm(order.getCustomer(), order);
+    	form.setVisible(true);
+    	this.setVisible(false);
     }
-        // TODO add your handling code here:}                                         
 
     private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {                                                       
-        // TODO add your handling code here:
+        AdminController.deleteOrder(order);
+        EditForm1 form = new EditForm1();
+    	form.setVisible(true);
+    	this.setVisible(false);
     }                                                      
 
     /**
@@ -567,7 +586,7 @@ public class EditForm2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new EditForm2().setVisible(true);  
+               // new EditForm2().setVisible(true);  
             }
         });
     }

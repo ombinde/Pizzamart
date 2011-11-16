@@ -291,6 +291,22 @@ public class Order {
 		return null;
 	}
 	
+	/**
+	 * Deletes an order from the database.
+	 * @param order
+	 * @return true if the order was deleted, else it's false.
+	 */
+	public static boolean deleteOrderFromDatabase(Order order){
+		try {
+			Database db = Database.getDatabase();
+			String query = "DELETE FROM orders where idorder='" + order.idOrder + "'";
+			db.insert(query);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	/**
 	 * Sets a comment in the order.
