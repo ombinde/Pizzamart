@@ -448,8 +448,9 @@ searchField.setText(searchField.getText());
     }
     
     private void searchFieldMouseClicked(java.awt.event.MouseEvent evt){
-     this.searchField.setText("");
-     this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
+    	this.searchFieldChanged = true;
+    	this.searchField.setText("");
+    	this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
     
     private void commentFieldMouseClicked(java.awt.event.MouseEvent evt){

@@ -313,12 +313,12 @@ private Order order;
 
         pack();
     }
-    
-    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt){
-     this.searchField.setText("");
-     this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
-    }
     boolean searchFieldChanged;
+    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {
+    	this.searchFieldChanged = true;
+    	this.searchField.setText("");
+    	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
+    }
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
         if (!this.searchFieldChanged) {
         	this.searchField.setText("" + (this.searchField.getText()).charAt(3));
