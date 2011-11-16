@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import javax.annotation.Resource;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -144,6 +143,10 @@ public class ManageOrder {
 	 */
 	public static double getTotalPrice(Order order){
 		return order.getOrderTotalPrice();
+	}
+	
+	public static ArrayList<Order> getFinishedOrders(){
+		return Order.getFinishedOrders();
 	}
 	
 	/**
