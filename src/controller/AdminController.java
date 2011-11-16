@@ -53,6 +53,7 @@ public class AdminController {
 	 * @param price is product price
 	 * @param comment is product description
 	 * @return true if the product was updated successfully. And false if something unexpected happened.
+	 */
 	public static boolean updateProduct(Product p, String name, double price, String comment){
 		return Product.updateProduct(p, name, price, comment);
 	}
