@@ -4,6 +4,7 @@ import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -40,7 +41,8 @@ public class Order {
 	 * @param status
 	 * @param comment
 	 */
-	private Order(int idOrder, Customer customer, ArrayList<Product> products, String status, String comment, int allergy, int delivery, long date){
+	private Order(int idOrder, Customer customer, ArrayList<Product> products, String status, String comment, 
+					int allergy, int delivery, long date){
 		this.idOrder = idOrder;
 		this.customer = customer;
 		this.products = products;
@@ -98,27 +100,20 @@ public class Order {
 	 * Adds the order to the Database.
 	 * @return 1 if the order was added, and 0 else.
 	 */
-	public int addOrderToDatabase(){
+	public void addOrderToDatabase(){
 		Integer quantity = 0;
-		try {
-			Database db = Database.getDatabase();
-			//Adds the order
-			String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
-			  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
-			idOrder = db.insertWithIdReturn(query);
-			//Adds the relation with the products in the order
-		    for (Product p : products) {
-		    	quantity = p.getQuantity();
-		    	int idproduct = p.getIdproduct();
-		    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
-		    	"values('" + idproduct + "','" + idOrder + "','" + quantity + "')";
-		    	db.insert(query);
-		    	
-			}
-		    return 1;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return 0;
+		Database db = Database.getDatabase();
+		//Adds the order
+		String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
+		  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
+		idOrder = db.insertWithIdReturn(query);
+		//Adds the relation with the products in the order
+	    for (Product p : products) {
+	    	quantity = p.getQuantity();
+	    	int idproduct = p.getIdproduct();
+	    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
+	    	"values('" + idproduct + "','" + idOrder + "','" + quantity + "')";
+	    	db.insert(query);
 		}
 	}
 	
@@ -176,13 +171,9 @@ public class Order {
 	 */
 	public void setStatus(String status){
 		this.status = status;
-		try {
-			Database db = Database.getDatabase();
-			String query = "UPDATE orders SET status='" + status + "' WHERE idorder=" + idOrder;
-			db.insert(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Database db = Database.getDatabase();
+		String query = "UPDATE orders SET status='" + status + "' WHERE idorder=" + idOrder;
+		db.insert(query);
 	}
 	
 	/**
@@ -294,18 +285,11 @@ public class Order {
 	/**
 	 * Deletes an order from the database.
 	 * @param order
-	 * @return true if the order was deleted, else it's false.
 	 */
-	public static boolean deleteOrderFromDatabase(Order order){
-		try {
-			Database db = Database.getDatabase();
-			String query = "DELETE FROM orders where idorder='" + order.idOrder + "'";
-			db.insert(query);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public static void deleteOrderFromDatabase(Order order){
+		Database db = Database.getDatabase();
+		String query = "DELETE FROM orders where idorder='" + order.idOrder + "'";
+		db.insert(query);
 	}
 	
 	/**
@@ -403,11 +387,11 @@ public class Order {
 	}
 	
 	public String getDateAndTime(){
-		return getTime() + ", " + getDate();
+		return getDate() + ", " + getTime();
 	}
 	
 	public String getDate(){
-		DateFormat df = DateFormat.getDateInstance(1);
+		SimpleDateFormat df = new SimpleDateFormat("dd");
 		return df.format(dateAdded);
 	}
 	
@@ -415,6 +399,5 @@ public class Order {
 		DateFormat df = DateFormat.getTimeInstance(3, locale);
 		return df.format(dateAdded);
 	}
-
 
 }

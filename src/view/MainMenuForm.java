@@ -5,6 +5,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 
+import model.Properties;
+
 /*
  * MainMenuForm.java
  *
@@ -27,6 +29,7 @@ public class MainMenuForm extends javax.swing.JFrame {
      * initialize the form.
      */
     private void initComponents() {
+    	
 
         topPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
@@ -41,7 +44,7 @@ public class MainMenuForm extends javax.swing.JFrame {
         quitButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hovedmeny - Max Harrys Pizza");
+        setTitle("Hovedmeny - " + Properties.getProperties().getName());
         setBackground(new java.awt.Color(253, 253, 253));
         setPreferredSize(new java.awt.Dimension(800, 600));
 

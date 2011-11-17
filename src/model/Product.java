@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import view.Error;
+
 /**
  * A class for products.
  * @author Sigurd Lund
@@ -187,15 +189,11 @@ public class Product {
 	 */
 	public static boolean addProductToDatabase(String name, double price, String comment){
 		if (prodictIsUnike(name)){
-			try {
-				Database db = Database.getDatabase();
-				String query = "INSERT INTO product (name, price, comments) " +
-				  			   "VALUES ('"+ name + "', '" + price + "','" + comment + "')";
-				db.insert(query);
-				return true;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			Database db = Database.getDatabase();
+			String query = "INSERT INTO product (name, price, comments) " +
+			  			   "VALUES ('"+ name + "', '" + price + "','" + comment + "')";
+			db.insert(query);
+			return true;
 		}
 		return false;
 	}
@@ -207,17 +205,14 @@ public class Product {
 	 * @return
 	 */
 	public static boolean deleteProductFromDatabase(Product p){
-		if(p instanceof DeliveryFee)
-			return false;
-		try {
-			Database db = Database.getDatabase();
-			String query = "DELETE FROM product where name='" + p.name + "'";
-			db.insert(query);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if(p instanceof DeliveryFee){
+			Error.showMessage("Kan ikke slette produktet frakt.");
 			return false;
 		}
+		Database db = Database.getDatabase();
+		String query = "DELETE FROM product where name='" + p.name + "'";
+		db.insert(query);
+		return true;
 	}
 	
 	/**
@@ -231,19 +226,35 @@ public class Product {
 	 * @return
 	 */
 	public static boolean updateProduct(Product p, String name, double price, String comment){
-		if (!prodictIsUnike(name))
+		if(!prodictIsUnike(name, p)){
+			Error.showMessage("Det eksisterer et annet produkt med dette navnet.");
 			return false;
+		}
+		Database db = Database.getDatabase();
+		String query = "UPDATE product SET name='" + name + "', price='" + price + 
+						"', comments='" + comment +"' WHERE name='" + p.name + "'";
+		db.insert(query);
+		return true;
+	}
+	
+	/**
+	 * Checks that the product doesn't already exist in the database.
+	 * Only one product can have the same name.
+	 * @param name
+	 * @return
+	 */
+	private static boolean prodictIsUnike(String name, Product p){
 		try {
 			Database db = Database.getDatabase();
-			String query = "UPDATE product SET name='" + name + "', price='" + price + 
-							"', comments='" + comment +"' WHERE name='" + p.name + "'";
-			db.insert(query);
-			return true;
+			String query = "SELECT * FROM product WHERE name = '" + name + "' and idproduct!='" + p.idproduct + "'";
+			ResultSet rs = db.select(query);
+			if (!rs.next()){
+				return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
-	return false;		
+		return false;
 	}
 	
 	/**

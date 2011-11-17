@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
+import view.Error;
 /**
  * Creates a connection with the database with the singleton pattern.
  * @author Sigurd Lund and Øivind Binde
@@ -31,8 +33,8 @@ public class Database {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			con = DriverManager.getConnection(url, USERNAME, PASSWORD);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error: Could not connect with the database. \n" +
-					"							Make sure your internet connection is OK, and try again");
+			Error.showErrorMessage("Error: Kunne ikke koble til databasen. \n" +
+								"Forsikre deg om at du har internettilkobling, og prøv igjen.");
 			System.exit(0);
 		}
 	}
@@ -70,9 +72,14 @@ public class Database {
 	 * @param query
 	 * @throws SQLException
 	 */
-	public void insert(String query) throws SQLException{
-		PreparedStatement sporring = con.prepareStatement(query);
-		sporring.executeUpdate();
+	public void insert(String query) {
+		PreparedStatement sporring;
+		try {
+			sporring = con.prepareStatement(query);
+			sporring.executeUpdate();
+		} catch (SQLException e) {
+			Error.databaseError();
+		}
 	}
 	
 	/**
@@ -82,12 +89,18 @@ public class Database {
 	 * @return generated key
 	 * @throws SQLException
 	 */
-	public int insertWithIdReturn(String query) throws SQLException{
-		PreparedStatement q = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-		q.executeUpdate();
-		ResultSet rs = q.getGeneratedKeys();
-		if (rs.next())
-			return rs.getInt(1);
+	public int insertWithIdReturn(String query) {
+		PreparedStatement q;
+		try {
+			q = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+			q.executeUpdate();
+			ResultSet rs = q.getGeneratedKeys();
+			if (rs.next())
+				return rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 	
@@ -97,10 +110,15 @@ public class Database {
 	 * @return ResultSet
 	 * @throws SQLException
 	 */
-	public ResultSet select(String query) throws SQLException{
+	public ResultSet select(String query) {
 		ResultSet rs = null;
-		PreparedStatement sporring = con.prepareStatement(query);
-		rs = sporring.executeQuery();
+		PreparedStatement sporring;
+		try {
+			sporring = con.prepareStatement(query);
+			rs = sporring.executeQuery();
+		} catch (SQLException e) {
+			Error.databaseError();
+		}
 		return rs;
 	}
 }

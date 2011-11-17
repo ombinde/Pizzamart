@@ -32,7 +32,7 @@ public class GoogleMaps extends JFrame {
 		String address = 
 				"http://maps.googleapis.com/maps/api/staticmap?markers=size:mid%7Ccolor:red%7C|"
 				+ validateAddress(input)
-				+ "&zoom=14&size=350x350&maptype=roadmap&&sensor=false";
+				+ "&zoom=14&size=350x280&maptype=roadmap&&sensor=false";
 		
 		Image image = ImageIO.read(new URL(address));
 		JLabel label = new JLabel(new ImageIcon(image));
