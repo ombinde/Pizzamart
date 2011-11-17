@@ -43,8 +43,8 @@ public class AdminController {
 	 * @param o is order
 	 * @return true if the order was deleted, else it's false.
 	 */
-	public static boolean deleteOrder(Order o){
-		return Order.deleteOrderFromDatabase(o);
+	public static void deleteOrder(Order o){
+		Order.deleteOrderFromDatabase(o);
 	}
 	
 	/**

@@ -80,17 +80,13 @@ public class Properties {
 	 */
 	public static void setProperties(String name, String address, String zipCode, 
 		  				String postalAddress, String phone, double limitFreeDelivery){
-		try {
-			Database db = Database.getDatabase();
-			db.insert("DELETE FROM properties");
-			String query = "INSERT INTO properties (limitFreeDelivery, name, address, postcode, postaladdress, phone) values('"
-							+ limitFreeDelivery + "','" + name + "','" + address + "','" + zipCode + "','" 
-							+ postalAddress + "','" + phone + "')";
-			db.insert(query);
-			properties = new Properties(name, address, zipCode, postalAddress, phone, limitFreeDelivery);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Database db = Database.getDatabase();
+		db.insert("DELETE FROM properties");
+		String query = "INSERT INTO properties (limitFreeDelivery, name, address, postcode, postaladdress, phone) values('"
+						+ limitFreeDelivery + "','" + name + "','" + address + "','" + zipCode + "','" 
+						+ postalAddress + "','" + phone + "')";
+		db.insert(query);
+		properties = new Properties(name, address, zipCode, postalAddress, phone, limitFreeDelivery);
 	} 
 	
 	/**
