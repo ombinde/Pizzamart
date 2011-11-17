@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 import model.Order;
-import model.Product;
 
 import controller.ManageOrder;
 

@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.print.PrinterException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;

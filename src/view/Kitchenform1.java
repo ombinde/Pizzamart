@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 //no.ntnu.course
