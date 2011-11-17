@@ -21,10 +21,14 @@ import controller.DeliveryController;
 
 public class GoogleMaps extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
+
+
 	/**
 	 * Returns a map as a JLabel showing the delivery address for a specific order.
 	 * 
 	 * @param input
+	 * @return JLabel
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
@@ -43,14 +47,12 @@ public class GoogleMaps extends JFrame {
 	
 	/**
 	 * Runs a few tests and stuff to format the String after the Google Maps API's liking. 
-	 * Otherwise it gets sad :(
 	 * 
 	 * @param input
+	 * @return String
 	 */
 	public static String validateAddress(String input) {
 		String output = "";
-		
-	
 		
 		for (int i = 0; i < input.length(); i++) {
 			
@@ -75,33 +77,44 @@ public class GoogleMaps extends JFrame {
 	/**
 	 * Returns a map as a JLabel showing the delivery address for all orders.
 	 * 
+	 * @return JLabel
 	 * @throws MalformedURLException
 	 * @throws IOException
 	 */
 	public static JLabel mainMap() throws MalformedURLException, IOException {
-		String marker = "&markers=color:red%7C";
+		String markerBlue = "&markers=color:blue%7C";
+		String markerYellow = "&markers=color:yellow%7C";
 		String address = "";
-		ArrayList<String> addressList = DeliveryController.getAddressForMap();
+		ArrayList<Order> orders = DeliveryController.getFreshOrders();
 		
-		
-		if (addressList.size() == 0) {
+		if (orders.size() == 0)
 			address = "http://maps.googleapis.com/maps/api/staticmap?center=Trondheim&zoom=12&size=380x455&sensor=false";
-		}
-		
 		else {
-		
 			address = 
-					"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=380x455&maptype=roadmap&markers=color:red%7C"
-					+ validateAddress(addressList.get(0));
-			
-				for (int i = 1; i < addressList.size(); i++) {
-					address += marker;
-					address += validateAddress(addressList.get(i));
-				}
+					"http://maps.googleapis.com/maps/api/staticmap?center=Trondheim%20Norge&zoom=12&size=380x455&maptype=roadmap";
 					
-				address += "&sensor=false";
+			if ((orders.get(0).getStatus().equals("Under levering")))
+				address += markerYellow;
+			else
+				address += markerBlue;
+					
+			address += validateAddress(orders.get(0).getCustomer().getAddress() + " " + orders.get(0).getCustomer().getzipCode());
+		
+			for (int i = 1; i < orders.size(); i++) {
+		    	for (Product product : orders.get(i).getProductsInOrder()) {
+					if (product instanceof DeliveryFee) {
+						if ((orders.get(i).getStatus().equals("Under levering")))
+							address += markerYellow;
+						else
+							address += markerBlue;
+						
+						address += validateAddress(orders.get(i).getCustomer().getAddress() + " " + orders.get(i).getCustomer().getzipCode());
+					}
+		    	}
+			}
 		}
-				
+		
+		address += "&sensor=false";		
 		Image image = ImageIO.read(new URL(address));
 		JLabel label = new JLabel(new ImageIcon(image));
 
