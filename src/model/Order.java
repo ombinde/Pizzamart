@@ -132,11 +132,11 @@ public class Order {
 			}
 		}
 		//Adds the product
-		else {
+		else if (!(product instanceof DeliveryFee)){
 			products.add(product);
 		}
 		//Adds delivery fee if needed
-		if (delivery==1 && !(product instanceof DeliveryFee) && !products.contains(deliveryFee)){
+		if (delivery==1 && !products.contains(deliveryFee)){
 			products.add(deliveryFee);
 		}
 	}
