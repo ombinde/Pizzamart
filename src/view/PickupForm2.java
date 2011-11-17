@@ -1,16 +1,22 @@
 package view;
 
 import java.awt.Color;
+import java.awt.print.PrinterException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 //no.ntnu.course
 import javax.swing.JLabel;
 
+import com.itextpdf.text.DocumentException;
+
 import controller.ManageOrder;
 
 import model.Order;
 import model.Product;
+import model.Receipt;
 
 /*
  * PickupForm2.java
@@ -464,7 +470,19 @@ public class PickupForm2 extends javax.swing.JFrame {
     }
 
     private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+        try {
+			Receipt.makeReceipe(order);
+			Receipt.openReceipt();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /**
