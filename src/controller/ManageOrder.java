@@ -2,12 +2,15 @@ package controller;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import view.Error;
 
 import model.Customer;
 import model.DeliveryFee;
@@ -43,16 +46,12 @@ public class ManageOrder {
 	 * @param customer
 	 */
 	public static void addCustomerToDatabase(Customer c){
-		int feedback = c.addToDatabase();
-		if (feedback==1){
-			System.out.println("Customer was added");
+		try {
+			c.addToDatabase();
+		} catch (SQLException e) {
+			Error.showMessage("Kunden kunne ikke bli lagt til i databasen.");
 		}
-		else if(feedback==2){
-			System.out.println("Customer was just updated since he already exist");
-		}
-		else{
-			System.out.println("Something went wrong");
-		}
+		
 	}
 	
 	/**
@@ -134,7 +133,12 @@ public class ManageOrder {
 	 * @return customer
 	 */
 	public static ArrayList<Customer> getRelevantCustomers(String query){
-		return Customer.getRelevantCustomers(query);
+		try {
+			return Customer.getRelevantCustomers(query);
+		} catch (SQLException e) {
+			Error.databaseError();
+			return null;
+		}
 	}
 	
 	/**
@@ -155,13 +159,7 @@ public class ManageOrder {
 	 * @param order
 	 */
 	public static void submitOrderToDatabase(Order order){
-		
-		if(order.addOrderToDatabase()==1){
-			//add jLabel feedback
-			System.out.println("Order was submitted successfully!");
-		}
-		else
-			System.out.println("Order was NOT submitted due to some funky error.");
+		order.addOrderToDatabase();
 	}
 	
 	/**
