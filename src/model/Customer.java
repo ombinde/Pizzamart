@@ -68,6 +68,7 @@ public class Customer {
 	public void addToDatabase() throws SQLException{
 		if (!customerIsUnike(phone)){
 			updateCustomer();
+			return;
 		}
 		Database db = Database.getDatabase();
 		String query = "INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress) " +
