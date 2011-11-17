@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * A class for customers.
- * @author sigurd
+ * @author Sigurd Lund
  *
  */
 public class Customer {
@@ -20,7 +20,7 @@ public class Customer {
 	private int idCustomer;
 	
 	/**
-	 * Creates a new customer and adds it to the database.
+	 * Creates a new customer.
 	 * @param forename
 	 * @param lastname
 	 * @param phone
@@ -28,7 +28,8 @@ public class Customer {
 	 * @param postcode
 	 */
 	public Customer(String forename, String lastname, String phone,
-		String address, String zipCode, String postalAddress) {
+					String address, String zipCode, String postalAddress) {
+		
 		this.forename = forename;
 		this.lastname = lastname;
 		this.phone = phone;
@@ -37,8 +38,20 @@ public class Customer {
 		this.postalAddress = postalAddress;
 	}
 	
+	/**
+	 * Creates a new Customer with all the variables including the id of the customer in the database.
+	 * This should be used if you need to initialize an already existing customer.
+	 * @param forename
+	 * @param lastname
+	 * @param phone
+	 * @param address
+	 * @param zipCode
+	 * @param postalAddress
+	 * @param idCustomer
+	 */
 	public Customer(String forename, String lastname, String phone,
-			String address, String zipCode, String postalAddress, int idCustomer) {
+					String address, String zipCode, String postalAddress, int idCustomer) {
+		
 			this.forename = forename;
 			this.lastname = lastname;
 			this.phone = phone;
@@ -50,21 +63,25 @@ public class Customer {
 	
 	/**
 	 * Adds the customer to the database.
+	 * @return 2 if the customer already existed and just was updated, 1 if the customer was added
+	 * and 0 if something went wrong.
 	 */
 	public int addToDatabase(){
+		
 		if (!customerIsUnike(phone)){
 			updateCustomer();
 			return 2;
 		}
+		
+		Database db = Database.getDatabase();
+		String query = "INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress) " +
+		"VALUES ('" + forename + "','" + lastname + "','" + phone + "','"
+		+ address + "','" + zipCode +"','" + postalAddress + "')";
+		
 		try{
-			Database db = Database.getDatabase();
-			String query = "INSERT INTO customer (forename, lastname, phone, address, postcode, postaladdress) " +
-			  			   "VALUES ('" + forename + "','" + lastname + "','" + phone + "','"
-			  			   + address + "','" + zipCode +"','" + postalAddress + "')";
 			idCustomer = db.insertWithIdReturn(query);
 			return 1;
 		} catch (SQLException e)  {
-			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -73,11 +90,13 @@ public class Customer {
 	 * Updates a customer in the database.
 	 */
 	private void updateCustomer(){
+		
+		Database db = Database.getDatabase();
+		String query = "UPDATE customer SET forename='" + this.forename + "', lastname='" 
+						+ this.lastname + "', address='" + this.address + "', postcode='" 
+						+ this.zipCode + "' WHERE phone='" + this.phone + "'";
+		
 		try{
-			Database db = Database.getDatabase();
-			String query = "UPDATE customer SET forename='" + this.forename + "', lastname='" 
-							+ this.lastname + "', address='" + this.address + "', postcode='" 
-							+ this.zipCode + "' WHERE phone='" + this.phone + "'";
 			db.insert(query);
 			ResultSet rs = db.select("SELECT idcustomer from customer WHERE phone = '" + this.phone + "'");
 			if (rs.next()){
@@ -95,9 +114,11 @@ public class Customer {
 	 * @return
 	 */
 	private boolean customerIsUnike(String phone){
+		
+		Database db = Database.getDatabase();
+		String query = "SELECT * FROM customer WHERE phone = '" + phone + "'";
+		
 		try {
-			Database db = Database.getDatabase();
-			String query = "SELECT * FROM customer WHERE phone = '" + phone + "'";
 			ResultSet rs = db.select(query);
 			if (!rs.next()){
 				return true;
@@ -108,10 +129,18 @@ public class Customer {
 		return false;
 	}
 	
+	/**
+	 * Takes a query in as a String and asks the database for relevant customers to the query.
+	 * The query will be matched on first name, last name and phone number.
+	 * @param query
+	 * @return ArrayList with the customers.
+	 */
 	public static ArrayList<Customer> getRelevantCustomers(String query){
+		
 		ArrayList<Customer> customers = new ArrayList<Customer>();
+		Database db = Database.getDatabase();
+
 		try {
-			Database db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM customer where forename like '" + query + "%'" +
 									"or lastname like '" + query + "%' or phone like '" + query + "%'");
 			while (rs.next()){
@@ -132,9 +161,15 @@ public class Customer {
 		return null;
 	}
 	
+	/**
+	 * Takes a id of an customer and looks up in the database and check if the customer exist.
+	 * The customer will be returned with all the info from the database.
+	 * @param idCustomer
+	 * @return customer
+	 */
 	public static Customer getCustomerFromOrder(int idCustomer){
+		Database db = Database.getDatabase();
 		try {
-			Database db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM customer WHERE idcustomer=" + idCustomer);
 			if (rs.next()){
 				String forename = rs.getString("forename");
@@ -153,54 +188,66 @@ public class Customer {
 		return null;
 	}
 	
+	/**
+	 * Returns the forename of a customer.
+	 * @return forename
+	 */
 	public String getForename() {
 		return forename;
 	}
 	
-	public void setForename(String forename) {
-		this.forename = forename;
-	}
-	
+	/**
+	 * Returns the last name of a customer. 
+	 * @return last name
+	 */
 	public String getLastname() {
 		return lastname;
 	}
 	
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-	
+	/**
+	 * Returns the phone number of a customer.
+	 * @return phone number
+	 */
 	public String getPhone() {
 		return phone;
 	}
-	
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
+
+	/**
+	 * Returns the address of a customer.
+	 * @return address
+	 */
 	public String getAddress() {
 		return address;
 	}
-	
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	
+
+	/**
+	 * Returns the zip code of a customer
+	 * @return
+	 */
 	public String getzipCode() {
 		return zipCode;
 	}
-	
-	public void setzipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
 
+	/**
+	 * Returns the id of a customer.
+	 * @return idCustomer
+	 */
 	public int getIdCustomer(){
 		return this.idCustomer;
 	}
 	
+	/**
+	 * Returns the postal address of a customer.
+	 * @return postal address
+	 */
 	public String getPostalAddress(){
 		return postalAddress;
 	}
 	
+	/**
+	 * Returns the whole name of a customer.
+	 * @return name
+	 */
 	public String getName(){
 		return forename + " " + lastname;
 	}

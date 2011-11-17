@@ -63,7 +63,7 @@ public class Order {
 		this.status = "Under bestilling";
 		this.products = new ArrayList<Product>();
 		this.comment = "";
-		limitFreeDelivery = DeliveryFee.getLimitFreeDelivery();
+		limitFreeDelivery = Properties.getLimitFreeDelivery();
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
 		this.setDelivery(true);
 		this.setAllergy(false);

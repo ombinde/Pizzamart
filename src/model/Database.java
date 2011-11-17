@@ -5,9 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  * Creates a connection with the database with the singleton pattern.
- * @author Sigurd Lund and �ivind Binde
+ * @author Sigurd Lund and Øivind Binde
  *
  */
 public class Database {
@@ -19,27 +20,20 @@ public class Database {
 	public static final String DATABASE = "sigurlu_pizzamart";
 	public static final String PASSWORD = "pizza";
 	public static final String PORT = "3306";
-		
-//	private Database() throws SQLException{
-//		try {
-//			Class.forName("com.mysql.jdbc.Driver");
-//			String url = "jdbc:mysql://localhost/" + DATABASE + "?user="
-//                +  USERNAME
-//                + "&password="
-//                +  PASSWORD;
-//			con = DriverManager.getConnection(url);
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//	}
 	
-	private Database() throws SQLException{
+	/**
+	 * A constructor that should be called if the connection with the database doesn't exist.
+	 * @throws SQLException
+	 */
+	private Database() {
 		try {
 			String url= "jdbc:mysql://" + HOSTNAME + "/" + DATABASE;
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			con = DriverManager.getConnection(url, USERNAME, PASSWORD);
 		} catch (Exception e) {
-			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Error: Could not connect with the database. \n" +
+					"							Make sure your internet connection is OK, and try again");
+			System.exit(0);
 		}
 	}
 	/**
@@ -49,20 +43,28 @@ public class Database {
 	 * @return database
 	 * @throws SQLException
 	 */
-	public static Database getDatabase() throws SQLException{
+	public static Database getDatabase() {
 		if(ref == null){
 			ref = new Database();
 		}
 		return ref;
 	}
 	
+	/**
+	 * Cloning is not supported with the singleton pattern.
+	 */
 	public Object clone() throws CloneNotSupportedException{
 		throw new CloneNotSupportedException();
 	}
 	
+	/**
+	 * Gets the connection with the database.
+	 * @return connection
+	 */
 	public Connection getConnection(){
 		return con;
 	}
+	
 	/**
 	 * Takes in a String that is the query and executes it. 
 	 * @param query
@@ -73,6 +75,13 @@ public class Database {
 		sporring.executeUpdate();
 	}
 	
+	/**
+	 * Takes a query and executes it on the database. If the database generated a key
+	 * with the inserted data, you will get this key back.
+	 * @param query
+	 * @return generated key
+	 * @throws SQLException
+	 */
 	public int insertWithIdReturn(String query) throws SQLException{
 		PreparedStatement q = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		q.executeUpdate();
@@ -89,28 +98,9 @@ public class Database {
 	 * @throws SQLException
 	 */
 	public ResultSet select(String query) throws SQLException{
-		String enavn;
 		ResultSet rs = null;
 		PreparedStatement sporring = con.prepareStatement(query);
 		rs = sporring.executeQuery();
-
-//		try {
-//			prep = con.prepareStatement(query);
-//			result = prep.executeQuery();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		while (result.next()){
-//			result.add(result.getString(1));
-//			
-//			
-//		}
-//		while(rs.next()){
-//			enavn = rs.getString(column);
-//			System.out.println(enavn);
-//		}
-//		System.out.println(rs);
 		return rs;
 	}
 }
