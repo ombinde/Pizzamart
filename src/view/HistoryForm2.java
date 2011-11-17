@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -12,10 +13,13 @@ import javax.swing.BorderFactory;
  */
 import javax.swing.JLabel;
 
+import com.itextpdf.text.DocumentException;
+
 import model.DeliveryFee;
 import model.GoogleMaps;
 import model.Order;
 import model.Product;
+import model.Receipt;
 import controller.ManageOrder;
 
 /**
@@ -67,6 +71,7 @@ public class HistoryForm2 extends javax.swing.JFrame {
         bottomPanel = new javax.swing.JPanel();
         backButton = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+        receiptButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ordrehistorikk - detaljer");
@@ -349,6 +354,21 @@ public class HistoryForm2 extends javax.swing.JFrame {
 
         priceLabel.setFont(new java.awt.Font("Georgia", 0, 30)); // NOI18N
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        receiptButton.setBackground(new java.awt.Color(225, 230, 235));
+        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        receiptButton.setForeground(new java.awt.Color(45, 65, 105));
+        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
+        receiptButton.setText("Kvittering");
+        receiptButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        receiptButton.setIconTextGap(10);
+        receiptButton.setOpaque(true);
+        receiptButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        receiptButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                receiptButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
@@ -359,18 +379,31 @@ public class HistoryForm2 extends javax.swing.JFrame {
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(priceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-                .addGap(140, 140, 140)
+                .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+        
         bottomPanelLayout.setVerticalGroup(
+                bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bottomPanelLayout.createSequentialGroup()
+                    .addGap(10, 10, 10)
+                    .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(priceLabel)
+                        .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+        
+        /*bottomPanelLayout.setVerticalGroup(
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(priceLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                    .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                //.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -521,7 +554,23 @@ public class HistoryForm2 extends javax.swing.JFrame {
     	HistoryForm1 form = new HistoryForm1();
     	form.setVisible(true);
     	this.setVisible(false);
-    }                                       
+    }                              
+	
+    private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
+        try {
+			Receipt.makeReceipe(order);
+			Receipt.openReceipt();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
     
 
@@ -589,5 +638,6 @@ public class HistoryForm2 extends javax.swing.JFrame {
     private javax.swing.JLabel telephoneHeaderLabel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel zipCodeContentLabel;
+    private javax.swing.JLabel receiptButton;
     // End of variables declaration
 }
