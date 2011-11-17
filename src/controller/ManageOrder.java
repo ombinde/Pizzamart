@@ -13,6 +13,7 @@ import model.Customer;
 import model.DeliveryFee;
 import model.Order;
 import model.Product;
+import model.Properties;
 
 /**
  * A controller for orders.
@@ -178,7 +179,7 @@ public class ManageOrder {
 	 * @return
 	 */
 	public static double getLimitFreeDelivery(){
-		return DeliveryFee.getLimitFreeDelivery();
+		return Properties.getLimitFreeDelivery();
 	}
 	
 	/**
