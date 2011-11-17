@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import model.Database;
 import model.DeliveryFee;
+import model.Order;
 import model.Product;
 import model.Properties;
 
@@ -35,6 +36,15 @@ public class AdminController {
 	 */
 	public static boolean deleteProduct(Product p){
 		return Product.deleteProductFromDatabase(p);
+	}
+	
+	/**
+	 * Deletes
+	 * @param o is order
+	 * @return true if the order was deleted, else it's false.
+	 */
+	public static boolean deleteOrder(Order o){
+		return Order.deleteOrderFromDatabase(o);
 	}
 	
 	/**

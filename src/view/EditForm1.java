@@ -270,9 +270,9 @@ public class EditForm1 extends javax.swing.JFrame {
     }
 
     private void orderLabelMouseClicked(Order order) {                                                     
-        //EditForm2 form = new EditForm2(order);
-        //form.setVisible(true);
-        //this.setVisible(false);
+        EditForm2 form = new EditForm2(order);
+        form.setVisible(true);
+        this.setVisible(false);
     }                                                    
 
     /**
