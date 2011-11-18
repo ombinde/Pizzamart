@@ -243,7 +243,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
     	ArrayList<Order> freshOrders = ChefController.getFreshOrders();
     	for (int i = 0; i < freshOrders.size(); i++) {
     		final Order order = freshOrders.get(i);
-    		String orderText = order.getTime() + ": ";
+    		String orderText = order.getDateAndTime() + ": ";
     		for (Product product : order.getProductsInOrder()) {
     			if (product instanceof DeliveryFee){
     				continue;

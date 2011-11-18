@@ -19,9 +19,10 @@ public class Product {
 	private double price;
 	private int idproduct;
 	private String comment;
+	private int visability;
 	
 	/**
-	 * Creates a new Product with the given id, name, price, quantity and comment.
+	 * Creates a new Product with the given id, name, price, quantity, comment and visibility.
 	 * The constructor will look up the product id in the database.
 	 * This should be used when initializing a product in a order.
 	 * @param id
@@ -30,39 +31,12 @@ public class Product {
 	 * @param quantity
 	 * @param comment
 	 */
-	public Product(int id, String name, double price, int quantity, String comment) {
+	public Product(int id, String name, double price, int quantity, String comment, int visability) {
 		this.idproduct = id;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
-	}
-	
-	/**
-	 * Creates a new Product with the given name, price and comment.
-	 * The constructor will look up the product id in the database.
-	 * @param name
-	 * @param price
-	 * @param quantity
-	 * @param comment
-	 */
-	public Product(String name, double price, String comment) {
-		
-		this.name = name;
-		this.price = price;
-		this.comment = comment;
-		this.quantity = 1;
-		Database db = Database.getDatabase();
-		try {
-			ResultSet rs = db.select("SELECT idproduct FROM product WHERE name='" 
-									+ name + "' and price ='" + price + "'");
-			if (rs.next()){
-				this.idproduct = rs.getInt("idproduct");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		this.visability = visability;
 	}
 
 	/**
@@ -107,7 +81,7 @@ public class Product {
 		Database db = Database.getDatabase();
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
-			ResultSet rs = db.select("SELECT idproduct, name, price, comments, quantity FROM product_has_order " +
+			ResultSet rs = db.select("SELECT idproduct, name, price, comments, visability, quantity FROM product_has_order " +
 					"JOIN product ON idproduct=product_idproduct WHERE orders_idorder=" + idOrder );
 			
 			while (rs.next()){
@@ -116,10 +90,11 @@ public class Product {
 				String name = rs.getString("name");
 				String comment = rs.getString("comments");
 				int q = rs.getInt("quantity");
+				int visability = rs.getInt("visability");
 				if(name.equals("Frakt"))
 					products.add(DeliveryFee.getDeliveryFee());
 				else
-					products.add(new Product(idProduct, name, price, q, comment));
+					products.add(new Product(idProduct, name, price, q, comment, visability));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -139,16 +114,17 @@ public class Product {
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
 			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM product where name LIKE '" + query + "%' ORDER BY name ASC");
+			ResultSet rs = db.select("SELECT * FROM product where name LIKE '" + query + "%' AND visability=1 ORDER BY name ASC");
 			while (rs.next()){
 				int idProduct = rs.getInt("idproduct");
 				double price = rs.getDouble("price");
 				String name = rs.getString("name");
 				String comment = rs.getString("comments");
+				int visability = rs.getInt("visability");
 				if(name.equals("Frakt"))
 					products.add(DeliveryFee.getDeliveryFee());
 				else
-					products.add(new Product(idProduct, name, price, 1, comment));
+					products.add(new Product(idProduct, name, price, 1, comment, visability));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -167,10 +143,14 @@ public class Product {
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
 			Database db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM product ORDER BY name ASC");
+			ResultSet rs = db.select("SELECT * FROM product WHERE visability=1 ORDER BY name ASC");
 			while (rs.next()){
-				products.add(new Product(rs.getInt("idproduct"), rs.getString("name"), rs.getDouble("price"), 1, 
-													rs.getString("comments")));
+				int idProduct = rs.getInt("idproduct");
+				double price = rs.getDouble("price");
+				String name = rs.getString("name");
+				String comment = rs.getString("comments");
+				int visability = rs.getInt("visability");
+				products.add(new Product(idProduct, name, price, 1, comment, visability));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -190,8 +170,8 @@ public class Product {
 	public static boolean addProductToDatabase(String name, double price, String comment){
 		if (prodictIsUnike(name)){
 			Database db = Database.getDatabase();
-			String query = "INSERT INTO product (name, price, comments) " +
-			  			   "VALUES ('"+ name + "', '" + price + "','" + comment + "')";
+			String query = "INSERT INTO product (name, price, comments, visability) " +
+			  			   "VALUES ('"+ name + "', '" + price + "','" + comment + "', '1')";
 			db.insert(query);
 			return true;
 		}
@@ -199,7 +179,8 @@ public class Product {
 	}
 	
 	/**
-	 * Deletes a product from the database.
+	 * Changes the visibility to false, so the product should not be shown anymore,
+	 * but will exist in existing orders.
 	 * Returns true if the product was deleted, else it's false.
 	 * @param p
 	 * @return
@@ -210,14 +191,14 @@ public class Product {
 			return false;
 		}
 		Database db = Database.getDatabase();
-		String query = "DELETE FROM product where name='" + p.name + "'";
+		String query = "UPDATE product SET visability='0' where name='" + p.name + "'";
 		db.insert(query);
 		return true;
 	}
 	
 	/**
 	 * Updates a product p in the database with the given parameters.
-	 * Returns true if the product was updated successfully. If false something wrong happend, 
+	 * Returns true if the product was updated successfully. If false something wrong happened, 
 	 * and it wasn't updated.
 	 * @param p
 	 * @param name
@@ -246,7 +227,7 @@ public class Product {
 	private static boolean prodictIsUnike(String name, Product p){
 		try {
 			Database db = Database.getDatabase();
-			String query = "SELECT * FROM product WHERE name = '" + name + "' and idproduct!='" + p.idproduct + "'";
+			String query = "SELECT * FROM product WHERE name = '" + name + "' AND visability=1 AND idproduct!='" + p.idproduct + "'";
 			ResultSet rs = db.select(query);
 			if (!rs.next()){
 				return true;
@@ -266,7 +247,7 @@ public class Product {
 	private static boolean prodictIsUnike(String name){
 		try {
 			Database db = Database.getDatabase();
-			String query = "SELECT * FROM product WHERE name = '" + name + "'";
+			String query = "SELECT * FROM product WHERE name = '" + name + "' AND visability=1";
 			ResultSet rs = db.select(query);
 			if (!rs.next()){
 				return true;
