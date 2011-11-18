@@ -21,7 +21,7 @@ public class DeliveryFee extends Product {
 	 * @param comment
 	 */
 	private DeliveryFee(int id, String name, double price, String comment) {
-		super(id, name, price, 1, comment);
+		super(id, name, price, 1, comment, 1);
 		originalFee = price;
 	}
 	

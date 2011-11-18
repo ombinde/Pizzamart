@@ -336,7 +336,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 
 			}
         	upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setText(order.getTime() + ":    " + order.getCustomer().getAddress());
+        	upperHalf.setText(order.getDateAndTime() + ":    " + order.getCustomer().getAddress());
         	upperHalf.setOpaque(true);
             upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
         	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {

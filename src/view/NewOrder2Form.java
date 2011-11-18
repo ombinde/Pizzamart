@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 import model.Customer;
+import model.DeliveryFee;
 import model.Order;
 import model.Product;
 import controller.ManageOrder;
@@ -479,33 +480,37 @@ searchField.setText(searchField.getText());
     }
 
     private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {
-     Color color = new Color(235, 210, 210);
-     order.setStatus("Bestilt");
-     boolean legalOrder = true;
-    
-     if (!Validate.isStringLegal(this.commentArea.getText())){
-     this.commentArea.setBackground(color);
-     legalOrder = false;
-     }
-     else if (order.getAllergy() && this.commentArea.getText().equals("")){
-     this.commentArea.setBackground(color);
-     legalOrder = false;
-     }
-     else{
-     this.commentArea.setBackground(Color.WHITE);
-     }
-     if ((ManageOrder.getProductsInOrder(order).size()<2 && order.getDelivery()) || ManageOrder.getProductsInOrder(order).size()<1){
-     this.rightPanel.setBackground(color);
-     legalOrder = false;
-     }
-    
-     if (legalOrder){
-     order.setComment(this.commentArea.getText());
-ManageOrder.submitOrderToDatabase(order);
-MainMenuForm form = new MainMenuForm();
-form.setVisible(true);
-this.setVisible(false);
-     }
+	    Color color = new Color(235, 210, 210);
+	    order.setStatus("Bestilt");
+	    boolean legalOrder = true;
+	    
+	    if (!Validate.isStringLegal(this.commentArea.getText())){
+	    	this.commentArea.setBackground(color);
+	    	legalOrder = false;
+	     	}
+	    else if (order.getAllergy() && this.commentArea.getText().equals("")){
+	    	this.commentArea.setBackground(color);
+	    	legalOrder = false;
+	    }
+	    else{
+	    	this.commentArea.setBackground(Color.WHITE);
+	    }
+	    if (ManageOrder.getProductsInOrder(order).size()<1 && (ManageOrder.getProductsInOrder(order).get(0) instanceof DeliveryFee)){
+	    	this.rightPanel.setBackground(color);
+	    	legalOrder = false;
+	    }
+	    if (ManageOrder.getProductsInOrder(order).size()==1 && (ManageOrder.getProductsInOrder(order).get(0) instanceof DeliveryFee)){
+	    	this.rightPanel.setBackground(color);
+	    	legalOrder = false;
+	    }
+	    
+	    if (legalOrder){
+		    order.setComment(this.commentArea.getText());
+			ManageOrder.submitOrderToDatabase(order);
+			MainMenuForm form = new MainMenuForm();
+			form.setVisible(true);
+			this.setVisible(false);
+	     }
     }
 
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {

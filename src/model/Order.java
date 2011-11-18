@@ -391,7 +391,7 @@ public class Order {
 	}
 	
 	public String getDate(){
-		SimpleDateFormat df = new SimpleDateFormat("dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd. MMM");
 		return df.format(dateAdded);
 	}
 	

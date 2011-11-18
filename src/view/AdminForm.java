@@ -651,9 +651,7 @@ public class AdminForm extends JFrame {
     		displayAdminPanel("");
     		ManageOrder.setButtonToColor(this.deleteButton, "Slettet", 1);
     		ManageOrder.setButtonToColor(this.addEditButton, "Legg til", 1);
-			this.priceField.setText("");
-			this.productNameField.setText("");
-			this.commentField.setText("");
+			clearProductFields();
     	}
     }
 
@@ -709,6 +707,7 @@ public class AdminForm extends JFrame {
     }
     
     private void clearProductFields(){
+    	currentProduct = null;
     	this.productNameField.setText("");
     	this.priceField.setText("");
     	this.commentField.setText("");
