@@ -132,11 +132,11 @@ public class Order {
 			}
 		}
 		//Adds the product
-		else {
+		else if (!(product instanceof DeliveryFee)){
 			products.add(product);
 		}
 		//Adds delivery fee if needed
-		if (delivery==1 && !(product instanceof DeliveryFee) && !products.contains(deliveryFee)){
+		if (delivery==1 && !products.contains(deliveryFee)){
 			products.add(deliveryFee);
 		}
 	}
@@ -391,7 +391,7 @@ public class Order {
 	}
 	
 	public String getDate(){
-		SimpleDateFormat df = new SimpleDateFormat("dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd. MMM");
 		return df.format(dateAdded);
 	}
 	
