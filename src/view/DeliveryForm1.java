@@ -373,7 +373,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
             .addGroup(orderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tempHorizontalGroup)
-                .addContainerGap(534, Short.MAX_VALUE))
+            )
         );
         
 	}

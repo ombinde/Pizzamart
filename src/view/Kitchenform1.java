@@ -291,7 +291,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
     	
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innermiddlePanelLayout.createParallelGroup();
         for (int i = 0; i < orders.size(); i++){
-            tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE);
+            tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE);
         }
         
         innermiddlePanelLayout.setHorizontalGroup(

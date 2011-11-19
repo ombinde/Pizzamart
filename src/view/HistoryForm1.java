@@ -75,8 +75,6 @@ public class HistoryForm1 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        //--------------------------------------------------------------------
-        
         middlePanel.setBackground(new java.awt.Color(253, 253, 253));
         middlePanel.setPreferredSize(new java.awt.Dimension(400, 370));
 
@@ -101,9 +99,6 @@ public class HistoryForm1 extends javax.swing.JFrame {
             middlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(middleScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
-        
-//---------------------------------------------------------------------------
-        
         
         bottomPanel.setBackground(new java.awt.Color(220, 220, 220));
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
@@ -248,7 +243,7 @@ public class HistoryForm1 extends javax.swing.JFrame {
     	
         javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innermiddlePanelLayout.createParallelGroup();
         for (int i = 0; i < orders.size(); i++){
-            tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE);
+            tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE);
         }
         
         innermiddlePanelLayout.setHorizontalGroup(
