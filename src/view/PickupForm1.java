@@ -86,7 +86,6 @@ public class PickupForm1 extends javax.swing.JFrame {
         middleScrollPane.setPreferredSize(new java.awt.Dimension(800, 470));
 
         innermiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
-        innermiddlePanel.setPreferredSize(new java.awt.Dimension(780, 440));
         
         updateMiddlePanel();
         

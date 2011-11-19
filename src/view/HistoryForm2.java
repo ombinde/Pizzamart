@@ -238,7 +238,6 @@ public class HistoryForm2 extends javax.swing.JFrame {
 
 
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 250));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
@@ -267,7 +266,7 @@ public class HistoryForm2 extends javax.swing.JFrame {
                 .addGroup(productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(quantityPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(productPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                )
         );
 
         ProductsScrollPane.setViewportView(productsPanel);
@@ -277,7 +276,7 @@ public class HistoryForm2 extends javax.swing.JFrame {
 
 
         commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         commentHeaderLabel.setText("Kommentar");
         commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         commentHeaderLabel.setOpaque(true);
@@ -393,17 +392,6 @@ public class HistoryForm2 extends javax.swing.JFrame {
                         .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
-        
-        /*bottomPanelLayout.setVerticalGroup(
-            bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bottomPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceLabel))
-                    .addComponent(receiptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                //.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );*/
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

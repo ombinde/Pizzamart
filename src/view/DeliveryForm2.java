@@ -236,7 +236,6 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 .addComponent(productHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        ProductsScrollPane.setBorder(null);
         ProductsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ProductsScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         ProductsScrollPane.setPreferredSize(new java.awt.Dimension(800, 240));
@@ -244,7 +243,6 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
 
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 250));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
@@ -273,7 +271,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 .addGroup(productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(quantityPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(productPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                )
         );
 
         ProductsScrollPane.setViewportView(productsPanel);

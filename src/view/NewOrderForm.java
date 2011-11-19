@@ -77,7 +77,7 @@ private Order order;
         nextButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ny ordre");
+        setTitle("Ny ordre - kunder");
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -87,7 +87,7 @@ private Order order;
 
         newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         newOrderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        newOrderLabel.setText("Ny ordre");
+        newOrderLabel.setText("Ny ordre - kunder");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);

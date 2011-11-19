@@ -62,7 +62,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         startFinishButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kjøkken - oversikt");
+        setTitle("Kjøkken - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("kitchen2Frame");
         // TODO Get the form to use the right dimensions
@@ -146,7 +146,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
         ProductsScrollPane.setPreferredSize(new java.awt.Dimension(800, 240));
 
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 300));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));

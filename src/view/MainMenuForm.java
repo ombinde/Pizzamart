@@ -44,7 +44,8 @@ public class MainMenuForm extends javax.swing.JFrame {
         quitButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hovedmeny - " + Properties.getProperties().getName());
+        Properties.getProperties();
+		setTitle("Hovedmeny - " + Properties.getName());
         setBackground(new java.awt.Color(253, 253, 253));
         setPreferredSize(new java.awt.Dimension(800, 600));
 

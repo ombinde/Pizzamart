@@ -72,7 +72,7 @@ private Customer customer;
         commentArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ny ordre");
+        setTitle("Ny ordre - produkter");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("newOrderFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -84,7 +84,7 @@ private Customer customer;
 
         headerLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerLabel.setText("Ny ordre - Produkter");
+        headerLabel.setText("Ny ordre - produkter");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);

@@ -205,7 +205,6 @@ public class PickupForm2 extends javax.swing.JFrame {
 
         
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 200));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
