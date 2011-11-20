@@ -227,29 +227,14 @@ private Order order;
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
 
-        backButton.setBackground(new java.awt.Color(235, 207, 207));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(113, 36, 36));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // Conflict: ActionPerformed vs MouseClicked!
              backButtonMouseClicked(evt);
             }
         });
 
-        nextButton.setBackground(new java.awt.Color(230, 240, 200));
-        nextButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        nextButton.setForeground(new java.awt.Color(64, 80, 25));
-        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/right_32.png")));
-        nextButton.setText(" Neste");
-        nextButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        nextButton.setOpaque(true);
-        nextButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        nextButton = Button.createButton("Neste", "green", "right");
         nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nextButtonMouseClicked(evt);

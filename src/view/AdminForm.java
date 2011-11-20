@@ -42,8 +42,8 @@ public class AdminForm extends JFrame {
         tabPane = new javax.swing.JTabbedPane();
         productPanel = new javax.swing.JPanel();
         rightProductPanel = new javax.swing.JPanel();
-        addEditButton = new javax.swing.JLabel();
-        deleteButton = new javax.swing.JLabel();
+        addEditButton = new javax.swing.JLabel(); 
+        deleteButton = new javax.swing.JLabel(); 
         productNameLabel = new javax.swing.JLabel();
         productNameField = new javax.swing.JTextField();
         priceLabel = new javax.swing.JLabel();
@@ -68,12 +68,12 @@ public class AdminForm extends JFrame {
         restaurantNameField = new javax.swing.JTextField();
         nameAddressHeaderLabel = new javax.swing.JLabel();
         rightRestaurantPanel = new javax.swing.JPanel();
-        editButton = new javax.swing.JLabel();
+        editButton = new javax.swing.JLabel(); 
         freeDeliveryLimitLabel = new javax.swing.JLabel();
         freeDeliveryLimitField = new javax.swing.JTextField();
         otherInfoHeaderLabel = new javax.swing.JLabel();
         bottomPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel(); 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrer");
@@ -108,15 +108,15 @@ public class AdminForm extends JFrame {
         middlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         rightProductPanel.setBackground(new java.awt.Color(253, 253, 253));
-
-        ManageOrder.setButtonToColor(addEditButton, "Legg til", 1);
+        
+        addEditButton = Button.createButton("Legg til", "green", "tick");
         addEditButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addEditButtonMouseClicked(evt);
             }
         });
 
-        ManageOrder.setButtonToColor(deleteButton, "Slett", -1);
+        deleteButton = Button.createButton("Slett", "red", "delete");
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);
@@ -353,7 +353,7 @@ public class AdminForm extends JFrame {
 
         rightRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
 
-        ManageOrder.setButtonToColor(editButton, "Endre", 0);
+        editButton = Button.createButton("Endre", "yellow", "warning");
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
@@ -441,7 +441,7 @@ public class AdminForm extends JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-        ManageOrder.setNextOrBackButton(backButton, "Tilbake", -1);
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
@@ -568,7 +568,11 @@ public class AdminForm extends JFrame {
 		searchField.setText("");
 		currentProduct = null;
 		clearProductFields();
-		ManageOrder.setButtonToColor(addEditButton, "Legg til", 1);
+		
+		addEditButton.setText("Legg til");
+		Button.changeColor(addEditButton, "green");
+		Button.changeIcon(addEditButton, "tick");
+		
 		displayAdminPanel("");
 	}
     
@@ -579,8 +583,13 @@ public class AdminForm extends JFrame {
 		priceField.setText(""+product.getPrice());
 		commentField.setText(product.getComment());
 		//Make the addEditButton yellow and the delete button red.
-		ManageOrder.setButtonToColor(addEditButton, "Endre", 0);
-		ManageOrder.setButtonToColor(deleteButton, "Slett", -1);
+		addEditButton.setText("Endre");
+		Button.changeColor(addEditButton, "yellow");
+		Button.changeIcon(addEditButton, "warning");
+		
+		deleteButton.setText("Slett");
+		Button.changeColor(deleteButton, "red");
+		Button.changeIcon(deleteButton, "delete");
 
 	}
     	
@@ -619,7 +628,7 @@ public class AdminForm extends JFrame {
     	
     	if (legalValues && currentProduct==null && price>=0){
     		if (AdminController.addProduct(name, price, comment)){
-    			ManageOrder.setButtonToColor(this.addEditButton, "Lagt til", 1);
+    			addEditButton.setText("Lagt til");
     			this.priceField.setText("");
     			this.productNameField.setText("");
     			this.commentField.setText("");
@@ -629,7 +638,10 @@ public class AdminForm extends JFrame {
     	}
     	else if (legalValues && price >= 0){
     		if (AdminController.updateProduct(currentProduct, name, price, comment)){
-    			ManageOrder.setButtonToColor(this.addEditButton, "Endret", 1);
+    			addEditButton.setText("Endret");
+    			Button.changeColor(addEditButton, "green");
+    			Button.changeIcon(addEditButton, "tick");
+    			
     			this.priceField.setText("");
     			this.productNameField.setText("");
     			this.commentField.setText("");
@@ -645,8 +657,15 @@ public class AdminForm extends JFrame {
     	if (currentProduct != null && AdminController.deleteProduct(currentProduct)){
     		AdminController.deleteProduct(currentProduct);
     		displayAdminPanel("");
-    		ManageOrder.setButtonToColor(this.deleteButton, "Slettet", 1);
-    		ManageOrder.setButtonToColor(this.addEditButton, "Legg til", 1);
+    		
+    		deleteButton.setText("Slettet");
+    		Button.changeColor(deleteButton, "green");
+    		Button.changeIcon(deleteButton, "tick");
+    		
+    		addEditButton.setText("Legg til");
+    		Button.changeColor(addEditButton, "green");
+    		Button.changeIcon(addEditButton, "tick");
+    		
 			clearProductFields();
     	}
     }
@@ -698,7 +717,9 @@ public class AdminForm extends JFrame {
     	
     	if (legalValues){
     			AdminController.setRestaurantProperties(name, address, zipCode, postalAddress, phone, limitFreeDelivery);
-    			ManageOrder.setButtonToColor(this.editButton, "Endret", 1);
+    			editButton.setText("Endret");
+        		Button.changeColor(addEditButton, "green");
+        		Button.changeIcon(addEditButton, "tick");
     	}
     }
     

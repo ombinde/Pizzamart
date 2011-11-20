@@ -135,29 +135,14 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
-
-        updateButton.setBackground(new java.awt.Color(225, 230, 235));
-        updateButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        updateButton.setForeground(new java.awt.Color(45, 65, 105));
-        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clock_32.png"))); // NOI18N
-        updateButton.setText(" Oppdater");
-        updateButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        updateButton.setOpaque(true);
-        updateButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        
+        updateButton = Button.createButton("Oppdater", "blue", "clock");
         updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UpdateButtonMouseClicked(evt);
@@ -165,7 +150,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         });
 
         yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        yellowColorLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow.png"))); // NOI18N
+        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
         yellowColorLabel.setText(" Påbegynt");
 
         colorHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
@@ -173,11 +158,11 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         colorHeaderLabel.setText("Fargeforklaring:");
 
         blueColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        blueColorLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.png"))); // NOI18N
+        blueColorLabel.setIcon(new javax.swing.ImageIcon("icons/blue_square.png"));
         blueColorLabel.setText(" Ikke påbegynt");
 
         redColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        redColorLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/red.png"))); // NOI18N
+        redColorLabel.setIcon(new javax.swing.ImageIcon("icons/red_square.png"));
         redColorLabel.setText(" Se kommentar");
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);

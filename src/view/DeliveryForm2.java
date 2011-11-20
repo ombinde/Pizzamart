@@ -66,7 +66,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         commentScrollPane = new javax.swing.JScrollPane();
         commentTextPane = new javax.swing.JTextPane();
         bottomPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel(); 
         startFinishButton = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
         receiptButton = new javax.swing.JLabel();
@@ -332,38 +332,20 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
 
-        startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
+        
         if (order.getStatus().equals("Klar til levering")){
-        	startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
-        	startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
-	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png")));
-	        startFinishButton.setText(" Start");
-	        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        	startFinishButton = Button.createButton("Start", "yellow", "label");
         }
         else{
-        	startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
-        	startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-        	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-	        startFinishButton.setText(" Ferdig");
+        	startFinishButton = Button.createButton("Ferdig", "green", "buy");
         }
-        startFinishButton.setOpaque(true);
-        startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
         startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UpdateButtonMouseClicked(evt);
@@ -373,15 +355,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         priceLabel.setFont(new java.awt.Font("Georgia", 0, 30));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
-        receiptButton.setBackground(new java.awt.Color(225, 230, 235));
-        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        receiptButton.setForeground(new java.awt.Color(45, 65, 105));
-        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png")));
-        receiptButton.setText("Kvittering");
-        receiptButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        receiptButton.setIconTextGap(10);
-        receiptButton.setOpaque(true);
-        receiptButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        receiptButton = Button.createButton("Kvittering", "blue", "document");
         receiptButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 receiptButtonMouseClicked(evt);
@@ -585,10 +559,9 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {     
     	if(order.getStatus().equals("Klar til levering")){
     		DeliveryController.startOrder(order);
-    		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-    		startFinishButton.setText(" Ferdig");
-            startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+    		startFinishButton.setText("Ferdig");
+    		Button.changeIcon(startFinishButton, "buy");
+    		Button.changeColor(startFinishButton, "green");
     	}
     	else{
     		DeliveryController.setFinishedOrder(order);
