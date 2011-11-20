@@ -212,15 +212,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
@@ -228,23 +220,12 @@ public class Kitchenform2 extends javax.swing.JFrame {
         });
 
         
-        startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        if (order.getStatus().equals("Bestilt")){
-	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png")));
-	        startFinishButton.setText(" Start");
-	        startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
-	        startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
-	        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        if (order.getStatus().equals("Bestilt")) {
+	        startFinishButton = Button.createButton("Start", "yellow", "label");
         }
-        else{
-        	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-	        startFinishButton.setText(" Finish");
-	        startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
-    		startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-    		startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        else {
+        	startFinishButton = Button.createButton("Ferdig", "green", "buy");
         }
-        startFinishButton.setOpaque(true);
-        startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
         startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startFinishButtonMouseClicked(evt);
@@ -436,11 +417,9 @@ public class Kitchenform2 extends javax.swing.JFrame {
     private void startFinishButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
     	if(order.getStatus().equals("Bestilt")){
     		ChefController.startOrder(order);
-    		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
     		startFinishButton.setText(" Finish");
-    		startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
-    		startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-    		startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+    		Button.changeIcon(startFinishButton, "buy");
+    		Button.changeColor(startFinishButton, "green");
     	}
     	else{
     		ChefController.setFinishedOrder(order);

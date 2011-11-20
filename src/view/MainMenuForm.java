@@ -72,113 +72,55 @@ public class MainMenuForm extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(253, 253, 253));
         mainPanel.setPreferredSize(new java.awt.Dimension(800, 540));
 
-        adminButton.setBackground(new java.awt.Color(229, 226, 235));
-        adminButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        adminButton.setForeground(new java.awt.Color(45, 65, 105));
-        adminButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gear_32.png")));
-        adminButton.setText("  Administrer");
-        adminButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        adminButton.setOpaque(true);
-        adminButton.setPreferredSize(new java.awt.Dimension(175, 20));
+        adminButton = Button.createButton("Administrer", "blue", "gear");
         adminButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adminButtonMouseClicked(evt);
             }
         });
-
-        historyButton.setBackground(new java.awt.Color(229, 226, 235));
-        historyButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        historyButton.setForeground(new java.awt.Color(45, 65, 105));
-        historyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png")));
-        historyButton.setText("  Historikk");
-        historyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        historyButton.setOpaque(true);
-        historyButton.setPreferredSize(new java.awt.Dimension(175, 20));
+        
+        historyButton = Button.createButton("Historikk", "blue", "document");
         historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 historyButtonMouseClicked(evt);
             }
         });
-
-        editButton.setBackground(new java.awt.Color(229, 226, 235));
-        editButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        editButton.setForeground(new java.awt.Color(45, 65, 105));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png")));
-        editButton.setText("  Endre ordre");
-        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        editButton.setOpaque(true);
-        editButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        
+        editButton = Button.createButton("Endre ordre", "blue", "warning");
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
             }
         });
 
-        newOrderButton.setBackground(new java.awt.Color(229, 226, 235));
-        newOrderButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        newOrderButton.setForeground(new java.awt.Color(45, 65, 105));
-        newOrderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-        newOrderButton.setText("  Ny ordre");
-        newOrderButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        newOrderButton.setOpaque(true);
-        newOrderButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        newOrderButton = Button.createButton("Ny ordre", "blue", "buy");
         newOrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newOrderButtonMouseClicked(evt);
             }
         });
 
-        deliveryButton.setBackground(new java.awt.Color(229, 226, 235));
-        deliveryButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        deliveryButton.setForeground(new java.awt.Color(45, 65, 105));
-        deliveryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home_32.png")));
-        deliveryButton.setText("  Utkjøring");
-        deliveryButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        deliveryButton.setOpaque(true);
-        deliveryButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        deliveryButton = Button.createButton("Utkjøring", "blue", "home");
         deliveryButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deliveryButtonMouseClicked(evt);
             }
         });
 
-        kitchenButton.setBackground(new java.awt.Color(229, 226, 235));
-        kitchenButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        kitchenButton.setForeground(new java.awt.Color(45, 65, 105));
-        kitchenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/piggybank_32.png")));
-        kitchenButton.setText("  Kjøkken");
-        kitchenButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        kitchenButton.setOpaque(true);
-        kitchenButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        kitchenButton = Button.createButton("Kjøkken", "blue", "piggybank");
         kitchenButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kitchenButtonMouseClicked(evt);
             }
         });
 
-        
-        pickupButton.setBackground(new java.awt.Color(229, 226, 235));
-        pickupButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        pickupButton.setForeground(new java.awt.Color(45, 65, 105));
-        pickupButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bag_32.png")));
-        pickupButton.setText("  Hent");
-        pickupButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        pickupButton.setOpaque(true);
-        pickupButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        pickupButton = Button.createButton("Hent", "blue", "bag");
         pickupButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
             	pickupButtonButtonMouseClicked(evt);
             }
         });
-        
-        quitButton.setBackground(new java.awt.Color(235, 207, 207));
-        quitButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        quitButton.setForeground(new java.awt.Color(113, 36, 36));
-        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/block_32.png")));
-        quitButton.setText("  Avslutt");
-        quitButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        quitButton.setOpaque(true);
-        quitButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        quitButton = Button.createButton("Avslutt", "red", "block");
         quitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 quitButtonMouseClicked(evt);
@@ -299,7 +241,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     	System.exit(0);
     }
 
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel adminButton;
     private javax.swing.JLabel deliveryButton;
     private javax.swing.JLabel editButton;

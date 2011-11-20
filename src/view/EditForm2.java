@@ -333,31 +333,14 @@ public class EditForm2 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText("Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setIconTextGap(10);
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
-
-        editButton.setBackground(new java.awt.Color(245, 245, 215));
-        editButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        editButton.setForeground(new java.awt.Color(100, 70, 20));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png"))); // NOI18N
-        editButton.setText("Endre");
-        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        editButton.setIconTextGap(10);
-        editButton.setOpaque(true);
-        editButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        
+        editButton = Button.createButton("Endre", "yellow", "warning");
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
@@ -367,15 +350,7 @@ public class EditForm2 extends javax.swing.JFrame {
         priceLabel.setFont(new java.awt.Font("Georgia", 0, 30));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        deleteButton.setBackground(new java.awt.Color(235, 210, 210));
-        deleteButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        deleteButton.setForeground(new java.awt.Color(115, 35, 35));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-        deleteButton.setText("Slett");
-        deleteButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        deleteButton.setIconTextGap(10);
-        deleteButton.setOpaque(true);
-        deleteButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        deleteButton = Button.createButton("Slett", "red", "delete");
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);

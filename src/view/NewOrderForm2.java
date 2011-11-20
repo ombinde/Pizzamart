@@ -155,28 +155,14 @@ private Customer customer;
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceLabel.setText("");
 
-        backButton.setBackground(new java.awt.Color(235, 207, 207));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(113, 36, 36));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
 
-        finishButton.setBackground(new java.awt.Color(230, 240, 200));
-        finishButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        finishButton.setForeground(new java.awt.Color(64, 80, 25));
-        finishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-        finishButton.setText(" Fullfør");
-        finishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        finishButton.setOpaque(true);
-        finishButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        finishButton = Button.createButton("Fullfør", "green", "buy");
         finishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 finishButtonMouseClicked(evt);
@@ -184,18 +170,11 @@ private Customer customer;
         });
 
         if (order.getDelivery()){
-        	takeawayButton.setIcon(new ImageIcon("src/icons/tick_32.png"));
+        	takeawayButton = Button.createButton("Kjøres", "blue", "tick");
         }
         else {
-        	takeawayButton.setIcon(new ImageIcon("src/icons/delete_32.png"));
+        	takeawayButton = Button.createButton("Kjøres", "blue", "delete");
         }
-        takeawayButton.setBackground(new java.awt.Color(225, 230, 235));
-        takeawayButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        takeawayButton.setForeground(new java.awt.Color(44, 65, 105));
-        takeawayButton.setText(" Kjøres");
-        takeawayButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        takeawayButton.setOpaque(true);
-        takeawayButton.setPreferredSize(new java.awt.Dimension(140, 20));
         takeawayButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 takeawayButtonMouseClicked(evt);
@@ -203,18 +182,11 @@ private Customer customer;
         });
 
         if (order.getAllergy()){
-        	allergyButton.setIcon(new ImageIcon("src/icons/tick_32.png"));
+        	allergyButton = Button.createButton("Allergi", "blue", "tick");
         }
         else {
-        	allergyButton.setIcon(new ImageIcon("src/icons/delete_32.png"));
+        	allergyButton = Button.createButton("Allergi", "blue", "delete");
         }
-        allergyButton.setBackground(new java.awt.Color(225, 230, 235));
-        allergyButton.setForeground(new java.awt.Color(44, 65, 105));
-        allergyButton.setText(" Allergi");
-        allergyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(170, 180, 200), 2), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        allergyButton.setFont(new Font("Georgia", 0, 18));
-        allergyButton.setOpaque(true);
-        allergyButton.setPreferredSize(new Dimension(140, 20));
         allergyButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 allergyButtonMouseClicked(evt);
@@ -516,25 +488,25 @@ searchField.setText(searchField.getText());
     
     private void takeawayButtonMouseClicked(java.awt.event.MouseEvent evt) {
      if (order.getDelivery()){
-     takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-     ManageOrder.setDelivery(order, false);
-     this.updateRightPanel();
+    	 Button.changeIcon(takeawayButton, "delete");
+    	 ManageOrder.setDelivery(order, false);
+    	 this.updateRightPanel();
      }
      else{
-     takeawayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
-     ManageOrder.setDelivery(order, true);
-     this.updateRightPanel();
+    	 Button.changeIcon(takeawayButton, "tick");
+    	 ManageOrder.setDelivery(order, true);
+    	 this.updateRightPanel();
      }
     }
 
     private void allergyButtonMouseClicked(java.awt.event.MouseEvent evt) {
      if (!order.getAllergy()){
-     allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/tick_32.png")));
-     ManageOrder.setAllergy(order, true);
+    	 Button.changeIcon(allergyButton, "tick");
+    	 ManageOrder.setAllergy(order, true);
      }
      else{
-     allergyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-     ManageOrder.setAllergy(order, false);
+    	 Button.changeIcon(allergyButton, "delete");
+    	 ManageOrder.setAllergy(order, false);
      }
     }
 
