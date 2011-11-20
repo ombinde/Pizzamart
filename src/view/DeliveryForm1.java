@@ -15,11 +15,7 @@ import model.Order;
 import model.Product;
 import controller.DeliveryController;
 
-/*
- * DeliveryForm1.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
+
 /**
  *
  * @author Morten Vaale Noddeland
@@ -55,7 +51,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Utkjøring - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame"); // NOI18N
+        setName("newOrderFrame");
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -266,10 +262,10 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 	        );
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			// TODO Vis errorbeskjed (JOptionPane?)
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Vis errorbeskjed (JOptionPane?)
 			e.printStackTrace();
 		}
 	}
@@ -373,7 +369,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
             .addGroup(orderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tempHorizontalGroup)
-                .addContainerGap(534, Short.MAX_VALUE))
+            )
         );
         
 	}
@@ -413,39 +409,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         this.setVisible(false);
     }                                                    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new DeliveryForm1().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel backButton;
     private javax.swing.JLabel blueColorLabel;

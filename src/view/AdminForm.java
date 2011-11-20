@@ -16,11 +16,7 @@ import controller.Validate;
 import model.Product;
 import model.Properties;
 
-/*
- * adminForm.java
- *
- * Created on 26.sep.2011, 10:50:18
- */
+
 /**
  *
  * @author Morten Vaale Noddeland
@@ -87,7 +83,7 @@ public class AdminForm extends JFrame {
         topPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
-        newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         newOrderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         newOrderLabel.setText("Administrer");
 
@@ -191,7 +187,7 @@ public class AdminForm extends JFrame {
         productScrollPane.setBorder(null);
         productScrollPane.setViewportView(innerLeftProductPanel);
         
-        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         searchField.setText("Søk");
         searchField.setActionCommand("<Not Set>");
         searchField.setAlignmentX(0.0F);
@@ -246,27 +242,27 @@ public class AdminForm extends JFrame {
         leftRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
         leftRestaurantPanel.setPreferredSize(new java.awt.Dimension(375, 354));
 
-        restaurantNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        restaurantNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         restaurantNameLabel.setText("Navn");
         
         restaurantNameField.setText(Properties.getName());
 
-        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         addressLabel.setText("Adresse");
 
         addressField.setText(Properties.getAddress());
         
-        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         zipCodeLabel.setText("Postnummer");
         
         zipCodeField.setText(Properties.getZipCode());
 
-        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         postalAddressLabel.setText("Poststed");
         
         postalAddressField.setText(Properties.getPostalAddress());
 
-        telephoneLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         telephoneLabel.setText("Telefonnummer");
         
         telephoneField.setText(Properties.getPhone());
@@ -282,7 +278,7 @@ public class AdminForm extends JFrame {
         restaurantNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         nameAddressHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameAddressHeaderLabel.setText("Restaurantopplysninger");
         nameAddressHeaderLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5));
         nameAddressHeaderLabel.setOpaque(true);
@@ -364,14 +360,14 @@ public class AdminForm extends JFrame {
             }
         });
 
-        freeDeliveryLimitLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        freeDeliveryLimitLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         freeDeliveryLimitLabel.setText("Grense for gratis levering");
 
         freeDeliveryLimitField.setText(""+Properties.getLimitFreeDelivery());
         freeDeliveryLimitField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         otherInfoHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        otherInfoHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        otherInfoHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         otherInfoHeaderLabel.setText("Andre innstillinger");
         otherInfoHeaderLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5));
         otherInfoHeaderLabel.setOpaque(true);
@@ -714,42 +710,6 @@ public class AdminForm extends JFrame {
     }
     
 
-    
-    
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new AdminForm().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel addEditButton;
     private javax.swing.JTextField addressField;

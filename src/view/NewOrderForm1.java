@@ -12,33 +12,23 @@ import model.Order;
 import controller.ManageOrder;
 import controller.Validate;
 
-/*
-* To change this template, choose Tools | Templates
-* and open the template in the editor.
-*/
-
-/*
-* NewOrderForm.java
-*
-* Created on 26.sep.2011, 10:50:18
-*/
 /**
 *
 * @author Morten Vaale Noddeland
 */
 
 @SuppressWarnings("serial")
-public class NewOrderForm extends javax.swing.JFrame {
+public class NewOrderForm1 extends javax.swing.JFrame {
 
 private Order order;
     /** Creates new form NewOrderForm */
-    public NewOrderForm() {
+    public NewOrderForm1() {
         initComponents();
         this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
     }
     
     /** Creates new form NewOrderForm */
-    public NewOrderForm(Customer customer, Order order) {
+    public NewOrderForm1(Customer customer, Order order) {
         initComponents();
         this.order = order;
         this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
@@ -51,8 +41,8 @@ private Order order;
     }
 
     /** This method is called from within the constructor to
-* initialize the form.
-*/
+     * initialize the form.
+     */
     private void initComponents() {
 
         topPanel = new javax.swing.JPanel();
@@ -77,7 +67,7 @@ private Order order;
         nextButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ny ordre");
+        setTitle("Ny ordre - kunder");
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -87,7 +77,7 @@ private Order order;
 
         newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         newOrderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        newOrderLabel.setText("Ny ordre");
+        newOrderLabel.setText("Ny ordre - kunder");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -109,12 +99,11 @@ private Order order;
         leftPanel.setBackground(new java.awt.Color(253, 253, 253));
         leftPanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         searchField.setText("Søk");
         searchField.setActionCommand("<Not Set>");
         searchField.setAlignmentX(0.0F);
         searchField.setAlignmentY(0.0F);
-        //searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100), 2), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10)));
         searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10,10,10,10)));
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -148,32 +137,32 @@ private Order order;
         rightPanel.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.darkGray));
 
 
-        firstNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        firstNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         firstNameLabel.setText("Fornavn");
 
         firstNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        lastNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        lastNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         lastNameLabel.setText("Etternavn");
 
         lastNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         addressLabel.setText("Adresse");
 
         addressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         zipCodeLabel.setText("Postnummer");
 
         zipCodeField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         postalAddressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         postalAddressLabel.setText("Poststed");
 
-        phoneNumberLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        phoneNumberLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         phoneNumberLabel.setText("Telefon");
 
         phoneNumberField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
@@ -239,9 +228,9 @@ private Order order;
 
 
         backButton.setBackground(new java.awt.Color(235, 207, 207));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
         backButton.setForeground(new java.awt.Color(113, 36, 36));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
         backButton.setText(" Tilbake");
         backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         backButton.setOpaque(true);
@@ -254,9 +243,9 @@ private Order order;
         });
 
         nextButton.setBackground(new java.awt.Color(230, 240, 200));
-        nextButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nextButton.setFont(new java.awt.Font("Georgia", 0, 18));
         nextButton.setForeground(new java.awt.Color(64, 80, 25));
-        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/right_32.png"))); // NOI18N
+        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/right_32.png")));
         nextButton.setText(" Neste");
         nextButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         nextButton.setOpaque(true);
@@ -377,13 +366,13 @@ private Order order;
      }
     
      if (legalCustomer && this.order!=null){
-     NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName,
+     NewOrderForm2 form = new NewOrderForm2(ManageOrder.addNewCustomer(firstName,
 lastName, phone, address, zipCode, postalAddress), order);
      form.setVisible(true);
      this.setVisible(false);
      }
      else if (legalCustomer){
-NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName,
+NewOrderForm2 form = new NewOrderForm2(ManageOrder.addNewCustomer(firstName,
 lastName, phone, address, zipCode, postalAddress));
 form.setVisible(true);
 this.setVisible(false);
@@ -475,41 +464,7 @@ searchField.setText(searchField.getText());
      postalAddressField.setText(c.getPostalAddress());
     }
     
-    /**
-* @param args the command line arguments
-*/
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-*/
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new NewOrderForm().setVisible(true);
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel backButton;

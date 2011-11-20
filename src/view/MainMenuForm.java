@@ -7,11 +7,6 @@ import javax.swing.BorderFactory;
 
 import model.Properties;
 
-/*
- * MainMenuForm.java
- *
- * Created on 26.sep.2011, 10:27:24
- */
 /**
  *
  * @author Morten Vaale Noddeland
@@ -44,7 +39,8 @@ public class MainMenuForm extends javax.swing.JFrame {
         quitButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hovedmeny - " + Properties.getProperties().getName());
+        Properties.getProperties();
+		setTitle("Hovedmeny - " + Properties.getName());
         setBackground(new java.awt.Color(253, 253, 253));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -77,9 +73,9 @@ public class MainMenuForm extends javax.swing.JFrame {
         mainPanel.setPreferredSize(new java.awt.Dimension(800, 540));
 
         adminButton.setBackground(new java.awt.Color(229, 226, 235));
-        adminButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        adminButton.setFont(new java.awt.Font("Georgia", 0, 18));
         adminButton.setForeground(new java.awt.Color(45, 65, 105));
-        adminButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gear_32.png"))); // NOI18N
+        adminButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gear_32.png")));
         adminButton.setText("  Administrer");
         adminButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         adminButton.setOpaque(true);
@@ -91,9 +87,9 @@ public class MainMenuForm extends javax.swing.JFrame {
         });
 
         historyButton.setBackground(new java.awt.Color(229, 226, 235));
-        historyButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        historyButton.setFont(new java.awt.Font("Georgia", 0, 18));
         historyButton.setForeground(new java.awt.Color(45, 65, 105));
-        historyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
+        historyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png")));
         historyButton.setText("  Historikk");
         historyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         historyButton.setOpaque(true);
@@ -105,9 +101,9 @@ public class MainMenuForm extends javax.swing.JFrame {
         });
 
         editButton.setBackground(new java.awt.Color(229, 226, 235));
-        editButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        editButton.setFont(new java.awt.Font("Georgia", 0, 18));
         editButton.setForeground(new java.awt.Color(45, 65, 105));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png"))); // NOI18N
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png")));
         editButton.setText("  Endre ordre");
         editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         editButton.setOpaque(true);
@@ -119,9 +115,9 @@ public class MainMenuForm extends javax.swing.JFrame {
         });
 
         newOrderButton.setBackground(new java.awt.Color(229, 226, 235));
-        newOrderButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        newOrderButton.setFont(new java.awt.Font("Georgia", 0, 18));
         newOrderButton.setForeground(new java.awt.Color(45, 65, 105));
-        newOrderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
+        newOrderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
         newOrderButton.setText("  Ny ordre");
         newOrderButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         newOrderButton.setOpaque(true);
@@ -133,9 +129,9 @@ public class MainMenuForm extends javax.swing.JFrame {
         });
 
         deliveryButton.setBackground(new java.awt.Color(229, 226, 235));
-        deliveryButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        deliveryButton.setFont(new java.awt.Font("Georgia", 0, 18));
         deliveryButton.setForeground(new java.awt.Color(45, 65, 105));
-        deliveryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home_32.png"))); // NOI18N
+        deliveryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home_32.png")));
         deliveryButton.setText("  Utkjøring");
         deliveryButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         deliveryButton.setOpaque(true);
@@ -147,9 +143,9 @@ public class MainMenuForm extends javax.swing.JFrame {
         });
 
         kitchenButton.setBackground(new java.awt.Color(229, 226, 235));
-        kitchenButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        kitchenButton.setFont(new java.awt.Font("Georgia", 0, 18));
         kitchenButton.setForeground(new java.awt.Color(45, 65, 105));
-        kitchenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/piggybank_32.png"))); // NOI18N
+        kitchenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/piggybank_32.png")));
         kitchenButton.setText("  Kjøkken");
         kitchenButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         kitchenButton.setOpaque(true);
@@ -176,7 +172,7 @@ public class MainMenuForm extends javax.swing.JFrame {
         });
         
         quitButton.setBackground(new java.awt.Color(235, 207, 207));
-        quitButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        quitButton.setFont(new java.awt.Font("Georgia", 0, 18));
         quitButton.setForeground(new java.awt.Color(113, 36, 36));
         quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/block_32.png")));
         quitButton.setText("  Avslutt");
@@ -258,7 +254,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
 
 	private void newOrderButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        NewOrderForm form = new NewOrderForm();         
+        NewOrderForm1 form = new NewOrderForm1();         
         form.setVisible(true);
         this.setVisible(false);         
     }
@@ -303,40 +299,6 @@ public class MainMenuForm extends javax.swing.JFrame {
     	System.exit(0);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new MainMenuForm().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel adminButton;
     private javax.swing.JLabel deliveryButton;

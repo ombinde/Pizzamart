@@ -1,22 +1,16 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-//no.ntnu.course
 import javax.swing.JLabel;
 
 import model.Order;
-import model.Product;
 
 import controller.ManageOrder;
 
-/*
- * PickupForm1.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
 /**
  *
  * @author Morten Vaale Noddeland
@@ -54,7 +48,7 @@ public class EditForm1 extends javax.swing.JFrame {
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
-        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerLabel.setText("Endre ordre - oversikt");
 
@@ -84,7 +78,6 @@ public class EditForm1 extends javax.swing.JFrame {
         middleScrollPane.setPreferredSize(new java.awt.Dimension(800, 470));
 
         innermiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
-        innermiddlePanel.setPreferredSize(new java.awt.Dimension(780, 440));
         
         updateMiddlePanel();
         
@@ -107,9 +100,9 @@ public class EditForm1 extends javax.swing.JFrame {
 
 
         backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
         backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
         backButton.setText(" Tilbake");
         backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         backButton.setOpaque(true);
@@ -121,7 +114,7 @@ public class EditForm1 extends javax.swing.JFrame {
         });
 
         updateButton.setBackground(new java.awt.Color(225, 230, 235));
-        updateButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        updateButton.setFont(new java.awt.Font("Georgia", 0, 18));
         updateButton.setForeground(new java.awt.Color(45, 65, 105));
         updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clock_32.png"))); // NOI18N
         updateButton.setText(" Oppdater");
@@ -233,7 +226,7 @@ public class EditForm1 extends javax.swing.JFrame {
     	
     	javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
     	for (int i = 0; i < orders.size(); i++){
-        	tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE);
+        	tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE);
         }
         
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innermiddlePanelLayout.createSequentialGroup();
@@ -275,40 +268,8 @@ public class EditForm1 extends javax.swing.JFrame {
         this.setVisible(false);
     }                                                    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new EditForm1().setVisible(true);
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JLabel headerLabel;
