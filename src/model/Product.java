@@ -24,7 +24,6 @@ public class Product {
 	/**
 	 * Creates a new Product with the given id, name, price, quantity, comment and visibility.
 	 * The constructor will look up the product id in the database.
-	 * This should be used when initializing a product in a order.
 	 * @param id
 	 * @param name
 	 * @param price
@@ -37,6 +36,7 @@ public class Product {
 		this.price = price;
 		this.quantity = quantity;
 		this.visability = visability;
+		this.comment = comment;
 	}
 
 	/**
