@@ -1,9 +1,9 @@
 package view;
  
-import java.awt.Component;
 import javax.swing.*;
 import static javax.swing.GroupLayout.Alignment.*;
  
+@SuppressWarnings("serial")
 public class Find extends JFrame {
     public Find() {
         JLabel label = new JLabel("Find What:");;

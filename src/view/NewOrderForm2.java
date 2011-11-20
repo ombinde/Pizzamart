@@ -1,4 +1,5 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,24 +16,17 @@ import model.Product;
 import controller.ManageOrder;
 import controller.Validate;
 
-//no.ntnu.course
-
-/*
-* NewOrder2Form.java
-*
-* Created on 29.sep.2011, 12:24:07
-*/
 /**
 *
 * @author Morten Vaale Noddeland
 */
 @SuppressWarnings("serial")
-public class NewOrder2Form extends javax.swing.JFrame {
+public class NewOrderForm2 extends javax.swing.JFrame {
 
 private Order order;
 private Customer customer;
     /** Creates new form NewOrder2Form */
-    public NewOrder2Form(Customer c) {
+    public NewOrderForm2(Customer c) {
         ManageOrder.addCustomerToDatabase(c);
         this.customer = c;
         this.order = new Order(c);
@@ -41,7 +35,7 @@ private Customer customer;
         this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
     }
     
-    public NewOrder2Form(Customer c, Order o) {
+    public NewOrderForm2(Customer c, Order o) {
         ManageOrder.addCustomerToDatabase(c);
         this.customer = c;
         this.order = o;
@@ -52,8 +46,8 @@ private Customer customer;
     
     
     /** This method is called from within the constructor to
-* initialize the form.
-*/
+     * initialize the form.
+     */
     private void initComponents() {
 
         topPanel = new javax.swing.JPanel();
@@ -82,7 +76,7 @@ private Customer customer;
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
-        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerLabel.setText("Ny ordre - produkter");
 
@@ -164,7 +158,7 @@ private Customer customer;
         backButton.setBackground(new java.awt.Color(235, 207, 207));
         backButton.setFont(new java.awt.Font("Georgia", 0, 18));
         backButton.setForeground(new java.awt.Color(113, 36, 36));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
         backButton.setText(" Tilbake");
         backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         backButton.setOpaque(true);
@@ -176,9 +170,9 @@ private Customer customer;
         });
 
         finishButton.setBackground(new java.awt.Color(230, 240, 200));
-        finishButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        finishButton.setFont(new java.awt.Font("Georgia", 0, 18));
         finishButton.setForeground(new java.awt.Color(64, 80, 25));
-        finishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
+        finishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
         finishButton.setText(" Fullfør");
         finishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         finishButton.setOpaque(true);
@@ -196,7 +190,7 @@ private Customer customer;
         	takeawayButton.setIcon(new ImageIcon("src/icons/delete_32.png"));
         }
         takeawayButton.setBackground(new java.awt.Color(225, 230, 235));
-        takeawayButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        takeawayButton.setFont(new java.awt.Font("Georgia", 0, 18));
         takeawayButton.setForeground(new java.awt.Color(44, 65, 105));
         takeawayButton.setText(" Kjøres");
         takeawayButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -470,7 +464,7 @@ searchField.setText(searchField.getText());
     }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
-     NewOrderForm form = new NewOrderForm(customer, order);
+     NewOrderForm1 form = new NewOrderForm1(customer, order);
         form.setVisible(true);
         this.setVisible(false);
     }
@@ -544,41 +538,7 @@ searchField.setText(searchField.getText());
      }
     }
 
-    /**
-* @param args the command line arguments
-*/
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-*/
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewOrder2Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewOrder2Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewOrder2Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewOrder2Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new NewOrder2Form(new Customer("Test", "testet", "676758598", "gate", "7878", "Oslo")).setVisible(true);
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel allergyButton;
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;

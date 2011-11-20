@@ -1,10 +1,10 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-//no.ntnu.course
 import javax.swing.JLabel;
 
 import controller.AdminController;
@@ -14,12 +14,7 @@ import model.Customer;
 import model.Order;
 import model.Product;
 
-/*
- * EditForm2.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
-    /**
+/**
  *
  * @author Morten Vaale Noddeland
  */
@@ -77,14 +72,14 @@ public class EditForm2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Endre ordre - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame"); // NOI18N
+        setName("newOrderFrame");
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
 
-        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerLabel.setText("Endre ordre - detaljer");
 
@@ -111,54 +106,54 @@ public class EditForm2 extends javax.swing.JFrame {
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         nameTelephoneHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameTelephoneHeaderLabel.setText("Navn og adresse");
         nameTelephoneHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         nameTelephoneHeaderLabel.setOpaque(true);
         nameTelephoneHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         nameHeaderLabel.setText("Navn:");
 
-        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         addressHeaderLabel.setText("Adresse:");
 
-        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         telephoneHeaderLabel.setText("Telefon:");
 
         orderStatusHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        orderStatusHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        orderStatusHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         orderStatusHeaderLabel.setText("Status");
         orderStatusHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         orderStatusHeaderLabel.setOpaque(true);
         orderStatusHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        statusHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        statusHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         statusHeaderLabel.setText("Status:");
 
-        statusContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        statusContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        deliveryHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        deliveryHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         deliveryHeaderLabel.setText("Levering:");
 
-        deliveryContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        deliveryContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        allergyHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        allergyHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         allergyHeaderLabel.setText("Allergi:");
 
-        allergyContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        allergyContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         allergyContentLabel.setText("Nei");
 
         commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         commentHeaderLabel.setText("Kommentar");
         commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         commentHeaderLabel.setOpaque(true);
@@ -543,7 +538,7 @@ public class EditForm2 extends javax.swing.JFrame {
     }                                       
 
     private void editButtonMouseClicked(java.awt.event.MouseEvent evt) { 
-    	NewOrderForm form = new NewOrderForm(order.getCustomer(), order);
+    	NewOrderForm1 form = new NewOrderForm1(order.getCustomer(), order);
     	form.setVisible(true);
     	this.setVisible(false);
     }
@@ -555,41 +550,8 @@ public class EditForm2 extends javax.swing.JFrame {
     	this.setVisible(false);
     }                                                      
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-               // new EditForm2().setVisible(true);  
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JScrollPane ProductsScrollPane;
     private javax.swing.JLabel addressContentLabel;
     private javax.swing.JLabel addressHeaderLabel;

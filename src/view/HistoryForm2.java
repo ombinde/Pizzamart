@@ -1,16 +1,13 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
-//no.ntnu.course
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import javax.swing.JLabel;
 
 import com.itextpdf.text.DocumentException;
@@ -111,28 +108,28 @@ public class HistoryForm2 extends javax.swing.JFrame {
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         nameAddressHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameAddressHeaderLabel.setText("Navn og adresse");
         nameAddressHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         nameAddressHeaderLabel.setOpaque(true);
         nameAddressHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         nameHeaderLabel.setText("Navn:");
 
-        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         addressHeaderLabel.setText("Adresse:");
         
-        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         telephoneHeaderLabel.setText("Telefon:");
         
-        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
         mapHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        mapHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        mapHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         mapHeaderLabel.setText("Kart");
         mapHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         mapHeaderLabel.setOpaque(true);
@@ -202,14 +199,14 @@ public class HistoryForm2 extends javax.swing.JFrame {
         );
         
         quantityHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        quantityHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        quantityHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         quantityHeaderLabel.setText("Antall");
         quantityHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         quantityHeaderLabel.setOpaque(true);
         quantityHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
         productHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        productHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        productHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         productHeaderLabel.setText("Produkt");
         productHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         productHeaderLabel.setOpaque(true);
@@ -340,7 +337,7 @@ public class HistoryForm2 extends javax.swing.JFrame {
         backButton.setBackground(new java.awt.Color(235, 210, 210));
         backButton.setFont(new java.awt.Font("Georgia", 0, 18));
         backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png")));
         backButton.setText(" Tilbake");
         backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         backButton.setOpaque(true);
@@ -351,13 +348,13 @@ public class HistoryForm2 extends javax.swing.JFrame {
             }
         });
 
-        priceLabel.setFont(new java.awt.Font("Georgia", 0, 30)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Georgia", 0, 30));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
         receiptButton.setBackground(new java.awt.Color(225, 230, 235));
-        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18));
         receiptButton.setForeground(new java.awt.Color(45, 65, 105));
-        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
+        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png")));
         receiptButton.setText("Kvittering");
         receiptButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         receiptButton.setIconTextGap(10);
@@ -554,49 +551,10 @@ public class HistoryForm2 extends javax.swing.JFrame {
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
     }
 
-    
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JScrollPane ProductsScrollPane;
     private javax.swing.JLabel addressContentLabel;
     private javax.swing.JLabel addressHeaderLabel;

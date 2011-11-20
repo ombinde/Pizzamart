@@ -15,11 +15,7 @@ import model.Order;
 import model.Product;
 import controller.DeliveryController;
 
-/*
- * DeliveryForm1.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
+
 /**
  *
  * @author Morten Vaale Noddeland
@@ -55,7 +51,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Utkjøring - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame"); // NOI18N
+        setName("newOrderFrame");
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -266,10 +262,10 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 	        );
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			// TODO Vis errorbeskjed (JOptionPane?)
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Vis errorbeskjed (JOptionPane?)
 			e.printStackTrace();
 		}
 	}
