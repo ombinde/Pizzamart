@@ -67,7 +67,6 @@ public class PickupForm2 extends javax.swing.JFrame {
         setName("newOrderFrame");
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
-        topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
         headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
@@ -337,14 +336,15 @@ public class PickupForm2 extends javax.swing.JFrame {
     private void displayOrder() {
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
 
-    	defineQuantityPanel(labels.get(0));
-    	defineProductPanel(labels.get(1));
+    	setQuantityPanelLayout(labels.get(0));
+    	setProductPanelLayout(labels.get(1));
     	
     	commentTextPane.setText(order.getComment());
     	nameContentLabel.setText(order.getCustomer().getName());
         telephoneContentLabel.setText(order.getCustomer().getPhone());
     	priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
     }
+    
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
@@ -353,35 +353,23 @@ public class PickupForm2 extends javax.swing.JFrame {
 
         for (int i = 0; i < productsInOrder.size(); i++) {
         	// Create quantityLabels
-	    	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-	    	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	    	quantityLabel.setOpaque(true);
-	    	quantityLabel.setVisible(true);
-	    	int bg;
-			if (i % 2 == 0) { bg = 220; }
-	        else 			{ bg = 240; }
-			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText(""+productsInOrder.get(i).getQuantity());
+	    	String quanityText = ""+productsInOrder.get(i).getQuantity();
+        	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quanityText, i);
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-	    	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-	    	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	    	productLabel.setOpaque(true);
-	    	productLabel.setVisible(true);
-			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText(productsInOrder.get(i).getName());
+	        String productText = productsInOrder.get(i).getName();
+	        javax.swing.JLabel productLabel = Labels.createBorderlessLabel(productText, i);
 	        productLabels.add(productLabel);
 	    }
+        
 	    ArrayList<ArrayList <javax.swing.JLabel>> labels = new ArrayList<ArrayList <javax.swing.JLabel>>();
 	    labels.add(quantityLabels);
 	    labels.add(productLabels);
 	    return labels;
 	}
     
-	private void defineQuantityPanel(ArrayList<JLabel> quantityLabels) {
+	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
         javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
@@ -402,7 +390,7 @@ public class PickupForm2 extends javax.swing.JFrame {
         );		
 	}
 	
-    private void defineProductPanel(ArrayList<JLabel> productLabels) {
+    private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
     	javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
     	productPanel.setLayout(productPanelLayout);
     	
