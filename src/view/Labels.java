@@ -23,6 +23,12 @@ public class Labels {
 			foreground = new java.awt.Color(115, 35, 35);
 			border = new java.awt.Color(205, 135, 135);
 		}
+		else if (color.equals("purple")){
+			background = new java.awt.Color(230, 225, 230);
+			foreground = new java.awt.Color(75, 55, 85);
+			border = new java.awt.Color(195, 170, 200);
+		}
+		
 		else {
 			background = new java.awt.Color(225, 230, 235);
 			foreground = new java.awt.Color(45, 65, 105);
