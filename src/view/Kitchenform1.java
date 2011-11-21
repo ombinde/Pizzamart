@@ -40,6 +40,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
         colorHeaderLabel = new javax.swing.JLabel();
         blueColorLabel = new javax.swing.JLabel();
         redColorLabel = new javax.swing.JLabel();
+        purpleColorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kjøkken - oversikt");
@@ -117,21 +118,26 @@ public class Kitchenform1 extends javax.swing.JFrame {
             }
         });
 
-        yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
-        yellowColorLabel.setText(" Påbegynt");
-
         colorHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         colorHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         colorHeaderLabel.setText("Fargeforklaring:");
+
 
         blueColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
         blueColorLabel.setIcon(new javax.swing.ImageIcon("icons/blue_square.png"));
         blueColorLabel.setText(" Ikke påbegynt");
 
+        purpleColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
+        purpleColorLabel.setIcon(new javax.swing.ImageIcon("icons/purple_square.png"));
+        purpleColorLabel.setText(" Allergi");
+
         redColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
         redColorLabel.setIcon(new javax.swing.ImageIcon("icons/red_square.png"));
-        redColorLabel.setText(" Se kommentar");
+        redColorLabel.setText(" Kommentar");
+
+        yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
+        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
+        yellowColorLabel.setText(" Påbegynt");
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
@@ -140,18 +146,20 @@ public class Kitchenform1 extends javax.swing.JFrame {
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bottomPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(colorHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
-                    .addGroup(bottomPanelLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addComponent(colorHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
                         .addComponent(blueColorLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(yellowColorLabel)
+                        .addComponent(purpleColorLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(redColorLabel)))
-                .addGap(18, 18, 18)
+                        .addComponent(redColorLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(yellowColorLabel)
+                        .addGap(40, 40, 40)))
                 .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -164,9 +172,10 @@ public class Kitchenform1 extends javax.swing.JFrame {
                         .addComponent(colorHeaderLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(yellowColorLabel)
+                            .addComponent(purpleColorLabel)
+                            .addComponent(redColorLabel)
                             .addComponent(blueColorLabel)
-                            .addComponent(redColorLabel)))
+                            .addComponent(yellowColorLabel)))
                     .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -310,6 +319,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
     private javax.swing.JPanel middlePanel;
     private javax.swing.JScrollPane middleScrollPane;
     private javax.swing.JLabel redColorLabel;
+    private javax.swing.JLabel purpleColorLabel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel updateButton;
     private javax.swing.JLabel yellowColorLabel;
