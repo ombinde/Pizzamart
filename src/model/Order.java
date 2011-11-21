@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import view.Error;
+
 /**
  * A class for orders
  * 
@@ -69,6 +71,7 @@ public class Order {
 		this.deliveryFee = DeliveryFee.getDeliveryFee();
 		this.setDelivery(true);
 		this.setAllergy(false);
+		this.dateAdded = new Date(calendar.getTimeInMillis());
 	}
 	
 	
@@ -102,10 +105,12 @@ public class Order {
 	 */
 	public void addOrderToDatabase(){
 		Integer quantity = 0;
+		this.dateAdded = new Date(calendar.getTimeInMillis());
 		Database db = Database.getDatabase();
 		//Adds the order
 		String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
-		  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
+		  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy 
+		  			   + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
 		idOrder = db.insertWithIdReturn(query);
 		//Adds the relation with the products in the order
 	    for (Product p : products) {
@@ -218,8 +223,7 @@ public class Order {
 			}
 			return relevantOrders;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return null;
 	}
@@ -247,8 +251,7 @@ public class Order {
 			}
 			return allOrders;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return null;
 	}
@@ -276,8 +279,7 @@ public class Order {
 			}
 			return allOrders;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return null;
 	}
