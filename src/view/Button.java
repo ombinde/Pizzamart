@@ -4,6 +4,12 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+/**
+ * Contains static methods for creating buttons. It also contains methods for
+ * changing the color or icon of a button.
+ * @author morten
+ *
+ */
 public class Button {
 	
 	/**

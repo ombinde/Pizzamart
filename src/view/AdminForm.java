@@ -507,34 +507,15 @@ public class AdminForm extends JFrame {
     	for (int i=0; i < products.size(); i++) {
     		final Product product = products.get(i);
         	// Create a new JLabel
-        	javax.swing.JLabel temp = new javax.swing.JLabel();
-            // Set JLabel dimensions, text, border and so on
-            temp.setText(product.getName());
-            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            temp.setOpaque(true);
-            temp.setPreferredSize(new java.awt.Dimension(140, 20));
-            temp.setSize(new java.awt.Dimension(140, 20));
-            temp.setVisible(true);
-        	// Make it so that every other JLabel has a different background color than the previous
-            int bg;
-    		if (i % 2 == 0){
-            	bg = 220;
-            }
-            else {
-            	bg = 240;
-            }
-    		temp.setBackground(new java.awt.Color(bg, bg, bg));
-    		// What method to call if the JLabel is clicked
-            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+        	javax.swing.JLabel label = Labels.createBorderlessLabel(product.getName(), i);
+            label.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     productLabelMouseClicked(product);
                 }
-
             });
             // Add the JLabel to the array of JLabels
-            productLabels.add(temp);
+            productLabels.add(label);
     	}
-    	
     	return productLabels;
 	}
 

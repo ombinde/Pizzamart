@@ -51,7 +51,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Utkjøring - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame");
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -229,32 +228,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         pack();
     }
 
-    private void updateRightPanel() {
-        
-    	JLabel map;
-		try {
-			map = GoogleMaps.mainMap();
-	    	
-			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
-	        mapPanel.removeAll();
-	        mapPanel.setLayout(mapPanelLayout);
-	        mapPanelLayout.setHorizontalGroup(
-	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-	        );
-	        mapPanelLayout.setVerticalGroup(
-	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-	        );
-		} catch (MalformedURLException e) {
-			// TODO Vis errorbeskjed (JOptionPane?)
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Vis errorbeskjed (JOptionPane?)
-			e.printStackTrace();
-		}
-	}
-
 	private void updateLeftPanel() {
     	ArrayList<JLabel> orderLabels = createOrderLabels();
     	
@@ -262,8 +235,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     	orderPanel.removeAll();
     	orderPanel.setLayout(orderPanelLayout);
     	
-    	defineOrderPanelHorizontalLayout(orderPanelLayout, orderLabels);
-        defineOrderPanelVerticalLayout(orderPanelLayout, orderLabels);
+    	setOrderPanelLayout(orderPanelLayout, orderLabels);
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
@@ -316,10 +288,9 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         return labels;
     }
     
-	private void defineOrderPanelHorizontalLayout(GroupLayout orderPanelLayout, ArrayList<JLabel> orderLabels) {
-        //orderPanelLayout = new javax.swing.GroupLayout(orderPanel);
-        //orderPanel.setLayout(orderPanelLayout);
+	private void setOrderPanelLayout(GroupLayout orderPanelLayout, ArrayList<JLabel> orderLabels) {
         
+        // Set horizontal axis
 		javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
         for (int i = 0; i < orderLabels.size(); i++){
         	tempHorizontalGroup.addComponent(orderLabels.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE);
@@ -333,12 +304,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
             )
         );
         
-	}
-    
-    private void defineOrderPanelVerticalLayout(GroupLayout orderPanelLayout, ArrayList<JLabel> orderLabels) {
-    	//orderPanelLayout = new javax.swing.GroupLayout(orderPanel);
-        //orderPanel.setLayout(orderPanelLayout);
-    	
+        // Set vertical axis
     	javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = orderPanelLayout.createSequentialGroup();
         tempVerticalGroup.addContainerGap();
     	for (int i = 0; i < orderLabels.size(); i++){
@@ -352,8 +318,33 @@ public class DeliveryForm1 extends javax.swing.JFrame {
                 orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(tempVerticalGroup)
         );
+        
 	}
 
+    private void updateRightPanel() {
+        
+    	JLabel map;
+		try {
+			map = GoogleMaps.mainMap();
+	    	
+			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
+	        mapPanel.removeAll();
+	        mapPanel.setLayout(mapPanelLayout);
+	        mapPanelLayout.setHorizontalGroup(
+	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+	        );
+	        mapPanelLayout.setVerticalGroup(
+	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+	        );
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+    
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
     	MainMenuForm form = new MainMenuForm();         
         form.setVisible(true);

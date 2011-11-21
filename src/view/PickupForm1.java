@@ -35,7 +35,7 @@ public class PickupForm1 extends javax.swing.JFrame {
         headerLabel = new javax.swing.JLabel();
         middlePanel = new javax.swing.JPanel();
         middleScrollPane = new javax.swing.JScrollPane();
-        innermiddlePanel = new javax.swing.JPanel();
+        innerMiddlePanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
         backButton = new javax.swing.JLabel();
         updateButton = new javax.swing.JLabel();
@@ -43,8 +43,6 @@ public class PickupForm1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hent - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setName("newOrderFrame");
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -80,11 +78,11 @@ public class PickupForm1 extends javax.swing.JFrame {
         middleScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         middleScrollPane.setPreferredSize(new java.awt.Dimension(800, 470));
 
-        innermiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
+        innerMiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
         
         updateMiddlePanel();
         
-        middleScrollPane.setViewportView(innermiddlePanel);
+        middleScrollPane.setViewportView(innerMiddlePanel);
 
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
@@ -146,7 +144,7 @@ public class PickupForm1 extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(bottomPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(topPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)))
-                .addGap(40, 40, 40))
+                )
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +161,7 @@ public class PickupForm1 extends javax.swing.JFrame {
     private void updateMiddlePanel(){
     	ArrayList<javax.swing.JLabel> orders = createOrderLabels();
     	
-    	defineInnermiddlePanelLayout(orders);
+    	setInnerMiddlePanelLayout(orders);
     }
     
     private ArrayList<JLabel> createOrderLabels(){
@@ -172,13 +170,14 @@ public class PickupForm1 extends javax.swing.JFrame {
 
         for (int i = 0; i < allOrders.size(); i++){
         	final Order order = allOrders.get(i);
-        	String productText = "";
+        	String textSecondLine = "";
         	for (Product product : order.getProductsInOrder()) {
-				productText += product.getQuantity() + " stk: " + product.getName() + ", ";
+				textSecondLine += product.getQuantity() + " stk: " + product.getName() + ", ";
 			}
-        	productText = productText.substring(0, productText.length()-2);
+        	textSecondLine = textSecondLine.substring(0, textSecondLine.length()-2);
         	
-        	ArrayList<JLabel> label = Labels.createTwoLineLabel(order.getDateAndTime() + ": " + order.getCustomer().getName(), productText, "blue");
+        	String textFirstLine = order.getDateAndTime() + ": " + order.getCustomer().getName();
+        	ArrayList<JLabel> label = Labels.createTwoLineLabel(textFirstLine, textSecondLine, "blue");
         	
         	label.get(0).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -197,18 +196,18 @@ public class PickupForm1 extends javax.swing.JFrame {
         return labels;
     }
     
-    private void defineInnermiddlePanelLayout(ArrayList<JLabel> orders){
-    	javax.swing.GroupLayout innermiddlePanelLayout = new javax.swing.GroupLayout(innermiddlePanel);
+    private void setInnerMiddlePanelLayout(ArrayList<JLabel> orders){
+    	javax.swing.GroupLayout innerMiddlePanelLayout = new javax.swing.GroupLayout(innerMiddlePanel);
     	
-    	innermiddlePanel.removeAll();
-    	innermiddlePanel.setLayout(innermiddlePanelLayout);
+    	innerMiddlePanel.removeAll();
+    	innerMiddlePanel.setLayout(innerMiddlePanelLayout);
     	
-    	javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+    	javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
     	for (int i = 0; i < orders.size(); i++){
         	tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE);
         }
         
-        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innermiddlePanelLayout.createSequentialGroup();
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerMiddlePanelLayout.createSequentialGroup();
         tempVerticalGroup.addContainerGap();
         for (int i = 0; i < orders.size(); i++){
             tempVerticalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE);
@@ -217,16 +216,16 @@ public class PickupForm1 extends javax.swing.JFrame {
             }
         }
         
-        innermiddlePanelLayout.setHorizontalGroup(
-        		innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(innermiddlePanelLayout.createSequentialGroup()
+        innerMiddlePanelLayout.setHorizontalGroup(
+        		innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(innerMiddlePanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(tempHorizontalGroup)
                     .addContainerGap())
         );
         
-        innermiddlePanelLayout.setVerticalGroup(
-            innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        innerMiddlePanelLayout.setVerticalGroup(
+            innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tempVerticalGroup)
         );
     }
@@ -251,7 +250,7 @@ public class PickupForm1 extends javax.swing.JFrame {
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JLabel headerLabel;
-    private javax.swing.JPanel innermiddlePanel;
+    private javax.swing.JPanel innerMiddlePanel;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JScrollPane middleScrollPane;
     private javax.swing.JPanel topPanel;
