@@ -69,7 +69,6 @@ private Customer customer;
         setTitle("Ny ordre - produkter");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("newOrderFrame");
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -266,7 +265,7 @@ private Customer customer;
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, 40))
+                )
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
