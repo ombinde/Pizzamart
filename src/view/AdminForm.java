@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.AdminController;
-import controller.ManageOrder;
 import controller.Validate;
 
 import model.Product;
@@ -185,6 +184,8 @@ public class AdminForm extends JFrame {
         innerLeftProductPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         productScrollPane.setBorder(null);
+        productScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        productScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         productScrollPane.setViewportView(innerLeftProductPanel);
         
         searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18));
@@ -493,7 +494,7 @@ public class AdminForm extends JFrame {
     private void displayAdminPanel(String query) {
     	
     	ArrayList<javax.swing.JLabel> products = createProductLabels(query);
-    	setLeftProductPanelLayout(products);
+    	setInnerLeftProductPanelLayout(products);
     	
     	searchField.grabFocus();
 		searchField.setText(searchField.getText());
@@ -538,7 +539,7 @@ public class AdminForm extends JFrame {
     	return productLabels;
 	}
 
-    private void setLeftProductPanelLayout(ArrayList<JLabel> products) {
+    private void setInnerLeftProductPanelLayout(ArrayList<JLabel> products) {
     	javax.swing.GroupLayout innerLeftProductPanelLayout = new javax.swing.GroupLayout(innerLeftProductPanel);
         innerLeftProductPanel.removeAll();
     	innerLeftProductPanel.setLayout(innerLeftProductPanelLayout);
@@ -550,7 +551,7 @@ public class AdminForm extends JFrame {
         
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerLeftProductPanelLayout.createSequentialGroup();
         for (int i = 0; i < products.size(); i++){
-        	tempVerticalGroup.addComponent(products.get(i));
+        	tempVerticalGroup.addComponent(products.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
         }
         
         innerLeftProductPanelLayout.setHorizontalGroup(tempHorizontalGroup);

@@ -231,24 +231,14 @@ public class Kitchenform1 extends javax.swing.JFrame {
     		// Create a JLabel and define dimensions and other variables
 			javax.swing.JLabel temp = new javax.swing.JLabel();
 			if (order.getStatus().equals("Lages")) {
-				temp.setBackground(new java.awt.Color(245, 245, 215));
-		        temp.setForeground(new java.awt.Color(100, 70, 20));
-		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "yellow");
 			}
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
-					temp.setBackground(new java.awt.Color(235, 210, 210));
-			        temp.setForeground(new java.awt.Color(115, 35, 35));
-			        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "red");	
 			}
 			else {
-				temp.setBackground(new java.awt.Color(225, 230, 235));
-		        temp.setForeground(new java.awt.Color(45, 65, 105));
-		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "blue");
 			}	        
-	        temp.setFont(new java.awt.Font("Georgia", 0, 18));
-	        temp.setText(orderText.substring(0, orderText.length()));
-	        temp.setOpaque(true);
-	        temp.setPreferredSize(new java.awt.Dimension(140, 20));
 	        temp.addMouseListener(new java.awt.event.MouseAdapter() {
 	            public void mouseClicked(java.awt.event.MouseEvent evt) {
 	                orderLabelMouseClicked(order);
@@ -310,7 +300,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
     	this.updateMiddlePanel();
     }                                         
 
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel backButton;
     private javax.swing.JLabel blueColorLabel;
     private javax.swing.JPanel bottomPanel;

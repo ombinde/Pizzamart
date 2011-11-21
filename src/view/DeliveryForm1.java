@@ -286,56 +286,32 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         	//Remove the last two characters from orderText
         	if (orderText.length() > 0)
         		orderText = orderText.substring(0, (orderText.length() - 2));
-        	// Create the upper half of the order Label
-        	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
-        	// Create the lower half of the order Label
-        	javax.swing.JLabel lowerHalf = new javax.swing.JLabel();
+
+        	// Create the Label
+        	ArrayList<JLabel> label;
 			if (order.getStatus().equals("Under levering")) {
-				upperHalf.setBackground(new java.awt.Color(245, 245, 215));
-		        upperHalf.setForeground(new java.awt.Color(100, 70, 20));
-		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		        lowerHalf.setBackground(new java.awt.Color(245, 245, 215));
-	        	lowerHalf.setForeground(new java.awt.Color(100, 70, 20));
-	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
+				label = Labels.createTwoLineLabel(order.getDateAndTime() + ":    " + order.getCustomer().getAddress(), orderText, "yellow");
 			}
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
-					upperHalf.setBackground(new java.awt.Color(235, 210, 210));
-			        upperHalf.setForeground(new java.awt.Color(115, 35, 35));
-			        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-			        lowerHalf.setBackground(new java.awt.Color(235, 210, 210));
-		        	lowerHalf.setForeground(new java.awt.Color(115, 35, 35));
-		        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-
+				label = Labels.createTwoLineLabel(order.getDateAndTime() + ":    " + order.getCustomer().getAddress(), orderText, "red");
 			}
 			else {
-				upperHalf.setBackground(new java.awt.Color(225, 230, 235));
-		        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
-		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		        lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
-	        	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
-	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-
+				label = Labels.createTwoLineLabel(order.getDateAndTime() + ":    " + order.getCustomer().getAddress(), orderText, "blue");
 			}
-        	upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setText(order.getDateAndTime() + ":    " + order.getCustomer().getAddress());
-        	upperHalf.setOpaque(true);
-            upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
-        	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+        	
+			label.get(0).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     orderLabelMouseClicked(evt, order);
                 }
             });
-        	lowerHalf.setText(orderText);
-        	lowerHalf.setOpaque(true);
-            lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
-        	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+			label.get(1).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                 	orderLabelMouseClicked(evt, order);
                 }
             });
 
-        	labels.add(upperHalf);
-        	labels.add(lowerHalf);
+        	labels.add(label.get(0));
+        	labels.add(label.get(1));
         }
         return labels;
     }
@@ -385,7 +361,8 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }                                       
 
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
-        // TODO add your handling code here:
+        updateLeftPanel();
+        updateRightPanel();
     }                                         
 
     private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Order order) {                                                     
