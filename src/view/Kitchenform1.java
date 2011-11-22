@@ -235,6 +235,11 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		        temp.setForeground(new java.awt.Color(100, 70, 20));
 		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 			}
+			else if (order.getAllergy()){
+				temp.setBackground(new java.awt.Color(235, 210, 210));
+		        temp.setForeground(new java.awt.Color(115, 35, 35));
+		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+			}
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
 					temp.setBackground(new java.awt.Color(235, 210, 210));
 			        temp.setForeground(new java.awt.Color(115, 35, 35));

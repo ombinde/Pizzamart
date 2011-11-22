@@ -362,6 +362,8 @@ searchField.setText(searchField.getText());
      ArrayList<javax.swing.JLabel> orderList = new ArrayList<javax.swing.JLabel>();
         ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
         priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
+        if(order.getComment()!=null)
+        	this.commentArea.setText(order.getComment());
         int counter = 0;
         for (Product p : productsInOrder) {
          // Create a new JLabel
