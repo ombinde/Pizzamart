@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 
 import model.Customer;
 import model.Order;
@@ -12,33 +13,23 @@ import model.Order;
 import controller.ManageOrder;
 import controller.Validate;
 
-/*
-* To change this template, choose Tools | Templates
-* and open the template in the editor.
-*/
-
-/*
-* NewOrderForm.java
-*
-* Created on 26.sep.2011, 10:50:18
-*/
 /**
 *
 * @author Morten Vaale Noddeland
 */
 
 @SuppressWarnings("serial")
-public class NewOrderForm extends javax.swing.JFrame {
+public class NewOrderForm1 extends javax.swing.JFrame {
 
 private Order order;
     /** Creates new form NewOrderForm */
-    public NewOrderForm() {
+    public NewOrderForm1() {
         initComponents();
         this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
     }
     
     /** Creates new form NewOrderForm */
-    public NewOrderForm(Customer customer, Order order) {
+    public NewOrderForm1(Customer customer, Order order) {
         initComponents();
         this.order = order;
         this.updateLeftPanel(ManageOrder.getRelevantCustomers(""));
@@ -51,14 +42,16 @@ private Order order;
     }
 
     /** This method is called from within the constructor to
-* initialize the form.
-*/
+     * initialize the form.
+     */
     private void initComponents() {
 
         topPanel = new javax.swing.JPanel();
         newOrderLabel = new javax.swing.JLabel();
         leftPanel = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
+        leftScrollPane = new javax.swing.JScrollPane();
+        innerLeftPanel = new javax.swing.JPanel();
         rightPanel = new javax.swing.JPanel();
         firstNameLabel = new javax.swing.JLabel();
         firstNameField = new javax.swing.JTextField();
@@ -77,8 +70,7 @@ private Order order;
         nextButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ny ordre");
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setTitle("Ny ordre - kunder");
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(800, 100));
@@ -87,7 +79,7 @@ private Order order;
 
         newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         newOrderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        newOrderLabel.setText("Ny ordre");
+        newOrderLabel.setText("Ny ordre - kunder");
 
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
@@ -109,13 +101,14 @@ private Order order;
         leftPanel.setBackground(new java.awt.Color(253, 253, 253));
         leftPanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         searchField.setText("Søk");
         searchField.setActionCommand("<Not Set>");
         searchField.setAlignmentX(0.0F);
         searchField.setAlignmentY(0.0F);
-        //searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100), 2), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10)));
-        searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10,10,10,10)));
+        searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), 
+        		javax.swing.BorderFactory.createEmptyBorder(10,10,10,10)));
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchFieldKeyTyped(evt);
@@ -127,56 +120,73 @@ private Order order;
             }
         });
 
-        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-        leftPanel.setLayout(leftPanelLayout);
-        leftPanelLayout.setHorizontalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                //.addContainerGap()
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        leftPanelLayout.setVerticalGroup(
-            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
-                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(420, Short.MAX_VALUE))
-        );
+       innerLeftPanel.setBackground(new java.awt.Color(253, 253, 253));
+
+       leftScrollPane.setViewportView(innerLeftPanel);
+       leftScrollPane.setBorder(null);
+       leftScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+       
+       javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+       leftPanel.setLayout(leftPanelLayout);
+       leftPanelLayout.setHorizontalGroup(
+           leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addComponent(leftScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+           .addGroup(leftPanelLayout.createSequentialGroup()
+               .addComponent(searchField, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+       );
+       leftPanelLayout.setVerticalGroup(
+           leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+           .addGroup(leftPanelLayout.createSequentialGroup()
+               .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(leftScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+       );
 
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
         rightPanel.setPreferredSize(new java.awt.Dimension(400, 400));
         rightPanel.setBorder(BorderFactory.createMatteBorder(0, 2, 0, 0, Color.darkGray));
 
 
-        firstNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        firstNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         firstNameLabel.setText("Fornavn");
 
-        firstNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        firstNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), 
+        		javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        lastNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        lastNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         lastNameLabel.setText("Etternavn");
 
-        lastNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        lastNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), 
+        		javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         addressLabel.setText("Adresse");
 
-        addressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        addressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)),
+        		javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         zipCodeLabel.setText("Postnummer");
 
-        zipCodeField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        zipCodeField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)),
+        		javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        postalAddressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        postalAddressField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)),
+        		javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
-        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         postalAddressLabel.setText("Poststed");
 
-        phoneNumberLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        phoneNumberLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         phoneNumberLabel.setText("Telefon");
 
-        phoneNumberField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
+        phoneNumberField.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+        		javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)),
+        		javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -238,29 +248,14 @@ private Order order;
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
 
-        backButton.setBackground(new java.awt.Color(235, 207, 207));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        backButton.setForeground(new java.awt.Color(113, 36, 36));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                // Conflict: ActionPerformed vs MouseClicked!
              backButtonMouseClicked(evt);
             }
         });
 
-        nextButton.setBackground(new java.awt.Color(230, 240, 200));
-        nextButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        nextButton.setForeground(new java.awt.Color(64, 80, 25));
-        nextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/right_32.png"))); // NOI18N
-        nextButton.setText(" Neste");
-        nextButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        nextButton.setOpaque(true);
-        nextButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        nextButton = Button.createButton("Neste", "green", "right");
         nextButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nextButtonMouseClicked(evt);
@@ -299,7 +294,7 @@ private Order order;
                         .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(rightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                )
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,192 +319,143 @@ private Order order;
         	this.searchField.setText("" + (this.searchField.getText()).charAt(3));
         	this.searchFieldChanged = true;
         }
-     this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
+        this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
-     MainMenuForm form = new MainMenuForm();
-     form.setVisible(true);
+    	MainMenuForm form = new MainMenuForm();
+    	form.setVisible(true);
         this.setVisible(false);
     }
 
     private void nextButtonMouseClicked(java.awt.event.MouseEvent evt) {
-     String firstName = firstNameField.getText();
-     String lastName = lastNameField.getText();
-     String phone = phoneNumberField.getText();
-     String address = addressField.getText();
-     String zipCode = zipCodeField.getText();
-     String postalAddress = postalAddressField.getText();
-     boolean legalCustomer = true;
-     Color color = new Color(235, 210, 210);
-     if (!Validate.stringNonEmpty(firstName) || !Validate.isStringLegal(firstName)){
-     this.firstNameField.setBackground(color);
-     legalCustomer = false;
-     }
-     else {
-     this.firstNameField.setBackground(Color.WHITE);
-     }
-     if (!Validate.stringNonEmpty(lastName) || !Validate.isStringLegal(lastName)){
-     this.lastNameField.setBackground(color);
-     legalCustomer = false;
-     }
-     else {
-     this.lastNameField.setBackground(Color.WHITE);
-     }
-     if (!Validate.stringNonEmpty(phone) || !Validate.isStringOnlyNumbers(phone)){
-     this.phoneNumberField.setBackground(color);
-     legalCustomer = false;
-     }
-     else {
-     this.phoneNumberField.setBackground(Color.WHITE);
-     }
-     if (!Validate.isStringOnlyNumbers(zipCode)){
-     this.zipCodeField.setBackground(color);
-     legalCustomer = false;
-     }
-     if (!Validate.isStringLegal(address)){
-     this.addressField.setBackground(color);
-     legalCustomer = false;
-     }
-     if (!Validate.isStringLegal(postalAddress)){
-     this.postalAddressField.setBackground(color);
-     legalCustomer = false;
-     }
+    	String firstName = firstNameField.getText();
+    	String lastName = lastNameField.getText();
+    	String phone = phoneNumberField.getText();
+    	String address = addressField.getText();
+    	String zipCode = zipCodeField.getText();
+    	String postalAddress = postalAddressField.getText();
+    	boolean legalCustomer = true;
+    	Color color = new Color(235, 210, 210);
+    	if (!Validate.stringNonEmpty(firstName) || !Validate.isStringLegal(firstName)){
+    		this.firstNameField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	else {
+    		this.firstNameField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringNonEmpty(lastName) || !Validate.isStringLegal(lastName)){
+    		this.lastNameField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	else {
+    		this.lastNameField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.stringNonEmpty(phone) || !Validate.isStringOnlyNumbers(phone)){
+    		this.phoneNumberField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	else {
+    		this.phoneNumberField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.isStringOnlyNumbers(zipCode)){
+    		this.zipCodeField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.isStringLegal(address)){
+    		this.addressField.setBackground(color);
+    		legalCustomer = false;
+    	}
+    	if (!Validate.isStringLegal(postalAddress)){
+    		this.postalAddressField.setBackground(color);
+    		legalCustomer = false;
+    	}
     
-     if (legalCustomer && this.order!=null){
-     NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName,
-lastName, phone, address, zipCode, postalAddress), order);
-     form.setVisible(true);
-     this.setVisible(false);
-     }
-     else if (legalCustomer){
-NewOrder2Form form = new NewOrder2Form(ManageOrder.addNewCustomer(firstName,
-lastName, phone, address, zipCode, postalAddress));
-form.setVisible(true);
-this.setVisible(false);
-     }
+    	if (legalCustomer && this.order!=null){
+    		NewOrderForm2 form = new NewOrderForm2(ManageOrder.addNewCustomer(firstName,
+    				lastName, phone, address, zipCode, postalAddress), order);
+    		form.setVisible(true);
+    		this.setVisible(false);
+    	}
+    	else if (legalCustomer){
+    		NewOrderForm2 form = new NewOrderForm2(ManageOrder.addNewCustomer(firstName,
+    				lastName, phone, address, zipCode, postalAddress));
+    		form.setVisible(true);
+    		this.setVisible(false);
+    	}
     }
     
     public void updateLeftPanel(ArrayList<Customer> customers) {
-     // Creates a JLabel array
-     ArrayList<javax.swing.JLabel> customerList = new ArrayList<javax.swing.JLabel>();
+    	ArrayList<javax.swing.JLabel> customerLabels = createCustomerLabels(customers);
+    	
+        GroupLayout innerLeftPanelLayout = new javax.swing.GroupLayout(innerLeftPanel);
+        innerLeftPanel.removeAll();
+        innerLeftPanel.setLayout(innerLeftPanelLayout);
         
-        for (int i=0; i < customers.size(); i++) {
-         // Create a new JLabel
-         javax.swing.JLabel temp = new javax.swing.JLabel();
-            // Set JLabel dimensions, text, border and so on
-         final Customer customer = customers.get(i);
-            temp.setText(customer.getForename() + " " + customer.getLastname());
-            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            temp.setOpaque(true);
-            temp.setPreferredSize(new java.awt.Dimension(140, 20));
-            temp.setSize(new java.awt.Dimension(140, 20));
-            temp.setVisible(true);
-         // Make it so that every other JLabel has a different background color than the previous
-            int bg;
-     if (i % 2 == 0){
-             bg = 220;
-            }
-            else {
-             bg = 240;
-            }
-     temp.setBackground(new java.awt.Color(bg, bg, bg));
-     // What method to call if the JLabel is clicked
-            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+        setInnerLeftPanelLayout(innerLeftPanelLayout, customerLabels);
+        
+        pack();
+        searchField.grabFocus();
+        searchField.setText(searchField.getText());
+    }
+
+	private ArrayList<JLabel> createCustomerLabels(ArrayList<Customer> customers){
+    	ArrayList<javax.swing.JLabel> customerList = new ArrayList<javax.swing.JLabel>();
+    	
+    	for (int i=0; i < customers.size(); i++) {
+        	final Customer customer = customers.get(i);
+        	String text = customer.getForename() + " " + customer.getLastname();
+        	JLabel label = Labels.createBorderlessLabel(text, i);
+        	label.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     customerLabelMouseClicked(evt, customer);
                 }
             });
-            // Add the JLabel to the array of JLabels
-            customerList.add(temp);
-     }
-        // Correct to add local variable of leftPanelLayout?
-        GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
-        leftPanel.removeAll();
-        leftPanel.setLayout(leftPanelLayout);
-        
-        javax.swing.GroupLayout.ParallelGroup tempGroup = leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
-        tempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE);
-        for(int i = 0; i < customerList.size(); i++) {
-         tempGroup.addComponent(customerList.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE);
+            
+            customerList.add(label);
         }
-        tempGroup.addGroup(leftPanelLayout.createSequentialGroup()
-            .addGap(79, 79, 79)
-        );
-        
-        leftPanelLayout.setHorizontalGroup(
-leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-.addGroup(leftPanelLayout.createSequentialGroup()
-.addGroup(tempGroup)
-.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-)
-        );
-        
-        javax.swing.GroupLayout.SequentialGroup verticalTempGroup = leftPanelLayout.createSequentialGroup();
-verticalTempGroup.addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
-for(int i = 0; i < customerList.size(); i++) {
-verticalTempGroup.addComponent(customerList.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
-}
-verticalTempGroup.addGap(86, 86, 86);
-verticalTempGroup.addContainerGap(235, Short.MAX_VALUE);
-      
-leftPanelLayout.setVerticalGroup(
-leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-.addGroup(verticalTempGroup)
-);
-pack();
-searchField.grabFocus();
-searchField.setText(searchField.getText());
+    	return customerList;
     }
+	
+    private void setInnerLeftPanelLayout(GroupLayout innerLeftPanelLayout, ArrayList<JLabel> customerLabels) {
+    	// Set the horizontal axis
+    	javax.swing.GroupLayout.ParallelGroup tempGroup = innerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+        for(int i = 0; i < customerLabels.size(); i++) {
+        	tempGroup.addComponent(customerLabels.get(i), org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE);
+        }
+        
+        innerLeftPanelLayout.setHorizontalGroup(
+        	innerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        	.addGroup(innerLeftPanelLayout.createSequentialGroup()
+        		.addGroup(tempGroup)
+        	)
+        );
+     
+        // Set the vertical axis
+        javax.swing.GroupLayout.SequentialGroup verticalTempGroup = innerLeftPanelLayout.createSequentialGroup();
+        for(int i = 0; i < customerLabels.size(); i++) {
+        	verticalTempGroup.addComponent(customerLabels.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
+        }
+        innerLeftPanelLayout.setVerticalGroup(
+        	innerLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        	.addGroup(verticalTempGroup)
+        );		
+	}
     
     private void customerLabelMouseClicked(java.awt.event.MouseEvent evt, Customer c) {
-     this.updateRightPanel(c);
-    }
-    public void updateRightPanel(Customer c) {
-        // Set JLabel dimensions, text, border and so on
-     firstNameField.setText(c.getForename());
-     lastNameField.setText(c.getLastname());
-     phoneNumberField.setText(c.getPhone());
-     addressField.setText(c.getAddress());
-     zipCodeField.setText(c.getzipCode());
-     postalAddressField.setText(c.getPostalAddress());
+    	this.updateRightPanel(c);
     }
     
-    /**
-* @param args the command line arguments
-*/
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-*/
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewOrderForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new NewOrderForm().setVisible(true);
-            }
-        });
+    public void updateRightPanel(Customer c) {
+    	firstNameField.setText(c.getForename());
+    	lastNameField.setText(c.getLastname());
+    	phoneNumberField.setText(c.getPhone());
+    	addressField.setText(c.getAddress());
+    	zipCodeField.setText(c.getzipCode());
+    	postalAddressField.setText(c.getPostalAddress());
     }
-    // Variables declaration - do not modify
+    
+    // Variables declaration
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel backButton;
@@ -519,6 +465,8 @@ searchField.setText(searchField.getText());
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JScrollPane leftScrollPane;
+    private javax.swing.JPanel innerLeftPanel;
     private javax.swing.JLabel newOrderLabel;
     private javax.swing.JLabel nextButton;
     private javax.swing.JTextField phoneNumberField;

@@ -195,38 +195,6 @@ public class ManageOrder {
 	public static void setStatusToPickedUp(Order order){
 		order.setStatus("Utlevert");
 	}
-	
-    public static void setButtonToColor(JLabel button, String text, int choice){
-    	Color background, foreground, border;
-    	ImageIcon icon;
-    	if (choice>0){
-    		background = new Color(230, 240, 200);
-    		foreground = new Color(64, 80, 25);
-    		border = new Color(180, 190, 130);
-    		icon = new ImageIcon("src/icons/tick_32.png");
-    	}
-    	else if (choice==0){
-    		background = new Color(245, 245, 215);
-    		foreground = new Color(100, 70, 20);
-    		border = new Color(235, 210, 155);
-    		icon = new ImageIcon("src/icons/warning_32.png");
-    	}
-    	else {
-    		background = new Color(235, 207, 207);
-    		foreground = new Color(113, 36, 36);
-    		border = new Color(203, 135, 135);
-    		icon = new ImageIcon("src/icons/delete_32.png");
-    	}
-    	button.setText(text);
-    	button.setIcon(icon);
-    	button.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(border, 2), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-   	 	button.setBackground(background);
-        button.setForeground(foreground);
-        button.setFont(new Font("Georgia", 0, 18));
-        button.setIconTextGap(10);
-        button.setOpaque(true);
-        button.setPreferredSize(new Dimension(140, 20));
-    }
     
     public static void setNextOrBackButton(JLabel button, String text, int choice){
     	Color background, foreground, border;

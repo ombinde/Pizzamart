@@ -10,17 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.AdminController;
-import controller.ManageOrder;
 import controller.Validate;
 
 import model.Product;
 import model.Properties;
 
-/*
- * adminForm.java
- *
- * Created on 26.sep.2011, 10:50:18
- */
+
 /**
  *
  * @author Morten Vaale Noddeland
@@ -46,8 +41,8 @@ public class AdminForm extends JFrame {
         tabPane = new javax.swing.JTabbedPane();
         productPanel = new javax.swing.JPanel();
         rightProductPanel = new javax.swing.JPanel();
-        addEditButton = new javax.swing.JLabel();
-        deleteButton = new javax.swing.JLabel();
+        addEditButton = new javax.swing.JLabel(); 
+        deleteButton = new javax.swing.JLabel(); 
         productNameLabel = new javax.swing.JLabel();
         productNameField = new javax.swing.JTextField();
         priceLabel = new javax.swing.JLabel();
@@ -72,22 +67,21 @@ public class AdminForm extends JFrame {
         restaurantNameField = new javax.swing.JTextField();
         nameAddressHeaderLabel = new javax.swing.JLabel();
         rightRestaurantPanel = new javax.swing.JPanel();
-        editButton = new javax.swing.JLabel();
+        editButton = new javax.swing.JLabel(); 
         freeDeliveryLimitLabel = new javax.swing.JLabel();
         freeDeliveryLimitField = new javax.swing.JTextField();
         otherInfoHeaderLabel = new javax.swing.JLabel();
         bottomPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel(); 
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrer");
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
-        newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        newOrderLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         newOrderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         newOrderLabel.setText("Administrer");
 
@@ -112,15 +106,15 @@ public class AdminForm extends JFrame {
         middlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         rightProductPanel.setBackground(new java.awt.Color(253, 253, 253));
-
-        ManageOrder.setButtonToColor(addEditButton, "Legg til", 1);
+        
+        addEditButton = Button.createButton("Legg til", "green", "tick");
         addEditButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addEditButtonMouseClicked(evt);
             }
         });
 
-        ManageOrder.setButtonToColor(deleteButton, "Slett", -1);
+        deleteButton = Button.createButton("Slett", "red", "delete");
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);
@@ -189,9 +183,11 @@ public class AdminForm extends JFrame {
         innerLeftProductPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         productScrollPane.setBorder(null);
+        productScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        productScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         productScrollPane.setViewportView(innerLeftProductPanel);
         
-        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18));
         searchField.setText("Søk");
         searchField.setActionCommand("<Not Set>");
         searchField.setAlignmentX(0.0F);
@@ -246,27 +242,27 @@ public class AdminForm extends JFrame {
         leftRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
         leftRestaurantPanel.setPreferredSize(new java.awt.Dimension(375, 354));
 
-        restaurantNameLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        restaurantNameLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         restaurantNameLabel.setText("Navn");
         
         restaurantNameField.setText(Properties.getName());
 
-        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         addressLabel.setText("Adresse");
 
         addressField.setText(Properties.getAddress());
         
-        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         zipCodeLabel.setText("Postnummer");
         
         zipCodeField.setText(Properties.getZipCode());
 
-        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        postalAddressLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         postalAddressLabel.setText("Poststed");
         
         postalAddressField.setText(Properties.getPostalAddress());
 
-        telephoneLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         telephoneLabel.setText("Telefonnummer");
         
         telephoneField.setText(Properties.getPhone());
@@ -282,7 +278,7 @@ public class AdminForm extends JFrame {
         restaurantNameField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         nameAddressHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameAddressHeaderLabel.setText("Restaurantopplysninger");
         nameAddressHeaderLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5));
         nameAddressHeaderLabel.setOpaque(true);
@@ -357,21 +353,21 @@ public class AdminForm extends JFrame {
 
         rightRestaurantPanel.setBackground(new java.awt.Color(253, 253, 253));
 
-        ManageOrder.setButtonToColor(editButton, "Endre", 0);
+        editButton = Button.createButton("Endre", "yellow", "warning");
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
             }
         });
 
-        freeDeliveryLimitLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        freeDeliveryLimitLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         freeDeliveryLimitLabel.setText("Grense for gratis levering");
 
         freeDeliveryLimitField.setText(""+Properties.getLimitFreeDelivery());
         freeDeliveryLimitField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(100, 100, 100)), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
 
         otherInfoHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        otherInfoHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        otherInfoHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         otherInfoHeaderLabel.setText("Andre innstillinger");
         otherInfoHeaderLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5));
         otherInfoHeaderLabel.setOpaque(true);
@@ -445,7 +441,7 @@ public class AdminForm extends JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-        ManageOrder.setNextOrBackButton(backButton, "Tilbake", -1);
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
@@ -478,7 +474,7 @@ public class AdminForm extends JFrame {
                     .addComponent(topPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(middlePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+               )
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +493,7 @@ public class AdminForm extends JFrame {
     private void displayAdminPanel(String query) {
     	
     	ArrayList<javax.swing.JLabel> products = createProductLabels(query);
-    	setLeftProductPanelLayout(products);
+    	setInnerLeftProductPanelLayout(products);
     	
     	searchField.grabFocus();
 		searchField.setText(searchField.getText());
@@ -511,38 +507,19 @@ public class AdminForm extends JFrame {
     	for (int i=0; i < products.size(); i++) {
     		final Product product = products.get(i);
         	// Create a new JLabel
-        	javax.swing.JLabel temp = new javax.swing.JLabel();
-            // Set JLabel dimensions, text, border and so on
-            temp.setText(product.getName());
-            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            temp.setOpaque(true);
-            temp.setPreferredSize(new java.awt.Dimension(140, 20));
-            temp.setSize(new java.awt.Dimension(140, 20));
-            temp.setVisible(true);
-        	// Make it so that every other JLabel has a different background color than the previous
-            int bg;
-    		if (i % 2 == 0){
-            	bg = 220;
-            }
-            else {
-            	bg = 240;
-            }
-    		temp.setBackground(new java.awt.Color(bg, bg, bg));
-    		// What method to call if the JLabel is clicked
-            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+        	javax.swing.JLabel label = Labels.createBorderlessLabel(product.getName(), i);
+            label.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     productLabelMouseClicked(product);
                 }
-
             });
             // Add the JLabel to the array of JLabels
-            productLabels.add(temp);
+            productLabels.add(label);
     	}
-    	
     	return productLabels;
 	}
 
-    private void setLeftProductPanelLayout(ArrayList<JLabel> products) {
+    private void setInnerLeftProductPanelLayout(ArrayList<JLabel> products) {
     	javax.swing.GroupLayout innerLeftProductPanelLayout = new javax.swing.GroupLayout(innerLeftProductPanel);
         innerLeftProductPanel.removeAll();
     	innerLeftProductPanel.setLayout(innerLeftProductPanelLayout);
@@ -554,7 +531,7 @@ public class AdminForm extends JFrame {
         
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerLeftProductPanelLayout.createSequentialGroup();
         for (int i = 0; i < products.size(); i++){
-        	tempVerticalGroup.addComponent(products.get(i));
+        	tempVerticalGroup.addComponent(products.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
         }
         
         innerLeftProductPanelLayout.setHorizontalGroup(tempHorizontalGroup);
@@ -572,7 +549,11 @@ public class AdminForm extends JFrame {
 		searchField.setText("");
 		currentProduct = null;
 		clearProductFields();
-		ManageOrder.setButtonToColor(addEditButton, "Legg til", 1);
+		
+		addEditButton.setText("Legg til");
+		Button.changeColor(addEditButton, "green");
+		Button.changeIcon(addEditButton, "tick");
+		
 		displayAdminPanel("");
 	}
     
@@ -583,8 +564,13 @@ public class AdminForm extends JFrame {
 		priceField.setText(""+product.getPrice());
 		commentField.setText(product.getComment());
 		//Make the addEditButton yellow and the delete button red.
-		ManageOrder.setButtonToColor(addEditButton, "Endre", 0);
-		ManageOrder.setButtonToColor(deleteButton, "Slett", -1);
+		addEditButton.setText("Endre");
+		Button.changeColor(addEditButton, "yellow");
+		Button.changeIcon(addEditButton, "warning");
+		
+		deleteButton.setText("Slett");
+		Button.changeColor(deleteButton, "red");
+		Button.changeIcon(deleteButton, "delete");
 
 	}
     	
@@ -623,7 +609,7 @@ public class AdminForm extends JFrame {
     	
     	if (legalValues && currentProduct==null && price>=0){
     		if (AdminController.addProduct(name, price, comment)){
-    			ManageOrder.setButtonToColor(this.addEditButton, "Lagt til", 1);
+    			addEditButton.setText("Lagt til");
     			this.priceField.setText("");
     			this.productNameField.setText("");
     			this.commentField.setText("");
@@ -633,7 +619,10 @@ public class AdminForm extends JFrame {
     	}
     	else if (legalValues && price >= 0){
     		if (AdminController.updateProduct(currentProduct, name, price, comment)){
-    			ManageOrder.setButtonToColor(this.addEditButton, "Endret", 1);
+    			addEditButton.setText("Endret");
+    			Button.changeColor(addEditButton, "green");
+    			Button.changeIcon(addEditButton, "tick");
+    			
     			this.priceField.setText("");
     			this.productNameField.setText("");
     			this.commentField.setText("");
@@ -649,11 +638,16 @@ public class AdminForm extends JFrame {
     	if (currentProduct != null && AdminController.deleteProduct(currentProduct)){
     		AdminController.deleteProduct(currentProduct);
     		displayAdminPanel("");
-    		ManageOrder.setButtonToColor(this.deleteButton, "Slettet", 1);
-    		ManageOrder.setButtonToColor(this.addEditButton, "Legg til", 1);
-			this.priceField.setText("");
-			this.productNameField.setText("");
-			this.commentField.setText("");
+    		
+    		deleteButton.setText("Slettet");
+    		Button.changeColor(deleteButton, "green");
+    		Button.changeIcon(deleteButton, "tick");
+    		
+    		addEditButton.setText("Legg til");
+    		Button.changeColor(addEditButton, "green");
+    		Button.changeIcon(addEditButton, "tick");
+    		
+			clearProductFields();
     	}
     }
 
@@ -704,53 +698,20 @@ public class AdminForm extends JFrame {
     	
     	if (legalValues){
     			AdminController.setRestaurantProperties(name, address, zipCode, postalAddress, phone, limitFreeDelivery);
-    			ManageOrder.setButtonToColor(this.editButton, "Endret", 1);
+    			editButton.setText("Endret");
+        		Button.changeColor(addEditButton, "green");
+        		Button.changeIcon(addEditButton, "tick");
     	}
     }
     
     private void clearProductFields(){
+    	currentProduct = null;
     	this.productNameField.setText("");
     	this.priceField.setText("");
     	this.commentField.setText("");
     }
     
 
-    
-    
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new AdminForm().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel addEditButton;
     private javax.swing.JTextField addressField;

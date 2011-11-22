@@ -1,13 +1,11 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
-import java.awt.print.PrinterException;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-//no.ntnu.course
 import javax.swing.JLabel;
 
 import com.itextpdf.text.DocumentException;
@@ -18,11 +16,6 @@ import model.Order;
 import model.Product;
 import model.Receipt;
 
-/*
- * PickupForm2.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
 /**
  *
  * @author Morten Vaale Noddeland
@@ -74,7 +67,6 @@ public class PickupForm2 extends javax.swing.JFrame {
         setName("newOrderFrame");
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
-        topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
         headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
@@ -104,24 +96,24 @@ public class PickupForm2 extends javax.swing.JFrame {
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         nameTelephoneHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameTelephoneHeaderLabel.setText("Navn og telefon");
         nameTelephoneHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         nameTelephoneHeaderLabel.setOpaque(true);
         nameTelephoneHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         nameHeaderLabel.setText("Navn:");
 
-        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         telephoneHeaderLabel.setText("Telefon:");
 
-        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
         commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         commentHeaderLabel.setText("Kommentar");
         commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         commentHeaderLabel.setOpaque(true);
@@ -206,7 +198,6 @@ public class PickupForm2 extends javax.swing.JFrame {
 
         
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 200));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
@@ -268,49 +259,24 @@ public class PickupForm2 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText("Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setIconTextGap(10);
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
 
-        finishButton.setBackground(new java.awt.Color(230, 240, 200));
-        finishButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        finishButton.setForeground(new java.awt.Color(64, 80, 25));
-        finishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
-        finishButton.setText("Fullfør");
-        finishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        finishButton.setIconTextGap(10);
-        finishButton.setOpaque(true);
-        finishButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        finishButton = Button.createButton("Fullfør", "green", "buy");
         finishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 finishButtonMouseClicked(evt);
             }
         });
 
-        priceLabel.setFont(new java.awt.Font("Georgia", 0, 30)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Georgia", 0, 30));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        receiptButton.setBackground(new java.awt.Color(225, 230, 235));
-        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        receiptButton.setForeground(new java.awt.Color(45, 65, 105));
-        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
-        receiptButton.setText("Kvittering");
-        receiptButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        receiptButton.setIconTextGap(10);
-        receiptButton.setOpaque(true);
-        receiptButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        receiptButton = Button.createButton("Kvittering", "blue", "document");
         receiptButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 receiptButtonMouseClicked(evt);
@@ -370,14 +336,15 @@ public class PickupForm2 extends javax.swing.JFrame {
     private void displayOrder() {
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
 
-    	defineQuantityPanel(labels.get(0));
-    	defineProductPanel(labels.get(1));
+    	setQuantityPanelLayout(labels.get(0));
+    	setProductPanelLayout(labels.get(1));
     	
     	commentTextPane.setText(order.getComment());
     	nameContentLabel.setText(order.getCustomer().getName());
         telephoneContentLabel.setText(order.getCustomer().getPhone());
     	priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
     }
+    
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
         ArrayList <javax.swing.JLabel> quantityLabels = new ArrayList <javax.swing.JLabel>();
         ArrayList <javax.swing.JLabel> productLabels = new ArrayList <javax.swing.JLabel>();
@@ -386,35 +353,23 @@ public class PickupForm2 extends javax.swing.JFrame {
 
         for (int i = 0; i < productsInOrder.size(); i++) {
         	// Create quantityLabels
-	    	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-	    	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	    	quantityLabel.setOpaque(true);
-	    	quantityLabel.setVisible(true);
-	    	int bg;
-			if (i % 2 == 0) { bg = 220; }
-	        else 			{ bg = 240; }
-			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText(""+productsInOrder.get(i).getQuantity());
+	    	String quanityText = ""+productsInOrder.get(i).getQuantity();
+        	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quanityText, i);
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-	    	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-	    	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-	    	productLabel.setOpaque(true);
-	    	productLabel.setVisible(true);
-			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText(productsInOrder.get(i).getName());
+	        String productText = productsInOrder.get(i).getName();
+	        javax.swing.JLabel productLabel = Labels.createBorderlessLabel(productText, i);
 	        productLabels.add(productLabel);
 	    }
+        
 	    ArrayList<ArrayList <javax.swing.JLabel>> labels = new ArrayList<ArrayList <javax.swing.JLabel>>();
 	    labels.add(quantityLabels);
 	    labels.add(productLabels);
 	    return labels;
 	}
     
-	private void defineQuantityPanel(ArrayList<JLabel> quantityLabels) {
+	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
         javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
@@ -435,7 +390,7 @@ public class PickupForm2 extends javax.swing.JFrame {
         );		
 	}
 	
-    private void defineProductPanel(ArrayList<JLabel> productLabels) {
+    private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
     	javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
     	productPanel.setLayout(productPanelLayout);
     	
@@ -479,48 +434,10 @@ public class PickupForm2 extends javax.swing.JFrame {
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PickupForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                //new PickupForm2().setVisible(true);  
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JScrollPane ProductsScrollPane;
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;

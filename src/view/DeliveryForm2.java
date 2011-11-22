@@ -1,4 +1,5 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
@@ -6,11 +7,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-//no.ntnu.course
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 import javax.swing.JLabel;
 
 import com.itextpdf.text.DocumentException;
@@ -23,12 +19,8 @@ import model.Receipt;
 import controller.DeliveryController;
 import controller.ManageOrder;
 
-/*
- * DeliveryForm2.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
-    /**
+
+/**
  *
  * @author Morten Vaale Noddeland
  */
@@ -74,7 +66,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         commentScrollPane = new javax.swing.JScrollPane();
         commentTextPane = new javax.swing.JTextPane();
         bottomPanel = new javax.swing.JPanel();
-        backButton = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel(); 
         startFinishButton = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
         receiptButton = new javax.swing.JLabel();
@@ -82,8 +74,6 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Utkjøring - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame");
-        //setPreferredSize(new java.awt.Dimension(800, 620));
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
@@ -117,28 +107,28 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         nameAddressHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameAddressHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameAddressHeaderLabel.setText("Navn og adresse");
         nameAddressHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         nameAddressHeaderLabel.setOpaque(true);
         nameAddressHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         nameHeaderLabel.setText("Navn:");
 
-        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         addressHeaderLabel.setText("Adresse:");
         
-        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         telephoneHeaderLabel.setText("Telefon:");
         
-        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
+        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
         mapHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        mapHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        mapHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         mapHeaderLabel.setText("Kart");
         mapHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         mapHeaderLabel.setOpaque(true);
@@ -208,14 +198,14 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         );
         
         quantityHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        quantityHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        quantityHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         quantityHeaderLabel.setText("Antall");
         quantityHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         quantityHeaderLabel.setOpaque(true);
         quantityHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
         productHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        productHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        productHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         productHeaderLabel.setText("Produkt");
         productHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         productHeaderLabel.setOpaque(true);
@@ -236,7 +226,6 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 .addComponent(productHeaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        ProductsScrollPane.setBorder(null);
         ProductsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ProductsScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         ProductsScrollPane.setPreferredSize(new java.awt.Dimension(800, 240));
@@ -244,7 +233,6 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
 
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 250));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
@@ -273,7 +261,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
                 .addGroup(productsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(quantityPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                     .addComponent(productPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                )
         );
 
         ProductsScrollPane.setViewportView(productsPanel);
@@ -283,7 +271,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 
 
         commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         commentHeaderLabel.setText("Kommentar");
         commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         commentHeaderLabel.setOpaque(true);
@@ -343,56 +331,30 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
 
-        startFinishButton.setFont(new java.awt.Font("Georgia", 0, 18));
+        
         if (order.getStatus().equals("Klar til levering")){
-        	startFinishButton.setForeground(new java.awt.Color(100, 70, 20));
-        	startFinishButton.setBackground(new java.awt.Color(245, 245, 215));
-	        startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/label_32.png"))); // NOI18N
-	        startFinishButton.setText(" Start");
-	        startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        	startFinishButton = Button.createButton("Start", "yellow", "label");
         }
         else{
-        	startFinishButton.setForeground(new java.awt.Color(64, 80, 25));
-        	startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-        	startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
-            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-	        startFinishButton.setText(" Ferdig");
+        	startFinishButton = Button.createButton("Ferdig", "green", "buy");
         }
-        startFinishButton.setOpaque(true);
-        startFinishButton.setPreferredSize(new java.awt.Dimension(140, 20));
         startFinishButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UpdateButtonMouseClicked(evt);
             }
         });
 
-        priceLabel.setFont(new java.awt.Font("Georgia", 0, 30)); // NOI18N
+        priceLabel.setFont(new java.awt.Font("Georgia", 0, 30));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         
-        receiptButton.setBackground(new java.awt.Color(225, 230, 235));
-        receiptButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        receiptButton.setForeground(new java.awt.Color(45, 65, 105));
-        receiptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
-        receiptButton.setText("Kvittering");
-        receiptButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        receiptButton.setIconTextGap(10);
-        receiptButton.setOpaque(true);
-        receiptButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        receiptButton = Button.createButton("Kvittering", "blue", "document");
         receiptButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 receiptButtonMouseClicked(evt);
@@ -453,8 +415,8 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     private void displayOrder() {
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
     	
-    	defineQuantityPanel(labels.get(0));
-    	defineProductPanel(labels.get(1));
+    	setQuantityPanelLayout(labels.get(0));
+    	setProductPanelLayout(labels.get(1));
     	
     	commentTextPane.setText(order.getComment());
     	nameContentLabel.setText(order.getCustomer().getName());
@@ -477,29 +439,16 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 				continue;
 			}
         	// Create quantityLabels
-        	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-        	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	quantityLabel.setOpaque(true);
-        	quantityLabel.setVisible(true);
-        	int bg;
-			if (i % 2 == 0) { bg = 220; }
-	        else 			{ bg = 240; }
-			i++;
-			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("" + product.getQuantity());
+			String quantityText = "" + product.getQuantity();
+        	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quantityText, i);
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-        	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-        	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	productLabel.setOpaque(true);
-        	productLabel.setVisible(true);
-			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("" + product.getName());
+	        String productText = "" + product.getName();
+        	javax.swing.JLabel productLabel = Labels.createBorderlessLabel(productText, i);
 	        productLabels.add(productLabel);
-			
+	        
+	        i++;
         }
         ArrayList<ArrayList <javax.swing.JLabel>> labels = new ArrayList<ArrayList <javax.swing.JLabel>>();
         labels.add(quantityLabels);
@@ -507,7 +456,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         return labels;
 	}
 
-	private void defineQuantityPanel(ArrayList<JLabel> quantityLabels) {
+	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
 		javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
@@ -528,7 +477,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
         );
 	}
     
-    private void defineProductPanel(ArrayList<JLabel> productLabels) {
+    private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
     	javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
         productPanel.setLayout(productPanelLayout);
         
@@ -590,21 +539,15 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
     }
 
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {     
     	if(order.getStatus().equals("Klar til levering")){
     		DeliveryController.startOrder(order);
-    		startFinishButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png")));
-    		startFinishButton.setText(" Ferdig");
-            startFinishButton.setBackground(new java.awt.Color(230, 240, 200));
-            startFinishButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(180, 190, 130), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-
-
+    		startFinishButton.setText("Ferdig");
+    		Button.changeIcon(startFinishButton, "buy");
+    		Button.changeColor(startFinishButton, "green");
     	}
     	else{
     		DeliveryController.setFinishedOrder(order);
@@ -614,41 +557,6 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     	}
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                //new DeliveryForm2().setVisible(true);  
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JScrollPane ProductsScrollPane;
     private javax.swing.JLabel addressContentLabel;

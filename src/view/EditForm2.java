@@ -1,10 +1,10 @@
 package view;
+//no.ntnu.course
 
 import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-//no.ntnu.course
 import javax.swing.JLabel;
 
 import controller.AdminController;
@@ -14,12 +14,7 @@ import model.Customer;
 import model.Order;
 import model.Product;
 
-/*
- * EditForm2.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
-    /**
+/**
  *
  * @author Morten Vaale Noddeland
  */
@@ -77,14 +72,14 @@ public class EditForm2 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Endre ordre - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame"); // NOI18N
+        setName("newOrderFrame");
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
         topPanel.setPreferredSize(new java.awt.Dimension(780, 100));
         topPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray));
 
 
-        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        headerLabel.setFont(new java.awt.Font("Georgia", 0, 36));
         headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerLabel.setText("Endre ordre - detaljer");
 
@@ -111,54 +106,54 @@ public class EditForm2 extends javax.swing.JFrame {
         rightPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         nameTelephoneHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        nameTelephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         nameTelephoneHeaderLabel.setText("Navn og adresse");
         nameTelephoneHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         nameTelephoneHeaderLabel.setOpaque(true);
         nameTelephoneHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        nameHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         nameHeaderLabel.setText("Navn:");
 
-        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        nameContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        addressHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         addressHeaderLabel.setText("Adresse:");
 
-        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        addressContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        zipCodeContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        telephoneContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        telephoneHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         telephoneHeaderLabel.setText("Telefon:");
 
         orderStatusHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        orderStatusHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        orderStatusHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         orderStatusHeaderLabel.setText("Status");
         orderStatusHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         orderStatusHeaderLabel.setOpaque(true);
         orderStatusHeaderLabel.setPreferredSize(new java.awt.Dimension(800, 40));
 
-        statusHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        statusHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         statusHeaderLabel.setText("Status:");
 
-        statusContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        statusContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        deliveryHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        deliveryHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         deliveryHeaderLabel.setText("Levering:");
 
-        deliveryContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        deliveryContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
 
-        allergyHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        allergyHeaderLabel.setFont(new java.awt.Font("Georgia", 1, 14));
         allergyHeaderLabel.setText("Allergi:");
 
-        allergyContentLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        allergyContentLabel.setFont(new java.awt.Font("Georgia", 0, 14));
         allergyContentLabel.setText("Nei");
 
         commentHeaderLabel.setBackground(new java.awt.Color(240, 240, 240));
-        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        commentHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         commentHeaderLabel.setText("Kommentar");
         commentHeaderLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 5)));
         commentHeaderLabel.setOpaque(true);
@@ -277,7 +272,6 @@ public class EditForm2 extends javax.swing.JFrame {
         ProductsScrollPane.setPreferredSize(new java.awt.Dimension(800, 240));
 
         productsPanel.setBackground(new java.awt.Color(253, 253, 253));
-        productsPanel.setPreferredSize(new java.awt.Dimension(795, 200));
 
         quantityPanel.setBackground(new java.awt.Color(253, 253, 253));
         quantityPanel.setPreferredSize(new java.awt.Dimension(80, 302));
@@ -339,31 +333,14 @@ public class EditForm2 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText("Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setIconTextGap(10);
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
-
-        editButton.setBackground(new java.awt.Color(245, 245, 215));
-        editButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        editButton.setForeground(new java.awt.Color(100, 70, 20));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png"))); // NOI18N
-        editButton.setText("Endre");
-        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        editButton.setIconTextGap(10);
-        editButton.setOpaque(true);
-        editButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        
+        editButton = Button.createButton("Endre", "yellow", "warning");
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
@@ -373,15 +350,7 @@ public class EditForm2 extends javax.swing.JFrame {
         priceLabel.setFont(new java.awt.Font("Georgia", 0, 30));
         priceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        deleteButton.setBackground(new java.awt.Color(235, 210, 210));
-        deleteButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        deleteButton.setForeground(new java.awt.Color(115, 35, 35));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete_32.png")));
-        deleteButton.setText("Slett");
-        deleteButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        deleteButton.setIconTextGap(10);
-        deleteButton.setOpaque(true);
-        deleteButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        deleteButton = Button.createButton("Slett", "red", "delete");
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);
@@ -441,8 +410,8 @@ public class EditForm2 extends javax.swing.JFrame {
     private void displayOrder(){
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
     	Customer customer = order.getCustomer();
-    	defineQuantityPanel(labels.get(0));
-    	defineProductPanel(labels.get(1));
+    	setQuantityPanelLayout(labels.get(0));
+    	setProductPanelLayout(labels.get(1));
     	
     	nameContentLabel.setText(customer.getName());
         addressContentLabel.setText(customer.getAddress());
@@ -464,28 +433,13 @@ public class EditForm2 extends javax.swing.JFrame {
         
         for (int i = 0; i < productsInOrder.size(); i++) {
         	// Create quantityLabels
-        	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-        	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	quantityLabel.setOpaque(true);
-        	quantityLabel.setVisible(true);
-        	int bg;
-			if (i % 2 == 0) 
-				bg = 220; 
-	        else
-	        	bg = 240;
-			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText(""+productsInOrder.get(i).getQuantity());
+        	String quantityText = ""+productsInOrder.get(i).getQuantity();
+        	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quantityText, i);
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-        	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-        	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	productLabel.setOpaque(true);
-        	productLabel.setVisible(true);
-			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText(productsInOrder.get(i).getName());
+	        String productText = productsInOrder.get(i).getName();
+        	javax.swing.JLabel productLabel = Labels.createBorderlessLabel(productText, i);
 	        productLabels.add(productLabel);
 			
         }
@@ -495,7 +449,7 @@ public class EditForm2 extends javax.swing.JFrame {
         return labels;
 	}
 
-	private void defineQuantityPanel(ArrayList<JLabel> quantityLabels) {
+	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
 		javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
@@ -516,7 +470,7 @@ public class EditForm2 extends javax.swing.JFrame {
         );		
 	}
 
-	private void defineProductPanel(ArrayList<JLabel> productLabels) {
+	private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
 		javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
         productPanel.setLayout(productPanelLayout);
         
@@ -544,7 +498,7 @@ public class EditForm2 extends javax.swing.JFrame {
     }                                       
 
     private void editButtonMouseClicked(java.awt.event.MouseEvent evt) { 
-    	NewOrderForm form = new NewOrderForm(order.getCustomer(), order);
+    	NewOrderForm1 form = new NewOrderForm1(order.getCustomer(), order);
     	form.setVisible(true);
     	this.setVisible(false);
     }
@@ -556,41 +510,8 @@ public class EditForm2 extends javax.swing.JFrame {
     	this.setVisible(false);
     }                                                      
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditForm2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-               // new EditForm2().setVisible(true);  
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JScrollPane ProductsScrollPane;
     private javax.swing.JLabel addressContentLabel;
     private javax.swing.JLabel addressHeaderLabel;

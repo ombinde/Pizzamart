@@ -15,11 +15,7 @@ import model.Order;
 import model.Product;
 import controller.DeliveryController;
 
-/*
- * DeliveryForm1.java
- *
- * Created on 29.sep.2011, 12:24:07
- */
+
 /**
  *
  * @author Morten Vaale Noddeland
@@ -55,7 +51,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Utkjøring - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setName("newOrderFrame"); // NOI18N
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -139,29 +134,14 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         bottomPanel.setPreferredSize(new java.awt.Dimension(800, 100));
         bottomPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, Color.darkGray));
 
-
-        backButton.setBackground(new java.awt.Color(235, 210, 210));
-        backButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        backButton.setForeground(new java.awt.Color(115, 35, 35));
-        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/leftred_32.png"))); // NOI18N
-        backButton.setText(" Tilbake");
-        backButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        backButton.setOpaque(true);
-        backButton.setPreferredSize(new java.awt.Dimension(140, 50));
+        backButton = Button.createButton("Tilbake", "red", "leftred");
         backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backButtonMouseClicked(evt);
             }
         });
-
-        updateButton.setBackground(new java.awt.Color(225, 230, 235));
-        updateButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        updateButton.setForeground(new java.awt.Color(45, 65, 105));
-        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/clock_32.png"))); // NOI18N
-        updateButton.setText(" Oppdater");
-        updateButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        updateButton.setOpaque(true);
-        updateButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        
+        updateButton = Button.createButton("Oppdater", "blue", "clock");
         updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 UpdateButtonMouseClicked(evt);
@@ -169,7 +149,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         });
 
         yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        yellowColorLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/yellow.png"))); // NOI18N
+        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
         yellowColorLabel.setText(" Påbegynt");
 
         colorHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
@@ -177,11 +157,11 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         colorHeaderLabel.setText("Fargeforklaring:");
 
         blueColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        blueColorLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.png"))); // NOI18N
+        blueColorLabel.setIcon(new javax.swing.ImageIcon("icons/blue_square.png"));
         blueColorLabel.setText(" Ikke påbegynt");
 
         redColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        redColorLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/red.png"))); // NOI18N
+        redColorLabel.setIcon(new javax.swing.ImageIcon("icons/red_square.png"));
         redColorLabel.setText(" Se kommentar");
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
@@ -248,32 +228,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         pack();
     }
 
-    private void updateRightPanel() {
-        
-    	JLabel map;
-		try {
-			map = GoogleMaps.mainMap();
-	    	
-			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
-	        mapPanel.removeAll();
-	        mapPanel.setLayout(mapPanelLayout);
-	        mapPanelLayout.setHorizontalGroup(
-	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-	        );
-	        mapPanelLayout.setVerticalGroup(
-	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
-	        );
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	private void updateLeftPanel() {
     	ArrayList<JLabel> orderLabels = createOrderLabels();
     	
@@ -281,8 +235,7 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     	orderPanel.removeAll();
     	orderPanel.setLayout(orderPanelLayout);
     	
-    	defineOrderPanelHorizontalLayout(orderPanelLayout, orderLabels);
-        defineOrderPanelVerticalLayout(orderPanelLayout, orderLabels);
+    	setOrderPanelLayout(orderPanelLayout, orderLabels);
     }
     
 	private ArrayList<JLabel> createOrderLabels() {
@@ -305,64 +258,39 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         	//Remove the last two characters from orderText
         	if (orderText.length() > 0)
         		orderText = orderText.substring(0, (orderText.length() - 2));
-        	// Create the upper half of the order Label
-        	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
-        	// Create the lower half of the order Label
-        	javax.swing.JLabel lowerHalf = new javax.swing.JLabel();
+
+        	// Create the Label
+        	ArrayList<JLabel> label;
 			if (order.getStatus().equals("Under levering")) {
-				upperHalf.setBackground(new java.awt.Color(245, 245, 215));
-		        upperHalf.setForeground(new java.awt.Color(100, 70, 20));
-		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		        lowerHalf.setBackground(new java.awt.Color(245, 245, 215));
-	        	lowerHalf.setForeground(new java.awt.Color(100, 70, 20));
-	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(235, 210, 155)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
+				label = Labels.createTwoLineLabel(order.getDateAndTime() + ":    " + order.getCustomer().getAddress(), orderText, "yellow");
 			}
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
-					upperHalf.setBackground(new java.awt.Color(235, 210, 210));
-			        upperHalf.setForeground(new java.awt.Color(115, 35, 35));
-			        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-			        lowerHalf.setBackground(new java.awt.Color(235, 210, 210));
-		        	lowerHalf.setForeground(new java.awt.Color(115, 35, 35));
-		        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(205, 135, 135)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-
+				label = Labels.createTwoLineLabel(order.getDateAndTime() + ":    " + order.getCustomer().getAddress(), orderText, "red");
 			}
 			else {
-				upperHalf.setBackground(new java.awt.Color(225, 230, 235));
-		        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
-		        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		        lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
-	        	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
-	        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-
+				label = Labels.createTwoLineLabel(order.getDateAndTime() + ":    " + order.getCustomer().getAddress(), orderText, "blue");
 			}
-        	upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setText(order.getTime() + ":    " + order.getCustomer().getAddress());
-        	upperHalf.setOpaque(true);
-            upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
-        	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+        	
+			label.get(0).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     orderLabelMouseClicked(evt, order);
                 }
             });
-        	lowerHalf.setText(orderText);
-        	lowerHalf.setOpaque(true);
-            lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
-        	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+			label.get(1).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                 	orderLabelMouseClicked(evt, order);
                 }
             });
 
-        	labels.add(upperHalf);
-        	labels.add(lowerHalf);
+        	labels.add(label.get(0));
+        	labels.add(label.get(1));
         }
         return labels;
     }
     
-	private void defineOrderPanelHorizontalLayout(GroupLayout orderPanelLayout, ArrayList<JLabel> orderLabels) {
-        //orderPanelLayout = new javax.swing.GroupLayout(orderPanel);
-        //orderPanel.setLayout(orderPanelLayout);
+	private void setOrderPanelLayout(GroupLayout orderPanelLayout, ArrayList<JLabel> orderLabels) {
         
+        // Set horizontal axis
 		javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);        
         for (int i = 0; i < orderLabels.size(); i++){
         	tempHorizontalGroup.addComponent(orderLabels.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE);
@@ -373,15 +301,10 @@ public class DeliveryForm1 extends javax.swing.JFrame {
             .addGroup(orderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tempHorizontalGroup)
-                .addContainerGap(534, Short.MAX_VALUE))
+            )
         );
         
-	}
-    
-    private void defineOrderPanelVerticalLayout(GroupLayout orderPanelLayout, ArrayList<JLabel> orderLabels) {
-    	//orderPanelLayout = new javax.swing.GroupLayout(orderPanel);
-        //orderPanel.setLayout(orderPanelLayout);
-    	
+        // Set vertical axis
     	javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = orderPanelLayout.createSequentialGroup();
         tempVerticalGroup.addContainerGap();
     	for (int i = 0; i < orderLabels.size(); i++){
@@ -395,8 +318,33 @@ public class DeliveryForm1 extends javax.swing.JFrame {
                 orderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(tempVerticalGroup)
         );
+        
 	}
 
+    private void updateRightPanel() {
+        
+    	JLabel map;
+		try {
+			map = GoogleMaps.mainMap();
+	    	
+			javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
+	        mapPanel.removeAll();
+	        mapPanel.setLayout(mapPanelLayout);
+	        mapPanelLayout.setHorizontalGroup(
+	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+	        );
+	        mapPanelLayout.setVerticalGroup(
+	            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
+	        );
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+    
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {                                        
     	MainMenuForm form = new MainMenuForm();         
         form.setVisible(true);
@@ -404,7 +352,8 @@ public class DeliveryForm1 extends javax.swing.JFrame {
     }                                       
 
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
-        // TODO add your handling code here:
+        updateLeftPanel();
+        updateRightPanel();
     }                                         
 
     private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Order order) {                                                     
@@ -413,39 +362,6 @@ public class DeliveryForm1 extends javax.swing.JFrame {
         this.setVisible(false);
     }                                                    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeliveryForm1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new DeliveryForm1().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
     private javax.swing.JLabel backButton;
     private javax.swing.JLabel blueColorLabel;

@@ -7,11 +7,6 @@ import javax.swing.BorderFactory;
 
 import model.Properties;
 
-/*
- * MainMenuForm.java
- *
- * Created on 26.sep.2011, 10:27:24
- */
 /**
  *
  * @author Morten Vaale Noddeland
@@ -44,7 +39,8 @@ public class MainMenuForm extends javax.swing.JFrame {
         quitButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hovedmeny - " + Properties.getProperties().getName());
+        Properties.getProperties();
+		setTitle("Hovedmeny - " + Properties.getName());
         setBackground(new java.awt.Color(253, 253, 253));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -76,113 +72,55 @@ public class MainMenuForm extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(253, 253, 253));
         mainPanel.setPreferredSize(new java.awt.Dimension(800, 540));
 
-        adminButton.setBackground(new java.awt.Color(229, 226, 235));
-        adminButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        adminButton.setForeground(new java.awt.Color(45, 65, 105));
-        adminButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gear_32.png"))); // NOI18N
-        adminButton.setText("  Administrer");
-        adminButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        adminButton.setOpaque(true);
-        adminButton.setPreferredSize(new java.awt.Dimension(175, 20));
+        adminButton = Button.createButton("Administrer", "blue", "gear");
         adminButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 adminButtonMouseClicked(evt);
             }
         });
-
-        historyButton.setBackground(new java.awt.Color(229, 226, 235));
-        historyButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        historyButton.setForeground(new java.awt.Color(45, 65, 105));
-        historyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/document_32.png"))); // NOI18N
-        historyButton.setText("  Historikk");
-        historyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        historyButton.setOpaque(true);
-        historyButton.setPreferredSize(new java.awt.Dimension(175, 20));
+        
+        historyButton = Button.createButton("Historikk", "blue", "document");
         historyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 historyButtonMouseClicked(evt);
             }
         });
-
-        editButton.setBackground(new java.awt.Color(229, 226, 235));
-        editButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        editButton.setForeground(new java.awt.Color(45, 65, 105));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/warning_32.png"))); // NOI18N
-        editButton.setText("  Endre ordre");
-        editButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        editButton.setOpaque(true);
-        editButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        
+        editButton = Button.createButton("Endre ordre", "blue", "warning");
         editButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editButtonMouseClicked(evt);
             }
         });
 
-        newOrderButton.setBackground(new java.awt.Color(229, 226, 235));
-        newOrderButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        newOrderButton.setForeground(new java.awt.Color(45, 65, 105));
-        newOrderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/buy_32.png"))); // NOI18N
-        newOrderButton.setText("  Ny ordre");
-        newOrderButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        newOrderButton.setOpaque(true);
-        newOrderButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        newOrderButton = Button.createButton("Ny ordre", "blue", "buy");
         newOrderButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newOrderButtonMouseClicked(evt);
             }
         });
 
-        deliveryButton.setBackground(new java.awt.Color(229, 226, 235));
-        deliveryButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        deliveryButton.setForeground(new java.awt.Color(45, 65, 105));
-        deliveryButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home_32.png"))); // NOI18N
-        deliveryButton.setText("  Utkjøring");
-        deliveryButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        deliveryButton.setOpaque(true);
-        deliveryButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        deliveryButton = Button.createButton("Utkjøring", "blue", "home");
         deliveryButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deliveryButtonMouseClicked(evt);
             }
         });
 
-        kitchenButton.setBackground(new java.awt.Color(229, 226, 235));
-        kitchenButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        kitchenButton.setForeground(new java.awt.Color(45, 65, 105));
-        kitchenButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/piggybank_32.png"))); // NOI18N
-        kitchenButton.setText("  Kjøkken");
-        kitchenButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        kitchenButton.setOpaque(true);
-        kitchenButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        kitchenButton = Button.createButton("Kjøkken", "blue", "piggybank");
         kitchenButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kitchenButtonMouseClicked(evt);
             }
         });
 
-        
-        pickupButton.setBackground(new java.awt.Color(229, 226, 235));
-        pickupButton.setFont(new java.awt.Font("Georgia", 0, 18));
-        pickupButton.setForeground(new java.awt.Color(45, 65, 105));
-        pickupButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bag_32.png")));
-        pickupButton.setText("  Hent");
-        pickupButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(168, 182, 199), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        pickupButton.setOpaque(true);
-        pickupButton.setPreferredSize(new java.awt.Dimension(150, 20));
+        pickupButton = Button.createButton("Hent", "blue", "bag");
         pickupButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
             	pickupButtonButtonMouseClicked(evt);
             }
         });
-        
-        quitButton.setBackground(new java.awt.Color(235, 207, 207));
-        quitButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        quitButton.setForeground(new java.awt.Color(113, 36, 36));
-        quitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/block_32.png")));
-        quitButton.setText("  Avslutt");
-        quitButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(203, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        quitButton.setOpaque(true);
-        quitButton.setPreferredSize(new java.awt.Dimension(140, 20));
+        quitButton = Button.createButton("Avslutt", "red", "block");
         quitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 quitButtonMouseClicked(evt);
@@ -258,7 +196,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     }
 
 	private void newOrderButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        NewOrderForm form = new NewOrderForm();         
+        NewOrderForm1 form = new NewOrderForm1();         
         form.setVisible(true);
         this.setVisible(false);         
     }
@@ -303,41 +241,7 @@ public class MainMenuForm extends javax.swing.JFrame {
     	System.exit(0);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new MainMenuForm().setVisible(true);
-            }
-        });
-    }
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel adminButton;
     private javax.swing.JLabel deliveryButton;
     private javax.swing.JLabel editButton;
