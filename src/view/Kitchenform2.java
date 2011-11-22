@@ -54,7 +54,6 @@ public class Kitchenform2 extends javax.swing.JFrame {
         setTitle("Kjøkken - detaljer");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setName("kitchen2Frame");
-        //setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -279,11 +278,11 @@ public class Kitchenform2 extends javax.swing.JFrame {
     	// Create labels for all products
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
     	
-    	defineQuantityPanel(labels.get(0));
-    	defineProductPanel(labels.get(1));
-    	defineDescriptionPanel(labels.get(2));
+    	setQuantityPanelLayout(labels.get(0));
+    	setProductPanelLayout(labels.get(1));
+    	setDescriptionPanelLayout(labels.get(2));
     	
-    	//TODO Set comment
+    	// Set comment
     	if (order.getComment()!=null && !order.getComment().equals(""))
     		commentTextPane.setText(order.getComment());
     	
@@ -299,42 +298,26 @@ public class Kitchenform2 extends javax.swing.JFrame {
         int i = 0;
         for (Product product : productsInOrder) {
         	// Create quantityLabels
-        	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-        	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	quantityLabel.setOpaque(true);
-        	quantityLabel.setVisible(true);
-        	int bg;
-			if (i % 2 == 0) { bg = 220; }
-	        else 			{ bg = 240; }
-			i++;
-			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText("" + product.getQuantity());
+        	String quantityText = "" + product.getQuantity();
+        	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quantityText, i);
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-        	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-        	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	productLabel.setOpaque(true);
-        	productLabel.setVisible(true);
-			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText("" + product.getName());
+	        String productText = "" + product.getName();
+        	javax.swing.JLabel productLabel = Labels.createBorderlessLabel(productText, i);
 	        productLabels.add(productLabel);
 
 	        // Create descriptionLabels
-        	javax.swing.JLabel descriptionLabel = new javax.swing.JLabel();
-        	descriptionLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	descriptionLabel.setOpaque(true);
-        	descriptionLabel.setVisible(true);
-			descriptionLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//descriptionLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			if (product.getComment()!=null && !product.getComment().equals(""))
-				descriptionLabel.setText("" + product.getComment());
+	        String descriptionText;
+	        if (product.getComment()!=null && !product.getComment().equals(""))
+	        	descriptionText = "" + product.getComment();
 			else
-				descriptionLabel.setText(" ");
+				descriptionText = " ";
+	        
+	        javax.swing.JLabel descriptionLabel = Labels.createBorderlessLabel(descriptionText, i);
 			descriptionLabels.add(descriptionLabel);
 			
+			i++;
         }
         ArrayList<ArrayList <javax.swing.JLabel>> labels= new ArrayList<ArrayList <javax.swing.JLabel>>();
         labels.add(quantityLabels);
@@ -344,7 +327,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         
     }
     
-    private void defineQuantityPanel(ArrayList<JLabel> quantityLabels){
+    private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels){
     	javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
@@ -365,7 +348,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         );
     }
     
-    private void defineProductPanel(ArrayList<JLabel> productLabels){
+    private void setProductPanelLayout(ArrayList<JLabel> productLabels){
     	javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
         productPanel.setLayout(productPanelLayout);
         
@@ -386,7 +369,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
         );
     }
     
-    private void defineDescriptionPanel(ArrayList<JLabel> productLabels){
+    private void setDescriptionPanelLayout(ArrayList<JLabel> productLabels){
     	javax.swing.GroupLayout descriptionPanelLayout = new javax.swing.GroupLayout(descriptionPanel);
     	descriptionPanel.setLayout(descriptionPanelLayout);
         

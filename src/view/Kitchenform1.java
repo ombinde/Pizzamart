@@ -32,7 +32,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
         headerLabel = new javax.swing.JLabel();
         middlePanel = new javax.swing.JPanel();
         middleScrollPane = new javax.swing.JScrollPane();
-        innermiddlePanel = new javax.swing.JPanel();
+        innerMiddlePanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
         backButton = new javax.swing.JLabel();
         updateButton = new javax.swing.JLabel();
@@ -40,6 +40,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
         colorHeaderLabel = new javax.swing.JLabel();
         blueColorLabel = new javax.swing.JLabel();
         redColorLabel = new javax.swing.JLabel();
+        purpleColorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kjøkken - oversikt");
@@ -82,11 +83,11 @@ public class Kitchenform1 extends javax.swing.JFrame {
         middleScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         middleScrollPane.setPreferredSize(new java.awt.Dimension(800, 470));
 
-        innermiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
+        innerMiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
 
         updateMiddlePanel();
 
-        middleScrollPane.setViewportView(innermiddlePanel);
+        middleScrollPane.setViewportView(innerMiddlePanel);
 
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
@@ -117,21 +118,26 @@ public class Kitchenform1 extends javax.swing.JFrame {
             }
         });
 
-        yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
-        yellowColorLabel.setText(" Påbegynt");
-
         colorHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         colorHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         colorHeaderLabel.setText("Fargeforklaring:");
+
 
         blueColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
         blueColorLabel.setIcon(new javax.swing.ImageIcon("icons/blue_square.png"));
         blueColorLabel.setText(" Ikke påbegynt");
 
+        purpleColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
+        purpleColorLabel.setIcon(new javax.swing.ImageIcon("icons/purple_square.png"));
+        purpleColorLabel.setText(" Allergi");
+
         redColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
         redColorLabel.setIcon(new javax.swing.ImageIcon("icons/red_square.png"));
-        redColorLabel.setText(" Se kommentar");
+        redColorLabel.setText(" Kommentar");
+
+        yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
+        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
+        yellowColorLabel.setText(" Påbegynt");
 
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
@@ -140,18 +146,20 @@ public class Kitchenform1 extends javax.swing.JFrame {
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bottomPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(colorHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
-                    .addGroup(bottomPanelLayout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addComponent(colorHeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
                         .addComponent(blueColorLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(yellowColorLabel)
+                        .addComponent(purpleColorLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(redColorLabel)))
-                .addGap(18, 18, 18)
+                        .addComponent(redColorLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(yellowColorLabel)
+                        .addGap(40, 40, 40)))
                 .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -164,9 +172,10 @@ public class Kitchenform1 extends javax.swing.JFrame {
                         .addComponent(colorHeaderLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(yellowColorLabel)
+                            .addComponent(purpleColorLabel)
+                            .addComponent(redColorLabel)
                             .addComponent(blueColorLabel)
-                            .addComponent(redColorLabel)))
+                            .addComponent(yellowColorLabel)))
                     .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -198,16 +207,11 @@ public class Kitchenform1 extends javax.swing.JFrame {
     private void updateMiddlePanel(){
     	ArrayList<javax.swing.JLabel> orders = createOrderLabels();
     	
-    	
-    	javax.swing.GroupLayout innermiddlePanelLayout = new javax.swing.GroupLayout(innermiddlePanel);
-        innermiddlePanel.removeAll();
-        innermiddlePanel.setLayout(innermiddlePanelLayout);
+    	javax.swing.GroupLayout innerMiddlePanelLayout = new javax.swing.GroupLayout(innerMiddlePanel);
+        innerMiddlePanel.removeAll();
+        innerMiddlePanel.setLayout(innerMiddlePanelLayout);
         
-        defineMiddlePanelHorizontalLayout(innermiddlePanelLayout, orders);
-        defineMiddlePanelVerticalLayout(innermiddlePanelLayout, orders);
-        
-        middleScrollPane.setViewportView(innermiddlePanel);
-
+        setMiddlePanelLayout(innerMiddlePanelLayout, orders);
     }
     
     private ArrayList<javax.swing.JLabel> createOrderLabels(){
@@ -228,12 +232,11 @@ public class Kitchenform1 extends javax.swing.JFrame {
 			orderText += productName + ", ";
     		}
     		orderText = orderText.substring(0, orderText.length()-2);
-    		// Create a JLabel and define dimensions and other variables
+    		
+    		// Create a label
 			javax.swing.JLabel temp = new javax.swing.JLabel();
 			if (order.getStatus().equals("Lages")) {
-				temp.setBackground(new java.awt.Color(245, 245, 215));
-		        temp.setForeground(new java.awt.Color(100, 70, 20));
-		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(235, 210, 155), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "yellow");
 			}
 			else if (order.getAllergy()){
 				temp.setBackground(new java.awt.Color(235, 210, 210));
@@ -241,49 +244,41 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 			}
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
-					temp.setBackground(new java.awt.Color(235, 210, 210));
-			        temp.setForeground(new java.awt.Color(115, 35, 35));
-			        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(205, 135, 135), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "red");	
 			}
 			else {
-				temp.setBackground(new java.awt.Color(225, 230, 235));
-		        temp.setForeground(new java.awt.Color(45, 65, 105));
-		        temp.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(170, 180, 200), 2), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "blue");
 			}	        
-	        temp.setFont(new java.awt.Font("Georgia", 0, 18));
-	        temp.setText(orderText.substring(0, orderText.length()));
-	        temp.setOpaque(true);
-	        temp.setPreferredSize(new java.awt.Dimension(140, 20));
 	        temp.addMouseListener(new java.awt.event.MouseAdapter() {
 	            public void mouseClicked(java.awt.event.MouseEvent evt) {
 	                orderLabelMouseClicked(order);
 	            }
 	        });
 	        
-	        // Add JLabel to the arrayList of orders
+	        // Add the label to the ArrayList of orders
 	        orders.add(temp);
 		}
 		return orders;
     }
     
-    private void defineMiddlePanelHorizontalLayout(javax.swing.GroupLayout innermiddlePanelLayout, ArrayList<javax.swing.JLabel> orders){
+    private void setMiddlePanelLayout(javax.swing.GroupLayout innerMiddlePanelLayout, ArrayList<javax.swing.JLabel> orders){
     	
-        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innermiddlePanelLayout.createParallelGroup();
+    	// Set the horizontal axis
+        javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innerMiddlePanelLayout.createParallelGroup();
         for (int i = 0; i < orders.size(); i++){
             tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE);
         }
         
-        innermiddlePanelLayout.setHorizontalGroup(
-                innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innermiddlePanelLayout.createSequentialGroup()
+        innerMiddlePanelLayout.setHorizontalGroup(
+                innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerMiddlePanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(tempHorizontalGroup)
                     .addContainerGap())
             );
-    }
-    
-    private void defineMiddlePanelVerticalLayout(javax.swing.GroupLayout innermiddlePanelLayout, ArrayList<javax.swing.JLabel> orders){
-        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innermiddlePanelLayout.createSequentialGroup();
+        
+        // Set the vertical axis
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerMiddlePanelLayout.createSequentialGroup();
         tempVerticalGroup.addContainerGap();
         for (int i = 0; i < orders.size(); i++){
         	tempVerticalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE);
@@ -292,8 +287,8 @@ public class Kitchenform1 extends javax.swing.JFrame {
         tempVerticalGroup.addContainerGap(6, Short.MAX_VALUE);
         
         
-        innermiddlePanelLayout.setVerticalGroup(
-                innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        innerMiddlePanelLayout.setVerticalGroup(
+                innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(tempVerticalGroup)
             );
     }
@@ -315,16 +310,17 @@ public class Kitchenform1 extends javax.swing.JFrame {
     	this.updateMiddlePanel();
     }                                         
 
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel backButton;
     private javax.swing.JLabel blueColorLabel;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JLabel colorHeaderLabel;
     private javax.swing.JLabel headerLabel;
-    private javax.swing.JPanel innermiddlePanel;
+    private javax.swing.JPanel innerMiddlePanel;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JScrollPane middleScrollPane;
     private javax.swing.JLabel redColorLabel;
+    private javax.swing.JLabel purpleColorLabel;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel updateButton;
     private javax.swing.JLabel yellowColorLabel;

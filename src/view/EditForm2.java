@@ -410,8 +410,8 @@ public class EditForm2 extends javax.swing.JFrame {
     private void displayOrder(){
     	ArrayList<ArrayList<JLabel>> labels = createProductLabels();
     	Customer customer = order.getCustomer();
-    	defineQuantityPanel(labels.get(0));
-    	defineProductPanel(labels.get(1));
+    	setQuantityPanelLayout(labels.get(0));
+    	setProductPanelLayout(labels.get(1));
     	
     	nameContentLabel.setText(customer.getName());
         addressContentLabel.setText(customer.getAddress());
@@ -433,28 +433,13 @@ public class EditForm2 extends javax.swing.JFrame {
         
         for (int i = 0; i < productsInOrder.size(); i++) {
         	// Create quantityLabels
-        	javax.swing.JLabel quantityLabel = new javax.swing.JLabel();
-        	quantityLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	quantityLabel.setOpaque(true);
-        	quantityLabel.setVisible(true);
-        	int bg;
-			if (i % 2 == 0) 
-				bg = 220; 
-	        else
-	        	bg = 240;
-			quantityLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//quantityLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-	        quantityLabel.setText(""+productsInOrder.get(i).getQuantity());
+        	String quantityText = ""+productsInOrder.get(i).getQuantity();
+        	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quantityText, i);
 	        quantityLabels.add(quantityLabel);
 	        
 	        // Create productLabels
-        	javax.swing.JLabel productLabel = new javax.swing.JLabel();
-        	productLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        	productLabel.setOpaque(true);
-        	productLabel.setVisible(true);
-			productLabel.setBackground(new java.awt.Color(bg, bg, bg));
-			//productLabel.setFont(new java.awt.Font("Georgia", 0, 14));
-			productLabel.setText(productsInOrder.get(i).getName());
+	        String productText = productsInOrder.get(i).getName();
+        	javax.swing.JLabel productLabel = Labels.createBorderlessLabel(productText, i);
 	        productLabels.add(productLabel);
 			
         }
@@ -464,7 +449,7 @@ public class EditForm2 extends javax.swing.JFrame {
         return labels;
 	}
 
-	private void defineQuantityPanel(ArrayList<JLabel> quantityLabels) {
+	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
 		javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(quantityPanel);
         quantityPanel.setLayout(quantityPanelLayout);
         
@@ -485,7 +470,7 @@ public class EditForm2 extends javax.swing.JFrame {
         );		
 	}
 
-	private void defineProductPanel(ArrayList<JLabel> productLabels) {
+	private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
 		javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
         productPanel.setLayout(productPanelLayout);
         

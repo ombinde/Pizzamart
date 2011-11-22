@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.AdminController;
-import controller.ManageOrder;
 import controller.Validate;
 
 import model.Product;
@@ -184,6 +183,8 @@ public class AdminForm extends JFrame {
         innerLeftProductPanel.setBackground(new java.awt.Color(253, 253, 253));
 
         productScrollPane.setBorder(null);
+        productScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        productScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         productScrollPane.setViewportView(innerLeftProductPanel);
         
         searchField.setFont(new java.awt.Font("Lucida Grande", 0, 18));
@@ -492,7 +493,7 @@ public class AdminForm extends JFrame {
     private void displayAdminPanel(String query) {
     	
     	ArrayList<javax.swing.JLabel> products = createProductLabels(query);
-    	setLeftProductPanelLayout(products);
+    	setInnerLeftProductPanelLayout(products);
     	
     	searchField.grabFocus();
 		searchField.setText(searchField.getText());
@@ -506,38 +507,19 @@ public class AdminForm extends JFrame {
     	for (int i=0; i < products.size(); i++) {
     		final Product product = products.get(i);
         	// Create a new JLabel
-        	javax.swing.JLabel temp = new javax.swing.JLabel();
-            // Set JLabel dimensions, text, border and so on
-            temp.setText(product.getName());
-            temp.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-            temp.setOpaque(true);
-            temp.setPreferredSize(new java.awt.Dimension(140, 20));
-            temp.setSize(new java.awt.Dimension(140, 20));
-            temp.setVisible(true);
-        	// Make it so that every other JLabel has a different background color than the previous
-            int bg;
-    		if (i % 2 == 0){
-            	bg = 220;
-            }
-            else {
-            	bg = 240;
-            }
-    		temp.setBackground(new java.awt.Color(bg, bg, bg));
-    		// What method to call if the JLabel is clicked
-            temp.addMouseListener(new java.awt.event.MouseAdapter() {
+        	javax.swing.JLabel label = Labels.createBorderlessLabel(product.getName(), i);
+            label.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     productLabelMouseClicked(product);
                 }
-
             });
             // Add the JLabel to the array of JLabels
-            productLabels.add(temp);
+            productLabels.add(label);
     	}
-    	
     	return productLabels;
 	}
 
-    private void setLeftProductPanelLayout(ArrayList<JLabel> products) {
+    private void setInnerLeftProductPanelLayout(ArrayList<JLabel> products) {
     	javax.swing.GroupLayout innerLeftProductPanelLayout = new javax.swing.GroupLayout(innerLeftProductPanel);
         innerLeftProductPanel.removeAll();
     	innerLeftProductPanel.setLayout(innerLeftProductPanelLayout);
@@ -549,7 +531,7 @@ public class AdminForm extends JFrame {
         
         javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerLeftProductPanelLayout.createSequentialGroup();
         for (int i = 0; i < products.size(); i++){
-        	tempVerticalGroup.addComponent(products.get(i));
+        	tempVerticalGroup.addComponent(products.get(i), org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE);
         }
         
         innerLeftProductPanelLayout.setHorizontalGroup(tempHorizontalGroup);

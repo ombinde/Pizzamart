@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 
 import model.Order;
@@ -32,7 +33,7 @@ public class EditForm1 extends javax.swing.JFrame {
         headerLabel = new javax.swing.JLabel();
         middlePanel = new javax.swing.JPanel();
         middleScrollPane = new javax.swing.JScrollPane();
-        innermiddlePanel = new javax.swing.JPanel();
+        innerMiddlePanel = new javax.swing.JPanel();
         bottomPanel = new javax.swing.JPanel();
         backButton = new javax.swing.JLabel();
         updateButton = new javax.swing.JLabel();
@@ -40,8 +41,6 @@ public class EditForm1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Endre ordre - oversikt");
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setName("editFrame");
         setResizable(false);
 
         topPanel.setBackground(new java.awt.Color(220, 220, 220));
@@ -77,11 +76,11 @@ public class EditForm1 extends javax.swing.JFrame {
         middleScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         middleScrollPane.setPreferredSize(new java.awt.Dimension(800, 470));
 
-        innermiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
+        innerMiddlePanel.setBackground(new java.awt.Color(253, 253, 253));
         
         updateMiddlePanel();
         
-        middleScrollPane.setViewportView(innermiddlePanel);
+        middleScrollPane.setViewportView(innerMiddlePanel);
 
         javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(middlePanel);
         middlePanel.setLayout(middlePanelLayout);
@@ -143,7 +142,7 @@ public class EditForm1 extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(bottomPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(topPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)))
-                .addGap(40, 40, 40))
+                )
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,8 +158,12 @@ public class EditForm1 extends javax.swing.JFrame {
     
     private void updateMiddlePanel(){
     	ArrayList<javax.swing.JLabel> orders = createOrderLabels();
+
+    	javax.swing.GroupLayout innerMiddlePanelLayout = new javax.swing.GroupLayout(innerMiddlePanel);
+    	innerMiddlePanel.removeAll();
+    	innerMiddlePanel.setLayout(innerMiddlePanelLayout);
     	
-    	defineInnermiddlePanelLayout(orders);
+    	setInnerMiddlePanelLayout(innerMiddlePanelLayout, orders);
     }
     
     private ArrayList<JLabel> createOrderLabels(){
@@ -169,70 +172,53 @@ public class EditForm1 extends javax.swing.JFrame {
 
         for (int i = 0; i < finishedOrders.size(); i++){
         	final Order order = finishedOrders.get(i);
-        	// Create the upper half of the order Label
-        	javax.swing.JLabel upperHalf = new javax.swing.JLabel();
-        	upperHalf.setBackground(new java.awt.Color(225, 230, 235));
-	        upperHalf.setForeground(new java.awt.Color(45, 65, 105));
-	        upperHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(2, 2, 0, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(7, 10, 0, 10)));
-	        upperHalf.setFont(new java.awt.Font("Georgia", 0, 18));
-        	upperHalf.setText(order.getDateAndTime() + " " + order.getCustomer().getName());
-        	upperHalf.setOpaque(true);
-            upperHalf.setPreferredSize(new java.awt.Dimension(140, 20));
-        	upperHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+        	
+        	ArrayList<JLabel> label = Labels.createTwoLineLabel(order.getDateAndTime() + " " + order.getCustomer().getName(), "Status: " + order.getStatus(), "blue");
+        	
+        	label.get(0).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     orderLabelMouseClicked(order);
                 }
             });
-        	// Create the lower half of the order Label
-        	javax.swing.JLabel lowerHalf = new javax.swing.JLabel();
-			lowerHalf.setBackground(new java.awt.Color(225, 230, 235));
-        	lowerHalf.setForeground(new java.awt.Color(45, 65, 105));
-        	lowerHalf.setBorder(javax.swing.BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(170, 180, 200)), javax.swing.BorderFactory.createEmptyBorder(0, 10, 7, 10)));
-        	lowerHalf.setText("Status: " + order.getStatus());
-        	lowerHalf.setOpaque(true);
-            lowerHalf.setPreferredSize(new java.awt.Dimension(140, 20));
-        	lowerHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+            label.get(1).addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                 	orderLabelMouseClicked(order);
                 }
             });
 
-        	labels.add(upperHalf);
-        	labels.add(lowerHalf);
+        	labels.add(label.get(0));
+        	labels.add(label.get(1));
         }
         return labels;
     }
     
-    private void defineInnermiddlePanelLayout(ArrayList<JLabel> orders){
-    	javax.swing.GroupLayout innermiddlePanelLayout = new javax.swing.GroupLayout(innermiddlePanel);
-    	
-    	innermiddlePanel.removeAll();
-    	innermiddlePanel.setLayout(innermiddlePanelLayout);
-    	
-    	javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+    private void setInnerMiddlePanelLayout(GroupLayout innerMiddlePanelLayout, ArrayList<JLabel> orders){
+    	// Set horizontal axis
+    	javax.swing.GroupLayout.ParallelGroup tempHorizontalGroup = innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
     	for (int i = 0; i < orders.size(); i++){
         	tempHorizontalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE);
         }
         
-        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innermiddlePanelLayout.createSequentialGroup();
-        tempVerticalGroup.addContainerGap();
-        for (int i = 0; i < orders.size(); i++){
-            tempVerticalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE);
-            if (i % 2 == 1) {
-            	tempVerticalGroup.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED);
-            }
-        }
-        
-        innermiddlePanelLayout.setHorizontalGroup(
-        		innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(innermiddlePanelLayout.createSequentialGroup()
+        innerMiddlePanelLayout.setHorizontalGroup(
+        		innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(innerMiddlePanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(tempHorizontalGroup)
                     .addContainerGap())
         );
+
+        // Set vertical axis
+        javax.swing.GroupLayout.SequentialGroup tempVerticalGroup = innerMiddlePanelLayout.createSequentialGroup();
+        tempVerticalGroup.addContainerGap();
+        for (int i = 0; i < orders.size(); i++){
+        	tempVerticalGroup.addComponent(orders.get(i), javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE);
+        	if (i % 2 == 1) {
+        		tempVerticalGroup.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED);
+        	}
+        }
         
-        innermiddlePanelLayout.setVerticalGroup(
-            innermiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        innerMiddlePanelLayout.setVerticalGroup(
+            innerMiddlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tempVerticalGroup)
         );
     }
@@ -258,7 +244,7 @@ public class EditForm1 extends javax.swing.JFrame {
     private javax.swing.JLabel backButton;
     private javax.swing.JPanel bottomPanel;
     private javax.swing.JLabel headerLabel;
-    private javax.swing.JPanel innermiddlePanel;
+    private javax.swing.JPanel innerMiddlePanel;
     private javax.swing.JPanel middlePanel;
     private javax.swing.JScrollPane middleScrollPane;
     private javax.swing.JPanel topPanel;
