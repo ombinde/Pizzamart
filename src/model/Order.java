@@ -88,7 +88,7 @@ public class Order {
 	    	int quantity = p.getQuantity();	
 	        totalprice += ((Product) p).getPrice()*quantity;
 	    }
-	    if (products.contains(deliveryFee) && totalprice > limitFreeDelivery){
+	    if (products.contains(deliveryFee) && (totalprice - DeliveryFee.getOriginalFee()) >= limitFreeDelivery){
 	    	double fee = deliveryFee.getPrice();
 	    	deliveryFee.setPrice(0);
 	    	totalprice -= fee;
