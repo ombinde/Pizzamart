@@ -315,9 +315,14 @@ private Order order;
     	this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
-        if (!this.searchFieldChanged) {
-        	this.searchField.setText("" + (this.searchField.getText()).charAt(3));
+    	String letter = this.searchField.getText();
+        if ((!this.searchFieldChanged) && (letter.length() == 4)) {
+        	this.searchField.setText("" + letter.charAt(3));
         	this.searchFieldChanged = true;
+        }
+        else {
+        	this.searchFieldChanged = true;
+        	this.searchField.setText(letter);
         }
         this.updateLeftPanel(ManageOrder.getRelevantCustomers(this.searchField.getText()));
     }
@@ -395,7 +400,6 @@ private Order order;
         setInnerLeftPanelLayout(innerLeftPanelLayout, customerLabels);
         
         pack();
-        searchField.grabFocus();
         searchField.setText(searchField.getText());
     }
 

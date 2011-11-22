@@ -712,7 +712,7 @@ public class AdminForm extends JFrame {
     }
     
 
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel addEditButton;
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
