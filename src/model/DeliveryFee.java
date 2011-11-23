@@ -63,8 +63,7 @@ public class DeliveryFee extends Product {
 	/**
 	 * Changes the original price and the price to the new price given.
 	 */
-	@Override
-	public void setPrice(double price){
+	public void changePrice(double price){
 		originalFee = price;
 		super.setPrice(price);
 	}

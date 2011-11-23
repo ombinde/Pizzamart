@@ -195,8 +195,10 @@ public class Order {
 	 * Removes the delivery fee.
 	 */
 	private void removeDeliveryFee(){
-		if (products.contains(deliveryFee))
+		if (products.contains(deliveryFee)){
 			products.remove(deliveryFee);
+			deliveryFee.setPriceToOriginal();
+		}
 	}
 	
 	/**

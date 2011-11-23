@@ -219,7 +219,7 @@ public class Product {
 				Error.showMessage("Kan ikke endre navnet på produktet frakt.");
 				return false;
 			}
-			p.setPrice(price);
+			((DeliveryFee) p).changePrice(price);
 		}
 		Database db = Database.getDatabase();
 		String query = "UPDATE product SET name='" + name + "', price='" + price + 
