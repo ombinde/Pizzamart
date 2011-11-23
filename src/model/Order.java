@@ -125,15 +125,40 @@ public class Order {
 	}
 	
 	/**
+	 * Updates the order in the database.
+	 * The method actually deletes the old one, and insert the new order.
+	 */
+	public void updateOrder(){
+		Integer quantity = 0;
+		this.dateAdded = new Date(calendar.getTimeInMillis());
+		Database db = Database.getDatabase();
+		db.insert("DELETE FROM orders WHERE idorder=" + this.idOrder);
+		db.insert("DELETE FROM product_has_order WHERE orders_idorder=" + this.idOrder);
+		//Adds the order
+		String query = "INSERT INTO orders (status, comments, customer_idcustomer, allergy, delivery, time) " +
+		  			   "VALUES ('"+this.status + "','" + comment + "','" + customer.getIdCustomer() + "','" + allergy 
+		  			   + "','" + delivery + "','" + calendar.getTimeInMillis() + "')";
+		idOrder = db.insertWithIdReturn(query);
+		//Adds the relation with the products in the order
+	    for (Product p : products) {
+	    	quantity = p.getQuantity();
+	    	int idproduct = p.getIdproduct();
+	    	query = "INSERT INTO product_has_order (product_idproduct, orders_idorder, quantity) " +
+	    	"values('" + idproduct + "','" + idOrder + "','" + quantity + "')";
+	    	db.insert(query);
+		}
+	}
+	
+	/**
 	 * Adds a given product to the order
 	 * @param product
 	 * @param quantity
 	 */
 	public void addProductToOrder(Product product, int quantity){
 		//Adds the quantity if the product exist in the order
-		if (!(product instanceof DeliveryFee) && products.contains(product)){
+		if (!(product instanceof DeliveryFee) && productsContainsProduct(product.getName())){
 			for (Product p : products) {
-				if (p.equals(product)){
+				if (p.getName().equals(product.getName())){
 					p.addQuantity(quantity);
 				}
 			}
@@ -146,6 +171,20 @@ public class Order {
 		if (delivery==1 && !products.contains(deliveryFee)){
 			products.add(deliveryFee);
 		}
+	}
+	
+	/**
+	 * Checks if the product already exist in the order.
+	 * You have to check by name, since the same product can be in different objects.
+	 * @param name
+	 * @return
+	 */
+	private boolean productsContainsProduct(String name){
+		for (Product p : products) {
+			if (p.getName().equals(name))
+				return true;
+		}
+		return false;
 	}
 	
 	/**

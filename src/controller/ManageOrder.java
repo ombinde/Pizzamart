@@ -153,6 +153,14 @@ public class ManageOrder {
 	}
 	
 	/**
+	 * Updates an existing order in the database.
+	 * @param order
+	 */
+	public static void updateExistingOrderInDatabase(Order order){
+		order.updateOrder();
+	}
+	
+	/**
 	 * Formats the price to a String with two decimals.
 	 * @param price
 	 * @return

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
+import model.DeliveryFee;
 import model.Order;
 import model.Product;
 import controller.ChefController;
@@ -297,6 +298,9 @@ public class Kitchenform2 extends javax.swing.JFrame {
 
         int i = 0;
         for (Product product : productsInOrder) {
+        	if (product instanceof DeliveryFee){
+				continue;
+			}
         	// Create quantityLabels
         	String quantityText = "" + product.getQuantity();
         	javax.swing.JLabel quantityLabel = Labels.createBorderlessLabel(quantityText, i);

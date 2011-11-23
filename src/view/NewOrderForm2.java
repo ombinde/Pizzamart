@@ -24,11 +24,13 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 
 private Order order;
 private Customer customer;
+private boolean existingOrder;
     /** Creates new form NewOrder2Form */
     public NewOrderForm2(Customer c) {
         ManageOrder.addCustomerToDatabase(c);
         this.customer = c;
         this.order = new Order(c);
+        this.existingOrder = false;
         initComponents();
         this.updateRightPanel();
         this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
@@ -38,6 +40,7 @@ private Customer customer;
         ManageOrder.addCustomerToDatabase(c);
         this.customer = c;
         this.order = o;
+        this.existingOrder = true;
         initComponents();
         this.updateRightPanel();
         this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
@@ -473,8 +476,14 @@ private Customer customer;
 	    	this.rightPanel.setBackground(color);
 	    	legalOrder = false;
 	    }
-	    
-	    if (legalOrder){
+	    if (legalOrder && existingOrder){
+	    	order.setComment(this.commentArea.getText());
+			ManageOrder.updateExistingOrderInDatabase(order);
+			MainMenuForm form = new MainMenuForm();
+			form.setVisible(true);
+			this.setVisible(false);
+	    }
+	    else if (legalOrder){
 		    order.setComment(this.commentArea.getText());
 			ManageOrder.submitOrderToDatabase(order);
 			MainMenuForm form = new MainMenuForm();
