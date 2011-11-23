@@ -342,14 +342,16 @@ private Order order;
     	String postalAddress = postalAddressField.getText();
     	boolean legalCustomer = true;
     	Color color = new Color(235, 210, 210);
-    	if (!Validate.stringNonEmpty(firstName) || !Validate.isStringLegal(firstName)){
+    	
+    	//Uses the Validate class for validating input data
+    	if (!Validate.stringNonEmpty(firstName) || !Validate.isStringLegal(firstName) || Validate.stringContainsNumb(firstName)){
     		this.firstNameField.setBackground(color);
     		legalCustomer = false;
     	}
     	else {
     		this.firstNameField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.stringNonEmpty(lastName) || !Validate.isStringLegal(lastName)){
+    	if (!Validate.stringNonEmpty(lastName) || !Validate.isStringLegal(lastName) || Validate.stringContainsNumb(lastName)){
     		this.lastNameField.setBackground(color);
     		legalCustomer = false;
     	}
@@ -363,17 +365,26 @@ private Order order;
     	else {
     		this.phoneNumberField.setBackground(Color.WHITE);
     	}
-    	if (!Validate.isStringOnlyNumbers(zipCode)){
+    	if (!zipCode.equals("") && !Validate.isZipCode(zipCode)){
     		this.zipCodeField.setBackground(color);
     		legalCustomer = false;
+    	}
+    	else{
+    		this.zipCodeField.setBackground(Color.WHITE);
     	}
     	if (!Validate.isStringLegal(address)){
     		this.addressField.setBackground(color);
     		legalCustomer = false;
     	}
-    	if (!Validate.isStringLegal(postalAddress)){
+    	else{
+    		this.addressField.setBackground(Color.WHITE);
+    	}
+    	if (!Validate.isStringLegal(postalAddress) || Validate.stringContainsNumb(postalAddress)){
     		this.postalAddressField.setBackground(color);
     		legalCustomer = false;
+    	}
+    	else{
+    		this.postalAddressField.setBackground(Color.WHITE);
     	}
     
     	if (legalCustomer && this.order!=null){
