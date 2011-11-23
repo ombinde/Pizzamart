@@ -3,6 +3,10 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import database.Database;
+
+import view.Error;
+
 /**
  * A class for restaurant properties. It uses the singleton pattern to make sure
  * that only one instance of the object exists.
@@ -62,8 +66,7 @@ public class Properties {
 				}
 				return properties;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Error.databaseError();
 				return null;
 			}
 		}

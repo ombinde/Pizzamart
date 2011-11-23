@@ -238,6 +238,9 @@ public class Kitchenform1 extends javax.swing.JFrame {
 			if (order.getStatus().equals("Lages")) {
 				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "yellow");
 			}
+			else if (order.getAllergy()){
+				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "purple");
+			}
 			else if ((order.getComment()!=null) && !order.getComment().equals("") || order.getAllergy()) {
 				temp = Labels.createOneLineLabel(orderText.substring(0, orderText.length()), "red");	
 			}

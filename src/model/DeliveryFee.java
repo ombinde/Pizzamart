@@ -3,6 +3,10 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import database.Database;
+
+import view.Error;
+
 import model.Product;
 /**
  * Class for deliveryFee.
@@ -44,8 +48,7 @@ public class DeliveryFee extends Product {
 				return deliveryFee;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return null;
 	}
@@ -55,6 +58,14 @@ public class DeliveryFee extends Product {
 	 */
 	public void setPriceToOriginal(){
 		this.setPrice(originalFee);
+	}
+	
+	/**
+	 * Changes the original price and the price to the new price given.
+	 */
+	public void changePrice(double price){
+		originalFee = price;
+		super.setPrice(price);
 	}
 	
 	/**

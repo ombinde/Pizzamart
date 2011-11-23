@@ -4,6 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import database.Database;
+
+import view.Error;
+
 /**
  * A class for customers.
  * @author Sigurd Lund
@@ -65,7 +69,7 @@ public class Customer {
 	 * Adds the customer to the database.
 	 * @throws SQLException 
 	 */
-	public void addToDatabase() throws SQLException{
+	public void addToDatabase(){
 		if (!customerIsUnike(phone)){
 			updateCustomer();
 			return;
@@ -82,7 +86,7 @@ public class Customer {
 	 * Updates a customer in the database.
 	 * @throws SQLException 
 	 */
-	private void updateCustomer() throws SQLException {
+	private void updateCustomer(){
 		Database db = Database.getDatabase();
 		String query = "UPDATE customer SET forename='" + this.forename + "', lastname='" 
 						+ this.lastname + "', address='" + this.address + "', postcode='" 
@@ -90,8 +94,12 @@ public class Customer {
 		
 		db.insert(query);
 		ResultSet rs = db.select("SELECT idcustomer from customer WHERE phone = '" + this.phone + "'");
-		if (rs.next()){
-			idCustomer = rs.getInt("idcustomer");
+		try {
+			if (rs.next()){
+				idCustomer = rs.getInt("idcustomer");
+			}
+		} catch (SQLException e) {
+			Error.databaseError();
 		}
 	}
 	
@@ -102,13 +110,17 @@ public class Customer {
 	 * @return
 	 * @throws SQLException 
 	 */
-	private boolean customerIsUnike(String phone) throws SQLException{
+	private boolean customerIsUnike(String phone){
 		Database db = Database.getDatabase();
 		String query = "SELECT * FROM customer WHERE phone = '" + phone + "'";
 		
 		ResultSet rs = db.select(query);
-		if (!rs.next()){
-			return true;
+		try {
+			if (!rs.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			Error.databaseError();
 		}
 		return false;
 	}
@@ -120,20 +132,24 @@ public class Customer {
 	 * @return ArrayList with the customers.
 	 * @throws SQLException 
 	 */
-	public static ArrayList<Customer> getRelevantCustomers(String query) throws SQLException{
+	public static ArrayList<Customer> getRelevantCustomers(String query){
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		Database db = Database.getDatabase();
 		ResultSet rs = db.select("SELECT * FROM customer where forename like '" + query + "%'" +
 								"or lastname like '" + query + "%' or phone like '" + query + "%' ORDER BY forename ASC");
-		while (rs.next()){
-			String forename = rs.getString("forename");
-			String lastname = rs.getString("lastname");
-			String phone = rs.getString("phone");
-			String address = rs.getString("address");
-			String zipCode = rs.getString("postcode");
-			String postalAddress = rs.getString("postaladdress");
-			Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress);
-			customers.add(c);
+		try {
+			while (rs.next()){
+				String forename = rs.getString("forename");
+				String lastname = rs.getString("lastname");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String zipCode = rs.getString("postcode");
+				String postalAddress = rs.getString("postaladdress");
+				Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress);
+				customers.add(c);
+			}
+		} catch (SQLException e) {
+			Error.databaseError();
 		}
 		return customers;
 	}
@@ -143,20 +159,23 @@ public class Customer {
 	 * The customer will be returned with all the info from the database.
 	 * @param idCustomer
 	 * @return customer
-	 * @throws SQLException 
 	 */
-	public static Customer getCustomerFromOrder(int idCustomer) throws SQLException{
+	public static Customer getCustomerFromOrder(int idCustomer) {
 		Database db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM customer WHERE idcustomer=" + idCustomer);
-			if (rs.next()){
-				String forename = rs.getString("forename");
-				String lastname = rs.getString("lastname");
-				String phone = rs.getString("phone");
-				String address = rs.getString("address");
-				String zipCode = rs.getString("postcode");
-				String postalAddress = rs.getString("postaladdress");
-				Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress, idCustomer);
-				return c;
+			try {
+				if (rs.next()){
+					String forename = rs.getString("forename");
+					String lastname = rs.getString("lastname");
+					String phone = rs.getString("phone");
+					String address = rs.getString("address");
+					String zipCode = rs.getString("postcode");
+					String postalAddress = rs.getString("postaladdress");
+					Customer c = new Customer(forename, lastname, phone, address, zipCode, postalAddress, idCustomer);
+					return c;
+				}
+			} catch (SQLException e) {
+				Error.databaseError();
 			}
 		return null;
 	}

@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import database.Database;
+
 import view.Error;
 
 /**
@@ -88,7 +90,7 @@ public class Order {
 	    	int quantity = p.getQuantity();	
 	        totalprice += ((Product) p).getPrice()*quantity;
 	    }
-	    if (products.contains(deliveryFee) && totalprice > limitFreeDelivery){
+	    if (products.contains(deliveryFee) && (totalprice - DeliveryFee.getOriginalFee()) >= limitFreeDelivery){
 	    	double fee = deliveryFee.getPrice();
 	    	deliveryFee.setPrice(0);
 	    	totalprice -= fee;
@@ -193,12 +195,14 @@ public class Order {
 	 * Removes the delivery fee.
 	 */
 	private void removeDeliveryFee(){
-		if (products.contains(deliveryFee))
+		if (products.contains(deliveryFee)){
 			products.remove(deliveryFee);
+			deliveryFee.setPriceToOriginal();
+		}
 	}
 	
 	/**
-	 * Gets all the orders with two given statuses and order it by ascending from the database.
+	 * Gets all the orders with two given statuses and order it by time ascending from the database.
 	 * @param status1
 	 * @param status2
 	 * @return ArrayList with orders
@@ -229,7 +233,7 @@ public class Order {
 	}
 	
 	/**
-	 * Gets all the orders and order it by ascending from the database.
+	 * Gets all the orders and order it by time descending from the database.
 	 * @return all orders
 	 */
 	public static ArrayList<Order> getAllOrders(){
@@ -237,7 +241,7 @@ public class Order {
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders ORDER BY time ASC");
+			ResultSet rs = db.select("SELECT * FROM orders ORDER BY time DESC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
@@ -257,10 +261,10 @@ public class Order {
 	}
 	
 	/**
-	 * Gets all the orders that are finished and sorts it by ascending from the database.
+	 * Gets all the orders that are not finished and order it by time ascending from the database.
 	 * @return finished orders
 	 */
-	public static ArrayList<Order> getFinishedOrders(){
+	public static ArrayList<Order> getOrdersInProssess(){
 		ArrayList<Order> allOrders = new ArrayList<Order>();
 		try {
 			Database db;

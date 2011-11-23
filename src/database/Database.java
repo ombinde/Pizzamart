@@ -1,12 +1,10 @@
-package model;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
-
 import view.Error;
 /**
  * Creates a connection with the database with the singleton pattern.

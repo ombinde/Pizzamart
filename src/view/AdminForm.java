@@ -657,9 +657,17 @@ public class AdminForm extends JFrame {
     	String address = addressField.getText();
     	String zipCode = zipCodeField.getText();
     	String postalAddress = postalAddressField.getText();
-    	double limitFreeDelivery = Double.parseDouble(freeDeliveryLimitField.getText());
     	boolean legalValues = true;
     	Color color = new Color(235, 210, 210);
+    	double limitFreeDelivery = -1;
+    	
+    	try {
+    		limitFreeDelivery = Double.parseDouble(freeDeliveryLimitField.getText());
+		} catch (Exception e) {
+			legalValues = false;
+			this.priceField.setBackground(color);
+			this.freeDeliveryLimitField.setBackground(color);
+		}
     	if (!Validate.stringNonEmpty(name) || !Validate.isStringLegal(name)){
     		this.productNameField.setBackground(color);
     		legalValues = false;
@@ -706,13 +714,16 @@ public class AdminForm extends JFrame {
     
     private void clearProductFields(){
     	currentProduct = null;
+    	this.productNameLabel.setBackground(Color.WHITE);
+    	this.priceField.setBackground(Color.WHITE);
+    	this.commentLabel.setBackground(Color.WHITE);
     	this.productNameField.setText("");
     	this.priceField.setText("");
     	this.commentField.setText("");
     }
     
 
-    // Variables declaration - do not modify
+    // Variables declaration
     private javax.swing.JLabel addEditButton;
     private javax.swing.JTextField addressField;
     private javax.swing.JLabel addressLabel;
