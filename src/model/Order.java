@@ -211,7 +211,7 @@ public class Order {
 			Database db;
 			db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 
-									+ "' ORDER BY time DESC");
+									+ "' ORDER BY time ASC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
@@ -231,7 +231,7 @@ public class Order {
 	}
 	
 	/**
-	 * Gets all the orders and order it by time ascending from the database.
+	 * Gets all the orders and order it by time descending from the database.
 	 * @return all orders
 	 */
 	public static ArrayList<Order> getAllOrders(){
@@ -259,15 +259,15 @@ public class Order {
 	}
 	
 	/**
-	 * Gets all the orders that are not finished and order it by time descending from the database.
+	 * Gets all the orders that are not finished and order it by time ascending from the database.
 	 * @return finished orders
 	 */
-	public static ArrayList<Order> getFinishedOrders(){
+	public static ArrayList<Order> getOrdersInProssess(){
 		ArrayList<Order> allOrders = new ArrayList<Order>();
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders where status!='Utlevert' and status!='Levert' ORDER BY time DESC");
+			ResultSet rs = db.select("SELECT * FROM orders where status!='Utlevert' and status!='Levert' ORDER BY time ASC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));

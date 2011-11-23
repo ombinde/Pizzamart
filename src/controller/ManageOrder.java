@@ -130,7 +130,7 @@ public class ManageOrder {
 	}
 	
 	public static ArrayList<Order> getFinishedOrders(){
-		return Order.getFinishedOrders();
+		return Order.getOrdersInProssess();
 	}
 	
 	/**
