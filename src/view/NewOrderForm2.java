@@ -423,10 +423,15 @@ private Customer customer;
     
     boolean searchFieldChanged;
     private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
-    	if (!this.searchFieldChanged) {
-    		this.searchField.setText("" + (this.searchField.getText()).charAt(3));
-    		this.searchFieldChanged = true;
-    	}
+    	String letter = this.searchField.getText();
+        if ((!this.searchFieldChanged) && (letter.length() == 4)) {
+        	this.searchField.setText("" + letter.charAt(3));
+        	this.searchFieldChanged = true;
+        }
+        else {
+        	this.searchFieldChanged = true;
+        	this.searchField.setText(letter);
+        }
         this.updateLeftPanel(ManageOrder.getRelevantProducts(this.searchField.getText()));
     }
     

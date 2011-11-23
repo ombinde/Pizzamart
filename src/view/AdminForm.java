@@ -194,7 +194,7 @@ public class AdminForm extends JFrame {
         searchField.setAlignmentY(0.0F);
         searchField.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10,10,10,10)));
         searchField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchFieldKeyTyped(evt);
             }
         });
@@ -541,7 +541,17 @@ public class AdminForm extends JFrame {
         );
     }
     
+    boolean searchFieldChanged;
     private void searchFieldKeyTyped(KeyEvent evt) {
+    	String letter = this.searchField.getText();
+        if ((!this.searchFieldChanged) && (letter.length() == 4)) {
+        	this.searchField.setText("" + letter.charAt(3));
+        	this.searchFieldChanged = true;
+        }
+        else {
+        	this.searchFieldChanged = true;
+        	this.searchField.setText(letter);
+        }
 		displayAdminPanel(searchField.getText());
 	}
 
