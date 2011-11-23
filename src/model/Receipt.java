@@ -63,19 +63,16 @@ public class Receipt {
         
         InputStreamReader in= new InputStreamReader(System.in);
         BufferedReader bin= new BufferedReader(in);
-        String text = "";
         DecimalFormat toDesimaler = new DecimalFormat("0.00");
 		double totalSum = 0;
-		double utkjoring = 0;
         Document document = new Document(PageSize.A4, 36, 72, 108, 180);
         PdfWriter.getInstance(document,new FileOutputStream("Receipt.pdf"));
         ArrayList<Product> products = order.getProductsInOrder();
         Customer customer = order.getCustomer();
-        Properties properties = Properties.getProperties();
         
         document.open();
         
-        Chunk chunk = new Chunk(" " + properties.getName() + " ");
+        Chunk chunk = new Chunk(" " + Properties.getName() + " ");
         chunk.setUnderline(0.2f, -2f);
         Font font = new Font();
         font.setSize(32);

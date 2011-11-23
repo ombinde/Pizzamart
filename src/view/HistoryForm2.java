@@ -2,7 +2,6 @@ package view;
 //no.ntnu.course
 
 import java.awt.Color;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -10,13 +9,11 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import com.itextpdf.text.DocumentException;
 
 import model.DeliveryFee;
 import model.GoogleMaps;
 import model.Order;
 import model.Product;
-import model.Receipt;
 import controller.ManageOrder;
 
 /**
@@ -496,10 +493,10 @@ public class HistoryForm2 extends javax.swing.JFrame {
 	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 	        );
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			Error.showMessage("Det oppstod en feil under lastingen av kartet");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Error.showMessage("Det oppstod en feil under lastingen av kartet");
 			e.printStackTrace();
 		}
 	}
@@ -511,16 +508,7 @@ public class HistoryForm2 extends javax.swing.JFrame {
     }                              
 	
     private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        try {
-			Receipt.makeReceipe(order);
-			Receipt.openReceipt();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        ManageOrder.printReceipt(order);
     }
 
     // Variables declaration

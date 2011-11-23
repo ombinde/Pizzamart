@@ -17,7 +17,7 @@ public class Database {
 	private Connection con=null;
 	public static final String HOSTNAME = "mysql.stud.ntnu.no";
 	public static final String USERNAME = "sigurlu_it1901";
-	public static final String DATABASE = "sigurlu_pizzamart2";
+	public static final String DATABASE = "sigurlu_pizzamart";
 	public static final String PASSWORD = "pizza";
 	public static final String PORT = "3306";
 	

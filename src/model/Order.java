@@ -264,7 +264,7 @@ public class Order {
 	 * Gets all the orders that are not finished and order it by time ascending from the database.
 	 * @return finished orders
 	 */
-	public static ArrayList<Order> getOrdersInProssess(){
+	public static ArrayList<Order> getOrdersInProcess(){
 		ArrayList<Order> allOrders = new ArrayList<Order>();
 		try {
 			Database db;

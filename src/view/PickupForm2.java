@@ -2,19 +2,16 @@ package view;
 //no.ntnu.course
 
 import java.awt.Color;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import com.itextpdf.text.DocumentException;
 
 import controller.ManageOrder;
 
 import model.Order;
 import model.Product;
-import model.Receipt;
 
 /**
  *
@@ -425,16 +422,7 @@ public class PickupForm2 extends javax.swing.JFrame {
     }
 
     private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        try {
-			Receipt.makeReceipe(order);
-			Receipt.openReceipt();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        ManageOrder.printReceipt(order);
     }
 
     // Variables declaration

@@ -1,11 +1,18 @@
 package controller;
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import view.Error;
+
+import com.itextpdf.text.DocumentException;
+
 import model.Customer;
 import model.DeliveryFee;
 import model.Order;
 import model.Product;
 import model.Properties;
+import model.Receipt;
 
 /**
  * A controller for orders.
@@ -129,8 +136,12 @@ public class ManageOrder {
 		return order.getOrderTotalPrice();
 	}
 	
-	public static ArrayList<Order> getFinishedOrders(){
-		return Order.getOrdersInProssess();
+	/**
+	 * Returns all orders that are not finished.
+	 * @return orders in process
+	 */
+	public static ArrayList<Order> getOrdersInProcess(){
+		return Order.getOrdersInProcess();
 	}
 	
 	/**
@@ -167,12 +178,35 @@ public class ManageOrder {
 		return DeliveryFee.getOriginalFee();
 	}
 	
+	/**
+	 * Returns all the orders that are ready for pick up.
+	 * @return orders ready for pick up
+	 */
 	public static ArrayList<Order> getOrdersReadyForPickup(){
 		return Order.getRelevantOrders("Klar til henting", "--");
 	}
 	
+	/**
+	 * Sets the orders status to picked up by customer.
+	 * @param order The order that is picked up.
+	 */
 	public static void setStatusToPickedUp(Order order){
 		order.setStatus("Utlevert");
+	}
+	
+	/**
+	 * Prints out the receipt.
+	 * @param order
+	 */
+	public static void printReceipt(Order order){
+		try {
+			Receipt.makeReceipe(order);
+			Receipt.openReceipt();
+		} catch (FileNotFoundException e) {
+			Error.showMessage("Finner ikke filen.");
+		} catch (DocumentException e) {
+			Error.showMessage("En feil oppsto under opprettingen av kvitteringen");
+		}
 	}
 
 }

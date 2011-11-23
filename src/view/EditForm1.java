@@ -168,7 +168,7 @@ public class EditForm1 extends javax.swing.JFrame {
     
     private ArrayList<JLabel> createOrderLabels(){
         ArrayList <javax.swing.JLabel> labels = new ArrayList <javax.swing.JLabel>();
-        ArrayList<Order> finishedOrders = ManageOrder.getFinishedOrders();
+        ArrayList<Order> finishedOrders = ManageOrder.getOrdersInProcess();
 
         for (int i = 0; i < finishedOrders.size(); i++){
         	final Order order = finishedOrders.get(i);

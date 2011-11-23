@@ -2,20 +2,17 @@ package view;
 //no.ntnu.course
 
 import java.awt.Color;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import com.itextpdf.text.DocumentException;
 
 import model.DeliveryFee;
 import model.GoogleMaps;
 import model.Order;
 import model.Product;
-import model.Receipt;
 import controller.DeliveryController;
 import controller.ManageOrder;
 
@@ -530,16 +527,7 @@ public class DeliveryForm2 extends javax.swing.JFrame {
     }
 	
 	private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        try {
-			Receipt.makeReceipe(order);
-			Receipt.openReceipt();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        ManageOrder.printReceipt(order);
     }
 
     private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {     
