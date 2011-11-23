@@ -381,8 +381,7 @@ private Customer customer;
     	ArrayList<javax.swing.JLabel> productsInOrderLabels = new ArrayList<javax.swing.JLabel>();
         ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
         priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
-        if(order.getComment()!=null)
-        	this.commentArea.setText(order.getComment());
+
         int counter = 0;
         
         int i = 0;
@@ -488,7 +487,10 @@ private Customer customer;
     
     private void orderLabelMouseClicked(java.awt.event.MouseEvent evt, Product product) {
     	ManageOrder.removeOneProductFromOrder(order, product);
-    	this.updateRightPanel();
+    	if (product instanceof DeliveryFee){
+    		order.setDelivery(false);
+    		Button.changeIcon(takeawayButton, "delete");
+    	}
     	this.updateRightPanel();
     }
     
