@@ -339,9 +339,9 @@ public class DeliveryForm1 extends javax.swing.JFrame {
 	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 	        );
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			Error.showMessage("Det oppstod en feil under lastingen av kartet");
 		} catch (IOException e) {
-			e.printStackTrace();
+			Error.showMessage("Det oppstod en feil under lastingen av kartet");
 		}
 	}
     

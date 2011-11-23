@@ -515,10 +515,10 @@ public class DeliveryForm2 extends javax.swing.JFrame {
 	            .addComponent(map, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE)
 	        );
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			Error.showMessage("Det oppstod en feil under lastingen av kartet");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Error.showMessage("Det oppstod en feil under lastingen av kartet");
 			e.printStackTrace();
 		}
 	}
