@@ -1,11 +1,6 @@
 package controller;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
-import model.Database;
-import model.DeliveryFee;
 import model.Order;
 import model.Product;
 import model.Properties;

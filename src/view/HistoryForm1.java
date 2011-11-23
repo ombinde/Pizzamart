@@ -177,7 +177,7 @@ public class HistoryForm1 extends javax.swing.JFrame {
     	
     	ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
     	ArrayList<Order> allOrders = Order.getAllOrders();
-    	for (int i = (allOrders.size() - 1); i >= 0; i--) {
+    	for (int i = 0; i < allOrders.size(); i++) {
     		String orderText = "";
     		final Order order = allOrders.get(i);
     		

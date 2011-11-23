@@ -1,17 +1,6 @@
 package controller;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
-import view.Error;
-
 import model.Customer;
 import model.DeliveryFee;
 import model.Order;
@@ -46,12 +35,7 @@ public class ManageOrder {
 	 * @param customer
 	 */
 	public static void addCustomerToDatabase(Customer c){
-		try {
 			c.addToDatabase();
-		} catch (SQLException e) {
-			Error.showMessage("Kunden kunne ikke bli lagt til i databasen.");
-		}
-		
 	}
 	
 	/**
@@ -133,12 +117,7 @@ public class ManageOrder {
 	 * @return customer
 	 */
 	public static ArrayList<Customer> getRelevantCustomers(String query){
-		try {
-			return Customer.getRelevantCustomers(query);
-		} catch (SQLException e) {
-			Error.databaseError();
-			return null;
-		}
+		return Customer.getRelevantCustomers(query);
 	}
 	
 	/**
@@ -195,41 +174,5 @@ public class ManageOrder {
 	public static void setStatusToPickedUp(Order order){
 		order.setStatus("Utlevert");
 	}
-    
-    public static void setNextOrBackButton(JLabel button, String text, int choice){
-    	Color background, foreground, border;
-    	ImageIcon icon;
-    	//FinishButton
-    	if (choice>0){
-    		background = new Color(230, 240, 200);
-    		foreground = new Color(64, 80, 25);
-    		border = new Color(180, 190, 130);
-    		icon = new ImageIcon("src/icons/buy_32.png");
-    	}
-    	//NextButton
-    	else if (choice==0){
-    		background = new Color(230, 240, 200);
-    		foreground = new Color(64, 80, 25);
-    		border = new Color(180, 190, 130);
-    		icon = new ImageIcon("src/icons/right_32.png");
-    	}
-    	//BackButton
-    	else {
-    		background = new Color(235, 207, 207);
-    		foreground = new Color(113, 36, 36);
-    		border = new Color(203, 135, 135);
-    		icon = new ImageIcon("src/icons/leftred_32.png");
-    		button.setText("Tilbake");
-    	}
-    	button.setIcon(icon);
-        button.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
-        button.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(border, 2), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        button.setBackground(background);
-        button.setForeground(foreground);
-        button.setIconTextGap(10);
-        button.setOpaque(true);
-        button.setPreferredSize(new Dimension(140, 20));
-    }
-	
 
 }

@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import database.Database;
+
 import view.Error;
 
 /**
@@ -209,7 +211,7 @@ public class Order {
 			Database db;
 			db = Database.getDatabase();
 			ResultSet rs = db.select("SELECT * FROM orders WHERE status='" + status1 + "' OR status='" + status2 
-									+ "' ORDER BY time ASC");
+									+ "' ORDER BY time DESC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));
@@ -237,7 +239,7 @@ public class Order {
 		try {
 			Database db;
 			db = Database.getDatabase();
-			ResultSet rs = db.select("SELECT * FROM orders ORDER BY time ASC");
+			ResultSet rs = db.select("SELECT * FROM orders ORDER BY time DESC");
 			while(rs.next()){
 				ArrayList<Product> products = Product.getProductsFromOrder(rs.getInt("idorder"));
 				Customer customer = Customer.getCustomerFromOrder(rs.getInt("customer_idcustomer"));

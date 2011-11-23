@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import database.Database;
+
 import view.Error;
 
 /**
@@ -98,8 +100,7 @@ public class Product {
 			}
 			return products;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}	
 		return null;
 	}
@@ -128,8 +129,7 @@ public class Product {
 			}
 			return products;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return null;
 	}
@@ -150,12 +150,14 @@ public class Product {
 				String name = rs.getString("name");
 				String comment = rs.getString("comments");
 				int visability = rs.getInt("visability");
-				products.add(new Product(idProduct, name, price, 1, comment, visability));
+				if(name.equals("Frakt"))
+					products.add(DeliveryFee.getDeliveryFee());
+				else
+					products.add(new Product(idProduct, name, price, 1, comment, visability));
 			}
 			return products;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return null;
 	}
@@ -211,6 +213,14 @@ public class Product {
 			Error.showMessage("Det eksisterer et annet produkt med dette navnet.");
 			return false;
 		}
+		//Must update the price because of the singleton pattern
+		if (p instanceof DeliveryFee){
+			if (!name.equals(p.name)){
+				Error.showMessage("Kan ikke endre navnet på produktet frakt.");
+				return false;
+			}
+			p.setPrice(price);
+		}
 		Database db = Database.getDatabase();
 		String query = "UPDATE product SET name='" + name + "', price='" + price + 
 						"', comments='" + comment +"' WHERE name='" + p.name + "'";
@@ -233,7 +243,7 @@ public class Product {
 				return true;
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Error.databaseError();
 		}
 		return false;
 	}
