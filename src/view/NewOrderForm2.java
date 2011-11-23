@@ -382,8 +382,6 @@ private Customer customer;
         ArrayList<Product> productsInOrder = ManageOrder.getProductsInOrder(order);
         priceLabel.setText(ManageOrder.formatPrice(ManageOrder.getTotalPrice(order)));
 
-        int counter = 0;
-        
         int i = 0;
         for (Product p : productsInOrder) {
         	final Product product = p;
