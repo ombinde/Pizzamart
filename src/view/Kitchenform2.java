@@ -1,7 +1,5 @@
 package view;
 
-//no.ntnu.course
-
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -14,15 +12,19 @@ import controller.ChefController;
 import controller.ManageOrder;
 
 /**
+ * A class for displaying the Kitchenform2.
  * 
- * @author Morten Vaale Noddeland
  */
 @SuppressWarnings("serial")
 public class Kitchenform2 extends javax.swing.JFrame {
 
 	private Order order;
 
-	/** Creates new form KitchenForm2 */
+	/**
+	 * Creates new form KitchenForm2 and shows the order that is given to the
+	 * user.
+	 * 
+	 */
 	public Kitchenform2(Order order) {
 		this.order = order;
 		initComponents();
@@ -77,19 +79,15 @@ public class Kitchenform2 extends javax.swing.JFrame {
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
 				javax.swing.GroupLayout.Alignment.TRAILING,
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(headerLabel,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 800,
 								Short.MAX_VALUE).addContainerGap()));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(9, 9, 9)
-						.addComponent(headerLabel)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+				topPanelLayout.createSequentialGroup().addGap(9, 9, 9)
+						.addComponent(headerLabel).addContainerGap(
+								javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)));
 
 		middlePanel.setBackground(new java.awt.Color(253, 253, 253));
@@ -197,8 +195,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
 		productsPanelLayout.setHorizontalGroup(productsPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						productsPanelLayout
-								.createSequentialGroup()
+						productsPanelLayout.createSequentialGroup()
 								.addComponent(quantityPanel,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -251,15 +248,13 @@ public class Kitchenform2 extends javax.swing.JFrame {
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addComponent(commentHeaderLabel,
 						javax.swing.GroupLayout.DEFAULT_SIZE, 840,
-						Short.MAX_VALUE)
-				.addComponent(commentScrollPane,
+						Short.MAX_VALUE).addComponent(commentScrollPane,
 						javax.swing.GroupLayout.DEFAULT_SIZE, 840,
 						Short.MAX_VALUE));
 		commentPanelLayout.setVerticalGroup(commentPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						commentPanelLayout
-								.createSequentialGroup()
+						commentPanelLayout.createSequentialGroup()
 								.addComponent(commentHeaderLabel,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -382,50 +377,56 @@ public class Kitchenform2 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																false)
-																.addComponent(
-																		middlePanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		0,
-																		840,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		topPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		840,
-																		Short.MAX_VALUE))
-												.addComponent(
-														bottomPanel,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														840, Short.MAX_VALUE))));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.LEADING)
+														.addGroup(
+																layout
+																		.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.TRAILING,
+																				false)
+																		.addComponent(
+																				middlePanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				0,
+																				840,
+																				Short.MAX_VALUE)
+																		.addComponent(
+																				topPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				840,
+																				Short.MAX_VALUE))
+														.addComponent(
+																bottomPanel,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																840,
+																Short.MAX_VALUE))));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addComponent(topPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(middlePanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(bottomPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-								javax.swing.GroupLayout.PREFERRED_SIZE)));
+				layout.createSequentialGroup().addComponent(topPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+						javax.swing.GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+						70, javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}
 
+	/**
+	 * Displays the products and comment.
+	 */
 	private void displayProducts() {
 		// Create labels for all products
 		ArrayList<ArrayList<JLabel>> labels = createProductLabels();
@@ -440,6 +441,11 @@ public class Kitchenform2 extends javax.swing.JFrame {
 
 	}
 
+	/**
+	 * Creates an ArraList with JLabels containing a product.
+	 * 
+	 * @return ArrayList with JLabels
+	 */
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
 		ArrayList<Product> productsInOrder = ManageOrder
 				.getProductsInOrder(order);
@@ -487,6 +493,11 @@ public class Kitchenform2 extends javax.swing.JFrame {
 
 	}
 
+	/**
+	 * Sets the quantity panel layout to the quantity labels given.
+	 * 
+	 * @param quantityLabels
+	 */
 	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
 		javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(
 				quantityPanel);
@@ -511,6 +522,11 @@ public class Kitchenform2 extends javax.swing.JFrame {
 				.addGroup(tempVerticalGroup));
 	}
 
+	/**
+	 * Sets the product panel layout to the product labels given.
+	 * 
+	 * @param productLabels
+	 */
 	private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
 		javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(
 				productPanel);
@@ -535,6 +551,11 @@ public class Kitchenform2 extends javax.swing.JFrame {
 				.addGroup(tempVerticalGroup));
 	}
 
+	/**
+	 * Sets the description panel layout to the product labels given.
+	 * 
+	 * @param productLabels
+	 */
 	private void setDescriptionPanelLayout(ArrayList<JLabel> productLabels) {
 		javax.swing.GroupLayout descriptionPanelLayout = new javax.swing.GroupLayout(
 				descriptionPanel);
@@ -560,12 +581,25 @@ public class Kitchenform2 extends javax.swing.JFrame {
 
 	}
 
+	/**
+	 * Sets the Kitchenform1 visible, and closes this form.
+	 * 
+	 * @param evt
+	 */
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		Kitchenform1 form = new Kitchenform1();
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Changes the status of the order. If the order is not started, it will be
+	 * marked as started and the icon will change. If the order is already
+	 * started, it will be marked as finished, and this form will close and
+	 * Kitchenform1 will be visible.
+	 * 
+	 * @param evt
+	 */
 	private void startFinishButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		if (order.getStatus().equals("Bestilt")) {
 			ChefController.startOrder(order);

@@ -1,7 +1,5 @@
 package view;
 
-//no.ntnu.course
-
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -14,8 +12,8 @@ import model.Order;
 import controller.ManageOrder;
 
 /**
+ * Class for displaying EditForm1.
  * 
- * @author Morten Vaale Noddeland
  */
 @SuppressWarnings("serial")
 public class EditForm1 extends javax.swing.JFrame {
@@ -61,9 +59,7 @@ public class EditForm1 extends javax.swing.JFrame {
 		topPanel.setLayout(topPanelLayout);
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(headerLabel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 760,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -71,11 +67,9 @@ public class EditForm1 extends javax.swing.JFrame {
 								Short.MAX_VALUE)));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(9, 9, 9)
-						.addComponent(headerLabel)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+				topPanelLayout.createSequentialGroup().addGap(9, 9, 9)
+						.addComponent(headerLabel).addContainerGap(
+								javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)));
 
 		middlePanel.setBackground(new java.awt.Color(253, 253, 253));
@@ -133,15 +127,13 @@ public class EditForm1 extends javax.swing.JFrame {
 		bottomPanelLayout.setHorizontalGroup(bottomPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						bottomPanelLayout
-								.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(backButton,
+						bottomPanelLayout.createSequentialGroup()
+								.addContainerGap().addComponent(backButton,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										140,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(505, 505, 505)
-								.addComponent(updateButton,
+								.addGap(505, 505, 505).addComponent(
+										updateButton,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										140,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -175,51 +167,57 @@ public class EditForm1 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING)
-												.addComponent(
-														middlePanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														800, Short.MAX_VALUE)
-												.addGroup(
-														layout.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																false)
-																.addComponent(
-																		bottomPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		topPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		800,
-																		Short.MAX_VALUE)))));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								javax.swing.GroupLayout.Alignment.TRAILING,
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(
+																middlePanel,
+																javax.swing.GroupLayout.Alignment.LEADING,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																800,
+																Short.MAX_VALUE)
+														.addGroup(
+																layout
+																		.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.TRAILING,
+																				false)
+																		.addComponent(
+																				bottomPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				Short.MAX_VALUE)
+																		.addComponent(
+																				topPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				800,
+																				Short.MAX_VALUE)))));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addComponent(topPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(middlePanel,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 470,
-								Short.MAX_VALUE)
-						.addComponent(bottomPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-								javax.swing.GroupLayout.PREFERRED_SIZE)));
+				layout.createSequentialGroup().addComponent(topPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						middlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 470,
+						Short.MAX_VALUE).addComponent(bottomPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+						javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}
 
+	/**
+	 * Updates the middle panel with orders.
+	 */
 	private void updateMiddlePanel() {
 		ArrayList<javax.swing.JLabel> orders = createOrderLabels();
 
@@ -231,6 +229,11 @@ public class EditForm1 extends javax.swing.JFrame {
 		setInnerMiddlePanelLayout(innerMiddlePanelLayout, orders);
 	}
 
+	/**
+	 * Creates an ArrayList with JLabels containing an order.
+	 * 
+	 * @return ArrayList with JLabels.
+	 */
 	private ArrayList<JLabel> createOrderLabels() {
 		ArrayList<javax.swing.JLabel> labels = new ArrayList<javax.swing.JLabel>();
 		ArrayList<Order> finishedOrders = ManageOrder.getOrdersInProcess();
@@ -238,10 +241,10 @@ public class EditForm1 extends javax.swing.JFrame {
 		for (int i = 0; i < finishedOrders.size(); i++) {
 			final Order order = finishedOrders.get(i);
 
-			ArrayList<JLabel> label = Labels.createTwoLineLabel(
-					order.getDateAndTime() + " "
-							+ order.getCustomer().getName(),
-					"Status: " + order.getStatus(), "blue");
+			ArrayList<JLabel> label = Labels.createTwoLineLabel(order
+					.getDateAndTime()
+					+ " " + order.getCustomer().getName(), "Status: "
+					+ order.getStatus(), "blue");
 
 			label.get(0).addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -260,6 +263,12 @@ public class EditForm1 extends javax.swing.JFrame {
 		return labels;
 	}
 
+	/**
+	 * Sets the inner middle panel layout with the JLabels containing orders.
+	 * 
+	 * @param innerMiddlePanelLayout
+	 * @param orders
+	 */
 	private void setInnerMiddlePanelLayout(GroupLayout innerMiddlePanelLayout,
 			ArrayList<JLabel> orders) {
 		// Set horizontal axis
@@ -298,16 +307,32 @@ public class EditForm1 extends javax.swing.JFrame {
 				.addGroup(tempVerticalGroup));
 	}
 
+	/**
+	 * Sets the MainMenuForm to visible and, closes this form.
+	 * 
+	 * @param evt
+	 */
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		MainMenuForm form = new MainMenuForm();
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Updates the middle panel with orders.
+	 * 
+	 * @param evt
+	 */
 	private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		updateMiddlePanel();
 	}
 
+	/**
+	 * Sets the EditForm2 visible with the order that is clicked on. This form
+	 * closes.
+	 * 
+	 * @param order
+	 */
 	private void orderLabelMouseClicked(Order order) {
 		EditForm2 form = new EditForm2(order);
 		form.setVisible(true);

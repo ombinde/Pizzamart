@@ -1,7 +1,5 @@
 package view;
 
-//no.ntnu.course
-
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -10,8 +8,7 @@ import javax.swing.BorderFactory;
 import model.Order;
 
 /**
- * 
- * @author Morten Vaale Noddeland, Ole J. Pettersen
+ * A class for displaying the HistoryForm1 form.
  * 
  */
 @SuppressWarnings("serial")
@@ -58,9 +55,7 @@ public class HistoryForm1 extends javax.swing.JFrame {
 		topPanel.setLayout(topPanelLayout);
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(headerLabel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 760,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -68,11 +63,9 @@ public class HistoryForm1 extends javax.swing.JFrame {
 								Short.MAX_VALUE)));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(9, 9, 9)
-						.addComponent(headerLabel)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+				topPanelLayout.createSequentialGroup().addGap(9, 9, 9)
+						.addComponent(headerLabel).addContainerGap(
+								javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)));
 
 		middlePanel.setBackground(new java.awt.Color(253, 253, 253));
@@ -147,13 +140,15 @@ public class HistoryForm1 extends javax.swing.JFrame {
 														.addGroup(
 																bottomPanelLayout
 																		.createSequentialGroup()
-																		.addGap(18,
+																		.addGap(
+																				18,
 																				18,
 																				18))
 														.addGroup(
 																bottomPanelLayout
 																		.createSequentialGroup()
-																		.addGap(484,
+																		.addGap(
+																				484,
 																				484,
 																				484)))
 										.addGap(18, 18, 18)
@@ -200,51 +195,57 @@ public class HistoryForm1 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING)
-												.addComponent(
-														middlePanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														800, Short.MAX_VALUE)
-												.addGroup(
-														layout.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																false)
-																.addComponent(
-																		bottomPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		topPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		800,
-																		Short.MAX_VALUE)))));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								javax.swing.GroupLayout.Alignment.TRAILING,
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(
+																middlePanel,
+																javax.swing.GroupLayout.Alignment.LEADING,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																800,
+																Short.MAX_VALUE)
+														.addGroup(
+																layout
+																		.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.TRAILING,
+																				false)
+																		.addComponent(
+																				bottomPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				Short.MAX_VALUE)
+																		.addComponent(
+																				topPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				800,
+																				Short.MAX_VALUE)))));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addComponent(topPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(middlePanel,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 470,
-								Short.MAX_VALUE)
-						.addComponent(bottomPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-								javax.swing.GroupLayout.PREFERRED_SIZE)));
+				layout.createSequentialGroup().addComponent(topPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						middlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 470,
+						Short.MAX_VALUE).addComponent(bottomPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+						javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}
 
+	/**
+	 * Updates the middle panel with orders.
+	 */
 	private void updateMiddlePanel() {
 		ArrayList<javax.swing.JLabel> orders = createOrderLabels();
 
@@ -257,6 +258,11 @@ public class HistoryForm1 extends javax.swing.JFrame {
 
 	}
 
+	/**
+	 * Creates an ArrayList with JLabels containing an order.
+	 * 
+	 * @return ArrayList with JLabels
+	 */
 	private ArrayList<javax.swing.JLabel> createOrderLabels() {
 
 		ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
@@ -286,6 +292,12 @@ public class HistoryForm1 extends javax.swing.JFrame {
 		return orders;
 	}
 
+	/**
+	 * Sets the inner middle panel layout with the orders.
+	 * 
+	 * @param innerMiddlePanelLayout
+	 * @param orders
+	 */
 	private void setInnerMiddlePanelLayout(
 			javax.swing.GroupLayout innerMiddlePanelLayout,
 			ArrayList<javax.swing.JLabel> orders) {
@@ -326,18 +338,33 @@ public class HistoryForm1 extends javax.swing.JFrame {
 
 	}
 
+	/**
+	 * Sets the HistoryForm2 as visible, and closes this form.
+	 * 
+	 * @param order
+	 */
 	private void orderLabelMouseClicked(Order order) {
 		HistoryForm2 form = new HistoryForm2(order);
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Sets the MainMenuForm as visible, and closes this form.
+	 * 
+	 * @param evt
+	 */
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		MainMenuForm form = new MainMenuForm();
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Updates the middle panel with orders.
+	 * 
+	 * @param evt
+	 */
 	private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		this.updateMiddlePanel();
 	}

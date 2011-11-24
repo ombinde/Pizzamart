@@ -1,7 +1,5 @@
 package view;
 
-//no.ntnu.course
-
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -14,7 +12,7 @@ import model.Order;
 import model.Product;
 
 /**
- *
+ * A class for displaying the PickUpForm2.
  */
 @SuppressWarnings("serial")
 public class PickupForm2 extends javax.swing.JFrame {
@@ -80,19 +78,15 @@ public class PickupForm2 extends javax.swing.JFrame {
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
 				javax.swing.GroupLayout.Alignment.TRAILING,
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(headerLabel,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 760,
 								Short.MAX_VALUE).addContainerGap()));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(9, 9, 9)
-						.addComponent(headerLabel)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+				topPanelLayout.createSequentialGroup().addGap(9, 9, 9)
+						.addComponent(headerLabel).addContainerGap(
+								javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)));
 
 		middlePanel.setBackground(new java.awt.Color(253, 253, 253));
@@ -173,8 +167,8 @@ public class PickupForm2 extends javax.swing.JFrame {
 										.addContainerGap(108, Short.MAX_VALUE))
 						.addComponent(commentHeaderLabel,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 369,
-								Short.MAX_VALUE)
-						.addComponent(commentScrollPane,
+								Short.MAX_VALUE).addComponent(
+								commentScrollPane,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 369,
 								Short.MAX_VALUE));
 		rightPanelLayout
@@ -305,8 +299,7 @@ public class PickupForm2 extends javax.swing.JFrame {
 		productsPanelLayout.setHorizontalGroup(productsPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						productsPanelLayout
-								.createSequentialGroup()
+						productsPanelLayout.createSequentialGroup()
 								.addComponent(quantityPanel,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -346,25 +339,23 @@ public class PickupForm2 extends javax.swing.JFrame {
 		javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(
 				leftPanel);
 		leftPanel.setLayout(leftPanelLayout);
-		leftPanelLayout.setHorizontalGroup(leftPanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(productsHeadersPanel,
-						javax.swing.GroupLayout.DEFAULT_SIZE,
-						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		leftPanelLayout.setHorizontalGroup(leftPanelLayout.createParallelGroup(
+				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				productsHeadersPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 				.addComponent(ProductsScrollPane,
 						javax.swing.GroupLayout.DEFAULT_SIZE, 431,
 						Short.MAX_VALUE));
 		leftPanelLayout.setVerticalGroup(leftPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				leftPanelLayout
-						.createSequentialGroup()
-						.addComponent(productsHeadersPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(ProductsScrollPane,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 422,
-								Short.MAX_VALUE)));
+				leftPanelLayout.createSequentialGroup().addComponent(
+						productsHeadersPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE,
+						javax.swing.GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						ProductsScrollPane,
+						javax.swing.GroupLayout.DEFAULT_SIZE, 422,
+						Short.MAX_VALUE)));
 
 		javax.swing.GroupLayout middlePanelLayout = new javax.swing.GroupLayout(
 				middlePanel);
@@ -372,12 +363,11 @@ public class PickupForm2 extends javax.swing.JFrame {
 		middlePanelLayout.setHorizontalGroup(middlePanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						middlePanelLayout
-								.createSequentialGroup()
-								.addComponent(leftPanel,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
+						middlePanelLayout.createSequentialGroup().addComponent(
+								leftPanel,
+								javax.swing.GroupLayout.PREFERRED_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addComponent(rightPanel,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -493,49 +483,40 @@ public class PickupForm2 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING,
-												false)
-												.addComponent(
-														bottomPanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE)
-												.addComponent(
-														topPanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														800, Short.MAX_VALUE)
-												.addComponent(
-														middlePanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														0,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE))));
+		layout.setHorizontalGroup(layout.createParallelGroup(
+				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				javax.swing.GroupLayout.Alignment.TRAILING,
+				layout.createSequentialGroup().addGroup(
+						layout.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.TRAILING,
+								false).addComponent(bottomPanel,
+								javax.swing.GroupLayout.Alignment.LEADING,
+								javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE).addComponent(topPanel,
+								javax.swing.GroupLayout.Alignment.LEADING,
+								javax.swing.GroupLayout.DEFAULT_SIZE, 800,
+								Short.MAX_VALUE).addComponent(middlePanel,
+								javax.swing.GroupLayout.Alignment.LEADING, 0,
+								javax.swing.GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE))));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addComponent(topPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(middlePanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(bottomPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-								javax.swing.GroupLayout.PREFERRED_SIZE)));
+				layout.createSequentialGroup().addComponent(topPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+						javax.swing.GroupLayout.DEFAULT_SIZE,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						bottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+						70, javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}
 
+	/**
+	 * Displays the info in the order.
+	 */
 	private void displayOrder() {
 		ArrayList<ArrayList<JLabel>> labels = createProductLabels();
 
@@ -549,6 +530,12 @@ public class PickupForm2 extends javax.swing.JFrame {
 				.getTotalPrice(order)));
 	}
 
+	/**
+	 * Creates an ArrayList containing an ArrayList with JLabels containing
+	 * productlabels and quantity labels.
+	 * 
+	 * @return ArrayList
+	 */
 	private ArrayList<ArrayList<JLabel>> createProductLabels() {
 		ArrayList<javax.swing.JLabel> quantityLabels = new ArrayList<javax.swing.JLabel>();
 		ArrayList<javax.swing.JLabel> productLabels = new ArrayList<javax.swing.JLabel>();
@@ -575,6 +562,11 @@ public class PickupForm2 extends javax.swing.JFrame {
 		return labels;
 	}
 
+	/**
+	 * Sets the quantity panel layout to the quantity labels given.
+	 * 
+	 * @param quantityLabels
+	 */
 	private void setQuantityPanelLayout(ArrayList<JLabel> quantityLabels) {
 		javax.swing.GroupLayout quantityPanelLayout = new javax.swing.GroupLayout(
 				quantityPanel);
@@ -599,6 +591,11 @@ public class PickupForm2 extends javax.swing.JFrame {
 				.addGroup(tempVerticalGroup));
 	}
 
+	/**
+	 * Sets the product panel layout to the product labels given
+	 * 
+	 * @param productLabels
+	 */
 	private void setProductPanelLayout(ArrayList<JLabel> productLabels) {
 		javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(
 				productPanel);
@@ -623,12 +620,23 @@ public class PickupForm2 extends javax.swing.JFrame {
 				.addGroup(tempVerticalGroup));
 	}
 
+	/**
+	 * Sets the PickUpForm1 visible and closes this form.
+	 * 
+	 * @param evt
+	 */
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		PickupForm1 form = new PickupForm1();
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Sets the status of the order to picked up, and sets PickUpForm1 to
+	 * visible. This form closes.
+	 * 
+	 * @param evt
+	 */
 	private void finishButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		ManageOrder.setStatusToPickedUp(order);
 		PickupForm1 form = new PickupForm1();
@@ -636,6 +644,11 @@ public class PickupForm2 extends javax.swing.JFrame {
 		this.setVisible(false);
 	}
 
+	/**
+	 * Prints out the receipt of the order.
+	 * 
+	 * @param evt
+	 */
 	private void receiptButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		ManageOrder.printReceipt(order);
 	}

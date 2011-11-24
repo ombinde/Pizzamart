@@ -10,17 +10,18 @@ import javax.swing.JLabel;
  * Contains static methods for creating buttons. It also contains methods for
  * changing the color or icon of a button.
  * 
- * @author morten
- * 
  */
 public class Button {
 
 	/**
+	 * Creates and returns a JLabel with the text given as parameter. The color
+	 * of the button will be set according to the color string. The icon will be
+	 * set according to the icon string.
 	 * 
 	 * @param text
 	 * @param color
 	 * @param icon
-	 * @return
+	 * @return JLabel A button implemented as a JLabel.
 	 */
 	public static JLabel createButton(String text, String color, String icon) {
 		JLabel button = new JLabel();
@@ -66,6 +67,13 @@ public class Button {
 		return button;
 	}
 
+	/**
+	 * Takes in a JLabel, and changes the color of it to the color given as
+	 * parameter.
+	 * 
+	 * @param button
+	 * @param color
+	 */
 	public static void changeColor(JLabel button, String color) {
 		Color background, foreground, border;
 
@@ -95,6 +103,12 @@ public class Button {
 
 	}
 
+	/**
+	 * Takes a JLabel in and changes the icon to the icon given as a string.
+	 * 
+	 * @param button
+	 * @param icon
+	 */
 	public static void changeIcon(JLabel button, String icon) {
 		java.net.URL URL;
 		try {

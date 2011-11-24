@@ -1,7 +1,5 @@
 package view;
 
-//no.ntnu.course
-
 import java.awt.Color;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,8 +13,8 @@ import model.Product;
 import controller.ChefController;
 
 /**
+ * Class for displaying the KitchenForm1.
  * 
- * @author Morten Vaale Noddeland
  */
 @SuppressWarnings("serial")
 public class Kitchenform1 extends javax.swing.JFrame {
@@ -69,9 +67,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		topPanel.setLayout(topPanelLayout);
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(headerLabel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 760,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -79,11 +75,9 @@ public class Kitchenform1 extends javax.swing.JFrame {
 								Short.MAX_VALUE)));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(9, 9, 9)
-						.addComponent(headerLabel)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+				topPanelLayout.createSequentialGroup().addGap(9, 9, 9)
+						.addComponent(headerLabel).addContainerGap(
+								javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)));
 
 		middlePanel.setBackground(new java.awt.Color(253, 253, 253));
@@ -201,7 +195,8 @@ public class Kitchenform1 extends javax.swing.JFrame {
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
 																				444,
 																				Short.MAX_VALUE)
-																		.addGap(18,
+																		.addGap(
+																				18,
 																				18,
 																				18))
 														.addGroup(
@@ -210,22 +205,26 @@ public class Kitchenform1 extends javax.swing.JFrame {
 																		.createSequentialGroup()
 																		.addComponent(
 																				blueColorLabel)
-																		.addGap(18,
+																		.addGap(
+																				18,
 																				18,
 																				18)
 																		.addComponent(
 																				purpleColorLabel)
-																		.addGap(18,
+																		.addGap(
+																				18,
 																				18,
 																				18)
 																		.addComponent(
 																				redColorLabel)
-																		.addGap(18,
+																		.addGap(
+																				18,
 																				18,
 																				18)
 																		.addComponent(
 																				yellowColorLabel)
-																		.addGap(40,
+																		.addGap(
+																				40,
 																				40,
 																				40)))
 										.addComponent(
@@ -282,52 +281,58 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING)
-												.addComponent(
-														middlePanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														800, Short.MAX_VALUE)
-												.addGroup(
-														layout.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.TRAILING,
-																false)
-																.addComponent(
-																		bottomPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		topPanel,
-																		javax.swing.GroupLayout.Alignment.LEADING,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		800,
-																		Short.MAX_VALUE)))
-								.addGap(40, 40, 40)));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								javax.swing.GroupLayout.Alignment.TRAILING,
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(
+																middlePanel,
+																javax.swing.GroupLayout.Alignment.LEADING,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																800,
+																Short.MAX_VALUE)
+														.addGroup(
+																layout
+																		.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.TRAILING,
+																				false)
+																		.addComponent(
+																				bottomPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				Short.MAX_VALUE)
+																		.addComponent(
+																				topPanel,
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				800,
+																				Short.MAX_VALUE)))
+										.addGap(40, 40, 40)));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addComponent(topPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(middlePanel,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 470,
-								Short.MAX_VALUE)
-						.addComponent(bottomPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 70,
-								javax.swing.GroupLayout.PREFERRED_SIZE)));
+				layout.createSequentialGroup().addComponent(topPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						middlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 470,
+						Short.MAX_VALUE).addComponent(bottomPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 70,
+						javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}
 
+	/**
+	 * Updates the middle panel with orders.
+	 */
 	private void updateMiddlePanel() {
 		ArrayList<javax.swing.JLabel> orders = createOrderLabels();
 
@@ -339,6 +344,11 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		setMiddlePanelLayout(innerMiddlePanelLayout, orders);
 	}
 
+	/**
+	 * Creates an ArrayList with JLables containing an order.
+	 * 
+	 * @return ArrayList with JLabels
+	 */
 	private ArrayList<javax.swing.JLabel> createOrderLabels() {
 
 		ArrayList<javax.swing.JLabel> orders = new ArrayList<javax.swing.JLabel>();
@@ -346,6 +356,7 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		for (int i = 0; i < freshOrders.size(); i++) {
 			final Order order = freshOrders.get(i);
 			String orderText = order.getDateAndTime() + ": ";
+			// Don't need to show the delivery fee product to the chef
 			for (Product product : order.getProductsInOrder()) {
 				if (product instanceof DeliveryFee) {
 					continue;
@@ -361,18 +372,18 @@ public class Kitchenform1 extends javax.swing.JFrame {
 			// Create a label
 			javax.swing.JLabel temp = new javax.swing.JLabel();
 			if (order.getStatus().equals("Lages")) {
-				temp = Labels.createOneLineLabel(
-						orderText.substring(0, orderText.length()), "yellow");
+				temp = Labels.createOneLineLabel(orderText.substring(0,
+						orderText.length()), "yellow");
 			} else if (order.getAllergy()) {
-				temp = Labels.createOneLineLabel(
-						orderText.substring(0, orderText.length()), "purple");
+				temp = Labels.createOneLineLabel(orderText.substring(0,
+						orderText.length()), "purple");
 			} else if ((order.getComment() != null)
 					&& !order.getComment().equals("") || order.getAllergy()) {
-				temp = Labels.createOneLineLabel(
-						orderText.substring(0, orderText.length()), "red");
+				temp = Labels.createOneLineLabel(orderText.substring(0,
+						orderText.length()), "red");
 			} else {
-				temp = Labels.createOneLineLabel(
-						orderText.substring(0, orderText.length()), "blue");
+				temp = Labels.createOneLineLabel(orderText.substring(0,
+						orderText.length()), "blue");
 			}
 			temp.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -386,6 +397,12 @@ public class Kitchenform1 extends javax.swing.JFrame {
 		return orders;
 	}
 
+	/**
+	 * Sets the middle panel with the order labels.
+	 * 
+	 * @param innerMiddlePanelLayout
+	 * @param orders
+	 */
 	private void setMiddlePanelLayout(
 			javax.swing.GroupLayout innerMiddlePanelLayout,
 			ArrayList<javax.swing.JLabel> orders) {
@@ -426,18 +443,33 @@ public class Kitchenform1 extends javax.swing.JFrame {
 				.addGroup(tempVerticalGroup));
 	}
 
+	/**
+	 * Sets KitchenForm2 to visible, and closes this form.
+	 * 
+	 * @param order
+	 */
 	private void orderLabelMouseClicked(Order order) {
 		Kitchenform2 form = new Kitchenform2(order);
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Sets the MainMenuForm to visible, and closes this form.
+	 * 
+	 * @param evt
+	 */
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		MainMenuForm form = new MainMenuForm();
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * Updates the middle panel with orders.
+	 * 
+	 * @param evt
+	 */
 	private void UpdateButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		this.updateMiddlePanel();
 	}

@@ -23,7 +23,7 @@ public class Properties {
 	private static Properties properties;
 
 	/**
-	 * Creates a instanceof the properties Object.
+	 * Creates a instance of the properties Object.
 	 * 
 	 * @param name
 	 * @param address

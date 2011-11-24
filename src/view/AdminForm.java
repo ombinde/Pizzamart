@@ -16,15 +16,17 @@ import model.Product;
 import model.Properties;
 
 /**
- * 
- * @author Morten Vaale Noddeland
+ * Form for the administrator view.
  */
 @SuppressWarnings("serial")
 public class AdminForm extends JFrame {
 
 	private Product currentProduct;
 
-	/** Creates new form adminForm */
+	/**
+	 * Creates new form adminForm
+	 * 
+	 */
 	public AdminForm() {
 		initComponents();
 	}
@@ -93,17 +95,13 @@ public class AdminForm extends JFrame {
 		topPanel.setLayout(topPanelLayout);
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(newOrderLabel,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 760,
 								Short.MAX_VALUE).addContainerGap()));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(11, 11, 11)
+				topPanelLayout.createSequentialGroup().addGap(11, 11, 11)
 						.addComponent(newOrderLabel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 39,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,8 +321,7 @@ public class AdminForm extends JFrame {
 		leftProductPanelLayout.setVerticalGroup(leftProductPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						leftProductPanelLayout
-								.createSequentialGroup()
+						leftProductPanelLayout.createSequentialGroup()
 								.addComponent(searchField,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -341,8 +338,7 @@ public class AdminForm extends JFrame {
 		productPanelLayout.setHorizontalGroup(productPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						productPanelLayout
-								.createSequentialGroup()
+						productPanelLayout.createSequentialGroup()
 								.addComponent(leftProductPanel,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -500,7 +496,8 @@ public class AdminForm extends JFrame {
 																										.createSequentialGroup()
 																										.addComponent(
 																												postalAddressLabel)
-																										.addGap(210,
+																										.addGap(
+																												210,
 																												210,
 																												210))
 																						.addGroup(
@@ -532,12 +529,11 @@ public class AdminForm extends JFrame {
 																		.addContainerGap())))
 						.addComponent(nameAddressHeaderLabel,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 375,
-								Short.MAX_VALUE)
-						.addGroup(
+								Short.MAX_VALUE).addGroup(
 								leftRestaurantPanelLayout
 										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(restaurantNameLabel)
+										.addContainerGap().addComponent(
+												restaurantNameLabel)
 										.addContainerGap(322, Short.MAX_VALUE)));
 		leftRestaurantPanelLayout
 				.setVerticalGroup(leftRestaurantPanelLayout
@@ -645,8 +641,8 @@ public class AdminForm extends JFrame {
 						.addGroup(
 								rightRestaurantPanelLayout
 										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(freeDeliveryLimitLabel)
+										.addContainerGap().addComponent(
+												freeDeliveryLimitLabel)
 										.addContainerGap(201, Short.MAX_VALUE))
 						.addGroup(
 								rightRestaurantPanelLayout
@@ -704,8 +700,7 @@ public class AdminForm extends JFrame {
 		restaurantPanelLayout.setHorizontalGroup(restaurantPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						restaurantPanelLayout
-								.createSequentialGroup()
+						restaurantPanelLayout.createSequentialGroup()
 								.addComponent(leftRestaurantPanel,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -718,8 +713,7 @@ public class AdminForm extends JFrame {
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addComponent(leftRestaurantPanel,
 						javax.swing.GroupLayout.DEFAULT_SIZE, 392,
-						Short.MAX_VALUE)
-				.addComponent(rightRestaurantPanel,
+						Short.MAX_VALUE).addComponent(rightRestaurantPanel,
 						javax.swing.GroupLayout.DEFAULT_SIZE,
 						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
@@ -773,10 +767,8 @@ public class AdminForm extends JFrame {
 		bottomPanelLayout.setHorizontalGroup(bottomPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						bottomPanelLayout
-								.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(backButton,
+						bottomPanelLayout.createSequentialGroup()
+								.addContainerGap().addComponent(backButton,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
 										130,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -784,13 +776,10 @@ public class AdminForm extends JFrame {
 		bottomPanelLayout.setVerticalGroup(bottomPanelLayout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 				.addGroup(
-						bottomPanelLayout
-								.createSequentialGroup()
-								.addGap(10, 10, 10)
-								.addComponent(backButton,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										50,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
+						bottomPanelLayout.createSequentialGroup().addGap(10,
+								10, 10).addComponent(backButton,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addContainerGap(
 										javax.swing.GroupLayout.DEFAULT_SIZE,
 										Short.MAX_VALUE)));
@@ -798,38 +787,40 @@ public class AdminForm extends JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(
-														topPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														bottomPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														middlePanel,
-														javax.swing.GroupLayout.Alignment.TRAILING,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														800,
-														javax.swing.GroupLayout.PREFERRED_SIZE))));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.LEADING)
+														.addComponent(
+																topPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																bottomPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																middlePanel,
+																javax.swing.GroupLayout.Alignment.TRAILING,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																800,
+																javax.swing.GroupLayout.PREFERRED_SIZE))));
 		layout.setVerticalGroup(layout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				layout.createSequentialGroup()
-						.addComponent(topPanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 60,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(middlePanel,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 450,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
+				layout.createSequentialGroup().addComponent(topPanel,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 60,
+						javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+						middlePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+						450, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addComponent(bottomPanel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 70,
 								javax.swing.GroupLayout.PREFERRED_SIZE)));
@@ -850,6 +841,14 @@ public class AdminForm extends JFrame {
 
 	}
 
+	/**
+	 * Takes a query and creates a product label for each product that is
+	 * relevant to the query.
+	 * 
+	 * @param query
+	 *            A query that will be used for getting the relevant products.
+	 * @return AraryList with the JLabels
+	 */
 	private ArrayList<JLabel> createProductLabels(String query) {
 		ArrayList<javax.swing.JLabel> productLabels = new ArrayList<javax.swing.JLabel>();
 		ArrayList<Product> products = AdminController
@@ -858,8 +857,8 @@ public class AdminForm extends JFrame {
 		for (int i = 0; i < products.size(); i++) {
 			final Product product = products.get(i);
 			// Create a new JLabel
-			javax.swing.JLabel label = Labels.createBorderlessLabel(
-					product.getName(), i);
+			javax.swing.JLabel label = Labels.createBorderlessLabel(product
+					.getName(), i);
 			label.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent evt) {
 					productLabelMouseClicked(product);
@@ -871,6 +870,12 @@ public class AdminForm extends JFrame {
 		return productLabels;
 	}
 
+	/**
+	 * Takes in an ArrayList of JLabels containing products, and sets them in
+	 * the inner left product layout.
+	 * 
+	 * @param products
+	 */
 	private void setInnerLeftProductPanelLayout(ArrayList<JLabel> products) {
 		javax.swing.GroupLayout innerLeftProductPanelLayout = new javax.swing.GroupLayout(
 				innerLeftProductPanel);
@@ -902,6 +907,11 @@ public class AdminForm extends JFrame {
 
 	boolean searchFieldChanged;
 
+	/**
+	 * Uses the text typed in to generate panels with the text typed.
+	 * 
+	 * @param evt
+	 */
 	private void searchFieldKeyTyped(KeyEvent evt) {
 		String letter = this.searchField.getText();
 		if ((!this.searchFieldChanged) && (letter.length() == 4)) {
@@ -914,6 +924,11 @@ public class AdminForm extends JFrame {
 		displayAdminPanel(searchField.getText());
 	}
 
+	/**
+	 * Sets the current product to null, and clears all the fields.
+	 * 
+	 * @param evt
+	 */
 	private void searchFieldMouseClicked(MouseEvent evt) {
 		searchField.setText("");
 		currentProduct = null;
@@ -926,6 +941,14 @@ public class AdminForm extends JFrame {
 		displayAdminPanel("");
 	}
 
+	/**
+	 * Sets the product given as selected, and shows the product info to the
+	 * user.
+	 * 
+	 * @param product
+	 *            That is clicked on
+	 * 
+	 */
 	private void productLabelMouseClicked(Product product) {
 		currentProduct = product;
 		productNameField.setText(product.getName());
@@ -942,12 +965,25 @@ public class AdminForm extends JFrame {
 
 	}
 
+	/**
+	 * Sets the MainMenuForm visible.
+	 * 
+	 * @param evt
+	 */
 	private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		MainMenuForm form = new MainMenuForm();
 		form.setVisible(true);
 		this.setVisible(false);
 	}
 
+	/**
+	 * If no existing product is chosen a new product will be added to the
+	 * database. Else it will update the current product. The info that is typed
+	 * in by the user will be validated, and if something is incorrect the
+	 * fields will be marked with another color.
+	 * 
+	 * @param evt
+	 */
 	private void addEditButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		boolean legalValues = true;
 		String name = this.productNameField.getText();
@@ -1000,6 +1036,11 @@ public class AdminForm extends JFrame {
 
 	}
 
+	/**
+	 * Deletes the current product.
+	 * 
+	 * @param evt
+	 */
 	private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		if (currentProduct != null
 				&& AdminController.deleteProduct(currentProduct)) {
@@ -1018,6 +1059,13 @@ public class AdminForm extends JFrame {
 		}
 	}
 
+	/**
+	 * Updates the restaurant info if the information entered is valid. If some
+	 * fields are not valid, those will be marked with another color.
+	 * 
+	 * @param evt
+	 *            MouseEvent
+	 */
 	private void editButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		String name = restaurantNameField.getText();
 		String phone = telephoneField.getText();
@@ -1079,6 +1127,9 @@ public class AdminForm extends JFrame {
 		}
 	}
 
+	/**
+	 * Clears all the product fields and sets the current product to null.
+	 */
 	private void clearProductFields() {
 		currentProduct = null;
 		this.productNameLabel.setBackground(Color.WHITE);

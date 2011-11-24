@@ -102,6 +102,11 @@ public class AdminController {
 				limitFreeDelivery);
 	}
 
+	/**
+	 * Returns the properties for the restaurant
+	 * 
+	 * @return Properties
+	 */
 	public static Properties getProperties() {
 		return Properties.getProperties();
 	}

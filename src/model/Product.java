@@ -102,7 +102,8 @@ public class Product {
 				if (name.equals("Frakt"))
 					products.add(DeliveryFee.getDeliveryFee());
 				else
-					products.add(new Product(idProduct, name, price, q, comment));
+					products
+							.add(new Product(idProduct, name, price, q, comment));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -132,7 +133,8 @@ public class Product {
 				if (name.equals("Frakt"))
 					products.add(DeliveryFee.getDeliveryFee());
 				else
-					products.add(new Product(idProduct, name, price, 1,	comment));
+					products
+							.add(new Product(idProduct, name, price, 1, comment));
 			}
 			return products;
 		} catch (SQLException e) {
@@ -161,7 +163,8 @@ public class Product {
 				if (name.equals("Frakt"))
 					products.add(DeliveryFee.getDeliveryFee());
 				else
-					products.add(new Product(idProduct, name, price, 1,	comment));
+					products
+							.add(new Product(idProduct, name, price, 1, comment));
 			}
 			return products;
 		} catch (SQLException e) {

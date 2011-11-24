@@ -6,8 +6,21 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
+/**
+ * Contains static methods for creating and changing JLabels.
+ * 
+ */
 public class Labels {
 
+	/**
+	 * Creates a 'one line label'. Use for one line with text.
+	 * 
+	 * @param text
+	 *            to be shown in the label.
+	 * @param color
+	 *            of the label.
+	 * @return JLabel
+	 */
 	public static JLabel createOneLineLabel(String text, String color) {
 		javax.swing.JLabel label = new javax.swing.JLabel();
 
@@ -46,6 +59,17 @@ public class Labels {
 		return label;
 	}
 
+	/**
+	 * Creates a 'two lined label'. This should be used for two lines with text.
+	 * 
+	 * @param firstLine
+	 *            Text for the first line
+	 * @param secondLine
+	 *            Text for the second line
+	 * @param color
+	 *            of the label
+	 * @return JLabel
+	 */
 	public static ArrayList<JLabel> createTwoLineLabel(String firstLine,
 			String secondLine, String color) {
 		Color background, foreground, border;
@@ -91,6 +115,15 @@ public class Labels {
 		return label;
 	}
 
+	/**
+	 * Creates a label with no border
+	 * 
+	 * @param text
+	 *            to be displayed in the label
+	 * @param i
+	 *            to decide color
+	 * @return JLabel
+	 */
 	public static JLabel createBorderlessLabel(String text, int i) {
 		javax.swing.JLabel label = new javax.swing.JLabel();
 		label.setText(text);

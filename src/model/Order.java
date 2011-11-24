@@ -78,7 +78,7 @@ public class Order {
 	}
 
 	/**
-	 * Returns the totalprice of an given Order.
+	 * Returns the total price of an given Order.
 	 * 
 	 * @param order
 	 * @return totalprice
@@ -492,6 +492,7 @@ public class Order {
 
 	/**
 	 * Returns the date and time as a string
+	 * 
 	 * @return date and time
 	 */
 	public String getDateAndTime() {
@@ -500,6 +501,7 @@ public class Order {
 
 	/**
 	 * Returns the date as a String.
+	 * 
 	 * @return date
 	 */
 	public String getDate() {
@@ -509,6 +511,7 @@ public class Order {
 
 	/**
 	 * Returns the time as a String
+	 * 
 	 * @return time
 	 */
 	public String getTime() {

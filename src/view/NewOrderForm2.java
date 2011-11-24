@@ -1,7 +1,5 @@
 package view;
 
-//no.ntnu.course
-
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
@@ -17,7 +15,7 @@ import controller.ManageOrder;
 import controller.Validate;
 
 /**
- * This class is used to display the NewOrder part of the program.
+ * This class is used to display the NewOrder2 part of the program.
  */
 @SuppressWarnings("serial")
 public class NewOrderForm2 extends javax.swing.JFrame {
@@ -26,7 +24,13 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 	private Customer customer;
 	private boolean existingOrder;
 
-	/** Creates new form NewOrder2Form */
+	/**
+	 * Creates new form of NewOrder2Form. This should be used when starting a
+	 * new order. It adds the customer to the database.
+	 * 
+	 * @param c
+	 *            Customer
+	 */
 	public NewOrderForm2(Customer c) {
 		ManageOrder.addCustomerToDatabase(c);
 		this.customer = c;
@@ -37,6 +41,13 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 		this.updateLeftPanel(ManageOrder.getRelevantProducts(""));
 	}
 
+	/**
+	 * Creates a new NewOrderForm2. This constructor takes in a customer and an
+	 * order, and should be used when editing an already existing order.
+	 * 
+	 * @param c
+	 * @param o
+	 */
 	public NewOrderForm2(Customer c, Order o) {
 		ManageOrder.addCustomerToDatabase(c);
 		this.customer = c;
@@ -94,9 +105,7 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 		topPanel.setLayout(topPanelLayout);
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addContainerGap()
+				topPanelLayout.createSequentialGroup().addContainerGap()
 						.addComponent(headerLabel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 760,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,11 +113,9 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 								Short.MAX_VALUE)));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(9, 9, 9)
-						.addComponent(headerLabel)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
+				topPanelLayout.createSequentialGroup().addGap(9, 9, 9)
+						.addComponent(headerLabel).addContainerGap(
+								javax.swing.GroupLayout.DEFAULT_SIZE,
 								Short.MAX_VALUE)));
 
 		leftPanel.setBackground(new java.awt.Color(253, 253, 253));
@@ -147,21 +154,17 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 		javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(
 				leftPanel);
 		leftPanel.setLayout(leftPanelLayout);
-		leftPanelLayout.setHorizontalGroup(leftPanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(searchField,
-						javax.swing.GroupLayout.PREFERRED_SIZE, 400,
-						javax.swing.GroupLayout.PREFERRED_SIZE)
-				.addComponent(leftScrollPane,
-						javax.swing.GroupLayout.DEFAULT_SIZE, 400,
-						Short.MAX_VALUE));
+		leftPanelLayout.setHorizontalGroup(leftPanelLayout.createParallelGroup(
+				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 400,
+				javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+				leftScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400,
+				Short.MAX_VALUE));
 		leftPanelLayout.setVerticalGroup(leftPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				leftPanelLayout
-						.createSequentialGroup()
-						.addComponent(searchField,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
+				leftPanelLayout.createSequentialGroup().addComponent(
+						searchField, javax.swing.GroupLayout.PREFERRED_SIZE,
+						50, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addComponent(leftScrollPane,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 312,
 								Short.MAX_VALUE)));
@@ -366,81 +369,94 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING)
-												.addComponent(
-														commentPane,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE)
-												.addComponent(
-														bottomPanel,
-														javax.swing.GroupLayout.Alignment.LEADING,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														Short.MAX_VALUE)
-												.addGroup(
-														javax.swing.GroupLayout.Alignment.LEADING,
-														layout.createParallelGroup(
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								javax.swing.GroupLayout.Alignment.TRAILING,
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.TRAILING)
+														.addComponent(
+																commentPane,
+																javax.swing.GroupLayout.Alignment.LEADING,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
+														.addComponent(
+																bottomPanel,
+																javax.swing.GroupLayout.Alignment.LEADING,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
+														.addGroup(
+																javax.swing.GroupLayout.Alignment.LEADING,
+																layout
+																		.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.LEADING,
+																				false)
+																		.addComponent(
+																				topPanel,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				800,
+																				Short.MAX_VALUE)
+																		.addGroup(
+																				layout
+																						.createSequentialGroup()
+																						.addComponent(
+																								leftPanel,
+																								javax.swing.GroupLayout.PREFERRED_SIZE,
+																								javax.swing.GroupLayout.DEFAULT_SIZE,
+																								javax.swing.GroupLayout.PREFERRED_SIZE)
+																						.addComponent(
+																								rightPanel,
+																								javax.swing.GroupLayout.PREFERRED_SIZE,
+																								javax.swing.GroupLayout.DEFAULT_SIZE,
+																								javax.swing.GroupLayout.PREFERRED_SIZE))))));
+		layout
+				.setVerticalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout
+										.createSequentialGroup()
+										.addComponent(
+												topPanel,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												60,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGroup(
+												layout
+														.createParallelGroup(
 																javax.swing.GroupLayout.Alignment.LEADING,
 																false)
-																.addComponent(
-																		topPanel,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		800,
-																		Short.MAX_VALUE)
-																.addGroup(
-																		layout.createSequentialGroup()
-																				.addComponent(
-																						leftPanel,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
-																				.addComponent(
-																						rightPanel,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.PREFERRED_SIZE))))));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addComponent(topPanel,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										60,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING,
-												false)
-												.addComponent(
-														rightPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														leftPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addComponent(commentPane,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(bottomPanel,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										70,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)));
+														.addComponent(
+																rightPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																leftPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(
+												commentPane,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(
+												bottomPanel,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												70,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)));
 
 		pack();
 	}
@@ -485,6 +501,13 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 		return productLabels;
 	}
 
+	/**
+	 * Takes a list in of JLabels containing products and , and displays them in
+	 * the innerLeftPanelLayout.
+	 * 
+	 * @param innerLeftPanlelLayout
+	 * @param productLabels
+	 */
 	private void setInnerLeftPanelLayout(GroupLayout innerLeftPanelLayout,
 			ArrayList<JLabel> productLabels) {
 		// Set the horizontal axis
@@ -516,6 +539,10 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 				.addGroup(verticalTempGroup));
 	}
 
+	/**
+	 * Updates the right panel, including creating the product labels, sets the
+	 * inner right panel layout and sets the total price.
+	 */
 	public void updateRightPanel() {
 		this.rightPanel.setBackground(Color.WHITE);
 
@@ -612,6 +639,12 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 	 */
 	boolean searchFieldChanged;
 
+	/**
+	 * Updates the left panel if when a key is typed in the search field.
+	 * 
+	 * @param evt
+	 *            MouseEvent
+	 */
 	private void searchFieldKeyTyped(java.awt.event.KeyEvent evt) {
 		String letter = this.searchField.getText();
 		if ((!this.searchFieldChanged) && (letter.length() == 4)) {

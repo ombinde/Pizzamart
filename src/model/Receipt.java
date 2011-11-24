@@ -23,7 +23,8 @@ public class Receipt {
 
 	/**
 	 *Opens the .pdf file
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public static void openReceipt() throws IOException {
 		Desktop desktop = null;
@@ -35,6 +36,7 @@ public class Receipt {
 
 	/**
 	 * Uses PrintPff to print out the file.
+	 * 
 	 * @throws IOException
 	 * @throws PrinterException
 	 */

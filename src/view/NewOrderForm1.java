@@ -94,17 +94,13 @@ public class NewOrderForm1 extends javax.swing.JFrame {
 		topPanel.setLayout(topPanelLayout);
 		topPanelLayout.setHorizontalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(229, 229, 229)
+				topPanelLayout.createSequentialGroup().addGap(229, 229, 229)
 						.addComponent(newOrderLabel,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 317,
 								Short.MAX_VALUE).addGap(254, 254, 254)));
 		topPanelLayout.setVerticalGroup(topPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				topPanelLayout
-						.createSequentialGroup()
-						.addGap(11, 11, 11)
+				topPanelLayout.createSequentialGroup().addGap(11, 11, 11)
 						.addComponent(newOrderLabel,
 								javax.swing.GroupLayout.PREFERRED_SIZE, 39,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,23 +140,18 @@ public class NewOrderForm1 extends javax.swing.JFrame {
 		javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(
 				leftPanel);
 		leftPanel.setLayout(leftPanelLayout);
-		leftPanelLayout.setHorizontalGroup(leftPanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(leftScrollPane,
-						javax.swing.GroupLayout.DEFAULT_SIZE, 400,
-						Short.MAX_VALUE)
-				.addGroup(
-						leftPanelLayout.createSequentialGroup().addComponent(
-								searchField,
-								javax.swing.GroupLayout.DEFAULT_SIZE, 380,
-								Short.MAX_VALUE)));
+		leftPanelLayout.setHorizontalGroup(leftPanelLayout.createParallelGroup(
+				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				leftScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400,
+				Short.MAX_VALUE).addGroup(
+				leftPanelLayout.createSequentialGroup().addComponent(
+						searchField, javax.swing.GroupLayout.DEFAULT_SIZE, 380,
+						Short.MAX_VALUE)));
 		leftPanelLayout.setVerticalGroup(leftPanelLayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				leftPanelLayout
-						.createSequentialGroup()
-						.addComponent(searchField,
-								javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
+				leftPanelLayout.createSequentialGroup().addComponent(
+						searchField, javax.swing.GroupLayout.PREFERRED_SIZE,
+						50, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addComponent(leftScrollPane,
 								javax.swing.GroupLayout.DEFAULT_SIZE, 392,
 								Short.MAX_VALUE)));
@@ -448,61 +439,72 @@ public class NewOrderForm1 extends javax.swing.JFrame {
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING,
-												false)
-												.addComponent(
-														topPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		leftPanel,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		400,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addComponent(
-																		rightPanel,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addComponent(
-														bottomPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addComponent(topPanel,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										60,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(
-														rightPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														450,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														leftPanel,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														450,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addComponent(bottomPanel,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										70,
-										javax.swing.GroupLayout.PREFERRED_SIZE)));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout
+										.createSequentialGroup()
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.LEADING,
+																false)
+														.addComponent(
+																topPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addGroup(
+																layout
+																		.createSequentialGroup()
+																		.addComponent(
+																				leftPanel,
+																				javax.swing.GroupLayout.PREFERRED_SIZE,
+																				400,
+																				javax.swing.GroupLayout.PREFERRED_SIZE)
+																		.addComponent(
+																				rightPanel,
+																				javax.swing.GroupLayout.PREFERRED_SIZE,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				javax.swing.GroupLayout.PREFERRED_SIZE))
+														.addComponent(
+																bottomPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																javax.swing.GroupLayout.DEFAULT_SIZE,
+																javax.swing.GroupLayout.PREFERRED_SIZE))));
+		layout
+				.setVerticalGroup(layout
+						.createParallelGroup(
+								javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(
+								layout
+										.createSequentialGroup()
+										.addComponent(
+												topPanel,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												60,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addGroup(
+												layout
+														.createParallelGroup(
+																javax.swing.GroupLayout.Alignment.LEADING)
+														.addComponent(
+																rightPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																450,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																leftPanel,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																450,
+																javax.swing.GroupLayout.PREFERRED_SIZE))
+										.addComponent(
+												bottomPanel,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												70,
+												javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}
@@ -618,15 +620,15 @@ public class NewOrderForm1 extends javax.swing.JFrame {
 		}
 
 		if (legalCustomer && this.order != null) {
-			NewOrderForm2 form = new NewOrderForm2(
-					ManageOrder.addNewCustomer(firstName, lastName, phone,
-							address, zipCode, postalAddress), order);
+			NewOrderForm2 form = new NewOrderForm2(ManageOrder
+					.addNewCustomer(firstName, lastName, phone, address,
+							zipCode, postalAddress), order);
 			form.setVisible(true);
 			this.setVisible(false);
 		} else if (legalCustomer) {
-			NewOrderForm2 form = new NewOrderForm2(
-					ManageOrder.addNewCustomer(firstName, lastName, phone,
-							address, zipCode, postalAddress));
+			NewOrderForm2 form = new NewOrderForm2(ManageOrder
+					.addNewCustomer(firstName, lastName, phone, address,
+							zipCode, postalAddress));
 			form.setVisible(true);
 			this.setVisible(false);
 		}
