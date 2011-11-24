@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -147,23 +148,33 @@ public class DeliveryForm1 extends javax.swing.JFrame {
                 UpdateButtonMouseClicked(evt);
             }
         });
-
-        yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
-        yellowColorLabel.setText(" Påbegynt");
-
+        
         colorHeaderLabel.setFont(new java.awt.Font("Georgia", 0, 18));
         colorHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         colorHeaderLabel.setText("Fargeforklaring:");
 
+        yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
+        yellowColorLabel.setText(" Påbegynt");
+
         blueColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        blueColorLabel.setIcon(new javax.swing.ImageIcon("icons/blue_square.png"));
         blueColorLabel.setText(" Ikke påbegynt");
 
         redColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        redColorLabel.setIcon(new javax.swing.ImageIcon("icons/red_square.png"));
         redColorLabel.setText(" Se kommentar");
 
+		try {
+			java.net.URL blueURL = new URL("http://folk.ntnu.no/mortnod/it1901/blue_square.png");
+			blueColorLabel.setIcon(new javax.swing.ImageIcon(blueURL));
+			
+			java.net.URL redURL = new URL("http://folk.ntnu.no/mortnod/it1901/red_square.png");
+			redColorLabel.setIcon(new javax.swing.ImageIcon(redURL));
+			
+			java.net.URL yellowURL = new URL("http://folk.ntnu.no/mortnod/it1901/yellow_square.png");
+			yellowColorLabel.setIcon(new javax.swing.ImageIcon(yellowURL));
+			
+		} catch (MalformedURLException e) {}
+        
+        
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
         bottomPanelLayout.setHorizontalGroup(

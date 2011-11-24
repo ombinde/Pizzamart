@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.JLabel;
 
@@ -24,11 +26,15 @@ public class Button {
 		
 		button.setOpaque(true);
 		button.setFont(new java.awt.Font("Georgia", 0, 18));
-        //button.setPreferredSize(new java.awt.Dimension(140, 50));
         button.setIconTextGap(10);
-        
         button.setText(text);
-        button.setIcon(new javax.swing.ImageIcon("icons/" + icon + ".png"));
+        
+        java.net.URL URL;
+		try {
+			URL = new URL("http://folk.ntnu.no/mortnod/it1901/" + icon + ".png");
+			button.setIcon(new javax.swing.ImageIcon(URL));
+		} catch (MalformedURLException e) {}
+        
 		
         Color background, foreground, border;
         
@@ -95,6 +101,10 @@ public class Button {
 	}
 	
 	public static void changeIcon(JLabel button, String icon){
-		button.setIcon(new javax.swing.ImageIcon("icons/" + icon + ".png"));
+		java.net.URL URL;
+		try {
+			URL = new URL("http://folk.ntnu.no/mortnod/it1901/" + icon + ".png");
+			button.setIcon(new javax.swing.ImageIcon(URL));
+		} catch (MalformedURLException e) {}
 	}
 }

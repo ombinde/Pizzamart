@@ -2,6 +2,8 @@ package view;
 //no.ntnu.course
 
 import java.awt.Color;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -122,23 +124,34 @@ public class Kitchenform1 extends javax.swing.JFrame {
         colorHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         colorHeaderLabel.setText("Fargeforklaring:");
 
-
         blueColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        blueColorLabel.setIcon(new javax.swing.ImageIcon("icons/blue_square.png"));
         blueColorLabel.setText(" Ikke påbegynt");
 
         purpleColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        purpleColorLabel.setIcon(new javax.swing.ImageIcon("icons/purple_square.png"));
         purpleColorLabel.setText(" Allergi");
 
         redColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        redColorLabel.setIcon(new javax.swing.ImageIcon("icons/red_square.png"));
         redColorLabel.setText(" Kommentar");
 
         yellowColorLabel.setFont(new java.awt.Font("Georgia", 0, 13));
-        yellowColorLabel.setIcon(new javax.swing.ImageIcon("icons/yellow_square.png"));
         yellowColorLabel.setText(" Påbegynt");
-
+        
+		try {
+			java.net.URL purpleURL = new URL("http://folk.ntnu.no/mortnod/it1901/purple_square.png");
+			purpleColorLabel.setIcon(new javax.swing.ImageIcon(purpleURL));
+			
+			java.net.URL blueURL = new URL("http://folk.ntnu.no/mortnod/it1901/blue_square.png");
+			blueColorLabel.setIcon(new javax.swing.ImageIcon(blueURL));
+			
+			java.net.URL redURL = new URL("http://folk.ntnu.no/mortnod/it1901/red_square.png");
+			redColorLabel.setIcon(new javax.swing.ImageIcon(redURL));
+			
+			java.net.URL yellowURL = new URL("http://folk.ntnu.no/mortnod/it1901/yellow_square.png");
+			yellowColorLabel.setIcon(new javax.swing.ImageIcon(yellowURL));
+			
+		} catch (MalformedURLException e) {}
+		
+		
         javax.swing.GroupLayout bottomPanelLayout = new javax.swing.GroupLayout(bottomPanel);
         bottomPanel.setLayout(bottomPanelLayout);
         bottomPanelLayout.setHorizontalGroup(
