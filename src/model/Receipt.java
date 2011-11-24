@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.io.*;
+
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -19,102 +20,109 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class Receipt {
-	
-	
+
 	/**
-	 *pner Receipe.pdf filen. 
+	 *Opens the .pdf file
+	 * @throws IOException 
 	 */
-	public static void openReceipt(){
+	public static void openReceipt() throws IOException {
 		Desktop desktop = null;
-		if(Desktop.isDesktopSupported()){
+		if (Desktop.isDesktopSupported()) {
 			desktop = Desktop.getDesktop();
 		}
-		
-		try {
-			desktop.open(new File("Receipt.pdf"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		desktop.open(new File("Receipt.pdf"));
 	}
-	
-	public static void printFile() throws IOException, PrinterException{
+
+	/**
+	 * Uses PrintPff to print out the file.
+	 * @throws IOException
+	 * @throws PrinterException
+	 */
+	public static void printFile() throws IOException, PrinterException {
 		PrintPdf.PrintFile("Receipt.pdf");
 	}
-	
+
 	/**
-	 * lager en .pdf-fil
-	 * @throws DocumentException 
-	 * @throws FileNotFoundException 
+	 * creates and writes to a .pdf file
+	 * 
+	 * @param Order
+	 * @throws DocumentException
+	 * @throws FileNotFoundException
 	 */
-	public static void makeReceipe(Order order) throws FileNotFoundException, DocumentException{
-        
-        InputStreamReader in = new InputStreamReader(System.in);
-        BufferedReader bin = new BufferedReader(in);
-        DecimalFormat toDesimaler = new DecimalFormat("0.00");
+	public static void makeReceipe(Order order) throws FileNotFoundException,
+			DocumentException {
+
+		DecimalFormat toDesimaler = new DecimalFormat("0.00");
 		double totalSum = 0;
-        Document document = new Document(PageSize.A4, 36, 72, 108, 180);
-        PdfWriter.getInstance(document,new FileOutputStream("Receipt.pdf"));
-        ArrayList<Product> products = order.getProductsInOrder();
-        Customer customer = order.getCustomer();
-        
-        document.open();
-        
-        Chunk chunk = new Chunk(Properties.getName());
-        chunk.setUnderline(0.2f, -2f);
-        Font font = new Font();
-        font.setSize(32);
-        chunk.setFont(font);
-        Paragraph paragraph = new Paragraph("                                                      ");
-        paragraph.add(chunk);
-        document.add(paragraph);
-        
-        document.add(new Paragraph("\n                                              Navn: " + customer.getForename() + " " + customer.getLastname() + "  Tlf: " + 
-				customer.getPhone() + "\n                                              Adresse: " + customer.getAddress() + ", " + customer.getzipCode() + " " + customer.getPostalAddress()));
-        document.add(new Paragraph("\n________________________________________________________________________\n\n"));
-		PdfPTable table=new PdfPTable(4);
+		Document document = new Document(PageSize.A4, 36, 72, 108, 180);
+		PdfWriter.getInstance(document, new FileOutputStream("Receipt.pdf"));
+		ArrayList<Product> products = order.getProductsInOrder();
+		Customer customer = order.getCustomer();
+
+		document.open();
+
+		Chunk chunk = new Chunk(Properties.getName());
+		chunk.setUnderline(0.2f, -2f);
+		Font font = new Font();
+		font.setSize(28);
+		chunk.setFont(font);
+		Paragraph paragraph = new Paragraph("               ");
+		paragraph.add(chunk);
+
+		document.add(paragraph);
+		document.add(new Paragraph("               Tlf: "
+				+ Properties.getPhone() + "   Addresse: "
+				+ Properties.getAddress() + " " + Properties.getZipCode() + " "
+				+ Properties.getPostalAddress()));
+		document.add(new Paragraph("               Dato: "
+				+ showTime("dd.MM.yyyy") + "             Tid: "
+				+ showTime("HH:mm" + "\n\n")));
+
+		PdfPTable table = new PdfPTable(4);
 		table.addCell("Vare:");
 		table.addCell("Pris vare ink MVA:");
 		table.addCell("Antall:");
 		table.addCell("Sum");
-		
-		for(int i = 0; i < products.size(); i++) {
+
+		for (int i = 0; i < products.size(); i++) {
 			Product product = products.get(i);
 			int quat = product.getQuantity();
-			double varePris = product.getPrice()*1.14;
-			double sumLinje = (double)quat * product.getPrice()*1.14;
+			double varePris = product.getPrice();
+			double sumLinje = (double) quat * product.getPrice();
 			totalSum += sumLinje;
 			table.addCell(product.getName());
 			table.addCell(toDesimaler.format(varePris));
-			double value = product.getQuantity();
-			String mid = Double.toString(value);
+			int value = product.getQuantity();
+			String mid = Integer.toString(value);
 			table.addCell(mid);
 			table.addCell(toDesimaler.format(sumLinje));
 		}
-		
-//		table.addCell("Utkj¿ring");
-//		table.addCell("");
-//		table.addCell("");
-//		table.addCell(Double.toString(utkjoring));
-		
-		table.addCell("TotalSum");
+
+		table.addCell("Total sum");
 		table.addCell("");
 		table.addCell("");
 		table.addCell(toDesimaler.format(totalSum));
-		
-		document.add(table);
-		document.add(new Paragraph("\n\nDato: " + showTime("dd.MM.yyyy") + "             Tid: " + showTime("HH:mm")));
 
-        document.close();
-		 
+		document.add(table);
+		document.add(new Paragraph("\n               Kundeinformasjon:"));
+		document.add(new Paragraph("              Navn:       "
+				+ customer.getForename() + " " + customer.getLastname()
+				+ "\n               Telefon:   " + customer.getPhone()
+				+ "\n               Adresse:  " + customer.getAddress()
+				+ "\n                               " + customer.getzipCode()
+				+ " " + customer.getPostalAddress()));
+
+		document.close();
+
 	}
-	
+
 	/**
 	 * Finner tid og dato, og returnerer denne som en streng.
+	 * 
 	 * @param dateFormat
 	 * @return
 	 */
-	private static String showTime(String dateFormat){
+	private static String showTime(String dateFormat) {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		return sdf.format(cal.getTime());

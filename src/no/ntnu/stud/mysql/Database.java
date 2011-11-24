@@ -23,7 +23,6 @@ public class Database {
 	
 	/**
 	 * A constructor that should be called if the connection with the database doesn't exist.
-	 * @throws SQLException
 	 */
 	private Database() {
 		try {
@@ -41,7 +40,6 @@ public class Database {
 	 * It calls the private constructor if the connection doesn't already exist.
 	 * If the connection is already made, it will just return that.
 	 * @return database
-	 * @throws SQLException
 	 */
 	public static Database getDatabase() {
 		if(ref == null){
@@ -68,7 +66,6 @@ public class Database {
 	/**
 	 * Takes in a String that is the query and executes it. 
 	 * @param query
-	 * @throws SQLException
 	 */
 	public void insert(String query) {
 		PreparedStatement sporring;
@@ -85,7 +82,6 @@ public class Database {
 	 * with the inserted data, you will get this key back.
 	 * @param query
 	 * @return generated key
-	 * @throws SQLException
 	 */
 	public int insertWithIdReturn(String query) {
 		PreparedStatement q;
@@ -105,7 +101,6 @@ public class Database {
 	 * Takes in a String that is the query, and return the ResultSet of the query.
 	 * @param query
 	 * @return ResultSet
-	 * @throws SQLException
 	 */
 	public ResultSet select(String query) {
 		ResultSet rs = null;
