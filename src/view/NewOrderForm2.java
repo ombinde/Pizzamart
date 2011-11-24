@@ -253,7 +253,10 @@ private boolean existingOrder;
         commentArea.setColumns(20);
         commentArea.setLineWrap(true);
         commentArea.setRows(3);
-        commentArea.setText("");
+        if (existingOrder)
+        	commentArea.setText(order.getComment());
+        else
+        	commentArea.setText("");
         commentArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         commentScrollPane.setViewportView(commentArea);
         commentArea.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -443,7 +446,8 @@ private boolean existingOrder;
     }
     
     private void commentFieldMouseClicked(java.awt.event.MouseEvent evt){
-    	this.commentArea.setText("");
+    	if (!existingOrder)
+    		this.commentArea.setText("");
     }
 
     private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {

@@ -404,7 +404,7 @@ public class Kitchenform2 extends javax.swing.JFrame {
     private void startFinishButtonMouseClicked(java.awt.event.MouseEvent evt) {                                          
     	if(order.getStatus().equals("Bestilt")){
     		ChefController.startOrder(order);
-    		startFinishButton.setText(" Finish");
+    		startFinishButton.setText("Ferdig");
     		Button.changeIcon(startFinishButton, "buy");
     		Button.changeColor(startFinishButton, "green");
     	}
