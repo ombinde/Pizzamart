@@ -25,11 +25,18 @@ public class PrintPdf {
 
 	private PrinterJob pjob = null;
 
-	public static void PrintFile(String fil) throws IOException, PrinterException {
-		
+	/**
+	 * Prints out the file given.
+	 * @param fil
+	 * @throws IOException
+	 * @throws PrinterException
+	 */
+	public static void PrintFile(String fil) throws IOException,
+			PrinterException {
+
 		// Create a PDFFile from a File reference
 		FileInputStream fis = new FileInputStream(fil);
-		PrintPdf printPDFFile = new PrintPdf(fis, "Test Print PDF");
+		PrintPdf printPDFFile = new PrintPdf(fis, "Print PDF");
 		printPDFFile.print();
 	}
 
@@ -41,7 +48,8 @@ public class PrintPdf {
 	 * @throws IOException
 	 * @throws PrinterException
 	 */
-	public PrintPdf(InputStream inputStream, String jobName) throws IOException, PrinterException {
+	public PrintPdf(InputStream inputStream, String jobName)
+			throws IOException, PrinterException {
 		byte[] pdfContent = new byte[inputStream.available()];
 		inputStream.read(pdfContent, 0, inputStream.available());
 		initialize(pdfContent, jobName);
@@ -55,7 +63,8 @@ public class PrintPdf {
 	 * @throws IOException
 	 * @throws PrinterException
 	 */
-	public PrintPdf(byte[] content, String jobName) throws IOException, PrinterException {
+	public PrintPdf(byte[] content, String jobName) throws IOException,
+			PrinterException {
 		initialize(content, jobName);
 	}
 
@@ -67,7 +76,8 @@ public class PrintPdf {
 	 * @throws IOException
 	 * @throws PrinterException
 	 */
-	private void initialize(byte[] pdfContent, String jobName) throws IOException, PrinterException {
+	private void initialize(byte[] pdfContent, String jobName)
+			throws IOException, PrinterException {
 		ByteBuffer bb = ByteBuffer.wrap(pdfContent);
 		// Create PDF Print Page
 		PDFFile pdfFile = new PDFFile(bb);
@@ -104,15 +114,18 @@ class PDFPrintPage implements Printable {
 		this.file = file;
 	}
 
-	public int print(Graphics g, PageFormat format, int index) throws PrinterException {
+	public int print(Graphics g, PageFormat format, int index)
+			throws PrinterException {
 		int pagenum = index + 1;
 		if ((pagenum >= 1) && (pagenum <= file.getNumPages())) {
 			Graphics2D g2 = (Graphics2D) g;
 			PDFPage page = file.getPage(pagenum);
 
 			// fit the PDFPage into the printing area
-			Rectangle imageArea = new Rectangle((int) format.getImageableX(), (int) format.getImageableY(),
-					(int) format.getImageableWidth(), (int) format.getImageableHeight());
+			Rectangle imageArea = new Rectangle((int) format.getImageableX(),
+					(int) format.getImageableY(), (int) format
+							.getImageableWidth(), (int) format
+							.getImageableHeight());
 			g2.translate(0, 0);
 			PDFRenderer pgs = new PDFRenderer(page, g2, imageArea, null, null);
 			try {
