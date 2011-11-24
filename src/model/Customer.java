@@ -27,8 +27,8 @@ public class Customer {
 	 * @param forename
 	 * @param lastname
 	 * @param phone
-	 * @param adress
-	 * @param postcode
+	 * @param address
+	 * @param zipCode
 	 */
 	public Customer(String forename, String lastname, String phone,
 			String address, String zipCode, String postalAddress) {
@@ -240,7 +240,7 @@ public class Customer {
 	/**
 	 * Returns the zip code of a customer
 	 * 
-	 * @return
+	 * @return zipCode
 	 */
 	public String getzipCode() {
 		return zipCode;

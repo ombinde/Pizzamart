@@ -42,7 +42,7 @@ public class ManageOrder {
 	/**
 	 * Adds a Customer to the database.
 	 * 
-	 * @param customer
+	 * @param c is a Customer
 	 */
 	public static void addCustomerToDatabase(Customer c) {
 		c.addToDatabase();
@@ -53,8 +53,6 @@ public class ManageOrder {
 	 * 
 	 * @param customer
 	 *            is an customer object
-	 * @param order
-	 *            is an order object
 	 */
 	public static Order addNewOrder(Customer customer) {
 		return new Order(customer);

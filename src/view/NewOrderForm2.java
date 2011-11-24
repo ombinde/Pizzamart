@@ -505,7 +505,7 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 	 * Takes a list in of JLabels containing products and , and displays them in
 	 * the innerLeftPanelLayout.
 	 * 
-	 * @param innerLeftPanlelLayout
+	 * @param innerLeftPanelLayout
 	 * @param productLabels
 	 */
 	private void setInnerLeftPanelLayout(GroupLayout innerLeftPanelLayout,
@@ -629,14 +629,6 @@ public class NewOrderForm2 extends javax.swing.JFrame {
 		innerRightPanelLayout.setVerticalGroup(tempVerticalGroup);
 	}
 
-	/**
-	 * Removes the initial text "søk" from searchField if the event is
-	 * triggered. Since some operating systems mark the text when opened, there
-	 * are two different ways this might be handled
-	 * 
-	 * @param evt
-	 *            KeyEvent
-	 */
 	boolean searchFieldChanged;
 
 	/**

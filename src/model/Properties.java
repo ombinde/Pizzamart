@@ -46,7 +46,7 @@ public class Properties {
 	 * If the properties object is already initialized the object will be
 	 * returned. Else it ill first construct it, and then return it.
 	 * 
-	 * @return
+	 * @return Properties
 	 */
 	public static Properties getProperties() {
 		if (properties != null)
@@ -129,7 +129,7 @@ public class Properties {
 	/**
 	 * Returns the zip code of the restaurant.
 	 * 
-	 * @return
+	 * @return zipcode
 	 */
 	public static String getZipCode() {
 		if (properties == null)

@@ -11,7 +11,7 @@ public class ChefController {
 	/**
 	 * Returns all the orders that is ready for cooking or being cooked.
 	 * 
-	 * @return
+	 * @return ArrayList with orders.
 	 */
 	public static ArrayList<Order> getFreshOrders() {
 		ArrayList<Order> freshOrders = Order.getRelevantOrders("Bestilt",

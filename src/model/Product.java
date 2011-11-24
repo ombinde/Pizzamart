@@ -71,7 +71,7 @@ public class Product {
 	/**
 	 * Returns the product id of a product.
 	 * 
-	 * @return
+	 * @return idproduct
 	 */
 	public int getIdproduct() {
 		return idproduct;
@@ -184,7 +184,7 @@ public class Product {
 	 */
 	public static boolean addProductToDatabase(String name, double price,
 			String comment) {
-		if (prodictIsUnike(name)) {
+		if (productIsUnique(name)) {
 			Database db = Database.getDatabase();
 			String query = "INSERT INTO product (name, price, comments, visability) "
 					+ "VALUES ('"
@@ -206,7 +206,7 @@ public class Product {
 	 * was deleted, else it's false.
 	 * 
 	 * @param p
-	 * @return
+	 * @return boolean True if the product was deleted, else it's false.
 	 */
 	public static boolean deleteProductFromDatabase(Product p) {
 		if (p instanceof DeliveryFee) {
@@ -229,11 +229,11 @@ public class Product {
 	 * @param name
 	 * @param price
 	 * @param comment
-	 * @return
+	 * @return boolean True if the product was updated, else it's false.
 	 */
 	public static boolean updateProduct(Product p, String name, double price,
 			String comment) {
-		if (!prodictIsUnike(name, p)) {
+		if (!productIsUnique(name, p)) {
 			Error
 					.showMessage("Det eksisterer et annet produkt med dette navnet.");
 			return false;
@@ -259,9 +259,9 @@ public class Product {
 	 * product can have the same name.
 	 * 
 	 * @param name
-	 * @return
+	 * @return True if the product is unique, else it's false.
 	 */
-	private static boolean prodictIsUnike(String name, Product p) {
+	private static boolean productIsUnique(String name, Product p) {
 		try {
 			Database db = Database.getDatabase();
 			String query = "SELECT * FROM product WHERE name = '" + name
@@ -281,9 +281,9 @@ public class Product {
 	 * product can have the same name.
 	 * 
 	 * @param name
-	 * @return
+	 * @return True if the product is unique, else it's false.
 	 */
-	private static boolean prodictIsUnike(String name) {
+	private static boolean productIsUnique(String name) {
 		try {
 			Database db = Database.getDatabase();
 			String query = "SELECT * FROM product WHERE name = '" + name
@@ -337,7 +337,7 @@ public class Product {
 	/**
 	 * Returns the price as a formated string.
 	 * 
-	 * @return
+	 * @return formatedPrice
 	 */
 	public String formatPrice() {
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");

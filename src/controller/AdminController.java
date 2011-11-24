@@ -42,7 +42,6 @@ public class AdminController {
 	 * 
 	 * @param o
 	 *            is order
-	 * @return true if the order was deleted, else it's false.
 	 */
 	public static void deleteOrder(Order o) {
 		Order.deleteOrderFromDatabase(o);
@@ -93,7 +92,6 @@ public class AdminController {
 	 *            restaurant phone
 	 * @param limitFreeDelivery
 	 *            limit for when free delivery will take place.
-	 * @return true if the value was updated, and false if not
 	 */
 	public static void setRestaurantProperties(String name, String address,
 			String zipCode, String postalAddress, String phone,

@@ -47,7 +47,7 @@ public class Receipt {
 	/**
 	 * creates and writes to a .pdf file
 	 * 
-	 * @param Order
+	 * @param order
 	 * @throws DocumentException
 	 * @throws FileNotFoundException
 	 */
@@ -122,7 +122,7 @@ public class Receipt {
 	 * Finner tid og dato, og returnerer denne som en streng.
 	 * 
 	 * @param dateFormat
-	 * @return
+	 * @return time
 	 */
 	private static String showTime(String dateFormat) {
 		Calendar cal = Calendar.getInstance();

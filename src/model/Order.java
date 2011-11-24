@@ -80,8 +80,7 @@ public class Order {
 	/**
 	 * Returns the total price of an given Order.
 	 * 
-	 * @param order
-	 * @return totalprice
+	 * @return totalprice of the order.
 	 */
 	public double getOrderTotalPrice() {
 		double totalprice = 0;
@@ -447,7 +446,7 @@ public class Order {
 	/**
 	 * Sets the delivery to true or false. Adds a delivery fee if it's true.
 	 * 
-	 * @param boolean
+	 * @param b
 	 */
 	public void setDelivery(boolean b) {
 		if (b) {
@@ -462,7 +461,7 @@ public class Order {
 	/**
 	 * Returns true if the order is going to be delivered and false if not.
 	 * 
-	 * @return
+	 * @return True if the order is going to be delivered. Else it's false.
 	 */
 	public boolean getDelivery() {
 		return (delivery == 1) ? true : false;
@@ -471,7 +470,7 @@ public class Order {
 	/**
 	 * Sets the allergy status to true or false.
 	 * 
-	 * @param boolean
+	 * @param b
 	 */
 	public void setAllergy(boolean b) {
 		if (b) {
@@ -484,7 +483,7 @@ public class Order {
 	/**
 	 * Returns true if the customer is allergic
 	 * 
-	 * @return
+	 * @return True if the order is marked as allergic, else it's false.
 	 */
 	public boolean getAllergy() {
 		return (allergy == 1) ? true : false;
