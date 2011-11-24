@@ -47,8 +47,8 @@ public class ManageOrder {
 	
 	/**
 	 * Creates a new Order with only the Customer in it.
-	 * @param customer
-	 * @return order
+	 * @param customer is an customer object
+	 * @param order is an order object
 	 */
 	public static Order addNewOrder(Customer customer){
 		return new Order(customer);
@@ -56,9 +56,9 @@ public class ManageOrder {
 	
 	/**
 	 * Adds product to the order. Quantity is specified.
-	 * @param order
-	 * @param product
-	 * @param quantity
+	 * @param order is an order object
+	 * @param product is a product object
+	 * @param quantity is a integer
 	 */
 	public static void addProductToOrder(Order order, Product product, int quantity){
 		order.addProductToOrder(product, quantity);
@@ -66,8 +66,8 @@ public class ManageOrder {
 	
 	/**
 	 * Adds one product to the order.
-	 * @param order
-	 * @param product
+	 * @param order is an order object
+	 * @param product is a product object
 	 */
 	public static void  addOneMoreProductToOrder(Order order, Product product){
 		order.addProductToOrder(product, 1);
@@ -75,8 +75,8 @@ public class ManageOrder {
 	
 	/**
 	 * Removes one product from the order.
-	 * @param order
-	 * @param product
+	 * @param order is an order object
+	 * @param product is a product object
 	 */
 	public static void removeOneProductFromOrder(Order order, Product product){
 		order.removeProductFromOrder(product, 1);
@@ -84,7 +84,7 @@ public class ManageOrder {
 	
 	/**
 	 * Sets the order to be either delivered or not.
-	 * @param order
+	 * @param order is an order object
 	 */
 	public static void setDelivery(Order order, boolean b){
 		order.setDelivery(b);
@@ -92,7 +92,7 @@ public class ManageOrder {
 	
 	/**
 	 * Sets the order to have an allergic customer or not
-	 * @param order
+	 * @param order is an order object
 	 */
 	public static void setAllergy(Order order, boolean b){
 		order.setAllergy(b);
@@ -101,7 +101,7 @@ public class ManageOrder {
 	/**
 	 * Returns all the products in the order.
 	 * It's a HashMap where product is the key, and quantity is the value.
-	 * @param order
+	 * @param order is an order object
 	 * @return productsInOrder
 	 */
 	public static ArrayList<Product> getProductsInOrder(Order order){
@@ -110,9 +110,9 @@ public class ManageOrder {
 	
 	/**
 	 * Searches for products matching the query in the database and return the result as a
-	 * hashmap with name and price of the products
-	 * @param query
-	 * @return relevantProducts
+	 * arraylist with name and price of the products
+	 * @param query is a string
+	 * @return relevantProducts is a arraylist containing products and their price
 	 */
 	public static ArrayList<Product> getRelevantProducts(String query){
 		return Product.getRelevantProducts(query);
@@ -120,8 +120,8 @@ public class ManageOrder {
 	
 	/**
 	 * Returns an ArrayList with the relevant customers.
-	 * @param query
-	 * @return customer
+	 * @param query is string
+	 * @return customer is arraylist of customers
 	 */
 	public static ArrayList<Customer> getRelevantCustomers(String query){
 		return Customer.getRelevantCustomers(query);
@@ -129,8 +129,8 @@ public class ManageOrder {
 	
 	/**
 	 * Returns the total price of an order.
-	 * @param order
-	 * @return totalPrice
+	 * @param order is an order object
+	 * @return totalPrice is a double
 	 */
 	public static double getTotalPrice(Order order){
 		return order.getOrderTotalPrice();
@@ -146,7 +146,7 @@ public class ManageOrder {
 	
 	/**
 	 * Adds the order to the database.
-	 * @param order
+	 * @param order is an order object
 	 */
 	public static void submitOrderToDatabase(Order order){
 		order.addOrderToDatabase();
@@ -154,7 +154,7 @@ public class ManageOrder {
 	
 	/**
 	 * Updates an existing order in the database.
-	 * @param order
+	 * @param order is an order object
 	 */
 	public static void updateExistingOrderInDatabase(Order order){
 		order.updateOrder();
@@ -163,7 +163,7 @@ public class ManageOrder {
 	/**
 	 * Formats the price to a String with two decimals.
 	 * @param price
-	 * @return
+	 * @return a string formatted with 2 decimals
 	 */
 	public static String formatPrice(double price){
 		DecimalFormat decimalFormat = new DecimalFormat("0.00");
@@ -172,7 +172,7 @@ public class ManageOrder {
 	
 	/**
 	 * Returns the limit for when delivery fee is free.
-	 * @return
+	 * @return fee limit is a double
 	 */
 	public static double getLimitFreeDelivery(){
 		return Properties.getLimitFreeDelivery();
@@ -180,7 +180,7 @@ public class ManageOrder {
 	
 	/**
 	 * Returns the fee for delivery.
-	 * @return
+	 * @return delivery fee is a double
 	 */
 	public static double getDeliveryFee(){
 		return DeliveryFee.getOriginalFee();

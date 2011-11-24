@@ -1,10 +1,7 @@
 package model;
 
 import java.awt.Desktop;
-import java.awt.PrintJob;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -12,21 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.io.*;
-import java.util.zip.*;
-
-import javax.print.Doc;
-import javax.print.DocPrintJob;
-import javax.print.SimpleDoc;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-
-
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -55,14 +43,14 @@ public class Receipt {
 	}
 	
 	/**
-	 * lager en .pdf fi
+	 * lager en .pdf-fil
 	 * @throws DocumentException 
 	 * @throws FileNotFoundException 
 	 */
 	public static void makeReceipe(Order order) throws FileNotFoundException, DocumentException{
         
-        InputStreamReader in= new InputStreamReader(System.in);
-        BufferedReader bin= new BufferedReader(in);
+        InputStreamReader in = new InputStreamReader(System.in);
+        BufferedReader bin = new BufferedReader(in);
         DecimalFormat toDesimaler = new DecimalFormat("0.00");
 		double totalSum = 0;
         Document document = new Document(PageSize.A4, 36, 72, 108, 180);
@@ -72,7 +60,7 @@ public class Receipt {
         
         document.open();
         
-        Chunk chunk = new Chunk(" " + Properties.getName() + " ");
+        Chunk chunk = new Chunk(Properties.getName());
         chunk.setUnderline(0.2f, -2f);
         Font font = new Font();
         font.setSize(32);

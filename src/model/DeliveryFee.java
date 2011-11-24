@@ -3,7 +3,8 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import database.Database;
+import no.ntnu.stud.mysql.Database;
+
 
 import view.Error;
 

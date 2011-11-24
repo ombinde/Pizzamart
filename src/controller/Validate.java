@@ -25,7 +25,11 @@ public class Validate {
 		}
 		return false;
 	}
-	
+	/**
+	 * Checks whether the given string is a valid zipcode.
+	 * @param text is the string to be checked
+	 * @return true if string is a valid zip code and false if it is not valid.
+	 */
 	public  static boolean isZipCode(String text){
 		if (text.length()!=4){
 			return false;

@@ -10,7 +10,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import database.Database;
+import no.ntnu.stud.mysql.Database;
+
 
 import view.Error;
 

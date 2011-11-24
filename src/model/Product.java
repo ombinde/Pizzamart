@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import database.Database;
+import no.ntnu.stud.mysql.Database;
+
 
 import view.Error;
 
